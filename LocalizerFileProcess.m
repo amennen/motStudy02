@@ -1,0 +1,310 @@
+function NEWLOCALIZER(subjectNum,crossval,featureSelect,prev,rtData,scanNum)
+% now going to be loading in localizer data
+if IsLinux
+    biac_dir = '/Data1/packages/BIAC_Matlab_R2014a/';
+    bxhpath='/opt/BXH/1.11.1/bin/';
+    fslpath='/opt/fsl/5.0.8/bin/';
+end
+
+%add necessary package
+if ~exist('readmr','file')
+    addpath(genpath(biac_dir));
+    addpath([biac_dir '/mr/']);
+    addpath([biac_dir '/general/'])
+end
+
+%subjectNum = 1;
+%runNum = 1;
+
+LOCALIZER = 18;
+runNum = 1;
+% set up paths
+if prev
+    projectName = 'motStudy01';
+else
+    projectName = 'motStudy02';
+end
+setenv('FSLOUTPUTTYPE','NIFTI_GZ');
+save_dir = ['/Data1/code/' projectName '/data/' num2str(subjectNum) '/']; %this is where she sets the save directory!
+process_dir = ['/Data1/code/' projectName '/data/' num2str(subjectNum) '/' 'reg' '/'];
+patterns_dir = ['/Data1/code/' projectName '/data/' num2str(subjectNum) '/' 'patterns' '/'];
+roi_dir = ['/Data1/code/' projectName '/data/'];
+code_dir = ['/Data1/code/' projectName '/']; %change to wherever code is stored
+addpath(genpath(code_dir));
+
+allDates = {'3-26-2016', '3-29-2016', '4-1-2016', '4-27-2016', '4-29-2016', '5-05-2016'};
+NSUB = length(allDates);
+subjectName = [datestr(allDates{subjectNum},5) datestr(allDates{subjectNum},7) datestr(allDates{subjectNum},11) num2str(runNum) '_' projectName];
+if ~prev %if getting data today
+    dicom_dir = ['/Data1/subjects/' datestr(now,10) datestr(now,5) datestr(now,7) '.' subjectName '.' subjectName '/'];
+else
+    dicom_dir = ['/Data1/subjects/' datestr(allDates{subjectNum},10) datestr(allDates{subjectNum},5) datestr(allDates{subjectNum},7) '.' subjectName '.' subjectName '/'];
+end
+
+imgmat = 64; %image matrix size
+anat_mask = 1;
+roi_name = 'retrieval';
+stretched = 0;
+if anat_mask
+    if stretched
+        temp = load(fullfile(process_dir,[roi_name '_anat_mask' '.mat'])); %should be stretched_brain
+        roi = logical(temp.stretched_brain);
+    else
+        temp = load(fullfile(process_dir,[roi_name '_anat_mask_orig' '.mat']));
+        roi = logical(temp.mask_brain);
+    end
+    
+    assert(exist('roi','var')==1);
+    roiDims = size(roi);
+    roiInds = find(roi);
+end
+
+
+%% Boilerplate
+
+seed = sum(100*clock); %get random seed
+%RandStream.setDefaultStream(RandStream('mt19937ar','seed',seed));%set seed
+RandStream.setGlobalStream(RandStream('mt19937ar','seed',seed));%set seed
+
+%initialize system time calls
+GetSecs;
+%% preprocessing parameters
+FWHM = 5;
+cutoff = 160;
+TR = 2;
+
+%% block sequence
+nTRsTotal = 528;
+nTRs = nTRsTotal - 10; 
+patterns.fileAvail = zeros(1,nTRs);
+patterns.newFile = cell(1,nTRs);
+patterns.timeRead = cell(1,nTRs);
+patterns.fileload = NaN(1,nTRs);
+patterns.raw = NaN(nTRs,numel(roiInds));
+patterns.raw_sm = NaN(nTRs,numel(roiInds)); %here we use the corrected number of TRs**
+patterns.raw_sm_filt = NaN(nTRs,numel(roiInds)); 
+patterns.raw_sm_z = NaN(nTRs,numel(roiInds)); 
+
+patterns.block = ones(1,nTRsTotal);
+%% Output File Setup
+dataFile = fullfile(patterns_dir, 'fileprocessing.txt');
+printlog(dataFile,'\n*********************************************\n');
+printlog(dataFile,'* Mot Real Time v.1.0\n');
+printlog(dataFile,['* Date/Time: ' datestr(now,0) '\n']);
+printlog(dataFile,['* Seed: ' num2str(seed) '\n']);
+printlog(dataFile,['* Subject Number: ' num2str(subjectNum) '\n']);
+printlog(dataFile,['* Subject Name: ' subjectName '\n']);
+printlog(dataFile,['* Run Number: ' num2str(runNum) '\n']);
+printlog(dataFile,['* Real-Time Data: ' num2str(rtData) '\n']);
+printlog(dataFile,'*********************************************\n\n');
+
+
+%% Start Experiment
+
+% prepare for trial sequence
+printlog(dataFile,'run\tblock\tTR\tloaded\n');
+
+
+%% acquire files
+
+fileCounter = 0;
+for iTrial = 1:nTRs % the first 10 TRs have been taken out to detrend
+    % increase count of TRs
+    %increase the count of TR pulses
+    fileCounter = fileCounter+1;
+    thisTR = iTrial + 10; %account for taking out TRs
+    while ~patterns.fileAvail(iTrial)
+        [patterns.fileAvail(iTrial) patterns.newFile{iTrial}] = GetSpecificFMRIFile(dicom_dir,scanNum,thisTR);
+    end
+    
+    %if desired file is recognized, pause for 200ms to complete transfer
+    if rtData==1 || patterns.fileAvail(iTrial)
+        pause(.2);
+    end
+    
+    % if file available, load it
+    if (patterns.fileAvail(iTrial))
+        [newVol patterns.timeRead{iTrial}] = ReadFile([dicom_dir patterns.newFile{iTrial}],imgmat,roi); % NTB: only reads top file
+        patterns.raw(iTrial,:) = newVol;  % keep patterns for later training
+        
+        if (any(isnan(patterns.raw(iTrial,:)))) && (iTrial>1)
+            patterns.fileload(iTrial) = 0; %mark that load failed
+            patterns.raw(iTrial,:) = patterns.raw(iTrial-1,:); %replicate last complete pattern
+        else
+            patterns.fileload(iTrial) = 1;
+        end
+        
+    end
+    %smooth files
+    patterns.raw_sm(iTrial,:) = SmoothRealTime(patterns.raw(iTrial,:),roiDims,roiInds,FWHM);
+    
+    % print trial results
+    printlog(dataFile,'%d\t%d\t%d\t%d\n',runNum,patterns.block(iTrial),thisTR,patterns.fileAvail(iTrial));
+    %fprintf('%d\t%d\t%d\t%d\n',runNum,patterns.block(iTrial),thisTR,patterns.fileAvail(iTrial));
+end
+
+%% pre-process
+
+printlog(dataFile,'\n*********************************************\n');
+printlog(dataFile,'beginning model preprocessing...\n');
+
+preprocStart = tic; %start timing 
+
+% detrend
+patterns.raw_sm_filt = HighPassBetweenRuns(patterns.raw_sm,TR,cutoff);
+
+% z-score
+patterns.runMean = mean(patterns.raw_sm_filt,1);  %mean across all volumes per voxel
+patterns.runStd = std(patterns.raw_sm_filt,[],1); %std dev across all volumes per voxel
+patterns.raw_sm_filt_z = (patterns.raw_sm_filt - repmat(patterns.runMean,size(patterns.raw_sm_filt,1),1))./repmat(patterns.runStd,size(patterns.raw_sm_filt,1),1);
+%localizerStd = patterns.runStd;
+preprocTime = toc(preprocStart);  %end timing
+
+% print training timing and results
+
+save([patterns_dir 'locpreprocpatternsdata_' num2str(runNum) '_' datestr(now,30)],'patterns');
+%save([save_dir 'localizerStd'], 'localizerStd');
+printlog(dataFile,'data preprocessing time: \t%.3f\n',preprocTime);
+
+%% training: cross-validation
+%first cross-validate
+if crossval
+%print xval results
+printlog(dataFile,'\n*********************************************\n');
+printlog(dataFile,'beginning model cross-validation...\n');
+
+%parameters
+penalty = 100;
+keepTR = 4;
+shiftTR = 2;
+startXVAL = tic;
+
+%first get session information
+[newpattern t] = GetSessionInfo(subjectNum,LOCALIZER,keepTR);
+patterns.regressor.allCond = newpattern.regressor.allCond;
+patterns.regressor.twoCond = newpattern.regressor.twoCond;
+patterns.selector.xval = newpattern.selector.xval;
+patterns.selector.allxval = newpattern.selector.allxval;
+nIter = size(patterns.selector.allxval,1);
+%shift regressor
+nCond = size(patterns.regressor.twoCond,1);
+for j = 1:nIter
+   selector = patterns.selector.allxval(j,:); 
+   easyIdx = find(patterns.regressor.allCond(2,:));
+   hardIdx = find(patterns.regressor.allCond(1,:));
+   trainIdx = find(selector == 1);
+   %trainIdx = intersect(hardIdx,trainIdx);
+   testIdx = find(selector == 2);
+    
+   % now shift indices forward
+   %trainIdx = trainIdx + shiftTR;
+   %testIdx = testIdx + shiftTR;
+   
+   trainPats = patterns.raw_sm_filt_z(trainIdx+shiftTR,:);
+   testPats = patterns.raw_sm_filt_z(testIdx+shiftTR,:);
+   trainTargs = patterns.regressor.twoCond(:,trainIdx);
+   testTargs = patterns.regressor.twoCond(:,testIdx);
+   
+   if featureSelect
+       thr = 0.1;
+       p = run_mathworks_anova(trainPats',trainTargs);
+       sigVox = find(p<thr);
+       trainPats = trainPats(:,sigVox);
+       testPats = testPats(:,sigVox);
+   end
+   
+   scratchpad = train_ridge(trainPats,trainTargs,penalty);
+   [acts scratchpad] = test_ridge(testPats,testTargs,scratchpad);
+   %acts is nCond x nVoxels in the mask
+   
+   
+   %calculate AUC for JUST TARGET vs. LURE
+   for i = 1:length(acts)
+      condition = find(testTargs(:,i));
+      if condition == 1
+          labels{i} = 'target';
+      elseif condition == 2
+          labels{i} = 'lure';
+      end
+   end
+   [X,Y,t,AUC(j)] = perfcurve(labels,acts(1,:), 'target');
+   
+   %calculate AUC SEPARATELY for easy targets vs. lure && hard targets vs.
+   %lure
+   testTargsFour = patterns.regressor.allCond(:,testIdx);
+   hardIdx = find(testTargsFour(1,:)==1);
+   easyIdx = find(testTargsFour(2,:)==1);
+   lureIdx = find(testTargs(2,:)==1);
+   
+   actsHard = acts(1,[hardIdx lureIdx]);
+   actsEasy = acts(1,[easyIdx lureIdx]);
+   for i = 1:length(actsHard)
+       if i <= length(hardIdx)
+           labelsHard{i} = 'target';
+       else
+           labelsHard{i} = 'lure';
+       end
+   end
+   [X,Y,t,AUC_hard(j)] = perfcurve(labelsHard,actsHard, 'target');
+   [X,Y,t,AUC_easy(j)] = perfcurve(labelsHard,actsEasy, 'target');
+   fprintf(['* Completed Iteration ' num2str(j) '; AUC = ' num2str(AUC(j)) '\n']); 
+   fprintf(['* Hard vs. Lure AUC = ' num2str(AUC_hard(j)) '\n']);
+   fprintf(['* Easy vs. Lure AUC = ' num2str(AUC_easy(j)) '\n']);    
+end
+
+average_AUC = mean(AUC);
+std_AUC = std(AUC)/sqrt(nIter-1);
+average_hardAUC = mean(AUC_hard);
+average_easyAUC = mean(AUC_easy);
+std_hardAUC = std(AUC_hard)/sqrt(nIter-1);
+std_easyAUC = std(AUC_easy)/sqrt(nIter-1);
+xvaltime = toc(startXVAL); %end timing
+%print cross-validation results
+printlog(dataFile,'\n*********************************************\n');
+printlog(dataFile,'finished cross-validation...\n');
+printlog(dataFile,['* Average AUC over Iterations: ' num2str(average_AUC) ' +- ' num2str(std_AUC) '\n']);
+printlog(dataFile,['* Average Hard vs. Lure AUC over Iterations: ' num2str(average_hardAUC) ' +- ' num2str(std_hardAUC) '\n']);
+printlog(dataFile,['* Average Easy vs. Lure AUC over Iterations: ' num2str(average_easyAUC) ' +- ' num2str(std_easyAUC) '\n']);
+printlog(dataFile, 'Cross-validation model training time: \t%.3f\n',xvaltime);
+
+end
+%% training on all data, no cross-validation
+%print training results
+printlog(dataFile,'\n*********************************************\n');
+printlog(dataFile,'beginning model training...\n');
+
+%parameters
+penalty = 100;
+shiftTR = 2;
+keepTR = 4;
+trainStart = tic;
+
+%first get session information
+[newpattern t] = GetSessionInfo(subjectNum,LOCALIZER,keepTR);
+patterns.regressor.twoCond = newpattern.regressor.twoCond;
+trainIdx = find(newpattern.selector.xval); %find all nonzero timepoints to train on
+%trainLabels = patterns.regressor.twoCond([1 2],trainIdx);
+trainPats = patterns.raw_sm_filt_z(trainIdx+shiftTR,:);
+trainTargs = patterns.regressor.twoCond(:,trainIdx);
+
+% try feature selection
+if featureSelect
+    thr = 0.1;
+    p = run_mathworks_anova(trainPats',trainTargs);
+    sigVox = find(p<thr);
+    trainPats = trainPats(:,sigVox);
+    patterns.sigVox = sigVox;
+end
+trainedModel = train_ridge(trainPats,trainTargs,penalty); %the weights are trainedModel.ridge.betas
+
+trainingOnlyTime = toc(trainStart);  %end timing
+
+save([patterns_dir 'locpatternsdata_' num2str(runNum) '_' datestr(now,30)],'patterns');
+save([patterns_dir 'loctrainedModel_' num2str(runNum) '_' datestr(now,30)],'trainedModel','trainPats','t');
+
+%print training timing and results
+printlog(dataFile,'\n*********************************************\n');
+printlog(dataFile,'finished model training...\n');
+printlog(dataFile,'model training time: \t%.3f\n',trainingOnlyTime);
+printlog(dataFile, ['model saved to: ' patterns_dir 'locpatternsdata_' num2str(runNum) '_' datestr(now,30) '\n']);
+end

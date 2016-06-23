@@ -1,0 +1,326 @@
+function [patterns, t] = RealTimeMemoryFileProcess(subjectNum,featureSelect,prev,rtData,scanNum,SESSION) %,rtfeedback)
+% function [patterns] = RealTimeMemoryFileProcess(subjectNum,subjectName,runNum,scanNum,rtData)
+%
+% this function describes the file processing procedure for the realtime
+% fMRI attentional training experiment
+%
+%
+% REQUIRED INPUTS:
+% - subjectNum:  participant number [any integer]
+%                if subjectNum = 0, no information will be saved
+% - subjectName: ntblab subject naming convention [MMDDYY#_REALTIME02]
+% - runNum:      run number [any integer]
+% - scanNum:     whether collecting scanNum data [scannumber if yes/0 if
+% not] (MOT runs are 13, 15, 17)
+% - rtData:      whether data acquired in realtime or previously collected [2/1/0]
+%                0: offline data
+%                1: realtime data from scanner
+%                2: simulated realtime data
+% - rtfeedback:  whether feedback delivered in realtime or not [1/0]
+%
+% OUTPUTS
+% - patterns: elapsed time for each iteration of SVM testing
+%
+% Written by: Megan deBettencourt
+% Version: 1.0, July 2013
+
+% runNum = 1;
+% subjectNum = 1;
+% scanNum = 13;
+% scanIndex = 1; %which scan they were that day
+% SESSION = 21;
+% rtData = 2;
+%% check inputs
+%check that there is a sufficient number of inputs
+% if nargin < 5;error('5 inputs are required: subjectNum, subjectName, runNum, scanNum, rtData');end
+% 
+% if ~isnumeric(subjectNum);error('subjectNum must be a number');end
+% if ~ischar(subjectName);error('subjectName must be a string');end
+% if ~isnumeric(runNum);error('runNum must be a number');end
+% if ~isnumeric(scanNum);error('scanNum must be a number - equal to the next motion-corrected scan number');end
+% if (rtData~=1) && (rtData~=0)&& (rtData~=2);error('rtData must be either 2 (if simulated realtime) or 1 (if realtime data acquisition) or 0 (if offline data)');end
+
+
+
+
+%% initialize path prefix for different replyDrive
+
+%jukeboxPrefix = '/Volumes/norman/debetten/projects/cntxtReact02/subjects/'; %'/disk1/datafiles/'; %
+if prev
+    projectName = 'motStudy01';
+else
+    projectName = 'motStudy02';
+end
+setenv('FSLOUTPUTTYPE','NIFTI_GZ');
+save_dir = ['/Data1/code/' projectName '/data/' num2str(subjectNum) '/']; %this is where she sets the save directory!
+mask_dir = ['/Data1/code/' projectName '/data/' num2str(subjectNum) '/'];
+roi_dir = ['/Data1/code/' projectName '/data/'];
+code_dir = ['/Data1/code/' projectName '/']; %change to wherever code is stored
+addpath(genpath(code_dir));
+runNum = 1; %assume first person that day
+allDates = {'3-26-2016', '3-29-2016', '4-1-2016', '4-27-2016', '4-29-2016', '5-05-2016'};
+NSUB = length(allDates);
+subjectName = [datestr(allDates{subjectNum},5) datestr(allDates{subjectNum},7) datestr(allDates{subjectNum},11) num2str(runNum) '_' projectName];
+if ~prev %if getting data today
+    dicom_dir = ['/Data1/subjects/' datestr(now,10) datestr(now,5) datestr(now,7) '.' subjectName '.' subjectName '/'];
+else
+    dicom_dir = ['/Data1/subjects/' datestr(allDates{subjectNum},10) datestr(allDates{subjectNum},5) datestr(allDates{subjectNum},7) '.' subjectName '.' subjectName '/'];
+end
+%check that dicom_dir exists
+assert(logical(exist(dicom_dir,'dir')));
+fprintf('fMRI files being read from: %s\n',dicom_dir);
+
+%check that the fMRI dicom files do NOT exist (if real-time)
+if rtData == 1
+    [testFile testFileName] = GetSpecificFMRIFile(dicom_dir,scanNum,1);
+    if exist([dicom_dir testFileName],'file');
+        reply = input('Files with this scan number already exist. Do you want to continue? Y/N [N]: ', 's');
+        if isempty(reply)
+            reply = 'N';
+        end
+        if ~(strcmp(reply,'Y') || strcmp(reply,'y'))
+            return
+        end
+    end
+end
+
+runHeader = [save_dir '/motRun' num2str(runNum)];
+classOutputDir = [runHeader '/classoutput'];
+
+%get ROI
+imgmat = 64; %image matrix size
+anat_mask = 1;
+roi_name = 'retrieval';
+stretched = 0;
+if anat_mask
+    if stretched
+        temp = load(fullfile(mask_dir,[roi_name '_anat_mask' '.mat'])); %should be stretched_brain
+        roi = logical(temp.stretched_brain);
+    else
+        temp = load(fullfile(mask_dir,[roi_name '_anat_mask_orig' '.mat']));
+        roi = logical(temp.mask_brain);
+    end
+    assert(exist('roi','var')==1);
+    roiDims = size(roi);
+    roiInds = find(roi);
+end
+
+
+%load trained model
+allfn = dir([save_dir '/loctrainedModel_1' '*']);
+%take the last model saved
+load(allfn(end).name);
+fprintf('\n*********************************************\n');
+fprintf(['* Loaded ' allfn(end).name '\n']);
+%load last run's standard deviation and voxelInfo
+allLast = dir([save_dir 'locpatternsdata_' '*']);
+loc = load(allLast(end).name);
+if SESSION == 20
+    patterns.lastStd = loc.patterns.runStd;
+else
+    allLast = dir([save_dir 'motpatternsdata_' num2str(SESSION-1) '*']);
+    last = load(allLast(end).name);
+    patterns.lastStd = last.patterns.runStd;
+end
+
+fprintf('\n*********************************************\n');
+fprintf(['* Loaded ' 'last run''s Std in ' allLast(end).name '\n']);
+
+%load this run's regressors and information (do this after load so loading
+%doesn't overwrite)
+[newpattern, t] = GetSessionInfo(subjectNum,SESSION);
+patterns.regressor = newpattern.regressor;
+%% Boilerplate
+
+seed = sum(100*clock); %get random seed
+%RandStream.setDefaultStream(RandStream('mt19937ar','seed',seed));%set seed
+
+%initialize system time calls
+GetSecs;
+
+%% preprocessing parameters
+FWHM = 5;
+cutoff = 160;
+TR = 2;
+shiftTR = 2;
+%% Block Sequence
+
+patterns.nTRs = size(patterns.regressor.twoCond,2); %already has first 10 removed
+patterns.firstTestTR = find(patterns.regressor.twoCond(1,:)+patterns.regressor.twoCond(2,:),1,'first') ; %(because took out first 10)
+patterns.fileAvail = zeros(1,patterns.nTRs);
+patterns.newFile = cell(1,patterns.nTRs);
+patterns.timeRead = cell(1,patterns.nTRs);
+patterns.fileload = NaN(1,patterns.nTRs);
+patterns.raw = nan(patterns.nTRs,numel(roiInds));
+patterns.raw_sm = nan(patterns.nTRs,numel(roiInds));
+patterns.raw_sm_filt = nan(patterns.nTRs,numel(roiInds));
+patterns.raw_sm_z = nan(patterns.nTRs,numel(roiInds));
+patterns.categsep = nan(1,patterns.nTRs);
+patterns.realtimeMean = nan(1,numel(roiInds));
+patterns.realtimeStd = nan(1,numel(roiInds));
+patterns.realtimeY = nan(1,numel(roiInds));
+patterns.realtimeLastMean = nan(1,numel(roiInds));
+patterns.realtimeLastStd = nan(1,numel(roiInds));
+patterns.realtimeLastY = nan(1,numel(roiInds));
+patterns.realtimeVar = nan(1,numel(roiInds));
+patterns.predict = nan(1,patterns.nTRs);
+patterns.activations = nan(numel(patterns.regressor.twoCond(:,1)),patterns.nTRs);
+normalization_const = zeros(1,numel(roiInds));
+patterns.block = (SESSION - 19)*ones(1,patterns.nTRs);
+%% Output Files Setup
+
+% open and set-up output file
+dataFile = fopen([save_dir 'fileprocessing.txt'],'a');
+fprintf(dataFile,'\n*********************************************\n');
+fprintf(dataFile,'* Induce MOT Training: Curtain Practice Runs v.1.0\n');
+fprintf(dataFile,['* Date/Time: ' datestr(now,0) '\n']);
+fprintf(dataFile,['* Seed: ' num2str(seed) '\n']);
+fprintf(dataFile,['* Subject Number: ' num2str(subjectNum) '\n']);
+fprintf(dataFile,['* Subject Name: ' subjectName '\n']);
+fprintf(dataFile,['* Run Number: ' num2str(runNum) '\n']);
+fprintf(dataFile,['* Real-Time Data: ' num2str(rtData) '\n']);
+fprintf(dataFile,'*********************************************\n\n');
+
+% print header to command window
+fprintf('\n*********************************************\n');
+fprintf('* MOT Study v.1.0\n');
+fprintf(['* Date/Time: ' datestr(now,0) '\n']);
+fprintf(['* Seed: ' num2str(seed) '\n']);
+fprintf(['* Subject Number: ' num2str(subjectNum) '\n']);
+fprintf(['* Subject Name: ' subjectName '\n']);
+fprintf(['* Run Number: ' num2str(runNum) '\n']);
+fprintf(['* Real-Time Data: ' num2str(rtData) '\n']);
+fprintf('*********************************************\n\n');
+%% Start Experiment
+
+% prepare for trial sequence
+fprintf(dataFile,'run\tblock\ttrial\tblcat\tstim\tfilenum\tloaded\tcategsep\n'); %check which to keep
+fprintf('run\tblock\ttrial\tblcat\tstim\tfilenum\tloaded\tcategsep\n');
+
+%% acquiring files
+
+zscoreNew = 1;
+useHistory = 1;
+firstBlockTRs = 64; %total number of TRs to take for standard deviation of last run
+for iTrial = 1:patterns.nTRs % the first 10 TRs have been taken out to detrend
+    
+    tstart(iTrial) = tic;
+    zscoreLen = double(iTrial);
+    zscoreLen1 = double(iTrial - 1);
+    zscoreConst = 1.0/zscoreLen;
+    zscoreConst1 = 1.0/zscoreLen1;
+    % increase count of TRs
+    %increase the count of TR pulses
+    thisTR = iTrial + 10; %account for taking out TRs
+    while ~patterns.fileAvail(iTrial)
+        [patterns.fileAvail(iTrial) patterns.newFile{iTrial}] = GetSpecificFMRIFile(dicom_dir,scanNum,thisTR);
+        timing.fileAppear(iTrial) = toc(tstart(iTrial));
+    end
+    
+    %if desired file is recognized, pause for 200ms to complete transfer
+    if rtData==1 || exist('reply','var')
+        pause(.2);
+    end
+    
+    % if file available, load it
+    if (patterns.fileAvail(iTrial))
+        [newVol patterns.timeRead{iTrial}] = ReadFile([dicom_dir patterns.newFile{iTrial}],imgmat,roi); % NTB: only reads top file
+        patterns.raw(iTrial,:) = newVol;  % keep patterns for later training
+        
+        if (any(isnan(patterns.raw(iTrial,:)))) && (iTrial>1)
+            patterns.fileload(iTrial) = 0; %mark that load failed
+            patterns.raw(iTrial,:) = patterns.raw(iTrial-1,:); %replicate last complete pattern
+        else
+            patterns.fileload(iTrial) = 1;
+        end
+        
+    end
+    %smooth files
+    patterns.raw_sm(iTrial,:) = SmoothRealTime(patterns.raw(iTrial,:),roiDims,roiInds,FWHM);
+    
+    %filter, then calculate mean and standard deviation
+    if iTrial == (patterns.firstTestTR-1)
+        
+        patterns.raw_sm_filt(1:iTrial,:) = HighPassBetweenRuns(patterns.raw_sm(1:iTrial,:),TR,cutoff);
+        patterns.btwnrunsfiltered(1:iTrial) = 1;
+        
+        patterns.realtimeMean(1,:) = mean(patterns.raw_sm_filt(1:iTrial,:),1);
+        patterns.realtimeY(1,:) = mean(patterns.raw_sm_filt(1:iTrial,:).^2,1);
+        %make sure to use population standard deviation, divide by N
+        patterns.realtimeStd(1,:) = std(patterns.raw_sm_filt(1:iTrial,:),1,1);
+        
+        patterns.realtimeVar(1,:) = patterns.realtimeStd(1,:).^2;
+    end
+    
+    if iTrial > (patterns.firstTestTR - 1)
+
+        %filter, then calculate mean and standard deviation
+        patterns.raw_sm_filt(iTrial,:) = HighPassRealTime(patterns.raw_sm(1:iTrial,:),TR,cutoff);
+        
+        patterns.realtimeMean(1,:) = mean(patterns.raw_sm_filt(1:iTrial,:),1);
+        patterns.realtimeY(1,:) = mean(patterns.raw_sm_filt(1:iTrial,:).^2,1);
+        patterns.realtimeStd(1,:) = std(patterns.raw_sm_filt(1:iTrial,:),1,1); %flad to use N instead of N-1
+        patterns.realtimeVar(1,:) = patterns.realtimeStd(1,:).^2;
+        
+        %now zscore
+        
+        %record last history
+        patterns.realtimeLastMean(1,:) = patterns.realtimeMean(1,:);
+        patterns.realtimeLastY(1,:) = patterns.realtimeY(1,:);
+        patterns.realtimeLastVar(1,:) = patterns.realtimeVar(1,:);
+        %update mean
+        patterns.realtimeMean(1,:) = (patterns.realtimeMean(1,:).*zscoreLen1 + patterns.raw_sm_filt(iTrial,:)).*zscoreConst;
+        %update y = E(X^2)
+        patterns.realtimeY(1,:) = (patterns.realtimeY(1,:).*zscoreLen1+ patterns.raw_sm_filt(iTrial,:).^2).*zscoreConst;
+        %update var
+        if useHistory
+            patterns.realtimeVar(1,:) = patterns.realtimeLastVar(1,:) ...
+                + patterns.realtimeLastMean(1,:).^2 - patterns.realtimeMean(1,:).^2 ...
+                + patterns.realtimeY(1,:) - patterns.realtimeLastY(1,:);
+        else
+            % update var
+            patterns.realtimeVar(1,:) = patterns.realtimeVar(1,:) - patterns.realtimeMean(1,:).^2 ...
+                + ((patterns.realtimeMean(1,:).*zscoreLen - patterns.raw_sm_filt(iTrial,:)).*zscoreConst1).^2 ...
+                + (patterns.raw_sm_filt(iTrial,:).^2 - patterns.realtimeY(1,:)).*zscoreConst1;
+        end
+        if iTrial > firstBlockTRs
+            patterns.raw_sm_filt_z(iTrial,:) = (patterns.raw_sm_filt(iTrial,:) - patterns.realtimeMean(1,:))./patterns.realtimeStd(1,:);
+        else
+            patterns.raw_sm_filt_z(iTrial,:) = (patterns.raw_sm_filt(iTrial,:) - patterns.realtimeMean(1,:))./patterns.lastStd(1,:);
+        end
+        % now test if it's when we want to
+        if any(patterns.regressor.twoCond(:,iTrial)) || any(patterns.regressor.twoCond(:,iTrial-(shiftTR+2))) %go a little extra
+            if featureSelect
+                goodVox = loc.patterns.sigVox;
+                [patterns.predict(iTrial), patterns.activations(1:2,iTrial)] = predict_ridge(patterns.raw_sm_filt_z(iTrial,goodVox),trainedModel);
+            else
+                [patterns.predict(iTrial), patterns.activations(1:2,iTrial)] = predict_ridge(patterns.raw_sm_filt_z(iTrial,:),trainedModel);
+                
+            end
+            patterns.categsep(iTrial) = patterns.activations(1,iTrial) - patterns.activations(2,iTrial);
+            classOutput = patterns.categsep(iTrial);
+            if rtData ==1
+                save([classOutputDir '/vol_' num2str(thisTR)], 'classOutput');
+            end
+        %this is where the equations would be to change things in the
+        %actual experiment!!
+        %fprintf(['* Prediction is ' num2str(patterns.predict(iTrial)) '\n' ]);
+        end
+        
+        
+    end
+    % print trial results
+    fprintf(dataFile,'%d\t%d\t%d\t%d\n',runNum,patterns.block(iTrial),thisTR,patterns.fileAvail(iTrial));
+    fprintf('%d\t%d\t%d\t%d\n',runNum,patterns.block(iTrial),thisTR,patterns.fileAvail(iTrial));
+end
+patterns.runStd = std(patterns.raw_sm_filt,[],1); %std dev across all volumes per voxel
+save([save_dir 'motpatternsdata_' num2str(SESSION) '_' datestr(now,30)],'patterns','timing', 't');
+%this checked to be sure that the std correlation was good for last
+%run-true!
+% for i = 1:406;thisStd(i,:) = std(patterns.raw_sm_filt(1:i,:),[],1); corrVal(i) = corr(localizerStd',thisStd(i,:)');end
+% figure;
+% plot(corrVal)
+
+end
+
+
