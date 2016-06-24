@@ -2,8 +2,7 @@ function ProcessMask(subjNum, processNew,prev,funcScan)
 %file_name = ['/Volumes/norman/amennen/MOT/subjects/0329161_motStudy01/data/dcm/' '19-617-1.dcm'];
 img_mat = 64; %image matrix size
 ROI = -1;
-scanIndex = 1; %assume only 1 subject per day
-%gunzip 19-617-1.dcm.gz
+runNum = 1; %assume only 1 subject per day
 
 makeMprageNifti = processNew;
 extractBrain = processNew;
@@ -28,18 +27,18 @@ if ~exist('readmr','file')
 end
 %subjNum = 1;
 %scanIndex = 1; %which scan they were that day
-if prev
-    projectName = 'motStudy01';
-else
-    projectName = 'motStudy02';
-end
+% if prev
+%     projectName = 'motStudy01';
+% else
+projectName = 'motStudy02';
+%end
 %setenv('FSLDIR',fslpath); %hopefully it will still work now
 setenv('FSLOUTPUTTYPE','NIFTI_GZ');
 save_dir = ['/Data1/code/' projectName '/data/' num2str(subjNum) '/']; %this is where she sets the save directory!
 process_dir = [save_dir 'reg' '/'];
 %mask_dir = ['/Data1/code/' projectName '/data/' num2str(subjNum) '/'];
 roi_dir = ['/Data1/code/' projectName '/data/'];
-code_dir = ['/Data1/code/' projectName '/']; %change to wherever code is stored
+code_dir = ['/Data1/code/' projectName '/' 'code' '/']; %change to wherever code is stored
 addpath(genpath(code_dir));
 if ~exist(process_dir)
     mkdir(process_dir)
@@ -47,12 +46,12 @@ end
 cd(process_dir)
 
 %this could be for real-time computer:
-allDates = {'3-26-2016', '3-29-2016', '4-1-2016', '4-27-2016', '4-29-2016', '5-05-2016'};
-NSUB = length(allDates);
-subjectName = [datestr(allDates{subjNum},5) datestr(allDates{subjNum},7) datestr(allDates{subjNum},11) num2str(scanIndex) '_' projectName];
 if ~prev %if getting data today
+    subjectName = [datestr(now,5) datestr(now,7) datestr(now,11) num2str(runNum) '_' projectName];
     dicom_dir = ['/Data1/subjects/' datestr(now,10) datestr(now,5) datestr(now,7) '.' subjectName '.' subjectName '/'];
 else
+    allDates = {'3-26-2016', '3-29-2016', '4-1-2016', '4-27-2016', '4-29-2016', '5-05-2016'};
+    subjectName = [datestr(allDates{subjNum},5) datestr(allDates{subjNum},7) datestr(allDates{subjNum},11) num2str(scanIndex) '_' projectName];
     dicom_dir = ['/Data1/subjects/' datestr(allDates{subjNum},10) datestr(allDates{subjNum},5) datestr(allDates{subjNum},7) '.' subjectName '.' subjectName '/'];
 end
 %scan numbers: mprage is 5, epis are 9:2:19
@@ -69,9 +68,10 @@ highres_scanstr = num2str(scanNum, '%2.2i');
 %taken from: registrationHighRes
 highres_test_file = fullfile(dicom_dir,['001_0000' highres_scanstr '_000001.dcm']);
 
-if ~exist(highres_test_file,'file')
-    error('the test file for the high resolution scan does not exist: %s',highres_test_file);
+while ~exist(highres_test_file,'file')
+    %error('the test file for the high resolution scan does not exist: %s',highres_test_file);
 end
+fprintf('Found highres file!')
 %% make mprage nifti file
 
 highres_fn = 'highres_old_orientation';
@@ -104,6 +104,7 @@ unix(sprintf('%sbet %s.nii.gz %s_brain -R -m',fslpath,highres_reorient_fn,highre
 end
 %this works too!! again, saves in whatever directory you're in
 %% register everything to standard
+tStartReg= GetSecs;
 if registerToStandard
     %register high resolution mprage (bet-extracted) to standard
     % if strncmp(computer,'MACI',4)
@@ -118,7 +119,8 @@ if registerToStandard
     unix(sprintf('%sinvwarp -w highres2standard_warp -o standard2highres_warp -r %s_brain.nii.gz',fslpath,highres_reorient_fn));
     
 end
-
+reg2standardTime = GetSecs - tStartReg;
+fprintf(['Reg2standard Time is ' num2str(reg2standardTime)]);
 %% now use this to create functional mask once you have functional data
 
 exFuncScanNum = funcScan;
@@ -129,6 +131,7 @@ while ~exist(exFunc_test_file,'file')
     %error('the test file for the functional scan does not exist: %s',exFunc_test_file);
 end
 pause(0.2) %pause when the file appears for complete transfer
+fprintf('Found example functional file!')
 % now taken from GenerateMask: does k-means cluster-more generous than
 % brain skull
 
@@ -138,7 +141,7 @@ imagesc(mask(:,:,10)); %checks that the dicom files are properly aligned
 save([process_dir 'mask_wholeBrain' '.mat'], 'mask');
 
 %% make test functional run
-
+tStartFunctional = GetSecs;
 exfunc_fn = 'example_func_old_orientation';
 exfunc_reorient_fn = 'example_func_new_orientation';
 if makeTestFuncRun
@@ -287,6 +290,8 @@ if createMaskFileForRTDicoms
     save(fullfile(process_dir,[roi_name '_anat_mask']),'stretched_brain');
     save(fullfile(process_dir, [roi_name, '_anat_mask_orig']), 'mask_brain');
 end
+maskTime = GetSecs - tStartFunctional;
+fprintf(['Functional registration and mask time is ' num2str(maskTime)]);
 %CHECK THAT THIS WORKS!
 % if cd into the directory, cd out of it back to the general exp folder
 cd (code_dir)

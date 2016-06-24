@@ -11,20 +11,25 @@ else
 end
 
 if IsLinux
-    behav_dir = '/Data1/code/motStudy01/Temp_participantData/';
+    behav_dir = '/Data1/code/motStudy02/BehavioralData/';
 elseif ismac
     behav_dir = '/Users/amennen/Documents/Norman/MOT/mot_study/Temp_participantData/';
     cd('/Users/amennen/Documents/Norman/MOT/mot_study/');
 end
+LOC = 18;
 MOT = [18 20:22]; %(can change the way the files are named in the future)
 RECALL = [19 23];
 MOT_PREP = 5;
 MAX_SPEED = 30;
+hardSpeed = nan;
+acc = nan;
+rt = NaN;
+
 subjectFolder = [behav_dir num2str(subjNum)];
 if ~isempty(varargin)
     N_TRS_LOC = cell2mat(varargin);
 else
-    N_TRS_LOC = 10; %set to all if don't specify
+    N_TRS_LOC = 15; %set to all if don't specify
 end
 NCOND = 4;
 
@@ -34,15 +39,17 @@ else
     fn = dir(fullfile(subjectFolder,['EK' num2str(SESSION) '_SUB*mat']));
 end
 data = load(fullfile(subjectFolder,fn(end).name));
-fn_stim = dir(fullfile(subjectFolder,['mot_stable_' num2str(subjNum) '_' num2str(SESSION) '*mat']));
+fn_stim = dir(fullfile(subjectFolder,['mot_realtime01_' num2str(subjNum) '_' num2str(SESSION) '*mat']));
 s = load(fullfile(subjectFolder,fn_stim(end).name));
 nTRs = s.config.nTRs.perBlock + 5; %includes 5 seconds at the end
 
 % get hard dot speed
-fileSpeed = dir([subjectFolder '/' 'mot_stable_' num2str(subjNum) '_' num2str(MOT_PREP)  '*.mat']);
-matlabOpenFile = [subjectFolder '/' fileSpeed(end).name];
-lastRun = load(matlabOpenFile);
-hardSpeed = MAX_SPEED - lastRun.stim.tGuess(end);
+fileSpeed = dir([subjectFolder '/' 'mot_realtime01_' num2str(subjNum) '_' num2str(MOT_PREP)  '*.mat']);
+if ~isempty(fileSpeed)
+    matlabOpenFile = [subjectFolder '/' fileSpeed(end).name];
+    lastRun = load(matlabOpenFile);
+    hardSpeed = MAX_SPEED - lastRun.stim.tGuess(end);
+end
 
 VARIATIONS_MAT = zeros(NCOND,nTRs); %regressor with all four conditions
 SELECTOR_XVAL = zeros(1,nTRs); %which TRs are for training and testing for cross-validation
@@ -61,7 +68,7 @@ trials.lure = [LH LE];
 [~,stimOrder.easy] = sort(stimOrderAll(TE));
 [~,stimOrder.lure] = sort(stimOrderAll(LH));
 % get the conditions by trial here
-if ismember(SESSION,MOT)
+if ismember(SESSION,LOC) %MOT is only 1 condition
     accuracy = data.datastruct.trials.acc;
     acc.hard = accuracy(TH);
     acc.easy = accuracy(TE);
@@ -70,13 +77,7 @@ if ismember(SESSION,MOT)
     reaction = data.datastruct.trials.rt;
     rt.hard = reaction(TH);
     rt.easy = reaction(TE);
-    rt.lure = reaction(LH);
-else
-    accuracy = NaN;
-    acc = NaN;
-    
-    reaction = NaN;
-    rt = NaN;
+    rt.lure = reaction(LH);    
 end
 % now we have to match these to TRs to get the actual regressors
 if ismember(SESSION,MOT)

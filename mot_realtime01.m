@@ -14,7 +14,7 @@
 
 function mot_realtime01(SUBJECT,SESSION,SET_SPEED,scanNum)
 % note: TR values begin from t=1 (rather than t=0)
-test = 1; %change when using the scanner!
+test = 0; %change when using the scanner!
 KbName('UnifyKeyNames');
 % initialization declarations
 COLORS.MAINFONTCOLOR = [200 200 200];
@@ -1283,13 +1283,13 @@ switch SESSION
         num_dots = 5; %where set total dots
         stim.square_dims = round([20 20] ./ mean(WINDOWSIZE.degrees_per_pixel)); % 20ï¿½ visual angle in pixels
         stim.dot_diameter = 1.5 / mean(WINDOWSIZE.degrees_per_pixel); % 1.5 visual angle in pixels
-        if SESSION < MOT{1}
-            stim.trialDur = 20*SPEED;
-            promptTRs = 3:2:9;
-        else
+%         if SESSION < MOT{1}
+%             stim.trialDur = 20*SPEED;
+%             promptTRs = 3:2:9;
+%         else
             stim.trialDur = 30*SPEED; %chaning length from 20 to 30 s or 15 TRs
             promptTRs = 3:2:13; %which TR's to make the prompt active
-        end
+  %      end
         stim.inter_prompt_interval = 4*SPEED;
         stim.maxspeed = 30;
         stim.minspeed = 0;
@@ -1442,7 +1442,7 @@ switch SESSION
             if SESSION == MOT_PRACTICE
                 [stim.cond stim.condString stim.stim] = counterbalance_items({cues{STIMULI}{LEARN}{1}},{MOTSTRINGS{LEARN}},0);
             else %MOT_PREP
-                [stim.cond stim.condString stim.stim] = counterbalance_items({[cues{STIMULI}{LEARN}{1} cues{STIMULI}{LEARN}{1} cues{STIMULI}{LEARN}{1} cues{STIMULI}{LEARN}{1} cues{STIMULI}{LEARN}{1} cues{STIMULI}{LEARN}{1} cues{STIMULI}{LEARN}{1} cues{STIMULI}{LEARN}{1} cues{STIMULI}{LEARN}{1}]},{MOTSTRINGS{LEARN}},0);
+                [stim.cond stim.condString stim.stim] = counterbalance_items({[cues{STIMULI}{LEARN}{1} cues{STIMULI}{LEARN}{1} cues{STIMULI}{LEARN}{1} cues{STIMULI}{LEARN}{1} cues{STIMULI}{LEARN}{1} cues{STIMULI}{LEARN}{1}]},{MOTSTRINGS{LEARN}},0);
             end
             condmap = makeMap({'target'});
         elseif SESSION==MOT_PRACTICE2
@@ -1643,7 +1643,8 @@ switch SESSION
         stim.lastSpeed = nan(1,stim.num_realtime);%going to save it in a matrix of run,stimID
         stim.lastRTDecoding = nan(1,stim.num_realtime); %file 9 that's applied now
         stim.lastRTDecodingFunction = nan(1,stim.num_realtime);
-        
+        stim.changeSpeed = nan(mTr,length(stim.cond));
+        stim.motionSpeed = nan(mTr,length(stim.cond));
         for n=1:length(stim.cond)
             stim.trial = n;
             if CURRENTLY_ONLINE && SESSION > TOCRITERION3
@@ -1824,7 +1825,7 @@ switch SESSION
                             % stim.maxspeed] (0,30) right now
                             current_speed = min([stim.maxspeed current_speed]);
                             current_speed = max([stim.minspeed current_speed]);
-                            stim.motionSpeed(TRcounter,n) = current_speed; %speed ON that TR
+                           % stim.motionSpeed(TRcounter,n) = current_speed; %speed ON that TR
                             %we want to save the last speed for future
                             %runs--save by id, don't save if not lure trial
                             if TRcounter == config.nTRs.motion 
@@ -1834,6 +1835,7 @@ switch SESSION
                             end
                         end
                         remainingTR(nextTRPos) = 0;
+                        stim.motionSpeed(TRcounter,n) = current_speed;
                     end
                 end
                 

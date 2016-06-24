@@ -2,14 +2,16 @@
 %%fmri session
 %first these are all the session numbers
 SUBJECT = 1;
-prev = 1;
+prev = 0;
 rtData = 1;
 
-if prev
-    allScanNums = [7:2:19];
-else
-    allScanNums = [7 11:2:21]
-end
+SPTB_PATH = ['/Data1/code/SPTBanne'];
+addpath(genpath(SPTB_PATH));
+% if prev
+%     allScanNums = [7:2:19];
+% else
+%     allScanNums = [7 11:2:21];
+% end
 NUM_TASK_RUNS = 3;
 % orientation session
 SETUP = 1; % stimulus assignment 1
@@ -59,52 +61,65 @@ ASSOCIATES = RECALL2 + 1;
 scanNum = 7;
 mot_realtime01(SUBJECT,SCAN_PREP,[],scanNum)
 
+%% SCAN_PREP FILE PROCESS
+scanNum = 7;
+processNew = 1;
 ProcessMask(SUBJECT,processNew,prev,scanNum) %have it so it waits until it finds the file
 %% NOW RUN FIELD MAPS WHILE NEXT BEHAVIORAL TASKS (RSVP2,FAMILIARIZE3,TOCRITERION3)
 
 mot_realtime01(SUBJECT,RSVP2,[],0) %will continue until TOCRITERION3
 %look for mask and test it
 
-%% NEXT IS LOCALIZER
+%% LOCALIZER DISPLAY
 scanNum = 11;
-mot_realtime01(SUBJECT,MOT_LOCALIZER,[],scanNum)
+mot_realtime01(SUBJECT,MOT_LOCALIZER,[],scanNum);
+
+%% LOCALIZER FILE PROCESS
+scanNum = 11;
 crossval = 0;
 featureSelect = 1;
-NEWLOCALIZER(SUBJECT,crossval,featureSelect,prev,rtData,scanNum)
+LocalizerFileProcess(SUBJECT,crossval,featureSelect,prev,rtData,scanNum,MOT_LOCALIZER)
 
 %% RECALL 1
 scanNum = 13;
 mot_realtime01(SUBJECT,RECALL1,[],scanNum);
 
 %% MOT RUN 1 DISPLAY
-scanNum = 13; %new would be 15
-scanNum = 0; %test because now added TR's
+scanNum = 15; %new would be 15
+if ~rtData
+    scanNum = 0;
+end
 mot_realtime01(SUBJECT,MOT{1},[],scanNum);
 %% MOT RUN 1 FILE PROCESS
-scanNum = 13;
+scanNum = 15;
 blockNum = 1;
 featureSelect = 1;
-NEWRTMEMORY(SUBJECT,featureSelect,prev,rtData,scanNum,MOT{1},blockNum)
+RealTimeMemoryFileProcess(SUBJECT,featureSelect,prev,rtData,scanNum,MOT{1},blockNum)
 
 %% MOT RUN 2 DISPLAY
-scanNum = 15;
-scanNum = 0;
+scanNum = 17;
+if ~rtData 
+    scanNum = 0;
+end
 mot_realtime01(SUBJECT,MOT{2},[],scanNum);
 %% MOT RUN 2 FILE PROCESS
-scanNum = 15;
+scanNum = 17;
 featureSelect = 1;
 blockNum = 2;
-NEWRTMEMORY(SUBJECT,featureSelect,prev,rtData,scanNum,MOT{2},blockNum)
+RealTimeMemoryFileProcess(SUBJECT,featureSelect,prev,rtData,scanNum,MOT{2},blockNum)
 
 %% MOT RUN 3 DISPLAY
-scanNum = 17;
+scanNum = 19;
+if ~rtData 
+    scanNum = 0;
+end
 mot_realtime01(SUBJECT,MOT{3},[],scanNum);
 %% MOT RUN 3 FILE PROCESS
-scanNum = 17;
+scanNum = 19;
 featureSelect = 1;
 blockNum = 3;
-NEWRTMEMORY(SUBJECT,featureSelect,prev,rtData,scanNum,MOT{3},blockNum)
+RealTimeMemoryFileProcess(SUBJECT,featureSelect,prev,rtData,scanNum,MOT{3},blockNum)
 
 %% RECALL 2
-scanNum = 19;
+scanNum = 21;
 mot_realtime01(SUBJECT,RECALL2,[],scanNum);

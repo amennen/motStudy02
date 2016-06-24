@@ -1,4 +1,4 @@
-function NEWLOCALIZER(subjectNum,crossval,featureSelect,prev,rtData,scanNum)
+function LocalizerFileProcess(subjectNum,crossval,featureSelect,prev,rtData,scanNum,SESSION)
 % now going to be loading in localizer data
 if IsLinux
     biac_dir = '/Data1/packages/BIAC_Matlab_R2014a/';
@@ -16,29 +16,32 @@ end
 %subjectNum = 1;
 %runNum = 1;
 
-LOCALIZER = 18;
+LOCALIZER = SESSION;
 runNum = 1;
 % set up paths
-if prev
-    projectName = 'motStudy01';
-else
-    projectName = 'motStudy02';
-end
+% if prev
+%     projectName = 'motStudy01';
+% else
+projectName = 'motStudy02';
+% end
 setenv('FSLOUTPUTTYPE','NIFTI_GZ');
 save_dir = ['/Data1/code/' projectName '/data/' num2str(subjectNum) '/']; %this is where she sets the save directory!
 process_dir = ['/Data1/code/' projectName '/data/' num2str(subjectNum) '/' 'reg' '/'];
 patterns_dir = ['/Data1/code/' projectName '/data/' num2str(subjectNum) '/' 'patterns' '/'];
+if ~exist(patterns_dir, 'dir')
+    mkdir(patterns_dir)
+end
 roi_dir = ['/Data1/code/' projectName '/data/'];
-code_dir = ['/Data1/code/' projectName '/']; %change to wherever code is stored
+code_dir = ['/Data1/code/' projectName '/' 'code' '/']; %change to wherever code is stored
 addpath(genpath(code_dir));
 
-allDates = {'3-26-2016', '3-29-2016', '4-1-2016', '4-27-2016', '4-29-2016', '5-05-2016'};
-NSUB = length(allDates);
-subjectName = [datestr(allDates{subjectNum},5) datestr(allDates{subjectNum},7) datestr(allDates{subjectNum},11) num2str(runNum) '_' projectName];
 if ~prev %if getting data today
+    subjectName = [datestr(now,5) datestr(now,7) datestr(now,11) num2str(runNum) '_' projectName];
     dicom_dir = ['/Data1/subjects/' datestr(now,10) datestr(now,5) datestr(now,7) '.' subjectName '.' subjectName '/'];
 else
-    dicom_dir = ['/Data1/subjects/' datestr(allDates{subjectNum},10) datestr(allDates{subjectNum},5) datestr(allDates{subjectNum},7) '.' subjectName '.' subjectName '/'];
+    allDates = {'3-26-2016', '3-29-2016', '4-1-2016', '4-27-2016', '4-29-2016', '5-05-2016'};
+    subjectName = [datestr(allDates{subjNum},5) datestr(allDates{subjNum},7) datestr(allDates{subjNum},11) num2str(scanIndex) '_' projectName];
+    dicom_dir = ['/Data1/subjects/' datestr(allDates{subjNum},10) datestr(allDates{subjNum},5) datestr(allDates{subjNum},7) '.' subjectName '.' subjectName '/'];
 end
 
 imgmat = 64; %image matrix size
@@ -175,7 +178,7 @@ printlog(dataFile,'beginning model cross-validation...\n');
 
 %parameters
 penalty = 100;
-keepTR = 4;
+keepTR = 8; %should change to 8 maybe???? from 4 because we increased MOT
 shiftTR = 2;
 startXVAL = tic;
 

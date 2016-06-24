@@ -1,4 +1,4 @@
-function [patterns, t] = RealTimeMemoryFileProcess(subjectNum,featureSelect,prev,rtData,scanNum,SESSION) %,rtfeedback)
+function [patterns, t] = RealTimeMemoryFileProcess(subjectNum,featureSelect,prev,rtData,scanNum,SESSION,blockNum) %,rtfeedback)
 % function [patterns] = RealTimeMemoryFileProcess(subjectNum,subjectName,runNum,scanNum,rtData)
 %
 % this function describes the file processing procedure for the realtime
@@ -46,25 +46,29 @@ function [patterns, t] = RealTimeMemoryFileProcess(subjectNum,featureSelect,prev
 %% initialize path prefix for different replyDrive
 
 %jukeboxPrefix = '/Volumes/norman/debetten/projects/cntxtReact02/subjects/'; %'/disk1/datafiles/'; %
-if prev
-    projectName = 'motStudy01';
-else
-    projectName = 'motStudy02';
-end
+% if prev
+%     projectName = 'motStudy01';
+% else
+projectName = 'motStudy02';
+%end
 setenv('FSLOUTPUTTYPE','NIFTI_GZ');
 save_dir = ['/Data1/code/' projectName '/data/' num2str(subjectNum) '/']; %this is where she sets the save directory!
-mask_dir = ['/Data1/code/' projectName '/data/' num2str(subjectNum) '/'];
+process_dir = ['/Data1/code/' projectName '/data/' num2str(subjectNum) '/' 'reg' '/'];
 roi_dir = ['/Data1/code/' projectName '/data/'];
-code_dir = ['/Data1/code/' projectName '/']; %change to wherever code is stored
+code_dir = ['/Data1/code/' projectName '/' 'code' '/']; %change to wherever code is stored
+runHeader = fullfile(save_dir,[ 'motRun' num2str(blockNum) '/']);
+locPatterns_dir = fullfile(save_dir, 'patterns/');
+patterns_dir = fullfile(runHeader, 'patterns/');
+
 addpath(genpath(code_dir));
 runNum = 1; %assume first person that day
-allDates = {'3-26-2016', '3-29-2016', '4-1-2016', '4-27-2016', '4-29-2016', '5-05-2016'};
-NSUB = length(allDates);
-subjectName = [datestr(allDates{subjectNum},5) datestr(allDates{subjectNum},7) datestr(allDates{subjectNum},11) num2str(runNum) '_' projectName];
 if ~prev %if getting data today
+    subjectName = [datestr(now,5) datestr(now,7) datestr(now,11) num2str(runNum) '_' projectName];
     dicom_dir = ['/Data1/subjects/' datestr(now,10) datestr(now,5) datestr(now,7) '.' subjectName '.' subjectName '/'];
 else
-    dicom_dir = ['/Data1/subjects/' datestr(allDates{subjectNum},10) datestr(allDates{subjectNum},5) datestr(allDates{subjectNum},7) '.' subjectName '.' subjectName '/'];
+    allDates = {'3-26-2016', '3-29-2016', '4-1-2016', '4-27-2016', '4-29-2016', '5-05-2016'};
+    subjectName = [datestr(allDates{subjNum},5) datestr(allDates{subjNum},7) datestr(allDates{subjNum},11) num2str(scanIndex) '_' projectName];
+    dicom_dir = ['/Data1/subjects/' datestr(allDates{subjNum},10) datestr(allDates{subjNum},5) datestr(allDates{subjNum},7) '.' subjectName '.' subjectName '/'];
 end
 %check that dicom_dir exists
 assert(logical(exist(dicom_dir,'dir')));
@@ -84,9 +88,10 @@ if rtData == 1
     end
 end
 
-runHeader = [save_dir '/motRun' num2str(runNum)];
-classOutputDir = [runHeader '/classoutput'];
-
+classOutputDir = fullfile(runHeader, 'classOutput/');
+if ~exist(classOutputDir, 'dir')
+    mkdir(classOutputDir);
+end
 %get ROI
 imgmat = 64; %image matrix size
 anat_mask = 1;
@@ -94,10 +99,10 @@ roi_name = 'retrieval';
 stretched = 0;
 if anat_mask
     if stretched
-        temp = load(fullfile(mask_dir,[roi_name '_anat_mask' '.mat'])); %should be stretched_brain
+        temp = load(fullfile(process_dir,[roi_name '_anat_mask' '.mat'])); %should be stretched_brain
         roi = logical(temp.stretched_brain);
     else
-        temp = load(fullfile(mask_dir,[roi_name '_anat_mask_orig' '.mat']));
+        temp = load(fullfile(process_dir,[roi_name '_anat_mask_orig' '.mat']));
         roi = logical(temp.mask_brain);
     end
     assert(exist('roi','var')==1);
@@ -107,24 +112,25 @@ end
 
 
 %load trained model
-allfn = dir([save_dir '/loctrainedModel_1' '*']);
+allfn = dir([locPatterns_dir 'loctrainedModel_1' '*']);
 %take the last model saved
-load(allfn(end).name);
+load(fullfile(locPatterns_dir, allfn(end).name));
 fprintf('\n*********************************************\n');
 fprintf(['* Loaded ' allfn(end).name '\n']);
-%load last run's standard deviation and voxelInfo
-allLast = dir([save_dir 'locpatternsdata_' '*']);
-loc = load(allLast(end).name);
+%load localizer run's standard deviation and voxelInfo
+%allLast = dir([locPatterns_dir 'locpatternsdata_' '*']);
+%loc = load(fullfile(locPatterns_dir, allLast(end).name));
 if SESSION == 20
-    patterns.lastStd = loc.patterns.runStd;
+   % patterns.lastStd = loc.patterns.runStd;
+   patterns.lastStd = .1; %for testing
 else
-    allLast = dir([save_dir 'motpatternsdata_' num2str(SESSION-1) '*']);
-    last = load(allLast(end).name);
+    allLast = dir([patterns_dir 'motpatternsdata_' num2str(SESSION-1) '*']);
+    last = load(fullifle(patterns_dir,allLast(end).name));
     patterns.lastStd = last.patterns.runStd;
 end
-
-fprintf('\n*********************************************\n');
-fprintf(['* Loaded ' 'last run''s Std in ' allLast(end).name '\n']);
+%put this back in!!
+%fprintf('\n*********************************************\n');
+%fprintf(['* Loaded ' 'last run''s Std in ' allLast(end).name '\n']);
 
 %load this run's regressors and information (do this after load so loading
 %doesn't overwrite)
@@ -170,32 +176,21 @@ patterns.block = (SESSION - 19)*ones(1,patterns.nTRs);
 %% Output Files Setup
 
 % open and set-up output file
-dataFile = fopen([save_dir 'fileprocessing.txt'],'a');
-fprintf(dataFile,'\n*********************************************\n');
-fprintf(dataFile,'* Induce MOT Training: Curtain Practice Runs v.1.0\n');
-fprintf(dataFile,['* Date/Time: ' datestr(now,0) '\n']);
-fprintf(dataFile,['* Seed: ' num2str(seed) '\n']);
-fprintf(dataFile,['* Subject Number: ' num2str(subjectNum) '\n']);
-fprintf(dataFile,['* Subject Name: ' subjectName '\n']);
-fprintf(dataFile,['* Run Number: ' num2str(runNum) '\n']);
-fprintf(dataFile,['* Real-Time Data: ' num2str(rtData) '\n']);
-fprintf(dataFile,'*********************************************\n\n');
+dataFile = fullfile(save_dir, 'fileprocessing.txt');
+printlog(dataFile,'\n*********************************************\n');
+printlog(dataFile,'* Induce MOT Training: Curtain Practice Runs v.1.0\n');
+printlog(dataFile,['* Date/Time: ' datestr(now,0) '\n']);
+printlog(dataFile,['* Seed: ' num2str(seed) '\n']);
+printlog(dataFile,['* Subject Number: ' num2str(subjectNum) '\n']);
+printlog(dataFile,['* Subject Name: ' subjectName '\n']);
+printlog(dataFile,['* Run Number: ' num2str(runNum) '\n']);
+printlog(dataFile,['* Real-Time Data: ' num2str(rtData) '\n']);
+printlog(dataFile,'*********************************************\n\n');
 
-% print header to command window
-fprintf('\n*********************************************\n');
-fprintf('* MOT Study v.1.0\n');
-fprintf(['* Date/Time: ' datestr(now,0) '\n']);
-fprintf(['* Seed: ' num2str(seed) '\n']);
-fprintf(['* Subject Number: ' num2str(subjectNum) '\n']);
-fprintf(['* Subject Name: ' subjectName '\n']);
-fprintf(['* Run Number: ' num2str(runNum) '\n']);
-fprintf(['* Real-Time Data: ' num2str(rtData) '\n']);
-fprintf('*********************************************\n\n');
 %% Start Experiment
 
 % prepare for trial sequence
-fprintf(dataFile,'run\tblock\ttrial\tblcat\tstim\tfilenum\tloaded\tcategsep\n'); %check which to keep
-fprintf('run\tblock\ttrial\tblcat\tstim\tfilenum\tloaded\tcategsep\n');
+printlog(dataFile,'run\tblock\ttrial\tblcat\tstim\tfilenum\tloaded\tcategsep\n'); %check which to keep
 
 %% acquiring files
 
@@ -310,8 +305,7 @@ for iTrial = 1:patterns.nTRs % the first 10 TRs have been taken out to detrend
         
     end
     % print trial results
-    fprintf(dataFile,'%d\t%d\t%d\t%d\n',runNum,patterns.block(iTrial),thisTR,patterns.fileAvail(iTrial));
-    fprintf('%d\t%d\t%d\t%d\n',runNum,patterns.block(iTrial),thisTR,patterns.fileAvail(iTrial));
+    printlog(dataFile,'%d\t%d\t%d\t%d\n',runNum,patterns.block(iTrial),thisTR,patterns.fileAvail(iTrial));
 end
 patterns.runStd = std(patterns.raw_sm_filt,[],1); %std dev across all volumes per voxel
 save([save_dir 'motpatternsdata_' num2str(SESSION) '_' datestr(now,30)],'patterns','timing', 't');

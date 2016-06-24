@@ -59,7 +59,7 @@ function [mainWindow windowSize colors device trigger workingDir logName matlabS
                 catch
                     try %Skyra
                         ls('/Data1/code/motStudy02/')
-                        workingDir = '/Data1/code/motStudy01/';
+                        workingDir = '/Data1/code/motStudy02/';
                         fmri  = 1;
                         % special scanner keypress input
 %                         if debug_mode
@@ -68,11 +68,11 @@ function [mainWindow windowSize colors device trigger workingDir logName matlabS
 %                             device = PniKbGetDeviceNamed('Xkeys');
 %                             %                         device = PniKbStartEverything;
 %                         end
-                        addpath(genpath('../SPTBanne'))
+                       % addpath(genpath('../SPTBanne'))
                         trigger = SCAN_TRIGGER;
                         [keyboardIndices, productNames, allInfos] = GetKeyboardIndices;
-                        %z = strfind(productNames, 'Xkeys');
-                        z = strfind(productNames, 'Dell Dell');
+                        z = strfind(productNames, 'Xkeys');
+                        %z = strfind(productNames, 'Dell Dell');
                         deviceIND = find(~cellfun(@isempty,z));
                         device = keyboardIndices(deviceIND);
 %                         % initialize eyetracker
@@ -98,7 +98,7 @@ function [mainWindow windowSize colors device trigger workingDir logName matlabS
             end
         end
     end
-    cd(workingDir);
+    %cd(workingDir);
 %     if exist('ivx','var') && ~isempty(ivx)
 %         ivx.nCalPoints = 5;
 %         ivx.absCalPos = [640 360; 370 215; 910 215; 370 495; 910 495];
