@@ -183,7 +183,7 @@ shiftTR = 2;
 startXVAL = tic;
 
 %first get session information
-[newpattern t] = GetSessionInfo(subjectNum,LOCALIZER,keepTR);
+[newpattern t] = GetSessionInfo(subjectNum,LOCALIZER,keepTR); %so this does it at the end- the file is probably here but to be safe should from beginning
 patterns.regressor.allCond = newpattern.regressor.allCond;
 patterns.regressor.twoCond = newpattern.regressor.twoCond;
 patterns.selector.xval = newpattern.selector.xval;
