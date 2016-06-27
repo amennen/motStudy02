@@ -25,12 +25,13 @@ runNum = 1;
 projectName = 'motStudy02';
 % end
 setenv('FSLOUTPUTTYPE','NIFTI_GZ');
-save_dir = ['/Data1/code/' projectName '/data/' num2str(subjectNum) '/']; %this is where she sets the save directory!
+save_dir = ['/Data1/code/' projectName '/data/' num2str(subjectNum) '/']; 
 process_dir = ['/Data1/code/' projectName '/data/' num2str(subjectNum) '/' 'reg' '/'];
 patterns_dir = ['/Data1/code/' projectName '/data/' num2str(subjectNum) '/' 'patterns' '/'];
 if ~exist(patterns_dir, 'dir')
     mkdir(patterns_dir)
 end
+behavioral_dir = ['/Data1/code/' projectName '/BehavioralData/' num2str(subjectNum) '/'];
 roi_dir = ['/Data1/code/' projectName '/data/'];
 code_dir = ['/Data1/code/' projectName '/' 'code' '/']; %change to wherever code is stored
 addpath(genpath(code_dir));
@@ -183,7 +184,7 @@ shiftTR = 2;
 startXVAL = tic;
 
 %first get session information
-[newpattern t] = GetSessionInfo(subjectNum,LOCALIZER,keepTR); %so this does it at the end- the file is probably here but to be safe should from beginning
+[newpattern t] = GetSessionInfoRT(subjectNum,LOCALIZER,behavioral_dir,keepTR);
 patterns.regressor.allCond = newpattern.regressor.allCond;
 patterns.regressor.twoCond = newpattern.regressor.twoCond;
 patterns.selector.xval = newpattern.selector.xval;
@@ -279,11 +280,11 @@ printlog(dataFile,'beginning model training...\n');
 %parameters
 penalty = 100;
 shiftTR = 2;
-keepTR = 4;
+keepTR = 8; %change from 4 to 8?
 trainStart = tic;
 
 %first get session information
-[newpattern t] = GetSessionInfo(subjectNum,LOCALIZER,keepTR);
+[newpattern t] = GetSessionInfoRT(subjectNum,LOCALIZER,behavioral_dir,keepTR);
 patterns.regressor.twoCond = newpattern.regressor.twoCond;
 trainIdx = find(newpattern.selector.xval); %find all nonzero timepoints to train on
 %trainLabels = patterns.regressor.twoCond([1 2],trainIdx);

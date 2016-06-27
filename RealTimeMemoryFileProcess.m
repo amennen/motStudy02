@@ -59,7 +59,7 @@ code_dir = ['/Data1/code/' projectName '/' 'code' '/']; %change to wherever code
 runHeader = fullfile(save_dir,[ 'motRun' num2str(blockNum) '/']);
 locPatterns_dir = fullfile(save_dir, 'patterns/');
 patterns_dir = fullfile(runHeader, 'patterns/');
-
+behavioral_dir = ['/Data1/code/' projectName '/BehavioralData/' num2str(subjectNum) '/'];
 addpath(genpath(code_dir));
 runNum = 1; %assume first person that day
 if ~prev %if getting data today
@@ -110,7 +110,7 @@ if anat_mask
     roiInds = find(roi);
 end
 
-
+%%%%%%%%CHANGE THIS BACK!!!!
 %load trained model
 allfn = dir([locPatterns_dir 'loctrainedModel_1' '*']);
 %take the last model saved
@@ -134,7 +134,7 @@ end
 
 %load this run's regressors and information (do this after load so loading
 %doesn't overwrite)
-[newpattern, t] = GetSessionInfo(subjectNum,SESSION);
+[newpattern t] = GetSessionInfoRT(subjectNum,LOCALIZER,behavioral_dir);
 patterns.regressor = newpattern.regressor;
 %% Boilerplate
 

@@ -590,30 +590,21 @@ switch SESSION
         instruct1 = ['SCENE TEST\n\nNow we will test your memory. First, we will show a scene name. In your mind''s eye, try to picture the ' ...
             'asssociated scene in as much detail as possible, including any specific objects or features. Try to simulate actually looking ' ...
             'at the picture. Because we are studying mental imagery, it is crucial for our experiment that you really do this, both here and ' ...
-            'later on.\n\nAfter you have had several seconds to form an image, we will ask you how detailed it was. This is not a "test": ' ...
-            'we want to understand your real experience, even if no image formed when you felt you SHOULD have had one. Similarly, you should not ' ...
-            'adjust your rating based on how sure you are it''s the correct scene. Please make your rating based only on how much scene detail comes to you, ' ...
-            'ignoring other mental imagery (e.g., whatever you pictured that was related to the word).\n\n'...
-            '\n\n--- Press ' PROGRESS_TEXT ' once you understand these instructions,\n then press it again when you are done viewing the rating scale ---'];
+            'later on'...
+            '\n\n--- Press ' PROGRESS_TEXT ' once you understand these instructions ---'];
         
         instruct2 = ['After you respond, we will show you four scenes. Using your index, middle, ring and pinky fingers ' ...
             '(corresponding to the leftmost to rightmost image), please identify the scene that goes with the current name.\n\nIf you ' ...
             'suspect one scene, select it even if you''re unsure; but if you really have no idea at all which picture is correct, do not guess randomly. ' ...
-            'In this case where you have no idea, use your THUMB to select to SKIP. Thus, you should be responding every trial, using either your INDEX ' ...
+            'In this case when you have no idea, use your THUMB to select to SKIP this question. Thus, you should be responding every trial, using either your INDEX ' ...
             'to PINKY fingers to choose an image if you have an idea, or using your THUMB if you don''t know which image to choose. '...
             '\n\nDepending how you answer, you will see a green "!!!" (correct) or a red "X" (incorrect). The task will continue until you have ' ...
             'named all scenes correctly. Good luck!\n\n--- Press ' PROGRESS_TEXT ' to begin ---'];
         
-        keymap_image = imread(KEY_MAPPING);
         % present instructions
         if SESSION~= TOCRITERION2_REP
             DrawFormattedText(mainWindow,' ','center','center',COLORS.MAINFONTCOLOR,WRAPCHARS);
             displayText(mainWindow,instruct1,minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
-            waitForKeyboard(kbTrig_keycode,DEVICE);
-            keymap_image = imread(KEY_MAPPING);
-            keymap_prompt = Screen('MakeTexture', mainWindow, keymap_image);
-            Screen('DrawTexture',mainWindow,keymap_prompt,[],[],[]); %[0 0 keymap_dims],[topLeft topLeft+keymap_dims]);
-            Screen('Flip',mainWindow);
             waitForKeyboard(kbTrig_keycode,DEVICE);
             displayText(mainWindow,instruct2,minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
         else
@@ -945,6 +936,12 @@ switch SESSION
             end
         end
         
+        %generate stimulus ID's first so can add them easily
+        for i = 1:length(stim.cond)
+            pos = find(strcmp(preparedCues,stim.stim{i}));
+            stim.id(i) = pos;
+        end
+        
         % display instructions
         DrawFormattedText(mainWindow,' ','center','center',COLORS.MAINFONTCOLOR,WRAPCHARS);
         displayText(mainWindow,stim.instruct1,minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
@@ -1032,6 +1029,11 @@ switch SESSION
         
         cresp = keyCell(3:5);
         cresp_map = sum(keys.map(3:5,:));
+        
+        stimID = stim.id;
+        stimCond = stim.cond;
+        sessionInfoFile = fullfile(ppt_dir, ['SessionInfo' '_' num2str(SESSION)]);
+        save(sessionInfoFile, 'stimCond','stimID', 'timing', 'config'); 
         
         for n = 1:length(stim.stim)
             % initialize trial and show cue
@@ -1474,6 +1476,17 @@ switch SESSION
         stim.num_targets = 1;
         repulsor_force_small = 1;
         
+        %generate stimulus ID's first so can add them easily
+        for i = 1:length(stim.cond)
+            pos = find(strcmp(preparedCues,stim.stim{i}));
+            if ~isempty(pos)
+                stim.id(i) = pos;
+            else
+                stim.id(i) = -1; %so this should never go during MOT
+            end
+        end
+        
+        
         for i=1:length(stim.cond)
             
             if ~day_2 && ~stair
@@ -1645,6 +1658,15 @@ switch SESSION
         stim.lastRTDecodingFunction = nan(1,stim.num_realtime);
         stim.changeSpeed = nan(mTr,length(stim.cond));
         stim.motionSpeed = nan(mTr,length(stim.cond));
+        
+        
+        %save the timing, stim ID, and stim conditions here!
+        stimID = stim.id;
+        stimCond = stim.cond;
+        sessionInfoFile = fullfile(ppt_dir, ['SessionInfo' '_' num2str(SESSION)]);
+        save(sessionInfoFile, 'stimCond','stimID', 'timing', 'config'); 
+                
+        
         for n=1:length(stim.cond)
             stim.trial = n;
             if CURRENTLY_ONLINE && SESSION > TOCRITERION3
@@ -1670,13 +1692,13 @@ switch SESSION
             %fprintf('For trial %i: speed = %.2d\n', stim.trial,stim.speed(stim.trial));
             dotTarg = []; dotPos = []; dotTargPos = [];
             
-            pos = find(strcmp(preparedCues,stim.stim{stim.trial}));
-            if ~isempty(pos)
-                stim.id(stim.trial) = pos;
-            else
-                stim.id(stim.trial) = lureCounter; %so this should never go during MOT
-                lureCounter = lureCounter + 1;
-            end
+%             pos = find(strcmp(preparedCues,stim.stim{stim.trial}));
+%             if ~isempty(pos)
+%                 stim.id(stim.trial) = pos;
+%             else
+%                 stim.id(stim.trial) = lureCounter; %so this should never go during MOT
+%                 lureCounter = lureCounter + 1;
+%             end
             cue = stim.stim{stim.trial};
             
             % initialize dots
