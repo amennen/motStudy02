@@ -91,7 +91,7 @@ if ~rtData
 end
 mot_realtime01(SUBJECT,MOT{1},[],scanNum);
 %% MOT RUN 1 FILE PROCESS
-scanNum = 15;
+scanNum = 23;%normally 15;
 blockNum = 1;
 featureSelect = 1;
 RealTimeMemoryFileProcess(SUBJECT,featureSelect,prev,rtData,scanNum,MOT{1},blockNum)

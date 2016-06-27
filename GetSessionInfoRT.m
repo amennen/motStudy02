@@ -25,7 +25,7 @@ acc = nan;
 rt = NaN;
 
 %load session information
-while ~exist( fullfile(behav_dir, ['SessionInfo' '_' num2str(SESSION)]), 'file')
+while ~exist( fullfile(behav_dir, ['SessionInfo' '_' num2str(SESSION) '.mat']), 'file')
     %wait here until it makes the file
 end
 load(fullfile(behav_dir, ['SessionInfo' '_' num2str(SESSION)]));
@@ -64,14 +64,14 @@ trials.lure = [LH LE];
 
 % now we have to match these to TRs to get the actual regressors
 if ismember(SESSION,MOT)
-    iTR.start = convertTR(timing.trig.wait,timing.actualOnsets.motion(1,:),config.TR);
+    iTR.start = convertTR(timing.trig.wait,timing.plannedOnsets.motion(1,:),config.TR);
     trialDur = timing.plannedOnsets.probe(1) - timing.plannedOnsets.motion(1,1); % +4; %this was because I wanted to shift forward by 2 and see afterwards 2 TRs but
     % take out now
 else
-    iTR.start = convertTR(timing.trig.wait,timing.actualOnsets.prompt,config.TR);
+    iTR.start = convertTR(timing.trig.wait,timing.plannedOnsets.prompt,config.TR);
     trialDur = timing.plannedOnsets.vis(1) - timing.plannedOnsets.prompt(1); %try full recording TR just to see what it says!
 end
-trialDurTR = (trialDur/stim.TRlength) - 1; %20s/2 = 10 - 1 = 9 TRs
+trialDurTR = (trialDur/config.TR) - 1; %20s/2 = 10 - 1 = 9 TRs
 if SESSION == 18 && N_TRS_LOC > 0 %shift over a little bit more
     trialDurTR = N_TRS_LOC - 1;
 end
@@ -84,7 +84,7 @@ iTR.LE = iTR.start(LE);
 %make matrix of target hard, target easy, lure hard, lure easy
 for i=1:length(iTR.TH);
     VARIATIONS_MAT(1,iTR.TH(i):iTR.TH(i) + trialDurTR) = 1;
-    VARIATIONS_MAT(2,iTR.TE(i):iTR.TE(i) + trialDurTR) = 1;
+    VARIATIONS_MAT(2,iTR.TE(i):iTR.TE(i) + trialDurTR) = 1; %do this separely! there's no condition 
     SELECTOR_XVAL(iTR.TH(i):iTR.TH(i) + trialDurTR)= i;
     SELECTOR_XVAL(iTR.TE(i):iTR.TE(i) + trialDurTR)= i;
 end

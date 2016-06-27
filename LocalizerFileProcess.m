@@ -16,7 +16,6 @@ end
 %subjectNum = 1;
 %runNum = 1;
 
-LOCALIZER = SESSION;
 runNum = 1;
 % set up paths
 % if prev
@@ -184,7 +183,7 @@ shiftTR = 2;
 startXVAL = tic;
 
 %first get session information
-[newpattern t] = GetSessionInfoRT(subjectNum,LOCALIZER,behavioral_dir,keepTR);
+[newpattern t] = GetSessionInfoRT(subjectNum,SESSION,behavioral_dir,keepTR);
 patterns.regressor.allCond = newpattern.regressor.allCond;
 patterns.regressor.twoCond = newpattern.regressor.twoCond;
 patterns.selector.xval = newpattern.selector.xval;
@@ -284,7 +283,7 @@ keepTR = 8; %change from 4 to 8?
 trainStart = tic;
 
 %first get session information
-[newpattern t] = GetSessionInfoRT(subjectNum,LOCALIZER,behavioral_dir,keepTR);
+[newpattern t] = GetSessionInfoRT(subjectNum,SESSION,behavioral_dir,keepTR);
 patterns.regressor.twoCond = newpattern.regressor.twoCond;
 trainIdx = find(newpattern.selector.xval); %find all nonzero timepoints to train on
 %trainLabels = patterns.regressor.twoCond([1 2],trainIdx);

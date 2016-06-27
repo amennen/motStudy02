@@ -134,7 +134,7 @@ end
 
 %load this run's regressors and information (do this after load so loading
 %doesn't overwrite)
-[newpattern t] = GetSessionInfoRT(subjectNum,LOCALIZER,behavioral_dir);
+[newpattern t] = GetSessionInfoRT(subjectNum,SESSION,behavioral_dir);
 patterns.regressor = newpattern.regressor;
 %% Boilerplate
 
