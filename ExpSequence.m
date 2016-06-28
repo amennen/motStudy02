@@ -2,7 +2,7 @@
 %%fmri session
 %first these are all the session numbers
 SUBJECT = 1;
-prev = 0;
+prev = 1;
 rtData = 1;
 
 SPTB_PATH = ['/Data1/code/SPTBanne'];
@@ -91,7 +91,7 @@ if ~rtData
 end
 mot_realtime01(SUBJECT,MOT{1},[],scanNum);
 %% MOT RUN 1 FILE PROCESS
-scanNum = 23;%normally 15;
+scanNum = 11;%normally 15;
 blockNum = 1;
 featureSelect = 1;
 RealTimeMemoryFileProcess(SUBJECT,featureSelect,prev,rtData,scanNum,MOT{1},blockNum)

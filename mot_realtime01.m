@@ -14,7 +14,8 @@
 
 function mot_realtime01(SUBJECT,SESSION,SET_SPEED,scanNum)
 % note: TR values begin from t=1 (rather than t=0)
-test = 0; %change when using the scanner!
+test = 1; %change when using the scanner!
+ListenChar(2); %suppress keyboard input to window
 KbName('UnifyKeyNames');
 % initialization declarations
 COLORS.MAINFONTCOLOR = [200 200 200];
@@ -1598,6 +1599,7 @@ switch SESSION
             config.wait = stim.fixBlock; % stim.fixation - 20 s
         else
             runStart = GetSecs;
+            timing.trig.wait = runStart;
             config.wait = 0;
         end
         
@@ -1637,7 +1639,7 @@ switch SESSION
         
         allMotionTRs = convertTR(runStart,timing.plannedOnsets.motion,config.TR); %row,col = mTR,trialnumber
         addTR = 0;
-        showFiles = 1;
+        %showFiles = 1;
         if ~CURRENTLY_ONLINE %we have to add the 10 TR into back to go with prev data
             allMotionTRs = allMotionTRs + 10;
             addTR = 10;
@@ -1648,6 +1650,7 @@ switch SESSION
         rtData.rtDecodingFunction = nan(1,config.nTRs.perBlock+ addTR);
         rtData.smoothRTDecodingFunction = nan(1,config.nTRs.perBlock+ addTR);
         rtData.fileList = cell(1,config.nTRs.perBlock + addTR);
+        rtData.newestFile = cell(1,config.nTRs.perBlock + addTR);
         % repeat
         stim.lastSpeed = nan(1,stim.num_realtime);%going to save it in a matrix of run,stimID
         stim.lastRTDecoding = nan(1,stim.num_realtime); %file 9 that's applied now
@@ -1744,7 +1747,7 @@ switch SESSION
                 initFunction = lastDecodingFunction(stim.id(stim.trial));
             end
             waitForPulse = false;
-            printlog(LOG_NAME,'trial\tTR\tprompt active\tdot speed\tdot speed change \tflip error\tfound file\n');
+            printlog(LOG_NAME,'trial\tTR\tprompt active\tspeed\tds\tflip error\tfound file\tCategSep\tLastFile\n');
             while abs(GetSecs - timing.plannedOnsets.probe(n)) > 0.050;%SLACK*2 %so this is just constatnly running, stops when it's within a flip
                
                 stim.frame_counter(stim.trial) = stim.frame_counter(stim.trial) + 1;
@@ -1760,9 +1763,13 @@ switch SESSION
                                 timing.plannedOnsets.tClassOutputFileTimeout(fileTR) = timing.plannedOnsets.motion(TRcounter,n) + config.TR-.25; %so this is in seconds
                                 if (GetSecs < timing.plannedOnsets.tClassOutputFileTimeout(fileTR)) %don't need a min time because we're waiting for TRcounter to be 4
                                     rtData.fileList{thisTR} = ls(classOutputDir);
-                                    if showFiles
-                                        ls(classOutputDir) %saved for at the TR we're literally on, what are the available files
-                                    end
+                                    allFn = dir([classOutputDir 'vol' '*']);
+                                    dates = [allFn.datenum];
+                                    [~,newestIndex] = max(dates);
+                                    rtData.newestFile{thisTR} = allFn(newestIndex).name;
+%                                     if showFiles
+%                                         ls(classOutputDir) %saved for at the TR we're literally on, what are the available files
+%                                     end
                                     [rtData.classOutputFileLoad(fileTR), rtData.classOutputFile{fileTR}] = GetSpecificClassOutputFile(classOutputDir,fileTR);
                                     if rtData.classOutputFileLoad(fileTR)
                                         tempStruct = load([classOutputDir filesep rtData.classOutputFile{fileTR}]);
@@ -1832,7 +1839,7 @@ switch SESSION
                             prompt_active = false;
                         end
                         if realtime %only change speeds with MOT
-                            if TRcounter > 4 %we look starting in 4, but we update starting at TR 5
+                            if TRcounter > 4 && ~isnan(rtData.smoothRTDecodingFunction(allMotionTRs(TRcounter-2,n))) %we look starting in 4, but we update starting at TR 5 AND make sure that it's not nan--if it is don't change speed
                                 current_speed = current_speed + rtData.smoothRTDecodingFunction(allMotionTRs(TRcounter-2,n)); % apply in THIS TR what was from 2 TR's ago (indexed by what file it is) so file 3 will be applied at TR5!
                                 stim.changeSpeed(TRcounter,n) = rtData.smoothRTDecodingFunction(allMotionTRs(TRcounter-2,n)); %speed changed ON that TR
                             else
@@ -1874,10 +1881,10 @@ switch SESSION
                 end
                 if TRcounter > 1 && (GetSecs >= timing.plannedOnsets.motion(TRcounter,n) + config.TR-.25) && printTR(TRcounter) %after when should have found file
                     %z = GetSecs - timing.plannedOnsets.motion(TRcounter,n);
-                    printlog(LOG_NAME,'%d\t%d\t%d\t\t%.3f\t\t%.3f\t\t\t%.4f\t\t%i\n',n,TRcounter,prompt_active,current_speed,stim.changeSpeed(TRcounter,n),timing.actualOnsets.motion(TRcounter,stim.trial) - timing.plannedOnsets.motion(TRcounter,stim.trial),rtData.classOutputFileLoad(allMotionTRs(TRcounter-1,n)));
+                    printlog(LOG_NAME,'%d\t%d\t%d\t\t%5.3f\t%5.3f\t%5.4f\t\t%i\t\t%5.3f\t\t%s\n',n,TRcounter,prompt_active,current_speed,stim.changeSpeed(TRcounter,n),timing.actualOnsets.motion(TRcounter,stim.trial) - timing.plannedOnsets.motion(TRcounter,stim.trial),rtData.classOutputFileLoad(allMotionTRs(TRcounter-1,n)),rtData.rtDecoding(allMotionTRs(TRcounter-1,n)),rtData.newestFile{allMotionTRs(TRcounter,n)});
                     printTR(TRcounter) = 0;
                 elseif TRcounter ==1 && (GetSecs >= timing.plannedOnsets.motion(TRcounter,n) + config.TR-.25) && printTR(TRcounter)
-                    printlog(LOG_NAME,'%d\t%d\t%d\t\t%.3f\t\t%.3f\t\t\t%.4f\t\t%i\n',n,TRcounter,prompt_active,current_speed,stim.changeSpeed(TRcounter,n),timing.actualOnsets.motion(TRcounter,stim.trial) - timing.plannedOnsets.motion(TRcounter,stim.trial),rtData.classOutputFileLoad(allMotionTRs(TRcounter,n)));
+                    printlog(LOG_NAME,'%d\t%d\t%d\t\t%5.3f\t%5.3f\t%5.4f\t\t%i\t\t%5.3f\t\t%s\n',n,TRcounter,prompt_active,current_speed,stim.changeSpeed(TRcounter,n),timing.actualOnsets.motion(TRcounter,stim.trial) - timing.plannedOnsets.motion(TRcounter,stim.trial),rtData.classOutputFileLoad(allMotionTRs(TRcounter,n)),rtData.rtDecoding(allMotionTRs(TRcounter,n)),rtData.newestFile{allMotionTRs(TRcounter,n)});
                     printTR(TRcounter) = 0;
                 end
                 
@@ -2299,15 +2306,19 @@ switch SESSION
         displayText(mainWindow,['We''re now going to run some scans in the background while you work through a variety of tasks. Please work through these and we''ll get in ' ...
             'touch with you when you finish.\n\n-- please press the index finger button to continue --'],INSTANT,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
         waitForKeyboard(kbTrig_keycode,DEVICE);
+        DrawFormattedText(mainWindow,'Waiting for scanner start, hold tight!','center','center',COLORS.MAINFONTCOLOR,WRAPCHARS);
+        Screen('Flip', mainWindow);
+        
         if CURRENTLY_ONLINE
         [timing.trig.wait timing.trig.waitSuccess] = WaitTRPulse(TRIGGER_keycode,DEVICE);
         runStart = timing.trig.wait;
+        displayText(mainWindow,STILLREMINDER,STILLDURATION,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
+        DrawFormattedText(mainWindow,'+','center','center',COLORS.MAINFONTCOLOR,WRAPCHARS);
+        Screen('Flip', mainWindow)
         else
             runStart = GetSecs;
         end
        % runStart = timing.trig.wait;
-        DrawFormattedText(mainWindow,'+','center','center',COLORS.MAINFONTCOLOR,WRAPCHARS);
-        Screen('Flip', mainWindow)
         config.wait = 16; % we want this to be up for 8 seconds to collect sample TR's
         config.TR = 2;
         timing.plannedOnsets.offEx = runStart + config.wait;

@@ -84,8 +84,10 @@ iTR.LE = iTR.start(LE);
 %make matrix of target hard, target easy, lure hard, lure easy
 for i=1:length(iTR.TH);
     VARIATIONS_MAT(1,iTR.TH(i):iTR.TH(i) + trialDurTR) = 1;
-    VARIATIONS_MAT(2,iTR.TE(i):iTR.TE(i) + trialDurTR) = 1; %do this separely! there's no condition 
     SELECTOR_XVAL(iTR.TH(i):iTR.TH(i) + trialDurTR)= i;
+end
+for i=1:length(iTR.TE);
+    VARIATIONS_MAT(2,iTR.TE(i):iTR.TE(i) + trialDurTR) = 1; %do this separely! there's no condition 
     SELECTOR_XVAL(iTR.TE(i):iTR.TE(i) + trialDurTR)= i;
 end
 for i=1:length(iTR.LH)

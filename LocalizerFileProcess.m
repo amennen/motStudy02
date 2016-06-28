@@ -26,7 +26,7 @@ projectName = 'motStudy02';
 setenv('FSLOUTPUTTYPE','NIFTI_GZ');
 save_dir = ['/Data1/code/' projectName '/data/' num2str(subjectNum) '/']; 
 process_dir = ['/Data1/code/' projectName '/data/' num2str(subjectNum) '/' 'reg' '/'];
-patterns_dir = ['/Data1/code/' projectName '/data/' num2str(subjectNum) '/' 'patterns' '/'];
+patterns_dir = ['/Data1/code/' projectName '/data/' num2str(subjectNum) '/' 'Localizer' '/'];
 if ~exist(patterns_dir, 'dir')
     mkdir(patterns_dir)
 end
