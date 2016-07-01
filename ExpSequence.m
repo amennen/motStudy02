@@ -1,7 +1,7 @@
 %%so now this would be all the commands you would want to do ONLY for
 %%fmri session
 %first these are all the session numbers
-SUBJECT = 2;
+SUBJECT = 1;
 prev = 1;
 scanNow = 0;
 
@@ -60,7 +60,7 @@ ASSOCIATES = RECALL2 + 1;
 
 %% SCAN_PREP: instructions and also 8 seconds
 scanNum = 7;
-mot_realtime01(SUBJECT,SCAN_PREP,[],scanNum,scanNow)
+mot_realtime01(SUBJECT,SCAN_PREP,1,scanNum,scanNow)
 
 %% SCAN_PREP FILE PROCESS
 scanNum = 9; %change back

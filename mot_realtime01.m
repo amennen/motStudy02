@@ -1508,11 +1508,7 @@ switch SESSION
             waitForKeyboard(kbTrig_keycode,DEVICE);
             displayText(mainWindow,stim.instruct2,minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
             waitForKeyboard(kbTrig_keycode,DEVICE);
-            keymap_image = imread(KEY_MAPPING);
-            keymap_prompt = Screen('MakeTexture', mainWindow, keymap_image);
-            Screen('DrawTexture',mainWindow,keymap_prompt,[],[],[]); %[0 0 keymap_dims],[topLeft topLeft+keymap_dims]);
-            Screen('Flip',mainWindow);
-            waitForKeyboard(kbTrig_keycode,DEVICE);
+            
         elseif SESSION == MOT_PREP
             displayText(mainWindow,stim.stairInstruct,minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
             waitForKeyboard(kbTrig_keycode,DEVICE);
@@ -1524,11 +1520,7 @@ switch SESSION
             waitForKeyboard(kbTrig_keycode,DEVICE);
             displayText(mainWindow,stim.instruct2,minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
             waitForKeyboard(kbTrig_keycode,DEVICE);
-            keymap_image = imread(KEY_MAPPING);
-            keymap_prompt = Screen('MakeTexture', mainWindow, keymap_image);
-            Screen('DrawTexture',mainWindow,keymap_prompt,[],[],[]); %[0 0 keymap_dims],[topLeft topLeft+keymap_dims]);
-            Screen('Flip',mainWindow);
-            waitForKeyboard(kbTrig_keycode,DEVICE);
+           
         elseif SESSION == MOT_LOCALIZER || SESSION == MOT{1}
             displayText(mainWindow,stim.fMRI_instruct,minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
             waitForKeyboard(kbTrig_keycode,DEVICE);
@@ -2075,7 +2067,7 @@ switch SESSION
         % session-based declarations
         instruct = ['THE GREAT FRUIT HARVEST\n\nIn this task, words will flash up on the screen very quickly, one after another. If you notice a word that is a ' ...
             'type of fruit, please press the INDEX finger.\n\nNote: there are very few fruit, so make sure to catch them!\n\n-- Press INDEX to begin --'];
-        stim.condDuration(HARD) = 0; stim.condDuration(EASY)= 0;
+        stim.condDuration(REALTIME) = 0; stim.condDuration(OMIT)= 0;
         exposure = 1;
         
         % load or initialize exclusion words and cue durations
@@ -2090,13 +2082,9 @@ switch SESSION
         stim.num_short = 0; stim.num_long = 0; stim.num_omit = 0;
         PROGRESS = INDEXFINGER;
         % final initialization
-        cueIndex([HARD EASY]) = inf;
-        targetOrder{HARD} = randperm(stim.num_short);
-        targetOrder{EASY} = randperm(stim.num_long);
         fillerCueTargets = readStimulusFile(CUETARGETFILE,ALLMATERIALS);
         triggerNext = false;
-        console = true;
-        condmap = makeMap({'hard','easy','omit','filler','fruit'});
+        condmap = makeMap({'realtime','omit','lure','fruit'});
         fruitHarvestEK = initEasyKeys([exp_string_long '_FH'], SUBJ_NAME, ppt_dir,...
             'default_respmap', rsvp_scale, ...
             'condmap', condmap, ...
@@ -2129,7 +2117,7 @@ switch SESSION
             if countdown, countdown = countdown - 1; end
             
             % figure out if there are any cues left
-            if (length(cues{STIMULI}{HARD}{1}) <= cueIndex(HARD) && length(cues{STIMULI}{EASY}{1}) <= cueIndex(EASY)) && ~stim.availableFruit
+            if ~stim.availableFruit %if there are no more fruit
                 timeToCue = inf;
             else % if there are cues left, check whether it's nearly time to present one
                 timeToCue =  idealLag - cueDistance;
@@ -2236,13 +2224,7 @@ switch SESSION
         
         % present participant with feedback
         taskSummary = ['Fruit harvest rate: ' num2str(round(stim.harvest_rate*100)) '%\nFalse fruit: ' num2str(stim.false_fruit) ' items'];
-        leftovers = length(cues{STIMULI}{HARD}{1}) + length(cues{STIMULI}{EASY}{1}) - cueIndex(HARD) - cueIndex(EASY);
-        if ~leftovers
-            printlog(LOG_NAME,['\n********CUE EXPOSURE NUMBER ' num2str(exposure) ' OF ' num2str(NUM_TASK_RUNS) ' COMPLETED********\n' taskSummary '\n\n']);
-        else
-            printlog(LOG_NAME,['\n********WARNING: ' num2str(leftovers) ' CUES WERE NOT EXPOSED DURING EXPOSURE ' num2str(exposure) '*********\n' taskSummary '\n\n']);
-        end
-        feedbackString = ['Run complete! Your performance in this run:\n\n' taskSummary '\n\n-- Harvest will resume shortly --']; % Your overall performance:\n\n' overallSummary '\n\n
+        feedbackString = ['Run complete! Your performance in this run:\n\n' taskSummary ]; % Your overall performance:\n\n' overallSummary '\n\n
         displayText(mainWindow,feedbackString,CONGRATSDURATION,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
         printlog(LOG_NAME,['\n\nSESSION ' int2str(SESSION) ' ended ' datestr(now) ' for SUBJECT number ' int2str(SUBJECT) '\n\n']);
         printlog(LOG_NAME,'\n\n\n******************************************************************************\n');
