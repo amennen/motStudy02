@@ -187,14 +187,14 @@ printlog(dataFile,['* Date/Time: ' datestr(now,0) '\n']);
 printlog(dataFile,['* Seed: ' num2str(seed) '\n']);
 printlog(dataFile,['* Subject Number: ' num2str(subjectNum) '\n']);
 printlog(dataFile,['* Subject Name: ' subjectName '\n']);
-printlog(dataFile,['* Run Number: ' num2str(runNum) '\n']);
+printlog(dataFile,['* Run Number: ' num2str(blockNum) '\n']);
 printlog(dataFile,['* Real-Time Data: ' num2str(scanNow) '\n']);
 printlog(dataFile,'*********************************************\n\n');
 
 %% Start Experiment
 
 % prepare for trial sequence
-printlog(dataFile,'Block\tTR\tFileAvail\tOutputClass\tCategSep\n'); %check which to keep
+printlog(dataFile,'Block\tTR\tFileAvail\tOutputClass\tCategSep\n'); 
 %% acquiring files
 
 zscoreNew = 1;

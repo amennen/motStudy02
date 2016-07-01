@@ -556,7 +556,7 @@ switch SESSION
         stim.gapWidth = 10;
         stim.goodFeedback = '!!!';
         stim.badFeedback = 'X';
-        stim.textRow = WINDOWSIZE.pixels(2) *(4/9); %changed from 5, then 3
+        stim.textRow = WINDOWSIZE.pixels(2) *(2.5/9); %changed from 5, then 3
         stim.picRow = WINDOWSIZE.pixels(2) *(5/9);
         
         % other constants
@@ -729,7 +729,7 @@ switch SESSION
                     Screen('DrawTexture', mainWindow, picIndex(i), [0 0 PICDIMS],[topLeft topLeft+destDims]);
                     topLeft(HORIZONTAL) = topLeft(HORIZONTAL) + destDims(HORIZONTAL) + stim.gapWidth;
                 end
-                
+                DrawFormattedText(mainWindow,preparedCues{n},'center',stim.textRow,COLORS.MAINFONTCOLOR,WRAPCHARS);
                 %multiple choice
                 timing.plannedOnsets.mc(stim.trial) = timing.plannedOnsets.cue(stim.trial) + config.nTRs.cue*config.TR;
                 timespec =  timing.plannedOnsets.mc(stim.trial) - SLACK;
@@ -842,7 +842,7 @@ switch SESSION
         printlog(LOG_NAME,['\n\nSESSION ' int2str(SESSION) ' ended ' datestr(now) ' for SUBJECT number ' int2str(SUBJECT) '\n\n']);
         printlog(LOG_NAME,'\n\n\n******************************************************************************\n');
         %endSession(subjectiveEK, objectiveEK, CONGRATS);
-        endSession(subjectiveEK, objectiveEK, CONGRATS);
+        endSession(objectiveEK, CONGRATS);
         sca
         %return
         %normally would go to session 4 but instead we want to go to

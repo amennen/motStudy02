@@ -52,7 +52,7 @@ if ~prev %if getting data today
     dicom_dir = ['/Data1/subjects/' datestr(now,10) datestr(now,5) datestr(now,7) '.' subjectName '.' subjectName '/'];
 else
     allDates = {'3-26-2016', '3-29-2016', '4-1-2016', '4-27-2016', '4-29-2016', '5-05-2016'};
-    projectName = 'motStudy01'; %for testing right now
+    %projectName = 'motStudy01'; %for testing right now
     subjectName = [datestr(allDates{subjNum},5) datestr(allDates{subjNum},7) datestr(allDates{subjNum},11) num2str(runNum) '_' projectName];
     dicom_dir = ['/Data1/subjects/' datestr(allDates{subjNum},10) datestr(allDates{subjNum},5) datestr(allDates{subjNum},7) '.' subjectName '.' subjectName '/'];
 end
@@ -186,7 +186,7 @@ highres2exfunc_mat='highres2example_func';
 if registerMprageToNifti
     
     %use FSL's BBR function to register example functional image to high resolution mprage
-    regFunction = 'flirt'; %epi_reg, flirt
+    regFunction = 'epi_reg'; %epi_reg, flirt
     if strcmp(regFunction,'epi_reg')
         unix(sprintf('%sepi_reg --epi=%s --t1=%s --t1brain=%s_brain --out=%s',fslpath,exfunc_reorient_fn,highres_reorient_fn,highres_reorient_fn,exfunc2highres_mat))
     elseif strcmp(regFunction,'flirt')

@@ -48,6 +48,8 @@ imgmat = 64; %image matrix size
 anat_mask = 1;
 roi_name = 'retrieval';
 stretched = 0;
+while ~exist(fullfile(process_dir,[roi_name '_anat_mask_orig' '.mat']), 'file')%wait for mask to appear
+end
 if anat_mask
     if stretched
         temp = load(fullfile(process_dir,[roi_name '_anat_mask' '.mat'])); %should be stretched_brain
@@ -77,7 +79,7 @@ cutoff = 160;
 TR = 2;
 
 %% block sequence
-nTRsTotal = 528;
+nTRsTotal = 688;
 nTRs = nTRsTotal - 10; 
 patterns.fileAvail = zeros(1,nTRs);
 patterns.newFile = cell(1,nTRs);
@@ -178,7 +180,7 @@ printlog(dataFile,'beginning model cross-validation...\n');
 
 %parameters
 penalty = 100;
-keepTR = 8; %should change to 8 maybe???? from 4 because we increased MOT
+keepTR = 4; %should change to 8 maybe???? from 4 because we increased MOT
 shiftTR = 2;
 startXVAL = tic;
 
@@ -279,7 +281,7 @@ printlog(dataFile,'beginning model training...\n');
 %parameters
 penalty = 100;
 shiftTR = 2;
-keepTR = 8; %change from 4 to 8?
+keepTR = 4; %change from 4 to 8?
 trainStart = tic;
 
 %first get session information
