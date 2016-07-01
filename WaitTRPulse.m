@@ -33,8 +33,8 @@ end
 varargout{1} = secs;
 varargout{2} = recorded;
 if recorded
-    fprintf('Found the Trigger WAHOO!')
+    fprintf('|')
 else
-    fprintf('Trigger timeout womp')
+    fprintf('X')
 end
 end

@@ -81,7 +81,7 @@ if recede
         end
     end
 else
-    maskRecede = mask
+    maskRecede = mask;
 end
 
 mask = logical(maskRecede);

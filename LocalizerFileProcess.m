@@ -1,4 +1,4 @@
-function LocalizerFileProcess(subjectNum,crossval,featureSelect,prev,rtData,scanNum,SESSION)
+function LocalizerFileProcess(subjectNum,crossval,featureSelect,prev,scanNow,scanNum,SESSION)
 % now going to be loading in localizer data
 if IsLinux
     biac_dir = '/Data1/packages/BIAC_Matlab_R2014a/';
@@ -98,7 +98,7 @@ printlog(dataFile,['* Seed: ' num2str(seed) '\n']);
 printlog(dataFile,['* Subject Number: ' num2str(subjectNum) '\n']);
 printlog(dataFile,['* Subject Name: ' subjectName '\n']);
 printlog(dataFile,['* Run Number: ' num2str(runNum) '\n']);
-printlog(dataFile,['* Real-Time Data: ' num2str(rtData) '\n']);
+printlog(dataFile,['* Real-Time Data: ' num2str(scanNow) '\n']);
 printlog(dataFile,'*********************************************\n\n');
 
 
@@ -121,7 +121,7 @@ for iTrial = 1:nTRs % the first 10 TRs have been taken out to detrend
     end
     
     %if desired file is recognized, pause for 200ms to complete transfer
-    if rtData==1 || patterns.fileAvail(iTrial)
+    if scanNow==1 || patterns.fileAvail(iTrial)
         pause(.2);
     end
     

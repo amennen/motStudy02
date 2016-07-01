@@ -1,5 +1,5 @@
-function [patterns, t] = RealTimeMemoryFileProcess(subjectNum,featureSelect,prev,rtData,scanNum,SESSION,blockNum) %,rtfeedback)
-% function [patterns] = RealTimeMemoryFileProcess(subjectNum,subjectName,runNum,scanNum,rtData)
+function [patterns, t] = RealTimeMemoryFileProcess(subjectNum,featureSelect,prev,scanNow,scanNum,SESSION,blockNum) %,rtfeedback)
+% function [patterns] = RealTimeMemoryFileProcess(subjectNum,subjectName,runNum,scanNum,scanNow)
 %
 % this function describes the file processing procedure for the realtime
 % fMRI attentional training experiment
@@ -12,7 +12,7 @@ function [patterns, t] = RealTimeMemoryFileProcess(subjectNum,featureSelect,prev
 % - runNum:      run number [any integer]
 % - scanNum:     whether collecting scanNum data [scannumber if yes/0 if
 % not] (MOT runs are 13, 15, 17)
-% - rtData:      whether data acquired in realtime or previously collected [2/1/0]
+% - scanNow:      whether data acquired in realtime or previously collected [2/1/0]
 %                0: offline data
 %                1: realtime data from scanner
 %                2: simulated realtime data
@@ -29,16 +29,16 @@ function [patterns, t] = RealTimeMemoryFileProcess(subjectNum,featureSelect,prev
 % scanNum = 13;
 % scanIndex = 1; %which scan they were that day
 % SESSION = 21;
-% rtData = 2;
+% scanNow = 2;
 %% check inputs
 %check that there is a sufficient number of inputs
-% if nargin < 5;error('5 inputs are required: subjectNum, subjectName, runNum, scanNum, rtData');end
+% if nargin < 5;error('5 inputs are required: subjectNum, subjectName, runNum, scanNum, scanNow');end
 % 
 % if ~isnumeric(subjectNum);error('subjectNum must be a number');end
 % if ~ischar(subjectName);error('subjectName must be a string');end
 % if ~isnumeric(runNum);error('runNum must be a number');end
 % if ~isnumeric(scanNum);error('scanNum must be a number - equal to the next motion-corrected scan number');end
-% if (rtData~=1) && (rtData~=0)&& (rtData~=2);error('rtData must be either 2 (if simulated realtime) or 1 (if realtime data acquisition) or 0 (if offline data)');end
+% if (scanNow~=1) && (scanNow~=0)&& (scanNow~=2);error('scanNow must be either 2 (if simulated realtime) or 1 (if realtime data acquisition) or 0 (if offline data)');end
 
 
 
@@ -51,6 +51,7 @@ process_dir = ['/Data1/code/' projectName '/data/' num2str(subjectNum) '/' 'reg'
 roi_dir = ['/Data1/code/' projectName '/data/'];
 code_dir = ['/Data1/code/' projectName '/' 'code' '/']; %change to wherever code is stored
 runHeader = fullfile(save_dir,[ 'motRun' num2str(blockNum) '/']);
+lastRunHeader = fullfile(save_dir, ['motRun' num2str(blockNum-1) '/']);
 locPatterns_dir = fullfile(save_dir, 'Localizer/');
 behavioral_dir = ['/Data1/code/' projectName '/BehavioralData/' num2str(subjectNum) '/'];
 addpath(genpath(code_dir));
@@ -68,7 +69,7 @@ assert(logical(exist(dicom_dir,'dir')));
 fprintf('fMRI files being read from: %s\n',dicom_dir);
 
 %check that the fMRI dicom files do NOT exist (if real-time)
-if rtData == 1
+if scanNow == 1
     [testFile testFileName] = GetSpecificFMRIFile(dicom_dir,scanNum,1);
     if exist([dicom_dir testFileName],'file');
         reply = input('Files with this scan number already exist. Do you want to continue? Y/N [N]: ', 's');
@@ -79,6 +80,16 @@ if rtData == 1
             return
         end
     end
+     if exist( fullfile(behavioral_dir, ['SessionInfo' '_' num2str(SESSION) '.mat']), 'file')
+        reply = input('Delete previous session information? Y/N [N]: ', 's');
+        if isempty(reply)
+            reply = 'N';
+        end
+        if (strcmp(reply,'Y') || strcmp(reply,'y'))
+            unix(sprintf('rm %sSessionInfo_%s.mat', behavioral_dir, num2str(SESSION))); %remove if there's already a file for that person
+        end
+    end
+    
 end
 
 classOutputDir = fullfile(runHeader, 'classOutput/');
@@ -117,8 +128,8 @@ if SESSION == 20
    patterns.lastStd = loc.patterns.runStd;
    %patterns.lastStd = .1; %for testing
 else
-    allLast = dir([runHeader 'motpatternsdata_' num2str(SESSION-1) '*']);
-    last = load(fullifle(patterns_dir,allLast(end).name));
+    allLast = dir([lastRunHeader 'motpatternsdata_' num2str(SESSION-1) '*']);
+    last = load(fullfile(lastRunHeader,allLast(end).name));
     patterns.lastStd = last.patterns.runStd;
 end
 %put this back in!!
@@ -177,7 +188,7 @@ printlog(dataFile,['* Seed: ' num2str(seed) '\n']);
 printlog(dataFile,['* Subject Number: ' num2str(subjectNum) '\n']);
 printlog(dataFile,['* Subject Name: ' subjectName '\n']);
 printlog(dataFile,['* Run Number: ' num2str(runNum) '\n']);
-printlog(dataFile,['* Real-Time Data: ' num2str(rtData) '\n']);
+printlog(dataFile,['* Real-Time Data: ' num2str(scanNow) '\n']);
 printlog(dataFile,'*********************************************\n\n');
 
 %% Start Experiment
@@ -205,7 +216,7 @@ for iTrial = 1:patterns.nTRs % the first 10 TRs have been taken out to detrend
     end
     
     %if desired file is recognized, pause for 200ms to complete transfer
-    if rtData==1 || exist('reply','var')
+    if scanNow==1 || exist('reply','var')
         pause(.2);
     end
     
@@ -286,14 +297,14 @@ for iTrial = 1:patterns.nTRs % the first 10 TRs have been taken out to detrend
             end
             patterns.categsep(iTrial) = patterns.activations(1,iTrial) - patterns.activations(2,iTrial);
             classOutput = patterns.categsep(iTrial);
-            if rtData ==1
-                save([classOutputDir '/vol_' num2str(thisTR)], 'classOutput');
+            if scanNow ==1
+                save(fullfile(classOutputDir, ['vol_' num2str(thisTR)]), 'classOutput');
                 patterns.outputClass(iTrial) = 1;
             end
         end
     end
     % print trial results
-    printlog(dataFile,'%d\t%d\t%d\t\t%d\t\t%5.2f\n',patterns.block(iTrial),thisTR,patterns.fileAvail(iTrial),patterns.outputClass(iTrial),patterns.categsep(iTrial) );
+    printlog(dataFile,'%d\t%d\t%d\t\t%d\t\t%6.3f\n',patterns.block(iTrial),thisTR,patterns.fileAvail(iTrial),patterns.outputClass(iTrial),patterns.categsep(iTrial) );
 end
 patterns.runStd = std(patterns.raw_sm_filt,[],1); %std dev across all volumes per voxel
 save([runHeader 'motpatternsdata_' num2str(SESSION) '_' datestr(now,30)],'patterns','timing', 't');

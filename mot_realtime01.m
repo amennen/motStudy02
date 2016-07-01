@@ -1,4 +1,4 @@
-% syntax: mot_realtime01(SUBJECT,SESSION,SET_SPEED,scanNum)
+% syntax: mot_realtime01(SUBJECT,SESSION,SET_SPEED,scanNum,scanNow)
 %
 % This is an implementation of a MOT memory experiment designed to
 % reactivate memory, adapted from a study by Ken Norman and J. Poppenk. I
@@ -12,9 +12,18 @@
 
 %%
 
-function mot_realtime01(SUBJECT,SESSION,SET_SPEED,scanNum)
+function mot_realtime01(SUBJECT,SESSION,SET_SPEED,scanNum,scanNow)
+
+%SUBJECT: Subject number
+%SESSION: task that they're going to do (listed below)
+%SET_SPEED: if not empty, debug mode is on
+%scanNum: (for MOT use only) if you're going to use fmri scans for real
+%time
+%scanNow: if you're using the scanner right now (0 if not, 1 if yes) aka
+%looking for triggers
+
+
 % note: TR values begin from t=1 (rather than t=0)
-test = 1; %change when using the scanner!
 ListenChar(2); %suppress keyboard input to window
 KbName('UnifyKeyNames');
 % initialization declarations
@@ -38,10 +47,11 @@ TOCRITERION2_REP = TOCRITERION2 + 1;
 RSVP = TOCRITERION2_REP + 1; % rsvp train to critereon
 
 % day 2
-MOT_PRACTICE2 = RSVP + 2; %12
+SCAN_PREP = RSVP + 2;
+MOT_PRACTICE2 = SCAN_PREP + 1; %12
 RECALL_PRACTICE = MOT_PRACTICE2 + 1;
-SCAN_PREP = RECALL_PRACTICE + 1;
-RSVP2 = SCAN_PREP + 1; % rsvp train to critereon
+%SCAN_PREP = RECALL_PRACTICE + 1;
+RSVP2 = RECALL_PRACTICE + 1; % rsvp train to critereon
 FAMILIARIZE3 = RSVP2 + 1; % rsvp study learn associates
 TOCRITERION3 = FAMILIARIZE3 + 1; % rsvp train to critereon
 MOT_LOCALIZER = TOCRITERION3 + 1; % category classification
@@ -113,8 +123,8 @@ if ~isempty(strfind(TRIGGER,'=')) || ~isempty(strfind(TRIGGER,'5'))
     CURRENTLY_ONLINE = true; %if scanning
 else CURRENTLY_ONLINE = false;
 end
-if test
-    CURRENTLY_ONLINE = false;
+if ~scanNow
+    CURRENTLY_ONLINE = false; %when we're not looking for triggers
 end
 %CURRENTLY_ONLINE = false; %change this later!!!
 CENTER = WINDOWSIZE.pixels/2;
@@ -303,14 +313,14 @@ NOTIFY = 'Great work! You finished the task.\n\nPlease notify your experimenter.
 CONGRATS = 'Great work! You finished the task.\n\nPlease wait for further instructions.';
 
 % modify instructions if ppt. is in the scanner
-if CURRENTLY_ONLINE && SESSION > TOCRITERION3
+% if CURRENTLY_ONLINE && SESSION > TOCRITERION3
     STILLEXPLAIN = ['Please remember that moving your head even a little during scanning blurs our picture of your brain.'];
     STILLREMINDER = ['The scan is now starting.\n\nMoving your head even a little blurs the image, so '...
         'please try to keep your head totally still until the scanning noise stops.\n\n Do it for science!'];
-else
-    STILLEXPLAIN = [];
-    STILLREMINDER = [];
-end
+% else
+%     STILLEXPLAIN = [];
+%     STILLREMINDER = [];
+% end
 PROGRESS_TEXT = 'INDEX';
 final_instruct_continue = ['\n\n-- Press ' PROGRESS_TEXT ' to begin once you understand these instructions --'];
 %end
@@ -418,7 +428,7 @@ switch SESSION
         system(['cp ' base_path 'mot_realtime01.m ' ppt_dir 'mot_realtime01_executed.m']);
         save(MATLAB_STIM_FILE, 'cues','preparedCues','pics','pairIndex','lureWords','recogLures','stimmap');
         
-        mot_realtime01(SUBJECT,SESSION+1,SET_SPEED,scanNum);
+        mot_realtime01(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow);
         
         
         %% 1. FAMILIARIZATION
@@ -532,7 +542,7 @@ switch SESSION
         printlog(LOG_NAME,'\n\n\n******************************************************************************\n');
         % return
         sca
-        mot_realtime01(SUBJECT,SESSION+1,SET_SPEED,scanNum);
+        mot_realtime01(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow);
         
         %% 2. LEARN TO CRITERION
     case {TOCRITERION1, TOCRITERION2, TOCRITERION2_REP, TOCRITERION3}
@@ -617,17 +627,7 @@ switch SESSION
         
         
         stim.subjStartTime = waitForKeyboard(kbTrig_keycode,KEYDEVICES);
-        %
-        %         subjectiveEK = initEasyKeys([exp_string_long '_SUB'], SUBJ_NAME,ppt_dir, ...
-        %             'default_respmap', subj_scale, ...
-        %             'stimmap', stimmap, ...
-        %             'condmap', condmap, ...
-        %             'trigger_next', subj_triggerNext, ...
-        %             'prompt_dur', subj_promptDur, ...
-        %             'listen_dur', subj_listenDur, ...
-        %             'exp_onset', stim.subjStartTime, ...
-        %             'console', false, ...
-        %             'device', DEVICE);
+       
         objectiveEK = initEasyKeys([exp_string_long '_OB'], SUBJ_NAME,ppt_dir, ...
             'default_respmap', subj_scale, ...
             'stimmap', stimmap, ...
@@ -680,22 +680,6 @@ switch SESSION
                 timespec = timing.plannedOnsets.cue(stim.trial) - SLACK;
                 timing.actualOnsets.cue(stim.trial) = displayText_specific(mainWindow,preparedCues{n},'center',COLORS.MAINFONTCOLOR,WRAPCHARS,timespec);
                 fprintf('Flip time error = %.4f\n', timing.actualOnsets.cue(stim.trial) - timing.plannedOnsets.cue(stim.trial));
-                
-                % key mapping--make visualization
-                keymap_prompt = Screen('MakeTexture', mainWindow, keymap_image);
-                %
-                %                 Screen('DrawTexture',mainWindow,keymap_prompt,[],[],[]); %[0 0 keymap_dims],[topLeft topLeft+keymap_dims]);
-                %                 timing.plannedOnsets.vis(stim.trial) = timing.plannedOnsets.cue(stim.trial) + config.nTRs.cue*config.TR;
-                %                 timespec = timing.plannedOnsets.vis(stim.trial) - SLACK;
-                %                 timing.actualOnsets.vis(stim.trial) = Screen('Flip',mainWindow,timespec);
-                %                 fprintf('Flip time error = %.4f\n', timing.actualOnsets.vis(stim.trial) - timing.plannedOnsets.vis(stim.trial));
-                %                 subjectiveEK = easyKeys(subjectiveEK, ...
-                %                     'onset', timing.actualOnsets.vis(stim.trial), ...
-                %                     'stim', stim.stim{stim.trial}, ...
-                %                     'cond', stim.cond(stim.trial), ...
-                %                     'nesting', [SESSION stim.loopNumber stim.trial], ...
-                %                     'cresp', cresp,  'cresp_map', cresp_map, ...
-                %                     'valid_map', subj_map);
                 
                 % choose lures
                 cpos{stim.trial} = randi(4);
@@ -863,7 +847,7 @@ switch SESSION
         %return
         %normally would go to session 4 but instead we want to go to
         if SESSION ~= TOCRITERION3
-            mot_realtime01(SUBJECT,SESSION+1,SET_SPEED,scanNum);
+            mot_realtime01(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow);
         end
         
         %% 3. PRE/POST MEMORY TEST
@@ -1558,6 +1542,7 @@ switch SESSION
             lastSpeed = last.stim.lastSpeed; %matrix of motRun (1-3), stimID
             lastDecoding = last.stim.lastRTDecoding;
             lastDecodingFunction = last.stim.lastRTDecodingFunction;
+            fprintf(['Loaded speed and classification information from ' allLast(end).name '\n']);
         else
             displayText(mainWindow,stim.instruct_summary,minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
         end
@@ -1599,7 +1584,7 @@ switch SESSION
             config.wait = stim.fixBlock; % stim.fixation - 20 s
         else
             runStart = GetSecs;
-            timing.trig.wait = runStart;
+            timing.trig.wait = runStart; %for debugging purposes
             config.wait = 0;
         end
         
@@ -1746,8 +1731,9 @@ switch SESSION
                 initFeedback = lastDecoding(stim.id(stim.trial));
                 initFunction = lastDecodingFunction(stim.id(stim.trial));
             end
+            fileTR = 1;
             waitForPulse = false;
-            printlog(LOG_NAME,'trial\tTR\tprompt active\tspeed\tds\tflip error\tfound file\tCategSep\tLastFile\n');
+            printlog(LOG_NAME,'trial\tTR\tprompt active\tspeed\tds\tflip error\tfound file\tFileTR\tCategSep\tLastFile\n');
             while abs(GetSecs - timing.plannedOnsets.probe(n)) > 0.050;%SLACK*2 %so this is just constatnly running, stops when it's within a flip
                
                 stim.frame_counter(stim.trial) = stim.frame_counter(stim.trial) + 1;
@@ -1765,14 +1751,15 @@ switch SESSION
                                     rtData.fileList{thisTR} = ls(classOutputDir);
                                     allFn = dir([classOutputDir 'vol' '*']);
                                     dates = [allFn.datenum];
+                                    names = {allFn.name};
                                     [~,newestIndex] = max(dates);
-                                    rtData.newestFile{thisTR} = allFn(newestIndex).name;
+                                    rtData.newestFile{thisTR} = names{newestIndex};
 %                                     if showFiles
 %                                         ls(classOutputDir) %saved for at the TR we're literally on, what are the available files
 %                                     end
                                     [rtData.classOutputFileLoad(fileTR), rtData.classOutputFile{fileTR}] = GetSpecificClassOutputFile(classOutputDir,fileTR);
                                     if rtData.classOutputFileLoad(fileTR)
-                                        tempStruct = load([classOutputDir filesep rtData.classOutputFile{fileTR}]);
+                                        tempStruct = load(fullfile(classOutputDir, rtData.classOutputFile{fileTR}));
                                         rtData.rtDecoding(fileTR) = tempStruct.classOutput;
                                         rtData.rtDecodingFunction(fileTR) = tancubed(rtData.rtDecoding(fileTR),Scale,OptimalForget,maxIncrement);
                                         %put something exclamatory to
@@ -1881,10 +1868,10 @@ switch SESSION
                 end
                 if TRcounter > 1 && (GetSecs >= timing.plannedOnsets.motion(TRcounter,n) + config.TR-.25) && printTR(TRcounter) %after when should have found file
                     %z = GetSecs - timing.plannedOnsets.motion(TRcounter,n);
-                    printlog(LOG_NAME,'%d\t%d\t%d\t\t%5.3f\t%5.3f\t%5.4f\t\t%i\t\t%5.3f\t\t%s\n',n,TRcounter,prompt_active,current_speed,stim.changeSpeed(TRcounter,n),timing.actualOnsets.motion(TRcounter,stim.trial) - timing.plannedOnsets.motion(TRcounter,stim.trial),rtData.classOutputFileLoad(allMotionTRs(TRcounter-1,n)),rtData.rtDecoding(allMotionTRs(TRcounter-1,n)),rtData.newestFile{allMotionTRs(TRcounter,n)});
+                    printlog(LOG_NAME,'%d\t%d\t%d\t\t%5.3f\t%5.3f\t%5.4f\t\t%i\t\t%d\t\t%5.3f\t\t%s\n',n,TRcounter,prompt_active,current_speed,stim.changeSpeed(TRcounter,n),timing.actualOnsets.motion(TRcounter,stim.trial) - timing.plannedOnsets.motion(TRcounter,stim.trial),rtData.classOutputFileLoad(allMotionTRs(TRcounter-1,n)),fileTR,rtData.rtDecoding(fileTR),rtData.newestFile{allMotionTRs(TRcounter,n)});
                     printTR(TRcounter) = 0;
                 elseif TRcounter ==1 && (GetSecs >= timing.plannedOnsets.motion(TRcounter,n) + config.TR-.25) && printTR(TRcounter)
-                    printlog(LOG_NAME,'%d\t%d\t%d\t\t%5.3f\t%5.3f\t%5.4f\t\t%i\t\t%5.3f\t\t%s\n',n,TRcounter,prompt_active,current_speed,stim.changeSpeed(TRcounter,n),timing.actualOnsets.motion(TRcounter,stim.trial) - timing.plannedOnsets.motion(TRcounter,stim.trial),rtData.classOutputFileLoad(allMotionTRs(TRcounter,n)),rtData.rtDecoding(allMotionTRs(TRcounter,n)),rtData.newestFile{allMotionTRs(TRcounter,n)});
+                    printlog(LOG_NAME,'%d\t%d\t%d\t\t%5.3f\t%5.3f\t%5.4f\t\t%i\t\t%d\t\t%5.3f\t\t%s\n',n,TRcounter,prompt_active,current_speed,stim.changeSpeed(TRcounter,n),timing.actualOnsets.motion(TRcounter,stim.trial) - timing.plannedOnsets.motion(TRcounter,stim.trial),rtData.classOutputFileLoad(allMotionTRs(TRcounter,n)),fileTR,rtData.rtDecoding(fileTR),rtData.newestFile{allMotionTRs(TRcounter,n)});
                     printTR(TRcounter) = 0;
                 end
                 
@@ -2064,13 +2051,13 @@ switch SESSION
             %subplot(1,2,2)
             %plot(stim.avg_vis_resp);
             sca
-        else0
+        else
             endSession(dotEK, CONGRATS);
             if SESSION < MOT_LOCALIZER
-                mot_realtime01(SUBJECT,SESSION+1,SET_SPEED,scanNum);
+                mot_realtime01(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow);
             end
         end
-        
+        sca;
         
         %% FRUIT HARVEST
     case {RSVP,RSVP2}
@@ -2268,7 +2255,7 @@ switch SESSION
             sca
         else
             endSession(fruitHarvestEK, CONGRATS);
-            mot_realtime01(SUBJECT,SESSION+1,SET_SPEED,scanNum);
+            mot_realtime01(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow);
         end
         
         %% SCAN PREP
@@ -2330,7 +2317,7 @@ switch SESSION
         save(MATLAB_SAVE_FILE,'timing');
         WaitSecs(2) %wait a little before closing
         sca
-        %mot_realtime01(SUBJECT,SESSION+1,SET_SPEED,scanNum);
+        %mot_realtime01(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow);
         
         % session switch
 end

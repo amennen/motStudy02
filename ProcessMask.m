@@ -1,5 +1,6 @@
 function ProcessMask(subjNum, processNew,prev,funcScan)
-%file_name = ['/Volumes/norman/amennen/MOT/subjects/0329161_motStudy01/data/dcm/' '19-617-1.dcm'];
+
+startProcess = GetSecs;
 img_mat = 64; %image matrix size
 ROI = -1;
 runNum = 1; %assume only 1 subject per day
@@ -51,13 +52,12 @@ if ~prev %if getting data today
     dicom_dir = ['/Data1/subjects/' datestr(now,10) datestr(now,5) datestr(now,7) '.' subjectName '.' subjectName '/'];
 else
     allDates = {'3-26-2016', '3-29-2016', '4-1-2016', '4-27-2016', '4-29-2016', '5-05-2016'};
-    subjectName = [datestr(allDates{subjNum},5) datestr(allDates{subjNum},7) datestr(allDates{subjNum},11) num2str(scanIndex) '_' projectName];
+    projectName = 'motStudy01'; %for testing right now
+    subjectName = [datestr(allDates{subjNum},5) datestr(allDates{subjNum},7) datestr(allDates{subjNum},11) num2str(runNum) '_' projectName];
     dicom_dir = ['/Data1/subjects/' datestr(allDates{subjNum},10) datestr(allDates{subjNum},5) datestr(allDates{subjNum},7) '.' subjectName '.' subjectName '/'];
 end
 %scan numbers: mprage is 5, epis are 9:2:19
 scanNum = 5;
-
-scanStr = num2str(scanNum, '%2.2i');
 highres_scanstr = num2str(scanNum, '%2.2i');
 
 %fileStr = num2str(fileNum, '%3.3i');
@@ -71,7 +71,7 @@ highres_test_file = fullfile(dicom_dir,['001_0000' highres_scanstr '_000001.dcm'
 while ~exist(highres_test_file,'file')
     %error('the test file for the high resolution scan does not exist: %s',highres_test_file);
 end
-fprintf('Found highres file!')
+fprintf('Found highres file!\n')
 %% make mprage nifti file
 
 highres_fn = 'highres_old_orientation';
@@ -91,8 +91,6 @@ if makeMprageNifti
     unix(sprintf('%sbxh2analyze --overwrite --analyzetypes --niigz --niftihdr -s %s.bxh %s',bxhpath,highres_reorient_fn,highres_reorient_fn))
     
 end
-%THIS WORKS YAY!! makes a nifti file highres_reorient_fn in whatever
-%directory you're in
 
 %% brain extract (skull strip) mprage
 
@@ -100,11 +98,32 @@ end
 
 %brain extract mprage
 if extractBrain
-unix(sprintf('%sbet %s.nii.gz %s_brain -R -m',fslpath,highres_reorient_fn,highres_reorient_fn));
+    unix(sprintf('%sbet %s.nii.gz %s_brain -R -m',fslpath,highres_reorient_fn,highres_reorient_fn));
 end
 %this works too!! again, saves in whatever directory you're in
 %% register everything to standard
-tStartReg= GetSecs;
+
+exFuncScanNum = funcScan;
+exFunc_scanstr = num2str(exFuncScanNum, '%2.2i');
+exFunc_test_file = fullfile(dicom_dir,['001_0000' exFunc_scanstr '_000008.dcm']);
+exfunc_fn = 'example_func_old_orientation';
+exfunc_reorient_fn = 'example_func_new_orientation';
+highres_reorient_fn = 'highres_new_orientation';
+exfunc2highres_mat='example_func2highres';
+highres2exfunc_mat='highres2example_func';
+% testingpool = parcluster('local');
+% poolobj = parpool(testingpool, 'AttachedFiles', {'Reg_standard2highres.m', 'Reg_fun2highres.m'});
+% delete(poolobj)
+% parfor i = 1:2
+%        if i ==1
+%            Reg_standard2highres;
+%        else
+%            Reg_func2highres;
+%        end
+% end
+%parpool close
+%j = batch('Reg_standard2highres', 'Profile', 'local');
+StartReg= GetSecs;
 if registerToStandard
     %register high resolution mprage (bet-extracted) to standard
     % if strncmp(computer,'MACI',4)
@@ -119,19 +138,20 @@ if registerToStandard
     unix(sprintf('%sinvwarp -w highres2standard_warp -o standard2highres_warp -r %s_brain.nii.gz',fslpath,highres_reorient_fn));
     
 end
-reg2standardTime = GetSecs - tStartReg;
-fprintf(['Reg2standard Time is ' num2str(reg2standardTime)]);
-%% now use this to create functional mask once you have functional data
+t.standard2highres = GetSecs - StartReg;
+fprintf('Done with standard2highres registration. Time = %6.2f \n',t.standard2highres);
 
+%% now use this to create functional mask once you have functional data
+% 
+%k = batch('Reg_func2highres', 'Profile', 'local');
 exFuncScanNum = funcScan;
 exFunc_scanstr = num2str(exFuncScanNum, '%2.2i');
-exFunc_test_file = fullfile(dicom_dir,['001_0000' exFunc_scanstr '_000002.dcm']);
-existExFunc = 0;
+exFunc_test_file = fullfile(dicom_dir,['001_0000' exFunc_scanstr '_000008.dcm']);
 while ~exist(exFunc_test_file,'file')
     %error('the test file for the functional scan does not exist: %s',exFunc_test_file);
 end
 pause(0.2) %pause when the file appears for complete transfer
-fprintf('Found example functional file!')
+fprintf('Found example functional file!\n')
 % now taken from GenerateMask: does k-means cluster-more generous than
 % brain skull
 
@@ -141,7 +161,7 @@ imagesc(mask(:,:,10)); %checks that the dicom files are properly aligned
 save([process_dir 'mask_wholeBrain' '.mat'], 'mask');
 
 %% make test functional run
-tStartFunctional = GetSecs;
+startFunctional = GetSecs;
 exfunc_fn = 'example_func_old_orientation';
 exfunc_reorient_fn = 'example_func_new_orientation';
 if makeTestFuncRun
@@ -166,7 +186,7 @@ highres2exfunc_mat='highres2example_func';
 if registerMprageToNifti
     
     %use FSL's BBR function to register example functional image to high resolution mprage
-    regFunction = 'epi_reg'; %epi_reg, flirt
+    regFunction = 'flirt'; %epi_reg, flirt
     if strcmp(regFunction,'epi_reg')
         unix(sprintf('%sepi_reg --epi=%s --t1=%s --t1brain=%s_brain --out=%s',fslpath,exfunc_reorient_fn,highres_reorient_fn,highres_reorient_fn,exfunc2highres_mat))
     elseif strcmp(regFunction,'flirt')
@@ -177,11 +197,10 @@ if registerMprageToNifti
     unix(sprintf('%sconvert_xfm -inverse -omat %s.mat %s.mat',fslpath,highres2exfunc_mat,exfunc2highres_mat));
 end
 
+t.standard2func = GetSecs - startFunctional;
+fprintf('Done with standard2func registration, time = %6.2f', t.standard2func);
 
 %% register anatomical mask to nifti file
-
-%anatomical ROI - in standard space
-%roi_name = 'parahippfusiform_mask';
 roi_name = 'retrieval';
 if registerAnatMaskToNifti
     unix(sprintf('%sapplywarp -i %s%s.nii.gz -r %s.nii.gz -o %s_exfunc.nii.gz -w standard2highres_warp.nii.gz --postmat=%s.mat',fslpath,roi_dir,roi_name,exfunc_reorient_fn,roi_name,highres2exfunc_mat));
@@ -205,21 +224,22 @@ end
 
 %% brain extract functional scan
 if brainExtractFunctional
-% first take average
-unix(sprintf('%sfslmaths %s.nii.gz -Tmean %s_mean.nii.gz',fslpath,exfunc_reorient_fn,exfunc_reorient_fn));
-% then brain extract
-unix(sprintf('%sbet %s_mean.nii.gz %s_mean_brain -R -m',fslpath,exfunc_reorient_fn,exfunc_reorient_fn));
-% now unzip and convert to load into matlab
-%unzip, if necessary
-if exist(sprintf('%s_mean_brain.nii.gz',exfunc_reorient_fn),'file')
-    unix(sprintf('gunzip %s_mean_brain.nii.gz',exfunc_reorient_fn));
-end
-
-%make bxh wrapper: do this to use for dicom files?
-unix(sprintf('%sbxhabsorb %s_mean_brain.nii %s_mean_brain.bxh',bxhpath,exfunc_reorient_fn,exfunc_reorient_fn));
+    % first take average
+    unix(sprintf('%sfslmaths %s.nii.gz -Tmean %s_mean.nii.gz',fslpath,exfunc_reorient_fn,exfunc_reorient_fn));
+    % then brain extract
+    unix(sprintf('%sbet %s_mean.nii.gz %s_mean_brain -R -m',fslpath,exfunc_reorient_fn,exfunc_reorient_fn));
+    % now unzip and convert to load into matlab
+    %unzip, if necessary
+    if exist(sprintf('%s_mean_brain.nii.gz',exfunc_reorient_fn),'file')
+        unix(sprintf('gunzip %s_mean_brain.nii.gz',exfunc_reorient_fn));
+    end
+    
+    %make bxh wrapper: do this to use for dicom files?
+    unix(sprintf('%sbxhabsorb %s_mean_brain.nii %s_mean_brain.bxh',bxhpath,exfunc_reorient_fn,exfunc_reorient_fn));
 end
 %% create mask file for real-time dicom files
 % this is where you would make the mask bigger
+startMask = GetSecs;
 if createMaskFileForRTDicoms
     %load registered anatomical ROI
     maskStruct = readmr([roi_name '_exfunc.bxh'],'BXH',{[],[],[]});
@@ -247,24 +267,24 @@ if createMaskFileForRTDicoms
     [gX gY gZ] = ind2sub(size(mask),mask_indices);
     mask_brain = zeros(size(mask,1),size(mask,2),size(mask,3));
     for j=1:length(mask_indices)
-    mask_brain(gX(j),gY(j),gZ(j)) = 1;
+        mask_brain(gX(j),gY(j),gZ(j)) = 1;
     end
     [rows cols] = find(mask_brain);
     stretchedMask = mask_brain;
     neighborDist = 1;
     for center = 1:length(rows)
-       % xCoord = rows(center);
-       % yCoord = rem(cols(center),size(mask,2));
-       % zCoord = ceil(cols(center)/size(mask,2));
+        % xCoord = rows(center);
+        % yCoord = rem(cols(center),size(mask,2));
+        % zCoord = ceil(cols(center)/size(mask,2));
         [xCoord yCoord zCoord] = ind2sub(size(mask),mask_indices(center));
         
-                    [xxx yyy zzz] = meshgrid(1:size(mask,1),1:size(mask,2),1:size(mask,3));
-                    mydist = ((xxx - yCoord).^2 + (yyy - xCoord).^2 + (zzz - zCoord).^2).^.5;
-                    [r c ] = find(mydist<=neighborDist);
-                    [xGood yGood zGood] = ind2sub(size(mydist),find(mydist<=neighborDist));
-                    for iPt = 1:length(xGood)
-                        stretchedMask(xGood(iPt),yGood(iPt),zGood(iPt)) = 1;
-                    end
+        [xxx yyy zzz] = meshgrid(1:size(mask,1),1:size(mask,2),1:size(mask,3));
+        mydist = ((xxx - yCoord).^2 + (yyy - xCoord).^2 + (zzz - zCoord).^2).^.5;
+        [r c ] = find(mydist<=neighborDist);
+        [xGood yGood zGood] = ind2sub(size(mydist),find(mydist<=neighborDist));
+        for iPt = 1:length(xGood)
+            stretchedMask(xGood(iPt),yGood(iPt),zGood(iPt)) = 1;
+        end
     end
     
     % now check that the new mask isn't outside the brain
@@ -273,26 +293,28 @@ if createMaskFileForRTDicoms
     [gX gY gZ] = ind2sub(size(mask),new_indices);
     stretched_brain = zeros(size(mask,1),size(mask,2),size(mask,3));
     for j=1:length(new_indices)
-    stretched_brain(gX(j),gY(j),gZ(j)) = 1;
+        stretched_brain(gX(j),gY(j),gZ(j)) = 1;
     end
     
     checkMask = 1;
     if checkMask
-       plot3Dbrain(mask,[], 'mask')
+        plot3Dbrain(mask,[], 'mask')
         
-       plot3Dbrain(stretchedMask, [], 'stretchedMask')
-       
-       plot3Dbrain(mask_brain, [], 'mask_brain')
-       
-       plot3Dbrain(stretched_brain, [], 'stretched_brain')
+        plot3Dbrain(stretchedMask, [], 'stretchedMask')
+        
+        plot3Dbrain(mask_brain, [], 'mask_brain')
+        
+        plot3Dbrain(stretched_brain, [], 'stretched_brain')
     end
     %save anatomical mask
     save(fullfile(process_dir,[roi_name '_anat_mask']),'stretched_brain');
     save(fullfile(process_dir, [roi_name, '_anat_mask_orig']), 'mask_brain');
 end
-maskTime = GetSecs - tStartFunctional;
-fprintf(['Functional registration and mask time is ' num2str(maskTime)]);
-%CHECK THAT THIS WORKS!
+fprintf('Done with mask creation\n');
+t.mask = GetSecs - startMask;
+t.total = GetSecs - startProcess;
+save(fullfile(process_dir, 'timing'), 't');
+fprintf('Standard2highres time = %7.2f \nStandard2func time = %7.2f \nMask time = %7.2f \n Total time = %7.2f\n', t.standard2highres, t.standard2func,t.mask,t.total);
 % if cd into the directory, cd out of it back to the general exp folder
 cd (code_dir)
 end
