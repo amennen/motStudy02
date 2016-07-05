@@ -1,0 +1,13 @@
+
+SESSION 2 initiated 05-Jul-2016 14:54:20 for SUBJECT number 2
+
+session	trial	pair	onset	dur	cue         	associate   
+2	1	21	2003  	2000  	WAGON       	pico07.jpg  
+
+
+SESSION 24 ended 05-Jul-2016 14:59:48 for SUBJECT number 2
+
+
+
+
+******************************************************************************
