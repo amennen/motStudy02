@@ -42,24 +42,24 @@ function [mainWindow windowSize colors device trigger workingDir logName matlabS
     %% find working dir (figure out which computer we're using)
     try %work computer
         ls('/Volumes/Macintosh HD/Users/amennen/Documents/Norman/MOT/mot_study/');
-        workingDir = '/Volumes/Macintosh HD/Users/amennen/Documents/Norman/MOT/';
+        workingDir = '/Volumes/Macintosh HD/Users/amennen/Documents/Norman/MOT/motStudy02';
         windowSize.degrees = [35 30];
         [keyboardIndices, productNames, allInfos] = GetKeyboardIndices;
         device = keyboardIndices(find(strcmp(productNames, '')));
     catch
         try % my laptop
             ls('/Users/amennen/mot_study')
-            workingDir = '/Users/amennen/mot_study/';
+            workingDir = '/Users/amennen/motStudy02/';
             windowSize.degrees = [35 30];
         catch
             try  %computer testing room
                 ls('/Users/normanlab/mot_study/')
-                workingDir = '/Users/normanlab/mot_study/';
+                workingDir = '/Users/normanlab/motStudy02/';
                 windowSize.degrees = [35 30];
                 catch
                     try %Skyra
                         ls('/Data1/code/motStudy02/')
-                        workingDir = '/Data1/code/motStudy02/';
+                        workingDir = '/Data1/code/motStudy02/code/';
                         fmri  = 1;
                         % special scanner keypress input
 %                         if debug_mode

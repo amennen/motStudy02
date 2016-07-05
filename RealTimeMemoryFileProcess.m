@@ -53,7 +53,7 @@ code_dir = ['/Data1/code/' projectName '/' 'code' '/']; %change to wherever code
 runHeader = fullfile(save_dir,[ 'motRun' num2str(blockNum) '/']);
 lastRunHeader = fullfile(save_dir, ['motRun' num2str(blockNum-1) '/']);
 locPatterns_dir = fullfile(save_dir, 'Localizer/');
-behavioral_dir = ['/Data1/code/' projectName '/BehavioralData/' num2str(subjectNum) '/'];
+behavioral_dir = ['/Data1/code/' projectName '/' 'code' '/BehavioralData/' num2str(subjectNum) '/'];
 addpath(genpath(code_dir));
 runNum = 1; %assume first person that day
 if ~prev %if getting data today
@@ -216,7 +216,7 @@ for iTrial = 1:patterns.nTRs % the first 10 TRs have been taken out to detrend
     end
     
     %if desired file is recognized, pause for 200ms to complete transfer
-    if scanNow==1 || exist('reply','var')
+    if scanNow==1 && patterns.fileAvail(iTrial)
         pause(.2);
     end
     

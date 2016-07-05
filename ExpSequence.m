@@ -2,8 +2,8 @@
 %%fmri session
 %first these are all the session numbers
 SUBJECT = 1;
-prev = 0; %if today's date or previous date
-scanNow = 1; %if using triggers
+prev = 1; %if today's date or previous date
+scanNow = 0; %if using triggers
 
 SPTB_PATH = ['/Data1/code/SPTBanne'];
 addpath(genpath(SPTB_PATH));
@@ -82,6 +82,7 @@ mot_realtime01(SUBJECT,MOT_LOCALIZER,[],scanNum,scanNow);
 %% LOCALIZER FILE PROCESS
 scanNum = 11;
 crossval = 0;
+crossval = 1;
 featureSelect = 1;
 LocalizerFileProcess(SUBJECT,crossval,featureSelect,prev,scanNow,scanNum,MOT_LOCALIZER)
 
