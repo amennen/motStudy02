@@ -1950,7 +1950,7 @@ switch SESSION
                 offFB = GetSecs;
                 timing.plannedOnsets.preITI(n+1:end) = timing.plannedOnsets.preITI(n+1:end) + (offFB - onFB);
                 timing.plannedOnsets.target(n+1:end) = timing.plannedOnsets.target(n+1:end) + (offFB - onFB);
-                timing.plannedOnsets.motionStart(n+1:end) = timing.plannedOnsets.motionStart(n+1:end) + (offFB - onFB);
+                timing.plannedOnsets.motion(:,n+1:end) = timing.plannedOnsets.motion(:,n+1:end) + (offFB - onFB);
                 %timing.plannedOnsets.prompt(:,n+1:end) = timing.plannedOnsets.prompt(:,n+1:end) + (offFB - onFB);
                 timing.plannedOnsets.probe(n+1:end) = timing.plannedOnsets.probe(n+1:end) + (offFB - onFB);
                 timing.plannedOnsets.feedback(n+1:end)= timing.plannedOnsets.feedback(n+1:end) + (offFB - onFB);
@@ -1982,7 +1982,7 @@ switch SESSION
                 offFB = GetSecs;
                 timing.plannedOnsets.preITI(n+1:end) = timing.plannedOnsets.preITI(n+1:end) + (offFB - onFB);
                 timing.plannedOnsets.target(n+1:end) = timing.plannedOnsets.target(n+1:end) + (offFB - onFB);
-                timing.plannedOnsets.motionStart(n+1:end) = timing.plannedOnsets.motionStart(n+1:end) + (offFB - onFB);
+                timing.plannedOnsets.motion(:,n+1:end) = timing.plannedOnsets.motion(:,n+1:end) + (offFB - onFB);
                 %  timing.plannedOnsets.prompt(:,n+1:end) = timing.plannedOnsets.prompt(:,n+1:end) + (offFB - onFB);
                 timing.plannedOnsets.probe(n+1:end) = timing.plannedOnsets.probe(n+1:end) + (offFB - onFB);
                 timing.plannedOnsets.feedback(n+1:end)= timing.plannedOnsets.feedback(n+1:end) + (offFB - onFB);
