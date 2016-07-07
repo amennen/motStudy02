@@ -1,0 +1,5 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	35.6  	45  	HAMMER    	lure_hard	1.951	1.244	1   	non-target	non-target
+2   	77.6  	24  	BROOM     	targ_easy	1.95	1.084	1   	target  	target  
+3   	119.6 	46  	BADGE     	lure_easy	1.95	1.268	1   	non-target	non-target
+4   	161.6 	27  	ROPE      	targ_hard	1.95	1.165	1   	non-target	non-target

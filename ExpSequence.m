@@ -1,9 +1,9 @@
 %%so now this would be all the commands you would want to do ONLY for
 %%fmri session
 %first these are all the session numbers
-SUBJECT = 1;
-prev = 1; %if today's date or previous date
-scanNow = 0; %if using triggers
+SUBJECT = 2;
+prev = 0; %if today's date or previous date
+scanNow = 1; %if using triggers
 
 SPTB_PATH = ['/Data1/code/SPTBanne'];
 addpath(genpath(SPTB_PATH));
@@ -63,7 +63,7 @@ scanNum = 7;
 mot_realtime01(SUBJECT,SCAN_PREP,[],scanNum,scanNow)
 
 %% SCAN_PREP FILE PROCESS
-scanNum = 7; %change 111back
+scanNum = 7; %change 
 processNew = 1;
 ProcessMask(SUBJECT,processNew,prev,scanNum) %have it so it waits until it finds the file
 %% RUN VARIOUS BEHAVIORAL TASKS
@@ -82,7 +82,7 @@ mot_realtime01(SUBJECT,MOT_LOCALIZER,[],scanNum,scanNow);
 %% LOCALIZER FILE PROCESS
 scanNum = 11;
 crossval = 0;
-crossval = 1;
+%crossval = 1;
 featureSelect = 1;
 LocalizerFileProcess(SUBJECT,crossval,featureSelect,prev,scanNow,scanNum,MOT_LOCALIZER)
 
@@ -91,10 +91,10 @@ scanNum = 13;
 mot_realtime01(SUBJECT,RECALL1,[],scanNum,scanNow);
 
 %% MOT RUN 1 DISPLAY
-scanNum = 15; %new would be 15
+scanNum = 21; %new would be 15
 mot_realtime01(SUBJECT,MOT{1},[],scanNum,scanNow);
 %% MOT RUN 1 FILE PROCESS
-scanNum = 15;%normally 15;
+scanNum = 21;%normally 15;
 blockNum = 1;
 featureSelect = 1;
 RealTimeMemoryFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{1},blockNum);
@@ -119,4 +119,4 @@ RealTimeMemoryFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{3},bloc
 
 %% RECALL 2
 scanNum = 21;
-mot_realtime01(SUBJECT,RECALL2,[],scanNum,scanNow);
+mot_realtime01(SUBJECT,RECALL2,[],scanNum,scanNow);222

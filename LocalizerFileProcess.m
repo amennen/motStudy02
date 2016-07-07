@@ -16,7 +16,7 @@ end
 %subjectNum = 1;
 %runNum = 1;
 
-runNum = 1;
+runNum = 2;
 % set up paths
 % if prev
 %     projectName = 'motStudy01';

@@ -143,7 +143,7 @@ documents_path = WORKING_DIR;
 %     documents_path = ['/Data1/code/motStudy01/'];
 % end
 data_dir = fullfile(documents_path, 'BehavioralData');
-dicom_dir = fullfile(documents_path, 'data', SUBJ_NAME); %where all the dicom information is FOR THAT SUBJECT
+dicom_dir = fullfile('/Data1/code/motStudy02/', 'data', SUBJ_NAME); %where all the dicom information is FOR THAT SUBJECT
 if SESSION >= MOT{1}
     runNum = SESSION - MOT{1} + 1;
     classOutputDir = fullfile(dicom_dir,['motRun' num2str(runNum)], 'classOutput/');
