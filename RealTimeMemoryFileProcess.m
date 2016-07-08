@@ -55,7 +55,7 @@ lastRunHeader = fullfile(save_dir, ['motRun' num2str(blockNum-1) '/']);
 locPatterns_dir = fullfile(save_dir, 'Localizer/');
 behavioral_dir = ['/Data1/code/' projectName '/' 'code' '/BehavioralData/' num2str(subjectNum) '/'];
 addpath(genpath(code_dir));
-runNum = 2; %assume first person that day
+runNum = 1; %assume first person that day
 if ~prev %if getting data today
     subjectName = [datestr(now,5) datestr(now,7) datestr(now,11) num2str(runNum) '_' projectName];
     dicom_dir = ['/Data1/subjects/' datestr(now,10) datestr(now,5) datestr(now,7) '.' subjectName '.' subjectName '/'];
@@ -116,7 +116,7 @@ end
 
 %%%%%%%%CHANGE THIS BACK!!!!
 %load trained model
-allfn = dir([locPatterns_dir 'loctrainedModel_2' '*']); %
+allfn = dir([locPatterns_dir 'loctrainedModel_' num2str(runNum) '*']); %
 %take the last model saved
 load(fullfile(locPatterns_dir, allfn(end).name));
 fprintf('\n*********************************************\n');

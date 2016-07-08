@@ -13,10 +13,7 @@ if ~exist('readmr','file')
     addpath([biac_dir '/general/'])
 end
 
-%subjectNum = 1;
-%runNum = 1;
-
-runNum = 2;
+runNum = 1;
 % set up paths
 % if prev
 %     projectName = 'motStudy01';
