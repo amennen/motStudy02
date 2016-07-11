@@ -1,4 +1,7 @@
-SUBJECT = 2;
+base_path = [fileparts(which('mot_realtime01.m')) filesep];
+cd(base_path);
+
+SUBJECT = 3;
 
 NUM_TASK_RUNS = 3;
 % orientation session

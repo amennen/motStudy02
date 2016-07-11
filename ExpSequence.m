@@ -1,6 +1,7 @@
 %%so now this would be all the commands you would want to do ONLY for
 %%fmri session
 %first these are all the session numbers
+
 SUBJECT = 2;
 prev = 0; %if today's date or previous date
 scanNow = 1; %if using triggers
