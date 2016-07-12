@@ -2,7 +2,7 @@
 %%fmri session
 %first these are all the session numbers
 
-SUBJECT = 2;
+SUBJECT = 3;
 prev = 0; %if today's date or previous date
 scanNow = 1; %if using triggers
 
@@ -92,10 +92,10 @@ scanNum = 13;
 mot_realtime01(SUBJECT,RECALL1,[],scanNum,scanNow);
 
 %% MOT RUN 1 DISPLAY
-scanNum = 21; %new would be 15
+scanNum = 15; %new would be 15
 mot_realtime01(SUBJECT,MOT{1},[],scanNum,scanNow);
 %% MOT RUN 1 FILE PROCESS
-scanNum = 21;%normally 15;
+scanNum = 15;%normally 15;
 blockNum = 1;
 featureSelect = 1;
 RealTimeMemoryFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{1},blockNum);
@@ -120,4 +120,4 @@ RealTimeMemoryFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{3},bloc
 
 %% RECALL 2
 scanNum = 21;
-mot_realtime01(SUBJECT,RECALL2,[],scanNum,scanNow);222
+mot_realtime01(SUBJECT,RECALL2,[],scanNum,scanNow);

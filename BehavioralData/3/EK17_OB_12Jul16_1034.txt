@@ -1,0 +1,17 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	8.7   	41  	BUBBLE    	localizer	3.451	1.398	1   	2+ details	2+ details
+2   	20.7  	44  	STAR      	localizer	3.452	1.309	1   	generic 	generic 
+3   	32.7  	39  	TEAR      	localizer	3.451	1.142	1   	generic 	generic 
+4   	44.7  	43  	CORK      	localizer	3.451	0.982	1   	2+ details	2+ details
+5   	56.7  	33  	ATOM      	localizer	3.45	1.014	1   	generic 	generic 
+6   	68.7  	35  	TICKET    	localizer	3.452	1.87	1   	generic 	generic 
+7   	80.7  	30  	STAPLE    	localizer	3.451	1.51	1   	full    	full    
+8   	92.7  	37  	GALLON    	localizer	3.453	1.397	1   	generic 	generic 
+9   	104.7 	38  	SHELL     	localizer	3.452	1.222	1   	generic 	generic 
+10  	116.7 	42  	TAPE      	localizer	3.455	1.134	1   	1 detail	1 detail
+11  	128.7 	40  	MAGNET    	localizer	3.45	1.918	1   	2+ details	2+ details
+12  	140.7 	32  	SACK      	localizer	3.45	1.79	1   	generic 	generic 
+13  	152.7 	31  	IODINE    	localizer	3.45	1.494	1   	2+ details	2+ details
+14  	164.7 	36  	BARREL    	localizer	3.451	1.886	1   	2+ details	2+ details
+15  	176.7 	34  	FOAM      	localizer	3.451	1.51	1   	full    	full    
+16  	188.7 	29  	GALLERY   	localizer	3.451	2.422	1   	2+ details	2+ details

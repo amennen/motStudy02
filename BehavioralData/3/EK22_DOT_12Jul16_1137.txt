@@ -1,0 +1,11 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	66.5  	5   	CHASM     	rt-targ 	1.95	0.933	1   	non-target	non-target
+2   	108.5 	2   	PITCHFORK 	rt-targ 	1.951	0.909	0   	target  	non-target
+3   	150.5 	4   	LABEL     	rt-targ 	1.951	1.158	1   	non-target	non-target
+4   	192.5 	8   	PICK      	rt-targ 	1.95	1.054	0   	non-target	target  
+5   	234.5 	6   	PERMIT    	rt-targ 	1.95	0.734	1   	target  	target  
+6   	276.5 	9   	CURB      	rt-targ 	1.951	1.014	1   	non-target	non-target
+7   	318.5 	1   	CANDLE    	rt-targ 	1.95	0.975	1   	non-target	non-target
+8   	360.5 	10  	BRACELET  	rt-targ 	1.95	1.023	1   	non-target	non-target
+9   	402.5 	3   	PASTEL    	rt-targ 	1.95	1.063	1   	non-target	non-target
+10  	444.5 	7   	COAL      	rt-targ 	1.952	0.888	1   	non-target	non-target
