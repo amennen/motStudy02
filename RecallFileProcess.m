@@ -86,13 +86,13 @@ end
 %load trained model
 allfn = dir([locPatterns_dir '/loctrainedModel' '*']);
 %take the last model saved
-load(allfn(end).name);
+load(fullfile(locPatterns_dir, allfn(end).name));
 fprintf('\n*********************************************\n');
 fprintf(['* Loaded ' allfn(end).name '\n']);
 
 %load featureSelected voxels
 allLast = dir([locPatterns_dir 'locpatternsdata_' '*']);
-loc = load(allLast(end).name);
+loc = load(fullfile(locPatterns_dir,allLast(end).name));
 
 %load this run's regressors and information (do this after load so loading
 %doesn't overwrite)
@@ -124,7 +124,7 @@ patterns.raw = nan(patterns.nTRs,numel(roiInds));
 patterns.raw_sm = nan(patterns.nTRs,numel(roiInds));
 patterns.raw_sm_filt = nan(patterns.nTRs,numel(roiInds));
 patterns.raw_sm_z = nan(patterns.nTRs,numel(roiInds));
-patterns.categsep = nan(1,patterns.nTRs);
+patterns.categSep = nan(1,patterns.nTRs);
 patterns.realtimeMean = nan(1,numel(roiInds));
 patterns.realtimeStd = nan(1,numel(roiInds));
 patterns.realtimeY = nan(1,numel(roiInds));
@@ -257,8 +257,8 @@ fprintf('run\tblock\tTR\tloaded\n');
             
         end
 
-       patterns.categsep(iTrial) = patterns.activations(1,iTrial) - patterns.activations(2,iTrial); %this is what we want to use as our output date point
-       classOutput = patterns.categsep(iTrial);
+       patterns.categSep(iTrial) = patterns.activations(1,iTrial) - patterns.activations(2,iTrial); %this is what we want to use as our output date point
+       classOutput = patterns.categSep(iTrial);
        % if we want to save
        %save(fullfile(classOutputDir, ['vol_' num2str(thisTR)]), 'classOutput');
         

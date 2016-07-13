@@ -1,7 +1,7 @@
 % get regressors (and selectors if want to cross validate)
 % inputs are subject number, which session number, if want to cross
 % validate or not
-function [patterns trials stimOrder hardSpeed acc rt] = GetSessionInfoRT(subjNum,SESSION,behav_dir,varargin)
+function [patterns trials stimOrder ] = GetSessionInfoRT(subjNum,SESSION,behav_dir,varargin)
 %subjNum = 1;
 %SESSION = 18; %for localizer
 
@@ -69,7 +69,7 @@ if ismember(SESSION,MOT)
     % take out now
 else
     iTR.start = convertTR(timing.trig.wait,timing.plannedOnsets.prompt,config.TR);
-    trialDur = timing.plannedOnsets.vis(1) - timing.plannedOnsets.prompt(1); %try full recording TR just to see what it says!
+    trialDur = timing.plannedOnsets.vis(1) - timing.plannedOnsets.prompt(1) +4; %added 4 to go 2 TR's ahead 
 end
 trialDurTR = (trialDur/config.TR) - 1; %20s/2 = 10 - 1 = 9 TRs
 if SESSION == 18 && N_TRS_LOC > 0 %shift over a little bit more

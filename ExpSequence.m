@@ -5,6 +5,7 @@
 SUBJECT = 3;
 prev = 0; %if today's date or previous date
 scanNow = 1; %if using triggers
+runNum = 1;
 
 SPTB_PATH = ['/Data1/code/SPTBanne'];
 addpath(genpath(SPTB_PATH));
@@ -66,7 +67,7 @@ mot_realtime01(SUBJECT,SCAN_PREP,[],scanNum,scanNow)
 %% SCAN_PREP FILE PROCESS
 scanNum = 7; %change 
 processNew = 1;
-ProcessMask(SUBJECT,processNew,prev,scanNum) %have it so it waits until it finds the file
+ProcessMask(SUBJECT,processNew,prev,scanNum,runNum) %have it so it waits until it finds the file
 %% RUN VARIOUS BEHAVIORAL TASKS
 %first MOT_PRACTICE and RECALL PRACTICE
 mot_realtime01(SUBJECT,MOT_PRACTICE2, [],0,scanNow); %will move automatically into RECALL_PRACTICE
@@ -85,7 +86,7 @@ scanNum = 11;
 crossval = 0;
 %crossval = 1;
 featureSelect = 1;
-LocalizerFileProcess(SUBJECT,crossval,featureSelect,prev,scanNow,scanNum,MOT_LOCALIZER)
+LocalizerFileProcess(SUBJECT,crossval,featureSelect,prev,scanNow,scanNum,MOT_LOCALIZER,runNum)
 
 %% RECALL 1
 scanNum = 13;
@@ -98,7 +99,7 @@ mot_realtime01(SUBJECT,MOT{1},[],scanNum,scanNow);
 scanNum = 15;%normally 15;
 blockNum = 1;
 featureSelect = 1;
-RealTimeMemoryFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{1},blockNum);
+RealTimeMemoryFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{1},blockNum,runNum);
 
 %% MOT RUN 2 DISPLAY
 scanNum = 17;
@@ -107,7 +108,7 @@ mot_realtime01(SUBJECT,MOT{2},[],scanNum,scanNow);
 scanNum = 17;
 featureSelect = 1;
 blockNum = 2;
-RealTimeMemoryFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{2},blockNum);
+RealTimeMemoryFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{2},blockNum,runNum);
 
 %% MOT RUN 3 DISPLAY
 scanNum = 19;
@@ -116,7 +117,7 @@ mot_realtime01(SUBJECT,MOT{3},[],scanNum,scanNow);
 scanNum = 19;
 featureSelect = 1;
 blockNum = 3;
-RealTimeMemoryFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{3},blockNum);
+RealTimeMemoryFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{3},blockNum,runNum);
 
 %% RECALL 2
 scanNum = 21;
