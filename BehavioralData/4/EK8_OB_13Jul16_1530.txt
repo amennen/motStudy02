@@ -1,0 +1,21 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	8.1   	12  	SHIRT     	omit    	3.453	1.203	1   	full    	full    
+2   	20.1  	9   	CABLE     	realtime	3.451	1.097	1   	full    	full    
+3   	32.1  	18  	LEAD      	omit    	3.451	2.695	1   	2+ details	2+ details
+4   	44.1  	4   	PATCH     	realtime	3.452	1.397	1   	generic 	generic 
+5   	56.1  	19  	BLIZZARD  	omit    	3.455	0.82	1   	2+ details	2+ details
+6   	68.1  	5   	PIN       	realtime	3.455	1.193	1   	2+ details	2+ details
+7   	80.1  	1   	POLE      	realtime	3.455	2.608	1   	generic 	generic 
+8   	92.1  	16  	SWORD     	omit    	3.455	2.637	1   	1 detail	1 detail
+9   	104.1 	11  	GLOBE     	omit    	3.455	1.308	1   	2+ details	2+ details
+10  	116.1 	10  	FLOOD     	realtime	3.455	1.603	1   	1 detail	1 detail
+11  	128.1 	14  	TARGET    	omit    	3.454	3.208	1   	1 detail	1 detail
+12  	140.1 	8   	QUILL     	realtime	3.451	1.647	1   	generic 	generic 
+13  	152.1 	6   	BOTTLE    	realtime	3.456	1.678	1   	full    	full    
+14  	164.1 	17  	FRONTIER  	omit    	3.455	0.979	1   	full    	full    
+15  	176.1 	3   	COACH     	realtime	3.456	0.882	1   	generic 	generic 
+16  	188.1 	15  	CLUB      	omit    	3.454	0.616	1   	full    	full    
+17  	200.1 	13  	SPARK     	omit    	3.452	0.83	1   	generic 	generic 
+18  	212.1 	2   	PISTOL    	realtime	3.456	2.309	1   	full    	full    
+19  	224.1 	20  	COAL      	omit    	3.455	2.85	1   	generic 	generic 
+20  	236.1 	7   	MATTER    	realtime	3.455	0.929	1   	1 detail	1 detail
