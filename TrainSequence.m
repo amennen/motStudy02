@@ -3,6 +3,7 @@ cd(base_path);
 
 SUBJECT = 7;
 
+
 NUM_TASK_RUNS = 3;
 % orientation session
 SETUP = 1; % stimulus assignment 1
@@ -37,6 +38,8 @@ ASSOCIATES = RECALL2 + 1;
 
 %% first practice set
 mot_realtime01(SUBJECT, SETUP, [], 0, 0);
+mot_realtime01(SUBJECT, FAMILIARIZE2, [], 0, 0); %adding this here because we want to continue the test
+
 % this will continue to train test and practice MOT, then move on to
 % MOT_Practice, MOT_PREP
 mot_realtime01(SUBJECT, FAMILIARIZE2, [], 0, 0); %continue because want to not go through the break
