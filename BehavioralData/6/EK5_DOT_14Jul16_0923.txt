@@ -1,0 +1,49 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	34.2  	23  	CHART     	target  	1.951	NR  	0   	NR      	non-target
+2   	76.2  	21  	PUDDLE    	target  	1.951	NR  	0   	NR      	target  
+3   	118.2 	24  	EASEL     	target  	1.951	NR  	0   	NR      	target  
+4   	160.2 	28  	LENS      	target  	1.953	1.917	1   	target  	target  
+5   	202.2 	21  	PUDDLE (repeat 1)	target  	1.955	0.992	1   	target  	target  
+6   	311.2 	24  	EASEL (repeat 1)	target  	1.951	NR  	0   	NR      	target  
+7   	353.2 	27  	FRONTIER  	target  	1.951	0.923	1   	target  	target  
+8   	395.2 	22  	SAWDUST   	target  	1.955	0.817	1   	target  	target  
+9   	437.2 	27  	FRONTIER (repeat 1)	target  	1.951	NR  	0   	NR      	non-target
+10  	479.2 	23  	CHART (repeat 1)	target  	1.951	NR  	0   	NR      	non-target
+11  	628.7 	28  	LENS (repeat 1)	target  	1.955	1.191	0   	target  	non-target
+12  	670.7 	28  	LENS (repeat 2)	target  	1.952	1.567	1   	non-target	non-target
+13  	712.7 	25  	HAMMER    	target  	1.955	1.931	1   	non-target	non-target
+14  	754.7 	23  	CHART (repeat 2)	target  	1.955	1.202	1   	target  	target  
+15  	796.7 	25  	HAMMER (repeat 1)	target  	1.952	1.142	1   	non-target	non-target
+16  	888.6 	24  	EASEL (repeat 2)	target  	1.955	1.456	1   	non-target	non-target
+17  	930.6 	25  	HAMMER (repeat 2)	target  	1.955	1.182	1   	non-target	non-target
+18  	972.6 	23  	CHART (repeat 3)	target  	1.951	NR  	0   	NR      	target  
+19  	1014.6	22  	SAWDUST (repeat 1)	target  	1.956	1.333	0   	non-target	target  
+20  	1056.6	28  	LENS (repeat 3)	target  	1.952	1.232	1   	non-target	non-target
+21  	1151  	21  	PUDDLE (repeat 2)	target  	1.955	1.05	1   	non-target	non-target
+22  	1193  	23  	CHART (repeat 4)	target  	1.951	1.152	1   	non-target	non-target
+23  	1235  	25  	HAMMER (repeat 3)	target  	1.951	1.173	1   	non-target	non-target
+24  	1277  	21  	PUDDLE (repeat 3)	target  	1.954	1.163	1   	non-target	non-target
+25  	1319  	27  	FRONTIER (repeat 2)	target  	1.955	1.009	0   	non-target	target  
+26  	1569.3	25  	HAMMER (repeat 4)	target  	1.951	NR  	0   	NR      	target  
+27  	1611.3	22  	SAWDUST (repeat 2)	target  	1.955	1.024	1   	non-target	non-target
+28  	1653.2	21  	PUDDLE (repeat 4)	target  	1.955	0.958	1   	non-target	non-target
+29  	1695.3	22  	SAWDUST (repeat 3)	target  	1.954	1.332	1   	non-target	non-target
+30  	1737.3	26  	FORT      	target  	1.951	0.954	0   	non-target	target  
+31  	1852.2	28  	LENS (repeat 4)	target  	1.955	1.182	1   	target  	target  
+32  	1894.2	27  	FRONTIER (repeat 3)	target  	1.955	1.004	0   	target  	non-target
+33  	1936.2	26  	FORT (repeat 1)	target  	1.955	1.042	1   	non-target	non-target
+34  	1978.2	24  	EASEL (repeat 3)	target  	1.955	1.296	0   	non-target	target  
+35  	2020.2	27  	FRONTIER (repeat 4)	target  	1.955	1.077	1   	target  	target  
+36  	2102.8	23  	CHART (repeat 5)	target  	1.951	NR  	0   	NR      	non-target
+37  	2144.8	26  	FORT (repeat 2)	target  	1.955	0.976	0   	non-target	target  
+38  	2186.8	26  	FORT (repeat 3)	target  	1.951	NR  	0   	NR      	non-target
+39  	2228.8	22  	SAWDUST (repeat 4)	target  	1.953	0.803	1   	target  	target  
+40  	2270.8	24  	EASEL (repeat 4)	target  	1.955	1.009	1   	non-target	non-target
+41  	2323.1	25  	HAMMER (repeat 5)	target  	1.956	0.963	0   	target  	non-target
+42  	2365.1	22  	SAWDUST (repeat 5)	target  	1.951	NR  	0   	NR      	non-target
+43  	2407.1	28  	LENS (repeat 5)	target  	1.955	1.053	1   	non-target	non-target
+44  	2449.1	27  	FRONTIER (repeat 5)	target  	1.955	0.93	0   	non-target	target  
+45  	2491.1	24  	EASEL (repeat 5)	target  	1.95	1.288	1   	non-target	non-target
+46  	2536  	26  	FORT (repeat 4)	target  	1.951	NR  	0   	NR      	non-target
+47  	2578  	21  	PUDDLE (repeat 5)	target  	1.955	1.061	1   	target  	target  
+48  	2620  	26  	FORT (repeat 5)	target  	1.953	0.923	1   	non-target	non-target
