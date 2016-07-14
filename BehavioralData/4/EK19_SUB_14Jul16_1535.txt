@@ -1,0 +1,21 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	46    	16  	SWORD     	omit    	3.952	2.867	1   	1 detail	1 detail, 2+ details, full
+2   	86    	7   	MATTER    	realtime	3.95	2.491	1   	1 detail	1 detail, 2+ details, full
+3   	126   	10  	FLOOD     	realtime	3.95	3.908	1   	1 detail	1 detail, 2+ details, full
+4   	166   	11  	GLOBE     	omit    	3.95	2.78	1   	2+ details	1 detail, 2+ details, full
+5   	206   	1   	POLE      	realtime	3.951	1.116	1   	2+ details	1 detail, 2+ details, full
+6   	246   	12  	SHIRT     	omit    	3.95	1.501	1   	2+ details	1 detail, 2+ details, full
+7   	286   	3   	COACH     	realtime	3.95	0.949	1   	2+ details	1 detail, 2+ details, full
+8   	326   	17  	FRONTIER  	omit    	3.95	1.182	1   	1 detail	1 detail, 2+ details, full
+9   	366   	15  	CLUB      	omit    	3.95	1.174	1   	1 detail	1 detail, 2+ details, full
+10  	406   	9   	CABLE     	realtime	3.951	3.206	1   	1 detail	1 detail, 2+ details, full
+11  	446   	8   	QUILL     	realtime	3.95	1.422	1   	1 detail	1 detail, 2+ details, full
+12  	486   	18  	LEAD      	omit    	3.95	2.055	1   	2+ details	1 detail, 2+ details, full
+13  	526   	14  	TARGET    	omit    	3.951	0.767	0   	generic 	1 detail, 2+ details, full
+14  	566   	4   	PATCH     	realtime	3.95	0.751	1   	2+ details	1 detail, 2+ details, full
+15  	606   	5   	PIN       	realtime	3.951	0.856	1   	1 detail	1 detail, 2+ details, full
+16  	646   	20  	COAL      	omit    	3.952	NR  	0   	NR      	1 detail, 2+ details, full
+17  	686   	19  	BLIZZARD  	omit    	3.952	0.776	1   	full    	1 detail, 2+ details, full
+18  	726   	2   	PISTOL    	realtime	3.95	2.113	0   	no image	1 detail, 2+ details, full
+19  	766   	13  	SPARK     	omit    	3.95	2.441	1   	1 detail	1 detail, 2+ details, full
+20  	806   	6   	BOTTLE    	realtime	3.953	1.713	1   	2+ details	1 detail, 2+ details, full
