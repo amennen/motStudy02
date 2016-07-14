@@ -37,6 +37,8 @@ ASSOCIATES = RECALL2 + 1;
 
 %% first practice set
 mot_realtime01(SUBJECT, SETUP, [], 0, 0);
+mot_realtime01(SUBJECT, FAMILIARIZE2, [], 0, 0); %adding this here because we want to continue the test
+
 % this will continue to train test and practice MOT, then move on to
 % MOT_Practice, MOT_PREP
 

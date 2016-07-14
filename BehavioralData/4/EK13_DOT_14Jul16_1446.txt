@@ -1,0 +1,5 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	35.7  	24  	HAIRPIN   	targ_easy	1.951	1.172	1   	target  	target  
+2   	77.7  	28  	RADIO     	targ_hard	1.951	0.94	0   	target  	non-target
+3   	119.7 	45  	STAKE     	lure_hard	1.95	1.764	1   	non-target	non-target
+4   	161.7 	46  	TICKET    	lure_easy	1.95	1.292	1   	non-target	non-target

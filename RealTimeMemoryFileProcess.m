@@ -1,4 +1,4 @@
-function [patterns, t] = RealTimeMemoryFileProcess(subjectNum,featureSelect,prev,scanNow,scanNum,SESSION,blockNum,runNun) %,rtfeedback)
+function [patterns, t] = RealTimeMemoryFileProcess(subjectNum,featureSelect,prev,scanNow,scanNum,SESSION,blockNum,runNum) %,rtfeedback)
 % function [patterns] = RealTimeMemoryFileProcess(subjectNum,subjectName,runNum,scanNum,scanNow)
 %
 % this function describes the file processing procedure for the realtime

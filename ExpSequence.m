@@ -2,7 +2,7 @@
 %%fmri session
 %first these are all the session numbers
 
-SUBJECT = 3;
+SUBJECT = 4;
 prev = 0; %if today's date or previous date
 scanNow = 1; %if using triggers
 runNum = 1;
