@@ -2,10 +2,10 @@
 %%fmri session
 %first these are all the session numbers
 
-SUBJECT = 4;
+SUBJECT = 5;
 prev = 0; %if today's date or previous date
 scanNow = 1; %if using triggers
-runNum = 1;
+runNum = 2;
 
 SPTB_PATH = ['/Data1/code/SPTBanne'];
 addpath(genpath(SPTB_PATH));
@@ -46,7 +46,7 @@ end
 RECALL2 = MOT{end} + 1; % post-scan rsvp memory test
 ASSOCIATES = RECALL2 + 1;
 %last input is scan number
-%scanning numbers should be 21 total
+%scanning numbers should be 21 total3
 % 1-4: SCOUT
 % 5: MPRAGE
 % (6)7: EXFUNCTIONAL
@@ -59,7 +59,10 @@ ASSOCIATES = RECALL2 + 1;
 % (20)21: RECALL 2
 
 %% RUN MP_RAGE FIRST
-
+%% RUN VARIOUS BEHAVIORAL TASKS
+%first MOT_PRACTICE and RECALL PRACTICE
+mot_realtime01(SUBJECT,MOT_PRACTICE2, [],0,scanNow); %will move automatically into RECALL_PRACTICE
+%then start RSVP task
 %% SCAN_PREP: instructions and also 8 seconds
 scanNum = 7;
 mot_realtime01(SUBJECT,SCAN_PREP,[],scanNum,scanNow)
@@ -68,10 +71,7 @@ mot_realtime01(SUBJECT,SCAN_PREP,[],scanNum,scanNow)
 scanNum = 7; %change 
 processNew = 1;
 ProcessMask(SUBJECT,processNew,prev,scanNum,runNum) %have it so it waits until it finds the file
-%% RUN VARIOUS BEHAVIORAL TASKS
-%first MOT_PRACTICE and RECALL PRACTICE
-mot_realtime01(SUBJECT,MOT_PRACTICE2, [],0,scanNow); %will move automatically into RECALL_PRACTICE
-%then start RSVP task
+
 %% NOW RUN FIELD MAPS WHILE NEXT BEHAVIORAL TASKS (RSVP2,FAMILIARIZE3,TOCRITERION3)
 
 mot_realtime01(SUBJECT,RSVP2,[],0,scanNow) %will continue until TOCRITERION3

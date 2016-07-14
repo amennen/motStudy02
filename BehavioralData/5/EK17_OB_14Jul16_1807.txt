@@ -1,0 +1,17 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	8.7   	41  	DRUM      	localizer	3.452	1.043	1   	generic 	generic 
+2   	20.7  	30  	PIPE      	localizer	3.45	1.171	1   	full    	full    
+3   	32.7  	35  	FLOOD     	localizer	3.45	1.451	1   	2+ details	2+ details
+4   	44.7  	43  	PLANK     	localizer	3.45	0.827	1   	generic 	generic 
+5   	56.7  	31  	CURB      	localizer	3.45	0.971	1   	generic 	generic 
+6   	68.7  	32  	MALLET    	localizer	3.45	1.475	1   	1 detail	1 detail
+7   	80.7  	38  	DRILL     	localizer	3.451	2.164	1   	full    	full    
+8   	92.7  	40  	SCOUT     	localizer	3.451	1.124	1   	1 detail	1 detail
+9   	104.7 	34  	ARROW     	localizer	3.452	1.316	1   	2+ details	2+ details
+10  	116.7 	36  	EARTHQUAKE	localizer	3.451	1.9 	1   	1 detail	1 detail
+11  	128.7 	42  	GLASS     	localizer	3.45	1.5 	1   	2+ details	2+ details
+12  	140.7 	33  	NOTE      	localizer	3.452	0.956	1   	generic 	generic 
+13  	152.7 	29  	MIRROR    	localizer	3.452	0.924	1   	generic 	generic 
+14  	164.7 	39  	SPONGE    	localizer	3.45	1.477	1   	generic 	generic 
+15  	176.7 	44  	LEVEL     	localizer	3.451	1.732	1   	1 detail	1 detail
+16  	188.7 	37  	MOON      	localizer	3.451	1.189	1   	1 detail	1 detail
