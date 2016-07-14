@@ -1,0 +1,49 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	34.2  	22  	HAMMER    	target  	1.951	0.601	1   	target  	target  
+2   	76.2  	21  	BANNER    	target  	1.95	0.658	1   	target  	target  
+3   	118.2 	27  	SPARK     	target  	1.951	1.237	0   	non-target	target  
+4   	160.2 	22  	HAMMER (repeat 1)	target  	1.951	1.363	0   	non-target	target  
+5   	202.2 	24  	PUPPET    	target  	1.952	1.001	1   	non-target	non-target
+6   	393.4 	21  	BANNER (repeat 1)	target  	1.955	1.246	1   	non-target	non-target
+7   	435.4 	28  	PERMIT    	target  	1.956	1.098	0   	target  	non-target
+8   	477.4 	24  	PUPPET (repeat 1)	target  	1.955	0.999	1   	target  	target  
+9   	519.4 	22  	HAMMER (repeat 2)	target  	1.956	0.983	1   	non-target	non-target
+10  	561.4 	21  	BANNER (repeat 2)	target  	1.956	0.826	1   	non-target	non-target
+11  	605.7 	21  	BANNER (repeat 3)	target  	1.953	0.796	1   	target  	target  
+12  	647.7 	23  	MORNING   	target  	1.953	0.962	1   	non-target	non-target
+13  	689.7 	28  	PERMIT (repeat 1)	target  	1.955	0.648	1   	target  	target  
+14  	731.7 	23  	MORNING (repeat 1)	target  	1.954	0.87	1   	non-target	non-target
+15  	773.7 	28  	PERMIT (repeat 2)	target  	1.955	0.692	1   	non-target	non-target
+16  	817.7 	26  	LEAD      	target  	1.955	0.888	1   	target  	target  
+17  	859.7 	21  	BANNER (repeat 4)	target  	1.955	0.837	1   	target  	target  
+18  	901.7 	26  	LEAD (repeat 1)	target  	1.952	0.718	1   	non-target	non-target
+19  	943.7 	28  	PERMIT (repeat 3)	target  	1.955	0.729	1   	target  	target  
+20  	985.7 	25  	SANDPAPER 	target  	1.954	1.126	0   	non-target	target  
+21  	1040.7	27  	SPARK (repeat 1)	target  	1.952	0.97	1   	non-target	non-target
+22  	1082.7	27  	SPARK (repeat 2)	target  	1.954	0.719	1   	non-target	non-target
+23  	1124.7	24  	PUPPET (repeat 2)	target  	1.952	1.013	1   	non-target	non-target
+24  	1166.7	23  	MORNING (repeat 2)	target  	1.954	0.899	1   	target  	target  
+25  	1208.7	24  	PUPPET (repeat 3)	target  	1.955	0.753	1   	non-target	non-target
+26  	1252.4	24  	PUPPET (repeat 4)	target  	1.952	0.897	1   	target  	target  
+27  	1294.4	26  	LEAD (repeat 2)	target  	1.956	0.815	1   	non-target	non-target
+28  	1336.4	27  	SPARK (repeat 3)	target  	1.955	0.701	1   	target  	target  
+29  	1378.4	25  	SANDPAPER (repeat 1)	target  	1.955	0.754	1   	target  	target  
+30  	1420.4	23  	MORNING (repeat 3)	target  	1.955	0.616	1   	non-target	non-target
+31  	1466.3	23  	MORNING (repeat 4)	target  	1.952	0.647	0   	target  	non-target
+32  	1508.3	25  	SANDPAPER (repeat 2)	target  	1.955	0.675	1   	target  	target  
+33  	1550.3	26  	LEAD (repeat 3)	target  	1.956	1.003	1   	non-target	non-target
+34  	1592.3	22  	HAMMER (repeat 3)	target  	1.955	0.624	1   	target  	target  
+35  	1634.3	27  	SPARK (repeat 4)	target  	1.953	0.628	1   	target  	target  
+36  	1677.5	22  	HAMMER (repeat 4)	target  	1.951	0.818	1   	non-target	non-target
+37  	1719.5	21  	BANNER (repeat 5)	target  	1.955	0.573	1   	target  	target  
+38  	1761.5	26  	LEAD (repeat 4)	target  	1.955	0.587	1   	target  	target  
+39  	1803.5	22  	HAMMER (repeat 5)	target  	1.953	0.658	1   	non-target	non-target
+40  	1845.5	24  	PUPPET (repeat 5)	target  	1.956	0.615	1   	target  	target  
+41  	1888.5	25  	SANDPAPER (repeat 3)	target  	1.955	0.565	1   	target  	target  
+42  	1930.5	25  	SANDPAPER (repeat 4)	target  	1.955	0.636	1   	non-target	non-target
+43  	1972.5	23  	MORNING (repeat 5)	target  	1.951	0.689	1   	target  	target  
+44  	2014.5	27  	SPARK (repeat 5)	target  	1.955	0.687	1   	target  	target  
+45  	2056.5	25  	SANDPAPER (repeat 5)	target  	1.954	0.791	1   	non-target	non-target
+46  	2099.6	28  	PERMIT (repeat 4)	target  	1.956	0.674	1   	non-target	non-target
+47  	2141.6	26  	LEAD (repeat 5)	target  	1.955	0.988	0   	non-target	target  
+48  	2183.6	28  	PERMIT (repeat 5)	target  	1.955	0.564	1   	target  	target  

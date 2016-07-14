@@ -1,7 +1,7 @@
 base_path = [fileparts(which('mot_realtime01.m')) filesep];
 cd(base_path);
 
-SUBJECT = 6;
+SUBJECT = 7;
 
 NUM_TASK_RUNS = 3;
 % orientation session
@@ -39,6 +39,7 @@ ASSOCIATES = RECALL2 + 1;
 mot_realtime01(SUBJECT, SETUP, [], 0, 0);
 % this will continue to train test and practice MOT, then move on to
 % MOT_Practice, MOT_PREP
+mot_realtime01(SUBJECT, FAMILIARIZE2, [], 0, 0); %continue because want to not go through the break
 
 %% now train on actual stimulus pairs
 mot_realtime01(SUBJECT, FAMILIARIZE2, [], 0, 0);
