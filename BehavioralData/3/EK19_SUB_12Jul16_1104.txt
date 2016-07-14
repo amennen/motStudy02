@@ -1,0 +1,21 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	46.2  	13  	APRON     	omit    	3.952	NR  	0   	NR      	1 detail, 2+ details, full
+2   	86.2  	1   	CANDLE    	realtime	3.95	2.349	0   	no image	1 detail, 2+ details, full
+3   	126.2 	17  	PENDULUM  	omit    	3.951	2.349	1   	1 detail	1 detail, 2+ details, full
+4   	166.2 	8   	PICK      	realtime	3.951	3.398	1   	1 detail	1 detail, 2+ details, full
+5   	206.2 	20  	BOLT      	omit    	3.951	2.166	1   	1 detail	1 detail, 2+ details, full
+6   	246.2 	2   	PITCHFORK 	realtime	3.95	3.398	1   	1 detail	1 detail, 2+ details, full
+7   	286.2 	12  	POLISH    	omit    	3.951	2.095	1   	1 detail	1 detail, 2+ details, full
+8   	326.2 	6   	PERMIT    	realtime	3.951	3.879	0   	generic 	1 detail, 2+ details, full
+9   	366.2 	11  	DIAL      	omit    	3.95	3.271	1   	1 detail	1 detail, 2+ details, full
+10  	406.2 	10  	BRACELET  	realtime	3.951	1.8 	0   	no image	1 detail, 2+ details, full
+11  	446.2 	16  	CIRCUIT   	omit    	3.95	2.536	1   	2+ details	1 detail, 2+ details, full
+12  	486.2 	5   	CHASM     	realtime	3.95	3.224	1   	1 detail	1 detail, 2+ details, full
+13  	526.2 	7   	COAL      	realtime	3.951	2.913	0   	no image	1 detail, 2+ details, full
+14  	566.2 	18  	SHIRT     	omit    	3.951	NR  	0   	NR      	1 detail, 2+ details, full
+15  	606.2 	19  	COLLAR    	omit    	3.951	3.721	0   	no image	1 detail, 2+ details, full
+16  	646.2 	3   	PASTEL    	realtime	3.95	2.242	1   	1 detail	1 detail, 2+ details, full
+17  	686.2 	9   	CURB      	realtime	3.952	NR  	0   	NR      	1 detail, 2+ details, full
+18  	726.2 	14  	LUMBER    	omit    	3.951	2.626	0   	generic 	1 detail, 2+ details, full
+19  	766.2 	15  	ARCTIC    	omit    	3.95	1.874	0   	generic 	1 detail, 2+ details, full
+20  	806.2 	4   	LABEL     	realtime	3.951	1.427	0   	no image	1 detail, 2+ details, full

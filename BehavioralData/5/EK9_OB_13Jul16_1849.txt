@@ -1,0 +1,22 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	8.1   	16  	PLUG      	omit    	3.455	0.772	1   	2+ details	2+ details
+2   	20.1  	7   	PUTTY     	realtime	3.451	0.578	1   	generic 	generic 
+3   	32.1  	6   	FORT      	realtime	3.453	1.64	1   	2+ details	2+ details
+4   	44.1  	11  	EASEL     	omit    	3.455	0.606	1   	full    	full    
+5   	56.1  	19  	WIRE      	omit    	3.455	1.332	1   	1 detail	1 detail
+6   	68.1  	8   	GIFT      	realtime	3.452	1.059	1   	generic 	generic 
+7   	80.1  	13  	CARD      	omit    	3.456	1.032	1   	generic 	generic 
+8   	92.1  	2   	HAIRPIN   	realtime	3.455	0.855	1   	generic 	generic 
+9   	104.1 	4   	CANDLE    	realtime	3.452	0.822	1   	1 detail	1 detail
+10  	116.1 	17  	PATCH     	omit    	3.455	0.835	1   	full    	full    
+11  	128.1 	1   	POLE      	realtime	3.455	1.034	1   	generic 	generic 
+12  	140.1 	20  	RAINBOW   	omit    	3.452	0.864	1   	full    	full    
+13  	152.1 	15  	PILE      	omit    	3.455	1.054	1   	full    	full    
+14  	164.1 	5   	TEAR      	realtime	3.455	1.149	1   	2+ details	2+ details
+15  	176.1 	18  	COACH     	omit    	3.456	1.138	1   	2+ details	2+ details
+16  	188.1 	10  	HANDLE    	realtime	3.452	1.257	1   	full    	full    
+17  	200.1 	3   	SHOVEL    	realtime	3.452	0.751	1   	generic 	generic 
+18  	212.1 	14  	BADGE     	omit    	3.452	0.733	1   	generic 	generic 
+19  	224.1 	12  	PASTEL    	omit    	3.455	1.452	1   	generic 	generic 
+20  	236.1 	9   	BRASS     	realtime	3.451	1.585	0   	2+ details	full    
+21  	252.1 	9   	BRASS (repeat 1)	realtime	3.454	1.973	1   	1 detail	1 detail
