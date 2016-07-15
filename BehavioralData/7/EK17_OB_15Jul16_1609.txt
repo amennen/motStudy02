@@ -1,0 +1,17 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	8.7   	31  	MUZZLE    	localizer	3.451	1.071	1   	generic 	generic 
+2   	20.7  	40  	ROOT      	localizer	3.45	1.286	1   	full    	full    
+3   	32.7  	37  	GALLON    	localizer	3.451	1.118	1   	full    	full    
+4   	44.7  	42  	PHONE     	localizer	3.451	1.079	1   	full    	full    
+5   	56.7  	29  	ESSAY     	localizer	3.451	1.471	1   	generic 	generic 
+6   	68.7  	32  	PADDLE    	localizer	3.45	0.983	1   	1 detail	1 detail
+7   	80.7  	33  	MATTER    	localizer	3.45	1.775	1   	1 detail	1 detail
+8   	92.7  	41  	ELBOW     	localizer	3.45	1.447	1   	full    	full    
+9   	104.7 	34  	ORNAMENT  	localizer	3.45	1.279	1   	2+ details	2+ details
+10  	116.7 	39  	DEPOT     	localizer	3.45	1.231	1   	1 detail	1 detail
+11  	128.7 	43  	CABLE     	localizer	3.451	1.159	1   	1 detail	1 detail
+12  	140.7 	44  	HURDLE    	localizer	3.451	1.519	1   	full    	full    
+13  	152.7 	38  	BUBBLE    	localizer	3.451	1.272	1   	full    	full    
+14  	164.7 	36  	COAL      	localizer	3.45	1.303	1   	generic 	generic 
+15  	176.7 	35  	IODINE    	localizer	3.45	1.36	1   	1 detail	1 detail
+16  	188.7 	30  	MIRROR    	localizer	3.45	1.584	1   	full    	full    

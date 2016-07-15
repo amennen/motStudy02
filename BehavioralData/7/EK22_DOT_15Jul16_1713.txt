@@ -1,0 +1,11 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	65    	7   	PATCH     	rt-targ 	1.95	0.807	1   	target  	target  
+2   	107   	8   	RIDGE     	rt-targ 	1.951	0.631	1   	target  	target  
+3   	149   	9   	HAIRPIN   	rt-targ 	1.95	0.768	1   	target  	target  
+4   	191   	6   	ISLAND    	rt-targ 	1.951	0.728	1   	target  	target  
+5   	233   	2   	FRAME     	rt-targ 	1.95	0.904	1   	target  	target  
+6   	275   	1   	PORTAL    	rt-targ 	1.95	0.889	1   	non-target	non-target
+7   	317   	10  	CINDER    	rt-targ 	1.95	0.953	1   	target  	target  
+8   	359.1 	4   	CART      	rt-targ 	1.95	0.817	1   	non-target	non-target
+9   	401   	5   	CARAVAN   	rt-targ 	1.95	0.794	1   	non-target	non-target
+10  	443.1 	3   	DOME      	rt-targ 	1.95	0.89	1   	non-target	non-target
