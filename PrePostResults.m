@@ -14,9 +14,9 @@
 %variables
 %subjectNum = 3;
 %runNum = 1;
-svec = 3:5;
-runvec = [1 1 2];
-datevec = {'7-12-16', '7-14-16', '7-14-16'};
+svec = [3:5 7];
+runvec = [1 1 2 1];
+datevec = {'7-12-16', '7-14-16', '7-14-16', '7-15-16'};
 NSUB = length(svec);
 for s = 1:NSUB
     subjectNum = svec(s);
