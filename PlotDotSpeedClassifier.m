@@ -118,7 +118,7 @@ for s = 1:nsub
         set(findall(gcf,'-property','FontColor'),'FontColor','k')
         set(hAx(1), 'FontSize', 12)
         set(hAx(2), 'YColor', colors(2,:), 'FontSize', 16, 'YTick', [0:7]); %'YTickLabel', {'0', '1', '2', '3', '4', '5})
-        set(hAx(1), 'YColor', colors(1,:), 'FontSize', 16, 'YTick', [-1:.5:1], 'YTickLabel', {'-1', '0.5', '0', '0.5', '1'});
+        set(hAx(1), 'YColor', colors(1,:), 'FontSize', 16, 'YTick', [-1:.5:1], 'YTickLabel', {'-1', '-0.5', '0', '0.5', '1'});
         hold on;
         
         for rep = 1:2
@@ -126,4 +126,73 @@ for s = 1:nsub
         end
         savefig(sprintf('%sstim%i.fig', plotDir,stim));
     end
+    
+    [nelements, xval ] = hist(sepbystim', [-.3:.05:.3]);
+    freq = nelements/45;
+    figure;
+    bar(freq*100);
+    set(gca, 'XTickLabel', num2str(xval))
+    xlabel('Target-Lure Evidence')
+    ylabel('Frequency (%)')
+    ylim([0 30])
+    legend('s1', 's2', 's3', 's4', 's5', 's6', 's7', 's8', 's9', 's10')
+    title(sprintf('Subject %i Classifier Evidence Distribution',subjectNum));
+    set(findall(gcf,'-property','FontSize'),'FontSize',17)
+    savefig(sprintf('%sdist.fig', plotDir));
+    fileSpeed = dir(fullfile(behavioral_dir, ['mot_realtime01_' num2str(subjectNum) '_' num2str(SESSION)  '*.mat']));
+        plotDir = ['/Data1/code/' projectName '/' 'Plots' '/' num2str(subjectNum) '/'];
+        if ~exist(plotDir, 'dir')
+            mkdir(plotDir);
+        end
+
+    recallFile = dir(fullfile(behavioral_dir, ['EK19_SUB' '*mat']));
+    r1 = load([behavioral_dir '/' recallFile(end).name]);
+    z = table2cell(r1.datastruct.trials(:,16));
+    z(cellfun(@(x) any(isnan(x)),z)) = {'00'};
+
+    resp1 = cell2mat(z);
+    resp1 = resp1(:,1);
+    
+    stimOrder = table2array(r1.datastruct.trials(:,8));
+    RTorder = stimOrder(stimOrder<11);
+    [~,sortedID] = sort(RTorder);
+    r1Sort = resp1(sortedID);
+    
+    recallFile = dir(fullfile(behavioral_dir, ['EK23_SUB' '*mat']));
+    r2 = load([behavioral_dir '/' recallFile(end).name]);
+    z = table2cell(r2.datastruct.trials(:,16));
+    z(cellfun(@(x) any(isnan(x)),z)) = {'00'}; %for nan's!
+    resp2 = cell2mat(z);
+    resp2 = resp2(:,1);
+    
+    stimOrder = table2array(r2.datastruct.trials(:,8));
+    RTorder = stimOrder(stimOrder<11);
+    [~,sortedID] = sort(RTorder);
+    r2Sort = resp1(sortedID);
+    
+    medsep = median(sepbystim,2);
+    s = 100;
+    figure;
+    subplot(1,2,1)
+    scatter(str2num(r1Sort),medsep, s,'fill','MarkerEdgeColor','b',...
+              'MarkerFaceColor','c',...
+              'LineWidth',2.5);
+    xlabel('Pre MOT Subj Rating')
+    xlim([0 5])
+    ylim([-.15 .15])
+    ylabel('Median Evidence')
+    title(sprintf('Subject %i Evidence vs. Pre Rating',subjectNum));
+
+    subplot(1,2,2)
+    scatter(medsep,str2num(r2Sort), s,'fill','MarkerEdgeColor','b',...
+              'MarkerFaceColor','c',...
+              'LineWidth',2.5);
+    ylabel('Post MOT Subj Rating')
+    xlabel('Median Evidence')
+    ylim([0 5])
+    xlim([-.15 .15])
+    title(sprintf('Subject %i Post Rating vs. Evidence',subjectNum));
+    set(findall(gcf,'-property','FontSize'),'FontSize',20)
+    savefig(sprintf('%srating.fig', plotDir));
+
 end
