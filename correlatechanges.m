@@ -17,7 +17,6 @@ speedbystim = zeros(nstim,nTRs*3);
 
 for s = 1:nsub
     subjectNum = svec(s);
-    figure;
     for iblock = 1:nblock
         blockNum = iblock;
         SESSION = 19 + blockNum;
@@ -40,7 +39,7 @@ for s = 1:nsub
         TRvector = reshape(allMotionTRs,1,numel(allMotionTRs));
         run = dir([runHeader 'motpatternsdata_' num2str(SESSION) '*']);
         run = load(fullfile(runHeader,run(end).name));
-        categsep = run.patterns.categsep(TRvector - 10 + 2); %minus 10 because we take out those 10
+        categsep = run.patterns.categsep(TRvector - 10); %minus 10 because we take out those 10
         sepbytrial = reshape(categsep,15,10);
         sepbytrial = sepbytrial'; %results by trial number, TR number
         speedbytrial = reshape(speedVector,nTRs,nstim);
@@ -59,17 +58,37 @@ for s = 1:nsub
             s2 = allvec(3);
             c1 = allvec(2);
             c2 = allvec(4);
-            dspeed = diff(speedinorder(:,[s1 s2]));
-            dsep = diff(sepinorder(:,[c1 c2]));
+            dspeed(:,jstart) = diff(speedinorder(:,[s1 s2]),1,2);
+            dsep(:,jstart) = diff(sepinorder(:,[c1 c2]),1,2);
         end
         %right now doing in three dimensions to separate by subject but can
         %also do version where not separated by subject and make into two
         %dimensions
         allspeedchanges(:,(iblock-1)*inst + 1: iblock*inst,s) = dspeed;
         allsepchanges(:,(iblock-1)*inst + 1: iblock*inst,s) = dsep;
-        scatter(allspeedchanges,allsepchanges)
-        
     end
+    figure;
+    x = reshape(allspeedchanges(:,:,s),1,numel(allspeedchanges(:,:,s)));
+    y = reshape(allsepchanges(:,:,s),1,numel(allsepchanges(:,:,s)));
+    scatter(reshape(allspeedchanges(:,:,s),1,numel(allspeedchanges(:,:,s))),reshape(allsepchanges(:,:,s),1,numel(allsepchanges(:,:,s))),'fill','MarkerEdgeColor','b',...
+        'MarkerFaceColor','c',...
+        'LineWidth',2.5);
+    xlabel('Speed Change')
+    ylabel('Classification Change')
+    [rho,pval] = corrcoef(reshape(allspeedchanges(:,:,s),1,numel(allspeedchanges(:,:,s))),reshape(allsepchanges(:,:,s),1,numel(allsepchanges(:,:,s))));
+    text(2,.85,['corr = ' num2str(pval(1,2))]);
+    p = polyfit(x,y,1);
+yfit = polyval(p,x)
+hold on;
+    plot(x,yfit, '--k', 'LineWidth', 3);
+text(2,.65, ['slope = ' num2str(p(1))])
+    text(2,.45, ['p = ' num2str(p(1))])
+
+    ylim([-1 1])
+    xlim([-5 6 ])
+    title(sprintf('Subject %i Post Rating vs. Evidence',subjectNum));
+    set(findall(gcf,'-property','FontSize'),'FontSize',20)
+    
     %look up how to change yaxis categories
     %do to later: rearrange all motion trials by stimulus ID and then plot on
     %subplots every block

@@ -98,34 +98,43 @@ for s = 1:nsub
     text(10,.65, ['slope = ' num2str(p(1))])
     title(['Category Separation vs. Dot Speed, Subject ' num2str(subjectNum) ' All Trials'])
     set(findall(gcf,'-property','FontSize'),'FontSize',16)
-    colors = [230 33 132;73 91 252]/255;
+    colors = [110 62 106;83 200 212; 187 124 181]/255;
+    
+    vec2avg = [0.1*ones(10,2) sepbystim];
+    for i = 1:size(sepbystim,2)
+        smoothedsep(:,i) = mean(vec2avg(:,i:i+2),2);
+    end
+    
     % now make plots for each stimuli
     for stim = 1:nstim
-        figure(stim);
+        thisfig = figure(stim);
         clf;
         x = 1:nTRs*nblock;
         [hAx,hLine1, hLine2] = plotyy(x,sepbystim(stim,:),x,speedbystim(stim,:));
         xlabel('TR Number (2s)')
         ylabel(hAx(2), 'Dot Speed', 'Color', 'k')
         ylabel(hAx(1), 'Category Evidence', 'Color', 'k')
-        ylim(hAx(2),[-0.5 7])
+        ylim(hAx(2),[-0.5 10])
         ylim(hAx(1), [-1 1])
         xlim([0.5 45.5])
-        set(hLine2, 'LineStyle', ':', 'Color', colors(2,:), 'LineWidth', 5)
+        set(hLine2, 'LineStyle', '--', 'Color', colors(2,:), 'LineWidth', 5)
         set(hLine1, 'LineStyle', '-', 'Color', colors(1,:), 'LineWidth', 4, 'Marker', 'o', 'MarkerSize', 7)
         linkaxes([hAx(1) hAx(2)], 'x');
         title(sprintf('Subject: %i Stimulus ID: %i',subjectNum,stim));
         set(findall(gcf,'-property','FontSize'),'FontSize',20)
         set(findall(gcf,'-property','FontColor'),'FontColor','k')
         set(hAx(1), 'FontSize', 12)
-        set(hAx(2), 'YColor', colors(2,:), 'FontSize', 16, 'YTick', [0:7]); %'YTickLabel', {'0', '1', '2', '3', '4', '5})
+        set(hAx(2), 'YColor', colors(2,:), 'FontSize', 16, 'YTick', [0:10]); %'YTickLabel', {'0', '1', '2', '3', '4', '5})
         set(hAx(1), 'YColor', colors(1,:), 'FontSize', 16, 'YTick', [-1:.5:1], 'YTickLabel', {'-1', '-0.5', '0', '0.5', '1'});
         hold on;
-        
+        plot(x,smoothedsep(stim,:), 'LineStyle', '-', 'Color', colors(3,:), 'LineWidth', 4, 'Marker', 'o', 'MarkerSize', 7)
+        legend('Ev', 'Smoothed Ev', 'Dot Speed')
         for rep = 1:2
             line([rep*nTRs+.5 rep*nTRs + .5], [-10 15], 'color', 'k', 'LineWidth', 2);
         end
+        
         savefig(sprintf('%sstim%i.fig', plotDir,stim));
+        print(thisfig, sprintf('%sstim%i.pdf', plotDir,stim), '-dpdf')
     end
     
     [nelements, xval ] = hist(sepbystim', [-.3:.05:.3]);
@@ -185,11 +194,12 @@ for s = 1:nsub
    rtdiff(s) = mean(recalldiff(1:10)); 
    omitdiff(s) = mean(recalldiff(11:end));
     
-    medsep = median(sepbystim,2);
+    medsep1 = median(sepbystim(:,1:15),2);
+    medsep2 = median(sepbystim(:,31:end),2);
     s = 100;
     figure;
     subplot(1,2,1)
-    scatter(str2num(r1Sort),medsep, s,'fill','MarkerEdgeColor','b',...
+    scatter(str2num(r1Sort),medsep1, s,'fill','MarkerEdgeColor','b',...
               'MarkerFaceColor','c',...
               'LineWidth',2.5);
     xlabel('Pre MOT Subj Rating')
@@ -199,7 +209,7 @@ for s = 1:nsub
     title(sprintf('Subject %i Evidence vs. Pre Rating',subjectNum));
 
     subplot(1,2,2)
-    scatter(medsep,str2num(r2Sort), s,'fill','MarkerEdgeColor','b',...
+    scatter(medsep2,str2num(r2Sort), s,'fill','MarkerEdgeColor','b',...
               'MarkerFaceColor','c',...
               'LineWidth',2.5);
     ylabel('Post MOT Subj Rating')
@@ -208,7 +218,7 @@ for s = 1:nsub
     xlim([-.15 .15])
     title(sprintf('Subject %i Post Rating vs. Evidence',subjectNum));
     set(findall(gcf,'-property','FontSize'),'FontSize',20)
-    savefig(sprintf('%srating.fig', plotDir));
+    savefig(sprintf('%srating_separated.fig', plotDir));
     
    
     
