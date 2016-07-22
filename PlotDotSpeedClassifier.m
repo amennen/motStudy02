@@ -24,6 +24,7 @@ for s = 1:nsub
         %blockNum = SESSION - 20 + 1;
         
         behavioral_dir = ['/Data1/code/' projectName '/' 'code' '/BehavioralData/' num2str(subjectNum) '/'];
+        behavioral_dir = [fileparts(which('mot_realtime01.m')) '/BehavioralData/' num2str(subjectNum) '/'];
         save_dir = ['/Data1/code/' projectName '/data/' num2str(subjectNum) '/']; %this is where she sets the save directory!
         runHeader = fullfile(save_dir,[ 'motRun' num2str(blockNum) '/']);
         fileSpeed = dir(fullfile(behavioral_dir, ['mot_realtime01_' num2str(subjectNum) '_' num2str(SESSION)  '*.mat']));
@@ -155,8 +156,13 @@ for s = 1:nsub
     
     stimOrder = table2array(r1.datastruct.trials(:,8));
     RTorder = stimOrder(stimOrder<11);
+    RTonly = resp1(stimOrder<11);
     [~,sortedID] = sort(RTorder);
-    r1Sort = resp1(sortedID);
+    r1Sort = RTonly(sortedID);
+    
+     %now all recall changes
+    [~,allsort] = sort(stimOrder);
+    R1recall = resp1(allsort);
     
     recallFile = dir(fullfile(behavioral_dir, ['EK23_SUB' '*mat']));
     r2 = load([behavioral_dir '/' recallFile(end).name]);
@@ -167,8 +173,17 @@ for s = 1:nsub
     
     stimOrder = table2array(r2.datastruct.trials(:,8));
     RTorder = stimOrder(stimOrder<11);
+    RTonly = resp2(stimOrder<11);
     [~,sortedID] = sort(RTorder);
-    r2Sort = resp1(sortedID);
+    r2Sort = RTonly(sortedID);
+    
+     %now all recall changes
+    [~,allsort] = sort(stimOrder);
+    R2recall = resp2(allsort);
+    
+    recalldiff = R2recall - R1recall;
+   rtdiff(s) = mean(recalldiff(1:10)); 
+   omitdiff(s) = mean(recalldiff(11:end));
     
     medsep = median(sepbystim,2);
     s = 100;
@@ -194,5 +209,8 @@ for s = 1:nsub
     title(sprintf('Subject %i Post Rating vs. Evidence',subjectNum));
     set(findall(gcf,'-property','FontSize'),'FontSize',20)
     savefig(sprintf('%srating.fig', plotDir));
+    
+   
+    
 
 end
