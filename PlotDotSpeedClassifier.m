@@ -14,7 +14,7 @@ svec = [3:5 7];
 nsub = length(svec);
 sepbystim = zeros(nstim,nTRs*3);
 speedbystim = zeros(nstim,nTRs*3);
-
+MOT_PREP = 5;
 for s = 1:nsub
     subjectNum = svec(s);
      allsep = [];
@@ -29,6 +29,11 @@ for s = 1:nsub
         save_dir = ['/Data1/code/' projectName '/data/' num2str(subjectNum) '/']; %this is where she sets the save directory!
         runHeader = fullfile(save_dir,[ 'motRun' num2str(blockNum) '/']);
         fileSpeed = dir(fullfile(behavioral_dir, ['mot_realtime01_' num2str(subjectNum) '_' num2str(SESSION)  '*.mat']));
+        %get hard speed
+        prep = dir([behavioral_dir 'mot_realtime01_' num2str(subjectNum) '_' num2str(MOT_PREP)  '*.mat']);
+        prepfile = [behavioral_dir prep(end).name];
+        lastRun = load(prepfile);
+        hardSpeed = 30 - lastRun.stim.tGuess(end);
         plotDir = ['/Data1/code/' projectName '/' 'Plots' '/' num2str(subjectNum) '/'];
         if ~exist(plotDir, 'dir')
             mkdir(plotDir);
@@ -44,16 +49,16 @@ for s = 1:nsub
         categsep = run.patterns.categsep(TRvector - 10 + 2); %minus 10 because we take out those 10
         sepbytrial = reshape(categsep,15,10);
         sepbytrial = sepbytrial'; %results by trial number, TR number
-        sepbytrial = sepbytrial(:,5:end);%take only the ones once fb starts
+       % sepbytrial = sepbytrial(:,5:end);%take only the ones once fb starts
         sepvec = reshape(sepbytrial,1,numel(sepbytrial));
 
-%         speedbytrial = reshape(speedVector,nTRs,nstim);
-%         speedbytrial = speedbytrial';
-%         [~,indSort] = sort(d.stim.id);
-%         sepinorder = sepbytrial(indSort,:);
-%         speedinorder = speedbytrial(indSort,:);
-%         sepbystim(:,(iblock-1)*nTRs + 1: iblock*nTRs ) = sepinorder;
-%         speedbystim(:,(iblock-1)*nTRs + 1: iblock*nTRs ) = speedinorder;
+        speedbytrial = reshape(speedVector,nTRs,nstim);
+        speedbytrial = speedbytrial';
+        [~,indSort] = sort(d.stim.id);
+        sepinorder = sepbytrial(indSort,:);
+        speedinorder = speedbytrial(indSort,:);
+        sepbystim(:,(iblock-1)*nTRs + 1: iblock*nTRs ) = sepinorder;
+        speedbystim(:,(iblock-1)*nTRs + 1: iblock*nTRs ) = speedinorder;
 %         x = 1:length(speedVector);
 %         subplot(2,2,iblock)
 %         [hAx,hLine1, hLine2] = plotyy(x,speedVector,x,categsep);
@@ -84,13 +89,26 @@ for s = 1:nsub
         allsep = [allsep sepvec];
         
     end
+    newspeedbystim = reshape(speedbystim,1,numel(speedbystim));
+    newsepbystim = reshape(sepbystim,1,numel(sepbystim));
+    [good] = find(newsepbystim > 0.05 & newsepbystim < 0.15);
+    goodSpeeds = newspeedbystim(good);
+    [thisfig,maxLoc] = plotDist(goodSpeeds,0,-1:.5:6.5);
+    title(sprintf('Subject %i Speeds for Good Evidence Dist', subjectNum))
+    xlabel('Dot Speed')
+    ylim([0 1])
+    xlim([-.5 7])
+    text(2.5,.85,['mode = ' num2str(maxLoc)]);
+    text(2.5,.65, sprintf('hardSpeed = %4.2f', hardSpeed))
+    set(findall(gcf,'-property','FontSize'),'FontSize',20)
+
     %look up how to change yaxis categories
     %do to later: rearrange all motion trials by stimulus ID and then plot on
     %subplots every block
     
     thisfig = plotDist(allsep,1,[-.55:.1:.55]);
     title(sprintf('Subject %i Distribution', subjectNum))
-    
+    line([0.1 0.1], [0 1], 'color', 'c', 'LineWidth', 2, 'LineStyle', '--');
 %     figure;
 %     scatter(allspeeds,allsep);
 %     %lsline;
