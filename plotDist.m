@@ -1,10 +1,11 @@
-function [fighandle, maxLoc] = plotDist(data,keepbars,varargin)
+function [fighandle, cm,counts] = plotDist(data,keepbars,varargin)
 
 if ~isempty(varargin)
     [counts,bins]=hist(data,varargin{1});%# create histogram from a normal distribution.
 else
     [counts,bins]=hist(data);
 end
+cm = (1/sum(counts))*dot(counts,bins);
 %[fks,xi] = ksdensity(inData,bins);
 bins_interp = linspace(bins(1),bins(end),500);
 counts_interp = interp1(bins,counts,bins_interp, 'spline');
@@ -24,7 +25,7 @@ if keepbars
     hold on
 end
 %plot(xi,fks*length(inData), 'r')
-plot(bins_interp, counts_interp/sum(counts), 'm', 'LineWidth', 3);
+plot(bins_interp, counts_interp/sum(counts), 'color', [84 255 199]/255, 'LineWidth', 3);
 %plot(xvals,y,'linewidth', 2);
 %fnplt(DF, 'r', 2)
 %plot(x,g,'r');hold off
@@ -32,9 +33,7 @@ title('Distribution')
 ylabel('Frequency')
 xlabel('Value')
 %ylim([0 0.3])
-[z i] = max(counts);
-maxLoc = bins(i);
-line([bins(i) bins(i)], [0 1], 'color', 'k', 'LineWidth', 2);
+%line([bins(i) bins(i)], [0 1], 'color', 'k', 'LineWidth', 2);
 
 
 set(findall(gcf,'-property','FontSize'),'FontSize',20)

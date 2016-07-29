@@ -1628,6 +1628,7 @@ switch SESSION
             addTR = 10;
         end
         rtData.classOutputFileLoad = nan(1,config.nTRs.perBlock + addTR);
+        rtData.classOutputFile = nan(1,config.nTRs.perBlock + addTR);
         rtData.rtDecoding = nan(1,config.nTRs.perBlock+ addTR);
         rtData.smoothRTDecoding = nan(1,config.nTRs.perBlock+ addTR);
         rtData.rtDecodingFunction = nan(1,config.nTRs.perBlock+ addTR);
@@ -1837,7 +1838,7 @@ switch SESSION
                            % stim.motionSpeed(TRcounter,n) = current_speed; %speed ON that TR
                             %we want to save the last speed for future
                             %runs--save by id, don't save if not lure trial
-                            if TRcounter == config.nTRs.motion 
+                            if TRcounter == config.nTRs.motion %on last TR
                                 stim.lastSpeed(stim.id(stim.trial)) = current_speed; %going to save it in a matrix of run,stimID
                                 stim.lastRTDecoding(stim.id(stim.trial)) = rtData.rtDecoding(allMotionTRs(TRcounter-2,n)); %file 9 that's applied now
                                 stim.lastRTDecodingFunction(stim.id(stim.trial)) = rtData.rtDecodingFunction(allMotionTRs(TRcounter-2,n));

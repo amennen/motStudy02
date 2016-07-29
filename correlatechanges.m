@@ -15,7 +15,7 @@ svec = [3:5 7];
 nsub = length(svec);
 sepbystim = zeros(nstim,nTRs*3);
 speedbystim = zeros(nstim,nTRs*3);
-num2avg = 4; %including starting point
+num2avg = 3; %including starting point
 
 for s = 1:nsub
     subjectNum = svec(s);
@@ -92,10 +92,10 @@ for s = 1:nsub
     newspeeds = reshape(allspeedchanges(:,:,s),1,numel(allspeedchanges(:,:,s)));
     newseps = reshape(allsepchanges(:,:,s),1,numel(allsepchanges(:,:,s)));
     izero = find(newspeeds==0);
-    newspeeds(izero) = [];
-    newseps(izero) = [];
+   % newspeeds(izero) = [];
+   % newseps(izero) = [];
     
-    figure;
+    h = figure;
     x = newspeeds;
     y = newseps;
     scatter(newspeeds,newseps,'fill','MarkerEdgeColor','b',...
@@ -114,10 +114,10 @@ for s = 1:nsub
     text(2,.45, ['slope = ' num2str(p(1))])
     
     ylim([-1 1])
-    xlim([-5 6 ])
+    xlim([-6 6 ])
     title(sprintf('Subject %i Post Rating vs. Evidence',subjectNum));
     set(findall(gcf,'-property','FontSize'),'FontSize',20)
-    
+    print(h, sprintf('%scorrelations.pdf', plotDir), '-dpdf')
     
     %look up how to change yaxis categories
     %do to later: rearrange all motion trials by stimulus ID and then plot on
@@ -127,9 +127,9 @@ for s = 1:nsub
     newavgspeeds = reshape(allavgspeed(:,:,s),1,numel(allavgspeed(:,:,s)));
     newavgseps = reshape(allavgsep(:,:,s),1,numel(allavgsep(:,:,s)));
     izero = find(newavgspeeds==0);
-    newavgspeeds(izero) = [];
-    newavgseps(izero) = [];
-     figure;
+    %newavgspeeds(izero) = [];
+    %newavgseps(izero) = [];
+    h = figure;
     x = newavgspeeds;
     y = newavgseps;
     scatter(x,y,'fill','MarkerEdgeColor','b',...
@@ -148,8 +148,8 @@ for s = 1:nsub
     text(2,.45, ['slope = ' num2str(p(1))]);
     
     ylim([-1 1])
-    xlim([-5 6 ])
+    xlim([-6 6 ])
     title(sprintf('AVG Subject %i Post Rating vs. Evidence',subjectNum));
     set(findall(gcf,'-property','FontSize'),'FontSize',20)
-    
+   print(h, sprintf('%sAVG%i_correlations.pdf', plotDir,num2avg), '-dpdf')
 end
