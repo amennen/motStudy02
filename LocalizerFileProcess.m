@@ -284,6 +284,8 @@ trainStart = tic;
 %first get session information
 [newpattern t] = GetSessionInfoRT(subjectNum,SESSION,behavioral_dir,keepTR);
 patterns.regressor.twoCond = newpattern.regressor.twoCond;
+patterns.regressor.allCond = newpattern.regressor.allCond;
+
 trainIdx = find(newpattern.selector.xval); %find all nonzero timepoints to train on
 %trainLabels = patterns.regressor.twoCond([1 2],trainIdx);
 trainPats = patterns.raw_sm_filt_z(trainIdx+shiftTR,:);
