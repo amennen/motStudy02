@@ -1,0 +1,9 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	9.9   	26  	ATOM      	stair   	3.456	1.782	1   	full    	full    
+2   	24.2  	21  	GALLERY   	stair   	3.455	1.062	1   	full    	full    
+3   	37.3  	24  	HAIRPIN   	stair   	3.453	2.167	1   	2+ details	2+ details
+4   	50.5  	25  	PLANK     	stair   	3.451	2.199	1   	1 detail	1 detail
+5   	62.5  	28  	RADIO     	stair   	3.455	1.149	1   	full    	full    
+6   	74.5  	22  	SAWDUST   	stair   	3.452	2.299	1   	1 detail	1 detail
+7   	86.5  	27  	ROPE      	stair   	3.455	0.81	1   	1 detail	1 detail
+8   	98.5  	23  	HANDLE    	stair   	3.454	0.816	1   	full    	full    

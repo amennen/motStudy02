@@ -56,6 +56,7 @@ function [mainWindow windowSize colors device trigger workingDir logName matlabS
                 ls('/Users/normanlab/mot_study/')
                 workingDir = '/Users/normanlab/motStudy02/';
                 windowSize.degrees = [35 30];
+                addpath(genpath('/Users/normanlab/mychanges_sptb/'));
                 catch
                     try %Skyra
                         ls('/Data1/code/motStudy02/')

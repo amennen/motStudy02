@@ -1,0 +1,114 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	19.8  	1   	IRON      	lure    	0.39	NR  	1   	NR      	NR      
+2   	20.2  	2   	BELT      	lure    	0.428	NR  	1   	NR      	NR      
+3   	20.7  	3   	BADGE     	lure    	0.374	NR  	1   	NR      	NR      
+4   	21.2  	4   	PILE      	lure    	0.511	NR  	1   	NR      	NR      
+5   	21.7  	5   	MAST      	lure    	0.409	NR  	1   	NR      	NR      
+6   	22.2  	6   	RAKE      	lure    	0.404	NR  	1   	NR      	NR      
+7   	22.7  	7   	GALLON    	lure    	0.474	NR  	1   	NR      	NR      
+8   	23.2  	4   	PILE (repeat 1)	lure    	0.424	NR  	1   	NR      	NR      
+9   	23.7  	7   	GALLON (repeat 1)	lure    	0.252	NR  	1   	NR      	NR      
+10  	24    	5   	MAST (repeat 1)	lure    	0.685	NR  	1   	NR      	NR      
+11  	24.8  	1   	IRON (repeat 1)	lure    	0.515	NR  	1   	NR      	NR      
+12  	25.3  	3   	BADGE (repeat 1)	lure    	0.613	NR  	1   	NR      	NR      
+13  	26    	4   	PILE (repeat 2)	lure    	0.375	NR  	1   	NR      	NR      
+14  	26.4  	1   	IRON (repeat 2)	lure    	0.694	NR  	1   	NR      	NR      
+15  	27.2  	4   	PILE (repeat 3)	lure    	0.451	NR  	1   	NR      	NR      
+16  	27.7  	1   	IRON (repeat 3)	lure    	0.404	NR  	1   	NR      	NR      
+17  	28.2  	4   	PILE (repeat 4)	lure    	0.451	NR  	1   	NR      	NR      
+18  	28.7  	6   	RAKE (repeat 1)	lure    	0.565	NR  	1   	NR      	NR      
+19  	29.3  	2   	BELT (repeat 1)	lure    	0.451	NR  	1   	NR      	NR      
+20  	29.8  	7   	GALLON (repeat 2)	lure    	0.554	NR  	1   	NR      	NR      
+21  	30.4  	6   	RAKE (repeat 2)	lure    	0.451	NR  	1   	NR      	NR      
+22  	30.9  	1   	IRON (repeat 4)	lure    	0.696	NR  	1   	NR      	NR      
+23  	31.7  	5   	MAST (repeat 2)	lure    	0.451	NR  	1   	NR      	NR      
+24  	32.2  	8   	LIME      	fruit   	0.954	0.593	1   	target  	target  
+25  	33.2  	7   	GALLON (repeat 3)	lure    	0.319	NR  	1   	NR      	NR      
+26  	33.5  	4   	PILE (repeat 5)	lure    	0.635	NR  	1   	NR      	NR      
+27  	34.2  	6   	RAKE (repeat 3)	lure    	0.476	NR  	1   	NR      	NR      
+28  	34.8  	1   	IRON (repeat 5)	lure    	0.275	NR  	1   	NR      	NR      
+29  	35.1  	5   	MAST (repeat 3)	lure    	0.308	NR  	1   	NR      	NR      
+30  	35.5  	7   	GALLON (repeat 4)	lure    	0.643	NR  	1   	NR      	NR      
+31  	36.2  	2   	BELT (repeat 2)	lure    	0.509	NR  	1   	NR      	NR      
+32  	36.7  	6   	RAKE (repeat 4)	lure    	0.333	NR  	1   	NR      	NR      
+33  	37.1  	5   	MAST (repeat 4)	lure    	0.317	NR  	1   	NR      	NR      
+34  	37.5  	3   	BADGE (repeat 2)	lure    	0.608	NR  	1   	NR      	NR      
+35  	38.2  	2   	BELT (repeat 3)	lure    	0.424	NR  	1   	NR      	NR      
+36  	38.6  	4   	PILE (repeat 6)	lure    	0.504	NR  	1   	NR      	NR      
+37  	39.2  	5   	MAST (repeat 5)	lure    	0.347	NR  	1   	NR      	NR      
+38  	39.6  	7   	GALLON (repeat 5)	lure    	0.556	NR  	1   	NR      	NR      
+39  	40.2  	2   	BELT (repeat 4)	lure    	0.378	NR  	1   	NR      	NR      
+40  	40.7  	6   	RAKE (repeat 5)	lure    	0.312	NR  	1   	NR      	NR      
+41  	41    	7   	GALLON (repeat 6)	lure    	0.682	NR  	1   	NR      	NR      
+42  	41.8  	1   	IRON (repeat 6)	lure    	0.29	NR  	1   	NR      	NR      
+43  	42.1  	2   	BELT (repeat 5)	lure    	0.383	NR  	1   	NR      	NR      
+44  	42.5  	7   	GALLON (repeat 7)	lure    	0.481	NR  	1   	NR      	NR      
+45  	43.1  	3   	BADGE (repeat 3)	lure    	0.657	NR  	1   	NR      	NR      
+46  	43.8  	2   	BELT (repeat 6)	lure    	0.451	NR  	1   	NR      	NR      
+47  	44.3  	4   	PILE (repeat 7)	lure    	0.637	NR  	1   	NR      	NR      
+48  	45    	3   	BADGE (repeat 4)	lure    	0.451	NR  	1   	NR      	NR      
+49  	45.5  	9   	PLUM      	fruit   	0.952	0.618	1   	target  	target  
+50  	46.5  	3   	BADGE (repeat 5)	lure    	0.538	NR  	1   	NR      	NR      
+51  	47.1  	1   	IRON (repeat 7)	lure    	0.585	NR  	1   	NR      	NR      
+52  	47.7  	4   	PILE (repeat 8)	lure    	0.58	NR  	1   	NR      	NR      
+53  	48.4  	3   	BADGE (repeat 6)	lure    	0.634	NR  	1   	NR      	NR      
+54  	49    	4   	PILE (repeat 9)	lure    	0.453	NR  	1   	NR      	NR      
+55  	49.6  	6   	RAKE (repeat 6)	lure    	0.356	NR  	1   	NR      	NR      
+56  	50    	2   	BELT (repeat 7)	lure    	0.4 	NR  	1   	NR      	NR      
+57  	50.4  	1   	IRON (repeat 8)	lure    	0.613	NR  	1   	NR      	NR      
+58  	51.1  	4   	PILE (repeat 10)	lure    	0.665	NR  	1   	NR      	NR      
+59  	51.8  	3   	BADGE (repeat 7)	lure    	0.368	NR  	1   	NR      	NR      
+60  	52.2  	7   	GALLON (repeat 8)	lure    	0.285	NR  	1   	NR      	NR      
+61  	52.6  	5   	MAST (repeat 6)	lure    	0.446	NR  	1   	NR      	NR      
+62  	53.1  	2   	BELT (repeat 8)	lure    	0.432	NR  	1   	NR      	NR      
+63  	53.5  	4   	PILE (repeat 11)	lure    	0.31	NR  	1   	NR      	NR      
+64  	53.9  	1   	IRON (repeat 9)	lure    	0.324	NR  	1   	NR      	NR      
+65  	54.3  	3   	BADGE (repeat 8)	lure    	0.372	NR  	1   	NR      	NR      
+66  	54.7  	1   	IRON (repeat 10)	lure    	0.423	NR  	1   	NR      	NR      
+67  	55.2  	3   	BADGE (repeat 9)	lure    	0.4 	NR  	1   	NR      	NR      
+68  	55.7  	1   	IRON (repeat 11)	lure    	0.377	NR  	1   	NR      	NR      
+69  	56.1  	6   	RAKE (repeat 7)	lure    	0.495	NR  	1   	NR      	NR      
+70  	56.6  	2   	BELT (repeat 9)	lure    	0.456	NR  	1   	NR      	NR      
+71  	57.2  	6   	RAKE (repeat 8)	lure    	0.451	NR  	1   	NR      	NR      
+72  	57.7  	1   	IRON (repeat 12)	lure    	0.327	NR  	1   	NR      	NR      
+73  	58    	3   	BADGE (repeat 10)	lure    	0.451	NR  	1   	NR      	NR      
+74  	58.5  	10  	APPLE     	fruit   	0.951	0.516	1   	target  	target  
+75  	59.5  	1   	IRON (repeat 13)	lure    	0.372	NR  	1   	NR      	NR      
+76  	60    	7   	GALLON (repeat 9)	lure    	0.699	NR  	1   	NR      	NR      
+77  	60.7  	5   	MAST (repeat 7)	lure    	0.323	NR  	1   	NR      	NR      
+78  	61.1  	7   	GALLON (repeat 10)	lure    	0.454	NR  	1   	NR      	NR      
+79  	61.6  	5   	MAST (repeat 8)	lure    	0.38	NR  	1   	NR      	NR      
+80  	62    	7   	GALLON (repeat 11)	lure    	0.265	NR  	1   	NR      	NR      
+81  	62.4  	4   	PILE (repeat 12)	lure    	0.672	NR  	1   	NR      	NR      
+82  	63.1  	2   	BELT (repeat 10)	lure    	0.335	NR  	1   	NR      	NR      
+83  	63.5  	4   	PILE (repeat 13)	lure    	0.43	NR  	1   	NR      	NR      
+84  	64    	3   	BADGE (repeat 11)	lure    	0.473	NR  	1   	NR      	NR      
+85  	64.5  	1   	IRON (repeat 14)	lure    	0.536	NR  	1   	NR      	NR      
+86  	65.1  	6   	RAKE (repeat 9)	lure    	0.396	NR  	1   	NR      	NR      
+87  	65.5  	4   	PILE (repeat 14)	lure    	0.687	NR  	1   	NR      	NR      
+88  	66.3  	5   	MAST (repeat 9)	lure    	0.379	NR  	1   	NR      	NR      
+89  	66.7  	7   	GALLON (repeat 12)	lure    	0.301	NR  	1   	NR      	NR      
+90  	67.1  	3   	BADGE (repeat 12)	lure    	0.697	NR  	1   	NR      	NR      
+91  	67.8  	6   	RAKE (repeat 10)	lure    	0.598	NR  	1   	NR      	NR      
+92  	68.5  	2   	BELT (repeat 11)	lure    	0.471	NR  	1   	NR      	NR      
+93  	69    	6   	RAKE (repeat 11)	lure    	0.519	NR  	1   	NR      	NR      
+94  	69.5  	5   	MAST (repeat 10)	lure    	0.319	NR  	1   	NR      	NR      
+95  	69.9  	4   	PILE (repeat 15)	lure    	0.422	NR  	1   	NR      	NR      
+96  	70.4  	6   	RAKE (repeat 12)	lure    	0.451	NR  	1   	NR      	NR      
+97  	70.9  	4   	PILE (repeat 16)	lure    	0.512	NR  	1   	NR      	NR      
+98  	71.5  	2   	BELT (repeat 12)	lure    	0.451	NR  	1   	NR      	NR      
+99  	72    	5   	MAST (repeat 11)	lure    	0.379	NR  	1   	NR      	NR      
+100 	72.4  	1   	IRON (repeat 15)	lure    	0.451	NR  	1   	NR      	NR      
+101 	72.9  	6   	RAKE (repeat 13)	lure    	0.408	NR  	1   	NR      	NR      
+102 	73.4  	3   	BADGE (repeat 13)	lure    	0.451	NR  	1   	NR      	NR      
+103 	73.9  	4   	PILE (repeat 17)	lure    	0.497	NR  	1   	NR      	NR      
+104 	74.4  	5   	MAST (repeat 12)	lure    	0.451	NR  	1   	NR      	NR      
+105 	74.9  	11  	BANANA    	fruit   	0.956	0.48	1   	target  	target  
+106 	75.9  	3   	BADGE (repeat 14)	lure    	0.458	NR  	1   	NR      	NR      
+107 	76.5  	4   	PILE (repeat 18)	lure    	0.381	NR  	1   	NR      	NR      
+108 	76.9  	1   	IRON (repeat 16)	lure    	0.57	NR  	1   	NR      	NR      
+109 	77.5  	6   	RAKE (repeat 14)	lure    	0.354	NR  	1   	NR      	NR      
+110 	77.9  	5   	MAST (repeat 13)	lure    	0.39	NR  	1   	NR      	NR      
+111 	78.4  	2   	BELT (repeat 13)	lure    	0.36	NR  	1   	NR      	NR      
+112 	78.8  	6   	RAKE (repeat 15)	lure    	0.676	NR  	1   	NR      	NR      
+113 	79.5  	2   	BELT (repeat 14)	lure    	0.667	NR  	1   	NR      	NR      

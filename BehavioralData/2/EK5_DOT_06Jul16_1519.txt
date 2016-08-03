@@ -1,0 +1,49 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	34.2  	28  	SCREEN    	target  	1.951	1.045	0   	non-target	target  
+2   	76.2  	28  	SCREEN (repeat 1)	target  	1.955	0.972	0   	non-target	target  
+3   	118.2 	24  	BROOM     	target  	1.953	1.055	1   	non-target	non-target
+4   	160.2 	28  	SCREEN (repeat 2)	target  	1.954	0.989	1   	non-target	non-target
+5   	202.2 	21  	ATOM      	target  	1.952	1.221	1   	target  	target  
+6   	275.9 	27  	ROPE      	target  	1.951	NR  	0   	NR      	target  
+7   	317.9 	22  	FRAME     	target  	1.951	NR  	0   	NR      	target  
+8   	359.9 	23  	LIGHT     	target  	1.956	0.976	1   	non-target	non-target
+9   	401.9 	26  	NAIL      	target  	1.955	0.862	0   	non-target	target  
+10  	443.9 	25  	RACK      	target  	1.954	1.187	0   	non-target	target  
+11  	495.4 	21  	ATOM (repeat 1)	target  	1.954	0.956	1   	target  	target  
+12  	537.4 	27  	ROPE (repeat 1)	target  	1.956	0.86	1   	non-target	non-target
+13  	579.4 	26  	NAIL (repeat 1)	target  	1.956	0.922	1   	target  	target  
+14  	621.4 	24  	BROOM (repeat 1)	target  	1.952	0.799	1   	non-target	non-target
+15  	663.4 	23  	LIGHT (repeat 1)	target  	1.956	0.996	1   	non-target	non-target
+16  	732.8 	21  	ATOM (repeat 2)	target  	1.951	0.915	1   	non-target	non-target
+17  	774.8 	27  	ROPE (repeat 2)	target  	1.955	0.873	1   	non-target	non-target
+18  	816.8 	26  	NAIL (repeat 2)	target  	1.952	1.007	0   	non-target	target  
+19  	858.8 	22  	FRAME (repeat 1)	target  	1.95	0.906	1   	non-target	non-target
+20  	900.8 	23  	LIGHT (repeat 2)	target  	1.955	1.13	1   	target  	target  
+21  	978.8 	28  	SCREEN (repeat 3)	target  	1.956	0.947	1   	non-target	non-target
+22  	1020.8	22  	FRAME (repeat 2)	target  	1.956	0.759	0   	non-target	target  
+23  	1062.8	25  	RACK (repeat 1)	target  	1.954	1.012	1   	target  	target  
+24  	1104.8	22  	FRAME (repeat 3)	target  	1.955	1.164	1   	non-target	non-target
+25  	1146.8	27  	ROPE (repeat 3)	target  	1.953	0.879	1   	non-target	non-target
+26  	1210.7	27  	ROPE (repeat 4)	target  	1.954	0.919	1   	non-target	non-target
+27  	1252.7	21  	ATOM (repeat 3)	target  	1.956	0.917	1   	non-target	non-target
+28  	1294.7	22  	FRAME (repeat 4)	target  	1.955	0.917	1   	target  	target  
+29  	1336.7	26  	NAIL (repeat 3)	target  	1.955	1.098	1   	target  	target  
+30  	1378.7	24  	BROOM (repeat 2)	target  	1.954	0.768	1   	target  	target  
+31  	1452.7	22  	FRAME (repeat 5)	target  	1.951	1.156	1   	non-target	non-target
+32  	1494.7	25  	RACK (repeat 2)	target  	1.951	1.146	1   	target  	target  
+33  	1536.7	21  	ATOM (repeat 4)	target  	1.955	0.831	1   	non-target	non-target
+34  	1578.7	27  	ROPE (repeat 5)	target  	1.953	1.061	1   	target  	target  
+35  	1620.7	24  	BROOM (repeat 3)	target  	1.955	1.129	1   	target  	target  
+36  	1702.7	28  	SCREEN (repeat 4)	target  	1.953	1.101	1   	non-target	non-target
+37  	1744.7	25  	RACK (repeat 3)	target  	1.956	0.923	1   	target  	target  
+38  	1786.7	21  	ATOM (repeat 5)	target  	1.952	1.128	0   	target  	non-target
+39  	1828.7	25  	RACK (repeat 4)	target  	1.954	1.089	1   	non-target	non-target
+40  	1870.7	23  	LIGHT (repeat 3)	target  	1.951	0.863	0   	non-target	target  
+41  	1914.7	25  	RACK (repeat 5)	target  	1.955	0.931	1   	non-target	non-target
+42  	1956.7	23  	LIGHT (repeat 4)	target  	1.952	1.017	1   	target  	target  
+43  	1998.7	28  	SCREEN (repeat 5)	target  	1.955	1.031	1   	target  	target  
+44  	2040.7	26  	NAIL (repeat 4)	target  	1.954	0.895	1   	non-target	non-target
+45  	2082.7	26  	NAIL (repeat 5)	target  	1.953	0.925	1   	non-target	non-target
+46  	2137.3	24  	BROOM (repeat 4)	target  	1.95	1.068	1   	non-target	non-target
+47  	2179.3	24  	BROOM (repeat 5)	target  	1.956	0.614	1   	target  	target  
+48  	2221.3	23  	LIGHT (repeat 5)	target  	1.956	0.683	1   	target  	target  

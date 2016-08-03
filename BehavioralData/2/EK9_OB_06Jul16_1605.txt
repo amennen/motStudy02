@@ -1,0 +1,21 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	8.1   	2   	TICKET    	realtime	3.452	1.158	1   	full    	full    
+2   	20.1  	12  	PELLET    	omit    	3.451	1.052	1   	1 detail	1 detail
+3   	32.1  	18  	COACH     	omit    	3.454	1.003	1   	2+ details	2+ details
+4   	44.1  	8   	TART      	realtime	3.45	1.081	1   	full    	full    
+5   	56.1  	14  	SACK      	omit    	3.454	2.815	1   	full    	full    
+6   	68.1  	6   	ARCTIC    	realtime	3.45	1.077	1   	full    	full    
+7   	80.1  	13  	MAGAZINE  	omit    	3.45	1.235	1   	2+ details	2+ details
+8   	92.1  	3   	RULER     	realtime	3.456	0.865	1   	1 detail	1 detail
+9   	104.1 	11  	BUCKLE    	omit    	3.451	0.599	1   	full    	full    
+10  	116.1 	9   	NOVEL     	realtime	3.453	0.91	1   	2+ details	2+ details
+11  	128.1 	17  	SHELL     	omit    	3.451	0.668	1   	1 detail	1 detail
+12  	140.1 	7   	SHIELD    	realtime	3.451	0.842	1   	1 detail	1 detail
+13  	152.1 	15  	PADDLE    	omit    	3.452	1.345	1   	2+ details	2+ details
+14  	164.1 	10  	HOOD      	realtime	3.451	0.886	1   	2+ details	2+ details
+15  	176.1 	5   	ARROW     	realtime	3.451	0.773	1   	2+ details	2+ details
+16  	188.1 	16  	BUCKET    	omit    	3.455	0.947	1   	2+ details	2+ details
+17  	200.1 	1   	PILE      	realtime	3.453	0.769	1   	full    	full    
+18  	212.1 	19  	FOSSIL    	omit    	3.455	0.656	1   	full    	full    
+19  	224.1 	20  	PEBBLE    	omit    	3.452	1.222	1   	generic 	generic 
+20  	236.1 	4   	POLE      	realtime	3.451	0.852	1   	full    	full    

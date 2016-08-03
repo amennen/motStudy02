@@ -1,9 +1,11 @@
 %%so now this would be all the commands you would want to do ONLY for
 %%fmri session
 %first these are all the session numbers
-SUBJECT = 1;
-prev = 1; %if today's date or previous date
-scanNow = 0; %if using triggers
+
+SUBJECT = 7; %experimental subject number
+prev = 0; %if today's date (0) or previous date (1)
+scanNow = 1; %if using triggers (1)
+runNum = 1; %what number subject they are today
 
 SPTB_PATH = ['/Data1/code/SPTBanne'];
 addpath(genpath(SPTB_PATH));
@@ -44,7 +46,7 @@ end
 RECALL2 = MOT{end} + 1; % post-scan rsvp memory test
 ASSOCIATES = RECALL2 + 1;
 %last input is scan number
-%scanning numbers should be 21 total
+%scanning numbers should be 21 total3
 % 1-4: SCOUT
 % 5: MPRAGE
 % (6)7: EXFUNCTIONAL
@@ -57,19 +59,19 @@ ASSOCIATES = RECALL2 + 1;
 % (20)21: RECALL 2
 
 %% RUN MP_RAGE FIRST
-
+%% RUN VARIOUS BEHAVIORAL TASKS
+%first MOT_PRACTICE and RECALL PRACTICE
+mot_realtime01(SUBJECT,MOT_PRACTICE2, [],0,scanNow); %will move automatically into RECALL_PRACTICE
+%then start RSVP task
 %% SCAN_PREP: instructions and also 8 seconds
 scanNum = 7;
 mot_realtime01(SUBJECT,SCAN_PREP,[],scanNum,scanNow)
 
 %% SCAN_PREP FILE PROCESS
-scanNum = 7; %change 111back
+scanNum = 7; %change 
 processNew = 1;
-ProcessMask(SUBJECT,processNew,prev,scanNum) %have it so it waits until it finds the file
-%% RUN VARIOUS BEHAVIORAL TASKS
-%first MOT_PRACTICE and RECALL PRACTICE
-mot_realtime01(SUBJECT,MOT_PRACTICE2, [],0,scanNow); %will move automatically into RECALL_PRACTICE
-%then start RSVP task
+ProcessMask(SUBJECT,processNew,prev,scanNum,runNum) %have it so it waits until it finds the file
+
 %% NOW RUN FIELD MAPS WHILE NEXT BEHAVIORAL TASKS (RSVP2,FAMILIARIZE3,TOCRITERION3)
 
 mot_realtime01(SUBJECT,RSVP2,[],0,scanNow) %will continue until TOCRITERION3
@@ -82,9 +84,9 @@ mot_realtime01(SUBJECT,MOT_LOCALIZER,[],scanNum,scanNow);
 %% LOCALIZER FILE PROCESS
 scanNum = 11;
 crossval = 0;
-crossval = 1;
+%crossval = 1;
 featureSelect = 1;
-LocalizerFileProcess(SUBJECT,crossval,featureSelect,prev,scanNow,scanNum,MOT_LOCALIZER)
+LocalizerFileProcess(SUBJECT,crossval,featureSelect,prev,scanNow,scanNum,MOT_LOCALIZER,runNum)
 
 %% RECALL 1
 scanNum = 13;
@@ -97,7 +99,7 @@ mot_realtime01(SUBJECT,MOT{1},[],scanNum,scanNow);
 scanNum = 15;%normally 15;
 blockNum = 1;
 featureSelect = 1;
-RealTimeMemoryFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{1},blockNum);
+RealTimeMemoryFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{1},blockNum,runNum);
 
 %% MOT RUN 2 DISPLAY
 scanNum = 17;
@@ -106,7 +108,7 @@ mot_realtime01(SUBJECT,MOT{2},[],scanNum,scanNow);
 scanNum = 17;
 featureSelect = 1;
 blockNum = 2;
-RealTimeMemoryFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{2},blockNum);
+RealTimeMemoryFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{2},blockNum,runNum);
 
 %% MOT RUN 3 DISPLAY
 scanNum = 19;
@@ -115,7 +117,7 @@ mot_realtime01(SUBJECT,MOT{3},[],scanNum,scanNow);
 scanNum = 19;
 featureSelect = 1;
 blockNum = 3;
-RealTimeMemoryFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{3},blockNum);
+RealTimeMemoryFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{3},blockNum,runNum);
 
 %% RECALL 2
 scanNum = 21;

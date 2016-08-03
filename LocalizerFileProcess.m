@@ -1,4 +1,4 @@
-function LocalizerFileProcess(subjectNum,crossval,featureSelect,prev,scanNow,scanNum,SESSION)
+function LocalizerFileProcess(subjectNum,crossval,featureSelect,prev,scanNow,scanNum,SESSION,runNum)
 % now going to be loading in localizer data
 if IsLinux
     biac_dir = '/Data1/packages/BIAC_Matlab_R2014a/';
@@ -13,10 +13,7 @@ if ~exist('readmr','file')
     addpath([biac_dir '/general/'])
 end
 
-%subjectNum = 1;
 %runNum = 1;
-
-runNum = 1;
 % set up paths
 % if prev
 %     projectName = 'motStudy01';
@@ -304,8 +301,10 @@ trainedModel = train_ridge(trainPats,trainTargs,penalty); %the weights are train
 
 trainingOnlyTime = toc(trainStart);  %end timing
 
+if ~crossval %only save if we're not cross-validating (assuming cross-val is just for testing)
 save([patterns_dir 'locpatternsdata_' num2str(runNum) '_' datestr(now,30)],'patterns');
 save([patterns_dir 'loctrainedModel_' num2str(runNum) '_' datestr(now,30)],'trainedModel','trainPats','t');
+end
 
 %print training timing and results
 printlog(dataFile,'\n*********************************************\n');

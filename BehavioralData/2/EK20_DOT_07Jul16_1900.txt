@@ -1,0 +1,3 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	80.2  	2   	TICKET    	rt-targ 	1.951	1.541	1   	non-target	non-target
+2   	122.2 	8   	TART      	rt-targ 	1.95	1.069	1   	non-target	non-target

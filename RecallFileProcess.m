@@ -1,4 +1,4 @@
-function [patterns, t] = RecallFileProcess(subjectNum,runNum,scanNum,SESSION,featureSelect) %,rtfeedback)
+function [patterns, t] = RecallFileProcess(subjectNum,runNum,scanNum,SESSION,date,featureSelect) %,rtfeedback)
 % function [patterns] = RealTimeMemoryFileProcess(subjectNum,subjectName,runNum,scanNum,rtData)
 %
 % this function describes the file processing procedure for the realtime
@@ -45,31 +45,24 @@ function [patterns, t] = RecallFileProcess(subjectNum,runNum,scanNum,SESSION,fea
 
 %% initialize path prefix for different replyDrive
 
-jukeboxPrefix = '/Volumes/norman/debetten/projects/cntxtReact02/subjects/'; %'/disk1/datafiles/'; %
-projectName = 'motStudy01';
+projectName = 'motStudy02';
 setenv('FSLOUTPUTTYPE','NIFTI_GZ');
-save_dir = ['/Data1/code/' projectName '/data/' num2str(subjectNum) '/']; %this is where she sets the save directory!
-mask_dir = ['/Data1/code/' projectName '/data/' num2str(subjectNum) '/'];
-roi_dir = ['/Data1/code/' projectName '/data/'];
-code_dir = ['/Data1/code/' projectName '/']; %change to wherever code is stored
-addpath(genpath(code_dir));
 
-allDates = {'3-26-2016', '3-29-2016', '4-1-2016', '4-27-2016', '4-29-2016', '5-05-2016'};
-NSUB = length(allDates);
-subjectName = [datestr(allDates{subjectNum},5) datestr(allDates{subjectNum},7) datestr(allDates{subjectNum},11) num2str(runNum) '_' projectName];
-prev = 1;
-if ~prev %if getting data today
-    dicom_dir = ['/Data1/subjects/' datestr(now,10) datestr(now,5) datestr(now,7) '.' subjectName '.' subjectName '/'];
-else
-    dicom_dir = ['/Data1/subjects/' datestr(allDates{subjectNum},10) datestr(allDates{subjectNum},5) datestr(allDates{subjectNum},7) '.' subjectName '.' subjectName '/'];
-end
+save_dir = ['/Data1/code/' projectName '/data/' num2str(subjectNum) '/']; %this is where she sets the save directory!
+process_dir = ['/Data1/code/' projectName '/data/' num2str(subjectNum) '/' 'reg' '/'];
+code_dir = ['/Data1/code/' projectName '/' 'code' '/']; %change to wherever code is stored
+locPatterns_dir = fullfile(save_dir, 'Localizer/');
+behavioral_dir = ['/Data1/code/' projectName '/' 'code' '/BehavioralData/' num2str(subjectNum) '/'];
+addpath(genpath(code_dir));
+subjectName = [datestr(date,5) datestr(date,7) datestr(date,11) num2str(runNum) '_' projectName];
+dicom_dir = ['/Data1/subjects/' datestr(date,10) datestr(date,5) datestr(date,7) '.' subjectName '.' subjectName '/'];
+
 %check that dicom_dir exists
 assert(logical(exist(dicom_dir,'dir')));
 fprintf('fMRI files being read from: %s\n',dicom_dir);
 
-
 runHeader = [save_dir '/recallrun' num2str(runNum)];
-classOutputDir = [runHeader '/classoutput'];
+classOutputDir = [runHeader '/classOutput/'];
 
 %get ROI
 imgmat = 64; %image matrix size
@@ -78,10 +71,10 @@ roi_name = 'retrieval';
 stretched = 0;
 if anat_mask
     if stretched
-        temp = load(fullfile(mask_dir,[roi_name '_anat_mask' '.mat'])); %should be stretched_brain
+        temp = load(fullfile(process_dir,[roi_name '_anat_mask' '.mat'])); %should be stretched_brain
         roi = logical(temp.stretched_brain);
     else
-        temp = load(fullfile(mask_dir,[roi_name '_anat_mask_orig' '.mat']));
+        temp = load(fullfile(process_dir,[roi_name '_anat_mask_orig' '.mat']));
         roi = logical(temp.mask_brain);
     end
     assert(exist('roi','var')==1);
@@ -91,19 +84,19 @@ end
 
 
 %load trained model
-allfn = dir([save_dir '/loctrainedModel_1' '*']);
+allfn = dir([locPatterns_dir '/loctrainedModel' '*']);
 %take the last model saved
-load(allfn(end).name);
+load(fullfile(locPatterns_dir, allfn(end).name));
 fprintf('\n*********************************************\n');
 fprintf(['* Loaded ' allfn(end).name '\n']);
 
 %load featureSelected voxels
-allLast = dir([save_dir 'locpatternsdata_' '*']);
-loc = load(allLast(end).name);
+allLast = dir([locPatterns_dir 'locpatternsdata_' '*']);
+loc = load(fullfile(locPatterns_dir,allLast(end).name));
 
 %load this run's regressors and information (do this after load so loading
 %doesn't overwrite)
-[newpattern, t] = GetSessionInfo(subjectNum,SESSION); %check that this works
+[newpattern, t] = GetSessionInfoRT(subjectNum,SESSION,behavioral_dir); %check that this works, make sure it gets if conditions are REALTIME or OMIT!
 patterns.regressor = newpattern.regressor;
 %% Boilerplate
 
@@ -131,7 +124,7 @@ patterns.raw = nan(patterns.nTRs,numel(roiInds));
 patterns.raw_sm = nan(patterns.nTRs,numel(roiInds));
 patterns.raw_sm_filt = nan(patterns.nTRs,numel(roiInds));
 patterns.raw_sm_z = nan(patterns.nTRs,numel(roiInds));
-patterns.categsep = nan(1,patterns.nTRs);
+patterns.categSep = nan(1,patterns.nTRs);
 patterns.realtimeMean = nan(1,numel(roiInds));
 patterns.realtimeStd = nan(1,numel(roiInds));
 patterns.realtimeY = nan(1,numel(roiInds));
@@ -182,7 +175,6 @@ fprintf('run\tblock\tTR\tloaded\n');
 
 zscoreNew = 1;
 useHistory = 1;
-firstBlockTRs = 64; %total number of TRs to take for localizer
 for iTrial = 1:patterns.nTRs % the first 10 TRs have been taken out to detrend
     
     tstart(iTrial) = tic;
@@ -236,17 +228,8 @@ patterns.raw_sm_filt = HighPassBetweenRuns(patterns.raw_sm,TR,cutoff);
 
 % z-score
 patterns.runMean = mean(patterns.raw_sm_filt,1);  %mean across all volumes per voxel
-% for z = 1:size(patterns.raw_sm_filt,1)
-%     thisStd(z,:) = std(patterns.raw_sm_filt(1:z,:),[],1);
-% end
-% figure;
-% imagesc(thisStd(1:50,:)', [0 20]); colorbar;
-% figure;
-% plot(mean(thisStd,2))
-
 patterns.runStd = std(patterns.raw_sm_filt,[],1); %std dev across all volumes per voxel
 patterns.raw_sm_filt_z = (patterns.raw_sm_filt - repmat(patterns.runMean,size(patterns.raw_sm_filt,1),1))./repmat(patterns.runStd,size(patterns.raw_sm_filt,1),1);
-%localizerStd = patterns.runStd;
 preprocTime = toc(preprocStart);  %end timing
 % print training timing and results
 
@@ -273,21 +256,15 @@ fprintf('run\tblock\tTR\tloaded\n');
             [patterns.predict(iTrial), patterns.activations(1:2,iTrial)] = predict_ridge(patterns.raw_sm_filt_z(iTrial,:),trainedModel);
             
         end
-        %this is where the equations would be to change things in the
-        %actual experiment!!
-        fprintf(['* Prediction is ' num2str(patterns.predict(iTrial)) '\n' ]);
-        %end
-        
+
+       patterns.categSep(iTrial) = patterns.activations(1,iTrial) - patterns.activations(2,iTrial); %this is what we want to use as our output date point
+       classOutput = patterns.categSep(iTrial);
+       % if we want to save
+       %save(fullfile(classOutputDir, ['vol_' num2str(thisTR)]), 'classOutput');
         
     % print trial results
     fprintf(dataFile,'%d\t%d\t%d\t%d\n',runNum,patterns.block(iTrial),thisTR,patterns.fileAvail(iTrial));
     fprintf('%d\t%d\t%d\t%d\n',runNum,patterns.block(iTrial),thisTR,patterns.fileAvail(iTrial));
     end
 save([save_dir 'recallpatternsdata_' num2str(SESSION) '_' datestr(now,30)],'patterns', 't');
-%this checked to be sure that the std correlation was good for last
-%run-true!
-% for i = 1:406;thisStd(i,:) = std(patterns.raw_sm_filt(1:i,:),[],1); corrVal(i) = corr(localizerStd',thisStd(i,:)');end
-% figure;
-% plot(corrVal)
-
 

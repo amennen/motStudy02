@@ -1,9 +1,9 @@
-function ProcessMask(subjNum, processNew,prev,funcScan)
+function ProcessMask(subjNum, processNew,prev,funcScan,runNum)
 
 startProcess = GetSecs;
 img_mat = 64; %image matrix size
 ROI = -1;
-runNum = 1; %assume only 1 subject per day
+%runNum = 1; %assume only 1 subject per day
 
 makeMprageNifti = processNew;
 extractBrain = processNew;
