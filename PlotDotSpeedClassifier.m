@@ -1,5 +1,4 @@
 % want to plot the dot speed and category separation timecourse
-
 % need: speed (from behavioral file)
 % category separation (can also pull from behavioral file)
 close all;
@@ -257,7 +256,10 @@ for s = 1:nsub
     s2 = [2*nTRs 2*nTRs + 1];
     d1(s,1) = mean([mean(abs(diff(sepbystim(:,s1),1,2))) mean(abs(diff(sepbystim(:,s2),1,2)))]);
     d1(s,2) = mean([mean(abs(diff(sepmixed(:,s1),1,2))) mean(abs(diff(sepmixed(:,s2),1,2)))]);
-    
+    n = 1:nblock;
+    blockvec = (n-1)*15 + 1;
+    b2 = blockvec + 14;
+    innerdiff(s) = mean([mean(abs(diff(sepbystim(:,blockvec(1):b2(1)),1,2))) mean(abs(diff(sepbystim(:,blockvec(2):b2(2)),1,2))) mean(abs(diff(sepbystim(:,blockvec(3):b2(3)),1,2)))]);
     
     
     %%
@@ -412,10 +414,25 @@ for s = 1:nsub
 
 end
 
-figure;
+thisfig = figure;
 barwitherr(std(d1,[],1)/sqrt(nsub-1),mean(d1))
 set(gca,'XTickLabel' , ['Stim ';'Mixed']);
-xlabel('Fast Dot Speed')
-ylabel('Boundary Differences')
+xlabel('Category')
+ylabel('Average Differences')
 title('Absolute Value Boundary Differences')
 set(findall(gcf,'-property','FontSize'),'FontSize',20)
+ylim([0 0.4])
+print(thisfig, sprintf('%sbystimvsorder.pdf', plotDir), '-dpdf')
+
+boundarystim = d1(:,1);
+avges = [mean(boundarystim) mean(innerdiff)];
+errors = [std(boundarystim) std(innerdiff)]/sqrt(nsub-1);
+thisfig = figure;
+barwitherr(errors,avges)
+set(gca,'XTickLabel' , ['Boundary';'In Trial']);
+xlabel('Category')
+ylabel('Average Differences')
+title('Absolute Value Differences')
+set(findall(gcf,'-property','FontSize'),'FontSize',20)
+ylim([0 0.4])
+print(thisfig, sprintf('%sboundaryvsinner.pdf', plotDir), '-dpdf')

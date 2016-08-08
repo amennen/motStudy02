@@ -115,7 +115,7 @@ for s = 1:nsub
     
     ylim([-1 1])
     xlim([-6 6 ])
-    title(sprintf('Subject %i Post Rating vs. Evidence',subjectNum));
+    title(sprintf('Subject %i Real-time Correlations',subjectNum));
     set(findall(gcf,'-property','FontSize'),'FontSize',20)
     print(h, sprintf('%scorrelations.pdf', plotDir), '-dpdf')
     
@@ -149,7 +149,7 @@ for s = 1:nsub
     
     ylim([-1 1])
     xlim([-6 6 ])
-    title(sprintf('AVG Subject %i Post Rating vs. Evidence',subjectNum));
+    title(sprintf('AVG Subject %i Real-time Correlations',subjectNum));
     set(findall(gcf,'-property','FontSize'),'FontSize',20)
    print(h, sprintf('%sAVG%i_correlations.pdf', plotDir,num2avg), '-dpdf')
 end
