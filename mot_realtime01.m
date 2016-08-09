@@ -2036,7 +2036,7 @@ switch SESSION
         % wrap up
         if SESSION == MOT_PREP
             
-            displayText(mainWindow,CONGRATS,CONGRATSDURATION,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
+            %displayText(mainWindow,CONGRATS,CONGRATSDURATION,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
             endSession(dotEK, CONGRATS);
             load(MATLAB_SAVE_FILE);
             %subplot(1,2,1)
@@ -2046,7 +2046,7 @@ switch SESSION
             %plot(stim.avg_vis_resp);
             sca
         else
-            displayText(mainWindow,CONGRATS,CONGRATSDURATION,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
+            %displayText(mainWindow,CONGRATS,CONGRATSDURATION,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
             endSession(dotEK, CONGRATS);
             if SESSION < MOT_LOCALIZER
                 mot_realtime01(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow);
