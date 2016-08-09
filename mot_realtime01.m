@@ -465,6 +465,13 @@ switch SESSION
         end
         picList = lutSort(stimList, preparedCues, pics);
         IDlist = lutSort(stimList, preparedCues, pairIndex);
+        if SESSION == FAMILIARIZE2
+            halfway = ['Great job, youre''re halfway there! You can take a stretching or bathroom break if you need to now. \n\n-- press ' PROGRESS_TEXT ' to continue when you''re ready. --'];
+            displayText(mainWindow,halfway,INSTANT,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
+            waitForKeyboard(kbTrig_keycode,KEYDEVICES);
+        end
+
+        
         instruct = ['NAMED SCENES\n\nToday, you will learn the names of ' num2str(length(stimList)) ' different scenes. ' ...
             'It is important that you learn these now, as you will need to be able to picture each scene based on its name throughout our study.\n\n' ...
             'In this section, you will get a chance to study each name-scene pair, one pair at a time. To help you remember each pair, try to imagine how ' ...
@@ -2029,8 +2036,8 @@ switch SESSION
         % wrap up
         if SESSION == MOT_PREP
             
-            displayText(mainWindow,NOTIFY,CONGRATSDURATION,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
-            endSession(dotEK, NOTIFY);
+            displayText(mainWindow,CONGRATS,CONGRATSDURATION,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
+            endSession(dotEK, CONGRATS);
             load(MATLAB_SAVE_FILE);
             %subplot(1,2,1)
             figure;
@@ -2039,6 +2046,7 @@ switch SESSION
             %plot(stim.avg_vis_resp);
             sca
         else
+            displayText(mainWindow,CONGRATS,CONGRATSDURATION,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
             endSession(dotEK, CONGRATS);
             if SESSION < MOT_LOCALIZER
                 mot_realtime01(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow);

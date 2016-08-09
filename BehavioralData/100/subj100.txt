@@ -449,3 +449,93 @@ trial	TR	prompt active	speed	ds	flip error	found file	FileTR	CategSep	LastFile
 1	13	1		2.000	  NaN	0.0045		NaN		1		  NaN		
 1	14	0		2.000	  NaN	0.0049		NaN		1		  NaN		
 1	15	0		2.000	  NaN	0.0001		NaN		1		  NaN		
+
+SESSION 7 initiated 09-Aug-2016 08:21:12 for SUBJECT number 100
+
+session	trial	pair	onset	dur	cue         	associate   
+trial	TR	prompt active	speed	ds	flip error	found file	FileTR	CategSep	LastFile
+1	1	0		15.000	  NaN	0.0247		NaN		1		  NaN		
+1	2	0		15.000	  NaN	0.0012		NaN		1		  NaN		
+1	3	1		15.000	  NaN	0.0030		NaN		1		  NaN		
+1	4	0		15.000	  NaN	0.0204		NaN		1		  NaN		
+1	5	1		15.000	  NaN	0.0061		NaN		1		  NaN		
+1	6	0		15.000	  NaN	0.0071		NaN		1		  NaN		
+1	7	1		15.000	  NaN	0.0102		NaN		1		  NaN		
+1	8	0		15.000	  NaN	0.0118		NaN		1		  NaN		
+1	9	1		15.000	  NaN	0.0133		NaN		1		  NaN		
+1	10	0		15.000	  NaN	0.0153		NaN		1		  NaN		
+1	11	1		15.000	  NaN	0.0165		NaN		1		  NaN		
+1	12	0		15.000	  NaN	0.0178		NaN		1		  NaN		
+1	13	1		15.000	  NaN	0.0030		NaN		1		  NaN		
+1	14	0		15.000	  NaN	0.0045		NaN		1		  NaN		
+1	15	0		15.000	  NaN	0.0077		NaN		1		  NaN		
+trial	TR	prompt active	speed	ds	flip error	found file	FileTR	CategSep	LastFile
+1	1	0		15.000	  NaN	0.0138		NaN		1		  NaN		
+1	2	0		15.000	  NaN	0.0072		NaN		1		  NaN		
+1	3	1		15.000	  NaN	0.0091		NaN		1		  NaN		
+1	4	0		15.000	  NaN	0.0106		NaN		1		  NaN		
+1	5	1		15.000	  NaN	0.0124		NaN		1		  NaN		
+1	6	0		15.000	  NaN	0.0142		NaN		1		  NaN		
+1	7	1		15.000	  NaN	0.0159		NaN		1		  NaN		
+1	8	0		15.000	  NaN	0.0020		NaN		1		  NaN		
+1	9	1		15.000	  NaN	0.0030		NaN		1		  NaN		
+1	10	0		15.000	  NaN	0.0051		NaN		1		  NaN		
+1	11	1		15.000	  NaN	0.0071		NaN		1		  NaN		
+1	12	0		15.000	  NaN	0.0080		NaN		1		  NaN		
+1	13	1		15.000	  NaN	0.0097		NaN		1		  NaN		
+1	14	0		15.000	  NaN	0.0112		NaN		1		  NaN		
+1	15	0		15.000	  NaN	0.0131		NaN		1		  NaN		
+trial	TR	prompt active	speed	ds	flip error	found file	FileTR	CategSep	LastFile
+2	1	0		15.000	  NaN	0.0116		NaN		1		  NaN		
+2	2	0		15.000	  NaN	0.0047		NaN		1		  NaN		
+2	3	1		15.000	  NaN	0.0064		NaN		1		  NaN		
+2	4	0		15.000	  NaN	0.0086		NaN		1		  NaN		
+2	5	1		15.000	  NaN	0.0097		NaN		1		  NaN		
+2	6	0		15.000	  NaN	0.0113		NaN		1		  NaN		
+2	7	1		15.000	  NaN	0.0124		NaN		1		  NaN		
+2	8	0		15.000	  NaN	0.0148		NaN		1		  NaN		
+2	9	1		15.000	  NaN	0.0003		NaN		1		  NaN		
+2	10	0		15.000	  NaN	0.0016		NaN		1		  NaN		
+2	11	1		15.000	  NaN	0.0030		NaN		1		  NaN		
+2	12	0		15.000	  NaN	0.0053		NaN		1		  NaN		
+2	13	1		15.000	  NaN	0.0076		NaN		1		  NaN		
+2	14	0		15.000	  NaN	0.0086		NaN		1		  NaN		
+2	15	0		15.000	  NaN	0.0109		NaN		1		  NaN		
+trial	TR	prompt active	speed	ds	flip error	found file	FileTR	CategSep	LastFile
+3	1	0		15.000	  NaN	0.0153		NaN		1		  NaN		
+3	2	0		15.000	  NaN	-0.0015		NaN		1		  NaN		
+3	3	1		15.000	  NaN	0.0001		NaN		1		  NaN		
+3	4	0		15.000	  NaN	0.0024		NaN		1		  NaN		
+3	5	1		15.000	  NaN	0.0039		NaN		1		  NaN		
+3	6	0		15.000	  NaN	0.0039		NaN		1		  NaN		
+3	7	1		15.000	  NaN	0.0071		NaN		1		  NaN		
+3	8	0		15.000	  NaN	0.0085		NaN		1		  NaN		
+3	9	1		15.000	  NaN	0.0102		NaN		1		  NaN		
+3	10	0		15.000	  NaN	0.0125		NaN		1		  NaN		
+3	11	1		15.000	  NaN	0.0135		NaN		1		  NaN		
+3	12	0		15.000	  NaN	-0.0014		NaN		1		  NaN		
+3	13	1		15.000	  NaN	0.0003		NaN		1		  NaN		
+3	14	0		15.000	  NaN	0.0025		NaN		1		  NaN		
+3	15	0		15.000	  NaN	0.0044		NaN		1		  NaN		
+trial	TR	prompt active	speed	ds	flip error	found file	FileTR	CategSep	LastFile
+4	1	0		15.000	  NaN	0.0136		NaN		1		  NaN		
+4	2	0		15.000	  NaN	0.0073		NaN		1		  NaN		
+4	3	1		15.000	  NaN	0.0087		NaN		1		  NaN		
+4	4	0		15.000	  NaN	0.0111		NaN		1		  NaN		
+4	5	1		15.000	  NaN	-0.0037		NaN		1		  NaN		
+4	6	0		15.000	  NaN	0.0317		NaN		1		  NaN		
+4	7	1		15.000	  NaN	0.0003		NaN		1		  NaN		
+4	8	0		15.000	  NaN	0.0014		NaN		1		  NaN		
+4	9	1		15.000	  NaN	0.0031		NaN		1		  NaN		
+4	10	0		15.000	  NaN	0.0043		NaN		1		  NaN		
+4	11	1		15.000	  NaN	0.0056		NaN		1		  NaN		
+4	12	0		15.000	  NaN	0.0080		NaN		1		  NaN		
+4	13	1		15.000	  NaN	0.0085		NaN		1		  NaN		
+4	14	0		15.000	  NaN	0.0106		NaN		1		  NaN		
+4	15	0		15.000	  NaN	-0.0039		NaN		1		  NaN		
+trial	TR	prompt active	speed	ds	flip error	found file	FileTR	CategSep	LastFile
+5	1	0		15.000	  NaN	0.0083		NaN		1		  NaN		
+5	2	0		15.000	  NaN	0.0106		NaN		1		  NaN		
+5	3	1		15.000	  NaN	0.0109		NaN		1		  NaN		
+5	4	0		15.000	  NaN	0.0133		NaN		1		  NaN		
+5	5	1		15.000	  NaN	-0.0017		NaN		1		  NaN		
