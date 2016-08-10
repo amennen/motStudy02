@@ -1,0 +1,49 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	34.2  	25  	PARCEL    	target  	1.952	0.931	1   	non-target	non-target
+2   	76.2  	25  	PARCEL (repeat 1)	target  	1.956	0.602	1   	target  	target  
+3   	118.2 	28  	PUDDLE    	target  	1.952	0.88	1   	target  	target  
+4   	160.2 	27  	RECORD    	target  	1.956	0.909	1   	non-target	non-target
+5   	202.2 	25  	PARCEL (repeat 2)	target  	1.951	0.784	1   	non-target	non-target
+6   	287.1 	23  	STAPLE    	target  	1.953	1.254	1   	non-target	non-target
+7   	329.1 	21  	IRON      	target  	1.953	0.94	1   	non-target	non-target
+8   	371.1 	21  	IRON (repeat 1)	target  	1.955	0.828	1   	non-target	non-target
+9   	413.1 	26  	FLEET     	target  	1.955	0.705	1   	target  	target  
+10  	455.1 	27  	RECORD (repeat 1)	target  	1.956	0.902	1   	non-target	non-target
+11  	545.2 	23  	STAPLE (repeat 1)	target  	1.955	0.819	0   	non-target	target  
+12  	587.2 	27  	RECORD (repeat 2)	target  	1.955	0.84	1   	target  	target  
+13  	629.2 	27  	RECORD (repeat 3)	target  	1.956	0.832	0   	non-target	target  
+14  	671.2 	21  	IRON (repeat 2)	target  	1.953	1.133	1   	target  	target  
+15  	713.2 	24  	ROOT      	target  	1.955	0.891	1   	non-target	non-target
+16  	757   	23  	STAPLE (repeat 2)	target  	1.954	0.869	1   	target  	target  
+17  	799   	24  	ROOT (repeat 1)	target  	1.955	1.267	1   	non-target	non-target
+18  	841   	24  	ROOT (repeat 2)	target  	1.954	0.95	0   	target  	non-target
+19  	883   	21  	IRON (repeat 3)	target  	1.954	0.86	1   	target  	target  
+20  	925   	23  	STAPLE (repeat 3)	target  	1.952	1.418	0   	non-target	target  
+21  	1014.1	27  	RECORD (repeat 4)	target  	1.955	0.758	1   	target  	target  
+22  	1056.1	24  	ROOT (repeat 3)	target  	1.955	0.804	1   	non-target	non-target
+23  	1098.1	24  	ROOT (repeat 4)	target  	1.955	0.762	0   	non-target	target  
+24  	1140.1	26  	FLEET (repeat 1)	target  	1.955	0.837	1   	non-target	non-target
+25  	1182.1	23  	STAPLE (repeat 4)	target  	1.952	0.997	1   	non-target	non-target
+26  	1254.2	27  	RECORD (repeat 5)	target  	1.952	0.91	1   	non-target	non-target
+27  	1296.2	28  	PUDDLE (repeat 1)	target  	1.955	0.747	1   	non-target	non-target
+28  	1338.2	28  	PUDDLE (repeat 2)	target  	1.955	1.521	0   	target  	non-target
+29  	1380.2	21  	IRON (repeat 4)	target  	1.955	0.657	1   	target  	target  
+30  	1422.2	21  	IRON (repeat 5)	target  	1.95	0.798	1   	non-target	non-target
+31  	1495.3	25  	PARCEL (repeat 3)	target  	1.956	0.825	1   	target  	target  
+32  	1537.3	26  	FLEET (repeat 2)	target  	1.955	0.868	1   	non-target	non-target
+33  	1579.3	23  	STAPLE (repeat 5)	target  	1.955	0.988	1   	target  	target  
+34  	1621.3	22  	ASHES     	target  	1.955	0.92	1   	non-target	non-target
+35  	1663.3	22  	ASHES (repeat 1)	target  	1.952	0.829	1   	target  	target  
+36  	1741.8	28  	PUDDLE (repeat 3)	target  	1.952	0.844	1   	non-target	non-target
+37  	1783.7	24  	ROOT (repeat 5)	target  	1.954	0.81	1   	target  	target  
+38  	1825.7	26  	FLEET (repeat 3)	target  	1.95	0.926	1   	non-target	non-target
+39  	1867.7	28  	PUDDLE (repeat 4)	target  	1.955	1.084	1   	non-target	non-target
+40  	1909.7	22  	ASHES (repeat 2)	target  	1.953	0.772	1   	target  	target  
+41  	1975  	22  	ASHES (repeat 3)	target  	1.951	1.019	1   	non-target	non-target
+42  	2017  	28  	PUDDLE (repeat 5)	target  	1.952	0.769	1   	target  	target  
+43  	2059  	26  	FLEET (repeat 4)	target  	1.955	0.732	1   	target  	target  
+44  	2101  	26  	FLEET (repeat 5)	target  	1.955	0.762	1   	target  	target  
+45  	2143  	25  	PARCEL (repeat 4)	target  	1.951	0.851	0   	non-target	target  
+46  	2191.2	22  	ASHES (repeat 4)	target  	1.953	0.825	1   	target  	target  
+47  	2233.2	22  	ASHES (repeat 5)	target  	1.955	1.047	1   	non-target	non-target
+48  	2275.2	25  	PARCEL (repeat 5)	target  	1.956	0.733	1   	target  	target  
