@@ -1635,7 +1635,7 @@ switch SESSION
             addTR = 10;
         end
         rtData.classOutputFileLoad = nan(1,config.nTRs.perBlock + addTR);
-        rtData.classOutputFile = nan(1,config.nTRs.perBlock + addTR);
+        rtData.classOutputFile = cell(1,config.nTRs.perBlock + addTR);
         rtData.rtDecoding = nan(1,config.nTRs.perBlock+ addTR);
         rtData.smoothRTDecoding = nan(1,config.nTRs.perBlock+ addTR);
         rtData.rtDecodingFunction = nan(1,config.nTRs.perBlock+ addTR);
