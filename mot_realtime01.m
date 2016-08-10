@@ -1265,6 +1265,7 @@ switch SESSION
         
         save(MATLAB_SAVE_FILE,'stim','recog', 'timing', 'config');
         % clean up
+        
         printlog(LOG_NAME,['\n\nSESSION ' int2str(SESSION) ' ended ' datestr(now) ' for SUBJECT number ' int2str(SUBJECT) '\n\n']);
         printlog(LOG_NAME,'\n\n\n******************************************************************************\n');
         endSession(recogEK, 'Congratulations, you''ve finished the experiment! Please contact your experimenter.');
