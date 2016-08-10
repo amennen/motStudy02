@@ -14,9 +14,9 @@
 %variables
 %subjectNum = 3;
 %runNum = 1;
-svec = [3:5 7];
-runvec = [1 1 2 1];
-datevec = {'7-12-16', '7-14-16', '7-14-16', '7-15-16'};
+svec = [3:5 7 8];
+runvec = [1 1 2 1 1];
+datevec = {'7-12-16', '7-14-16', '7-14-16', '7-15-16', '8-10-16'};
 NSUB = length(svec);
 for s = 1:NSUB
     subjectNum = svec(s);
@@ -25,6 +25,9 @@ for s = 1:NSUB
     featureSelect = 1;
     %normally, scan num for recall 1 is 13 and recall 2 is 21
     recallScan = [13 21];
+    if subjectNum == 8
+        recallScan = [13 23];
+    end
     recallSession = [19 23];
     %date = '7-12-16';
     

@@ -15,7 +15,7 @@ svec = [3:5 7];
 nsub = length(svec);
 sepbystim = zeros(nstim,nTRs*3);
 speedbystim = zeros(nstim,nTRs*3);
-num2avg = 3; %including starting point
+num2avg = 2; %including starting point--change to 2 now that we're only smoothing over 2 TR's
 
 for s = 1:nsub
     subjectNum = svec(s);

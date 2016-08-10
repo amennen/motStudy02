@@ -1,0 +1,11 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	64.8  	5   	SHOVEL    	rt-targ 	1.951	1.363	1   	target  	target  
+2   	106.8 	9   	DOME      	rt-targ 	1.951	1.251	1   	non-target	non-target
+3   	148.8 	7   	POLISH    	rt-targ 	1.95	0.892	1   	non-target	non-target
+4   	190.8 	4   	PLANET    	rt-targ 	1.952	NR  	0   	NR      	target  
+5   	232.8 	8   	ROPE      	rt-targ 	1.95	0.98	1   	target  	target  
+6   	274.8 	3   	BOTTLE    	rt-targ 	1.95	1.7 	1   	non-target	non-target
+7   	316.8 	10  	MAGNET    	rt-targ 	1.951	1.124	1   	target  	target  
+8   	358.8 	1   	MOON      	rt-targ 	1.95	1.269	1   	target  	target  
+9   	400.8 	2   	ATLAS     	rt-targ 	1.951	1.029	1   	non-target	non-target
+10  	442.8 	6   	HURDLE    	rt-targ 	1.95	0.958	1   	non-target	non-target
