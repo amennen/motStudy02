@@ -1,0 +1,17 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	8.7   	42  	DOME      	localizer	3.451	1.243	1   	1 detail	1 detail
+2   	20.7  	29  	DRUM      	localizer	3.451	1.107	1   	2+ details	2+ details
+3   	32.7  	32  	CHALK     	localizer	3.451	2.083	1   	full    	full    
+4   	44.7  	38  	RACK      	localizer	3.45	1.243	1   	1 detail	1 detail
+5   	56.7  	44  	QUILL     	localizer	3.45	1.323	1   	2+ details	2+ details
+6   	68.7  	30  	PLUG      	localizer	3.45	1.739	1   	full    	full    
+7   	80.7  	36  	GLOBE     	localizer	3.45	1.291	1   	1 detail	1 detail
+8   	92.7  	34  	BELT      	localizer	3.45	1.539	1   	2+ details	2+ details
+9   	104.7 	37  	ANCHOR    	localizer	3.451	1.147	1   	1 detail	1 detail
+10  	116.7 	41  	BARREL    	localizer	3.451	1.012	1   	generic 	generic 
+11  	128.7 	40  	CHISEL    	localizer	3.451	1.083	1   	full    	full    
+12  	140.7 	39  	PANEL     	localizer	3.45	1.156	1   	generic 	generic 
+13  	152.7 	31  	SHELL     	localizer	3.45	1.308	1   	generic 	generic 
+14  	164.7 	33  	HOOD      	localizer	3.45	1.1 	1   	generic 	generic 
+15  	176.7 	35  	LUMBER    	localizer	3.45	1.756	1   	2+ details	2+ details
+16  	188.7 	43  	CORK      	localizer	3.45	1.3 	1   	generic 	generic 

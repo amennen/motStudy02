@@ -1,0 +1,243 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	10.3  	1   	EASEL     	lure    	0.314	NR  	1   	NR      	NR      
+2   	10.7  	2   	PLANET    	lure    	0.382	NR  	1   	NR      	NR      
+3   	11.1  	3   	WAGON     	lure    	0.342	NR  	1   	NR      	NR      
+4   	11.5  	4   	SKETCH    	lure    	0.457	NR  	1   	NR      	NR      
+5   	12    	5   	PAGE      	lure    	0.597	NR  	1   	NR      	NR      
+6   	12.7  	6   	POUCH     	lure    	0.521	NR  	1   	NR      	NR      
+7   	13.3  	7   	PATCH     	lure    	0.343	NR  	1   	NR      	NR      
+8   	13.7  	2   	PLANET (repeat 1)	lure    	0.357	NR  	1   	NR      	NR      
+9   	14.1  	8   	HURDLE    	lure    	0.507	NR  	1   	NR      	NR      
+10  	14.6  	1   	EASEL (repeat 1)	lure    	0.418	NR  	1   	NR      	NR      
+11  	15.1  	2   	PLANET (repeat 2)	lure    	0.334	NR  	1   	NR      	NR      
+12  	15.5  	9   	ENGINE    	lure    	0.315	NR  	1   	NR      	NR      
+13  	15.9  	10  	MORNING   	lure    	0.392	NR  	1   	NR      	NR      
+14  	16.3  	11  	FRONTIER  	lure    	0.565	NR  	1   	NR      	NR      
+15  	16.9  	1   	EASEL (repeat 2)	lure    	0.517	NR  	1   	NR      	NR      
+16  	17.5  	12  	TARGET    	lure    	0.452	NR  	1   	NR      	NR      
+17  	18    	8   	HURDLE (repeat 1)	lure    	0.537	NR  	1   	NR      	NR      
+18  	18.6  	4   	SKETCH (repeat 1)	lure    	0.452	NR  	1   	NR      	NR      
+19  	19.1  	13  	FORT      	lure    	0.516	NR  	1   	NR      	NR      
+20  	19.6  	7   	PATCH (repeat 1)	lure    	0.451	NR  	1   	NR      	NR      
+21  	20.2  	12  	TARGET (repeat 1)	lure    	0.525	NR  	1   	NR      	NR      
+22  	20.7  	14  	MARBLE    	lure    	0.452	NR  	1   	NR      	NR      
+23  	21.2  	6   	POUCH (repeat 1)	lure    	0.552	NR  	1   	NR      	NR      
+24  	21.9  	9   	ENGINE (repeat 1)	lure    	0.451	NR  	1   	NR      	NR      
+25  	22.4  	15  	PEACH     	fruit   	0.95	0.527	1   	target  	target  
+26  	23.4  	16  	DISC      	lure    	0.56	NR  	1   	NR      	NR      
+27  	24    	3   	WAGON (repeat 1)	lure    	0.576	NR  	1   	NR      	NR      
+28  	24.6  	12  	TARGET (repeat 2)	lure    	0.355	NR  	1   	NR      	NR      
+29  	25.1  	14  	MARBLE (repeat 1)	lure    	0.579	NR  	1   	NR      	NR      
+30  	25.7  	12  	TARGET (repeat 3)	lure    	0.305	NR  	1   	NR      	NR      
+31  	26.1  	10  	MORNING (repeat 1)	lure    	0.496	NR  	1   	NR      	NR      
+32  	26.6  	8   	HURDLE (repeat 2)	lure    	0.379	NR  	1   	NR      	NR      
+33  	27.1  	14  	MARBLE (repeat 2)	lure    	0.556	NR  	1   	NR      	NR      
+34  	27.7  	16  	DISC (repeat 1)	lure    	0.439	NR  	1   	NR      	NR      
+35  	28.2  	5   	PAGE (repeat 1)	lure    	0.313	NR  	1   	NR      	NR      
+36  	28.6  	16  	DISC (repeat 2)	lure    	0.531	NR  	1   	NR      	NR      
+37  	29.2  	8   	HURDLE (repeat 3)	lure    	0.623	NR  	1   	NR      	NR      
+38  	29.9  	2   	PLANET (repeat 3)	lure    	0.562	NR  	1   	NR      	NR      
+39  	30.5  	14  	MARBLE (repeat 3)	lure    	0.392	NR  	1   	NR      	NR      
+40  	30.9  	5   	PAGE (repeat 2)	lure    	0.298	NR  	1   	NR      	NR      
+41  	31.3  	3   	WAGON (repeat 2)	lure    	0.457	NR  	1   	NR      	NR      
+42  	31.8  	14  	MARBLE (repeat 4)	lure    	0.387	NR  	1   	NR      	NR      
+43  	32.3  	6   	POUCH (repeat 2)	lure    	0.682	NR  	1   	NR      	NR      
+44  	33    	11  	FRONTIER (repeat 1)	lure    	0.448	NR  	1   	NR      	NR      
+45  	33.5  	10  	MORNING (repeat 2)	lure    	0.306	NR  	1   	NR      	NR      
+46  	33.9  	6   	POUCH (repeat 3)	lure    	0.451	NR  	1   	NR      	NR      
+47  	34.4  	17  	SPOKE     	lure    	0.307	NR  	1   	NR      	NR      
+48  	34.8  	7   	PATCH (repeat 2)	lure    	0.452	NR  	1   	NR      	NR      
+49  	35.3  	18  	WATERMELON	fruit   	0.952	0.642	1   	target  	target  
+50  	36.3  	14  	MARBLE (repeat 5)	lure    	0.622	NR  	1   	NR      	NR      
+51  	37    	13  	FORT (repeat 1)	lure    	0.344	NR  	1   	NR      	NR      
+52  	37.4  	1   	EASEL (repeat 3)	lure    	0.701	NR  	1   	NR      	NR      
+53  	38.2  	14  	MARBLE (repeat 6)	lure    	0.652	NR  	1   	NR      	NR      
+54  	38.9  	8   	HURDLE (repeat 4)	lure    	0.414	NR  	1   	NR      	NR      
+55  	39.4  	5   	PAGE (repeat 3)	lure    	0.274	NR  	1   	NR      	NR      
+56  	39.8  	12  	TARGET (repeat 4)	lure    	0.461	NR  	1   	NR      	NR      
+57  	40.3  	3   	WAGON (repeat 3)	lure    	0.68	NR  	1   	NR      	NR      
+58  	41.1  	11  	FRONTIER (repeat 2)	lure    	0.52	NR  	1   	NR      	NR      
+59  	41.7  	10  	MORNING (repeat 3)	lure    	0.343	NR  	1   	NR      	NR      
+60  	42.1  	5   	PAGE (repeat 4)	lure    	0.347	NR  	1   	NR      	NR      
+61  	42.5  	16  	DISC (repeat 3)	lure    	0.666	NR  	1   	NR      	NR      
+62  	43.2  	11  	FRONTIER (repeat 3)	lure    	0.557	NR  	1   	NR      	NR      
+63  	43.9  	13  	FORT (repeat 2)	lure    	0.598	NR  	1   	NR      	NR      
+64  	44.5  	7   	PATCH (repeat 3)	lure    	0.59	NR  	1   	NR      	NR      
+65  	45.2  	3   	WAGON (repeat 4)	lure    	0.504	NR  	1   	NR      	NR      
+66  	45.8  	8   	HURDLE (repeat 5)	lure    	0.287	NR  	1   	NR      	NR      
+67  	46.1  	16  	DISC (repeat 4)	lure    	0.608	NR  	1   	NR      	NR      
+68  	46.8  	13  	FORT (repeat 3)	lure    	0.452	NR  	1   	NR      	NR      
+69  	47.4  	14  	MARBLE (repeat 7)	lure    	0.405	NR  	1   	NR      	NR      
+70  	47.8  	3   	WAGON (repeat 5)	lure    	0.452	NR  	1   	NR      	NR      
+71  	48.4  	5   	PAGE (repeat 5)	lure    	0.415	NR  	1   	NR      	NR      
+72  	48.9  	8   	HURDLE (repeat 6)	lure    	0.452	NR  	1   	NR      	NR      
+73  	49.4  	10  	MORNING (repeat 4)	lure    	0.551	NR  	1   	NR      	NR      
+74  	50    	8   	HURDLE (repeat 7)	lure    	0.458	NR  	1   	NR      	NR      
+75  	50.6  	19  	LIME      	fruit   	0.952	0.599	1   	target  	target  
+76  	51.6  	5   	PAGE (repeat 6)	lure    	0.623	NR  	1   	NR      	NR      
+77  	52.3  	9   	ENGINE (repeat 2)	lure    	0.649	NR  	1   	NR      	NR      
+78  	53    	4   	SKETCH (repeat 2)	lure    	0.466	NR  	1   	NR      	NR      
+79  	53.5  	16  	DISC (repeat 5)	lure    	0.284	NR  	1   	NR      	NR      
+80  	53.9  	10  	MORNING (repeat 5)	lure    	0.416	NR  	1   	NR      	NR      
+81  	54.4  	6   	POUCH (repeat 4)	lure    	0.468	NR  	1   	NR      	NR      
+82  	54.9  	2   	PLANET (repeat 4)	lure    	0.263	NR  	1   	NR      	NR      
+83  	55.2  	17  	SPOKE (repeat 1)	lure    	0.538	NR  	1   	NR      	NR      
+84  	55.9  	13  	FORT (repeat 4)	lure    	0.646	NR  	1   	NR      	NR      
+85  	56.6  	9   	ENGINE (repeat 3)	lure    	0.32	NR  	1   	NR      	NR      
+86  	57    	7   	PATCH (repeat 4)	lure    	0.287	NR  	1   	NR      	NR      
+87  	57.3  	16  	DISC (repeat 6)	lure    	0.442	NR  	1   	NR      	NR      
+88  	57.9  	11  	FRONTIER (repeat 4)	lure    	0.575	NR  	1   	NR      	NR      
+89  	58.5  	17  	SPOKE (repeat 2)	lure    	0.377	NR  	1   	NR      	NR      
+90  	59    	10  	MORNING (repeat 6)	lure    	0.664	NR  	1   	NR      	NR      
+91  	59.7  	14  	MARBLE (repeat 8)	lure    	0.66	NR  	1   	NR      	NR      
+92  	60.4  	17  	SPOKE (repeat 3)	lure    	0.412	NR  	1   	NR      	NR      
+93  	60.9  	10  	MORNING (repeat 7)	lure    	0.332	NR  	1   	NR      	NR      
+94  	61.3  	3   	WAGON (repeat 6)	lure    	0.296	NR  	1   	NR      	NR      
+95  	61.7  	2   	PLANET (repeat 5)	lure    	0.419	NR  	1   	NR      	NR      
+96  	62.2  	1   	EASEL (repeat 4)	lure    	0.452	NR  	1   	NR      	NR      
+97  	62.7  	11  	FRONTIER (repeat 5)	lure    	0.321	NR  	1   	NR      	NR      
+98  	63.1  	13  	FORT (repeat 5)	lure    	0.452	NR  	1   	NR      	NR      
+99  	63.7  	10  	MORNING (repeat 8)	lure    	0.363	NR  	1   	NR      	NR      
+100 	64.1  	11  	FRONTIER (repeat 6)	lure    	0.452	NR  	1   	NR      	NR      
+101 	64.7  	10  	MORNING (repeat 9)	lure    	0.408	NR  	1   	NR      	NR      
+102 	65.2  	8   	HURDLE (repeat 8)	lure    	0.452	NR  	1   	NR      	NR      
+103 	65.7  	7   	PATCH (repeat 5)	lure    	0.446	NR  	1   	NR      	NR      
+104 	66.2  	11  	FRONTIER (repeat 7)	lure    	0.452	NR  	1   	NR      	NR      
+105 	66.8  	7   	PATCH (repeat 6)	lure    	0.475	NR  	1   	NR      	NR      
+106 	67.3  	3   	WAGON (repeat 7)	lure    	0.452	NR  	1   	NR      	NR      
+107 	67.9  	9   	ENGINE (repeat 4)	lure    	0.374	NR  	1   	NR      	NR      
+108 	68.3  	8   	HURDLE (repeat 9)	lure    	0.451	NR  	1   	NR      	NR      
+109 	68.8  	4   	SKETCH (repeat 3)	lure    	0.403	NR  	1   	NR      	NR      
+110 	69.3  	10  	MORNING (repeat 10)	lure    	0.454	NR  	1   	NR      	NR      
+111 	69.8  	17  	SPOKE (repeat 4)	lure    	0.331	NR  	1   	NR      	NR      
+112 	70.3  	7   	PATCH (repeat 7)	lure    	0.451	NR  	1   	NR      	NR      
+113 	70.8  	20  	GRAPEFRUIT	fruit   	0.95	0.654	1   	target  	target  
+114 	71.8  	11  	FRONTIER (repeat 8)	lure    	0.635	NR  	1   	NR      	NR      
+115 	72.5  	17  	SPOKE (repeat 5)	lure    	0.43	NR  	1   	NR      	NR      
+116 	73    	13  	FORT (repeat 6)	lure    	0.342	NR  	1   	NR      	NR      
+117 	73.5  	12  	TARGET (repeat 5)	lure    	0.347	NR  	1   	NR      	NR      
+118 	73.9  	5   	PAGE (repeat 7)	lure    	0.576	NR  	1   	NR      	NR      
+119 	74.6  	13  	FORT (repeat 7)	lure    	0.29	NR  	1   	NR      	NR      
+120 	75    	7   	PATCH (repeat 8)	lure    	0.568	NR  	1   	NR      	NR      
+121 	75.6  	16  	DISC (repeat 7)	lure    	0.613	NR  	1   	NR      	NR      
+122 	76.3  	4   	SKETCH (repeat 4)	lure    	0.4 	NR  	1   	NR      	NR      
+123 	76.8  	17  	SPOKE (repeat 6)	lure    	0.414	NR  	1   	NR      	NR      
+124 	77.3  	13  	FORT (repeat 8)	lure    	0.422	NR  	1   	NR      	NR      
+125 	77.8  	17  	SPOKE (repeat 7)	lure    	0.658	NR  	1   	NR      	NR      
+126 	78.5  	9   	ENGINE (repeat 5)	lure    	0.342	NR  	1   	NR      	NR      
+127 	79    	4   	SKETCH (repeat 5)	lure    	0.281	NR  	1   	NR      	NR      
+128 	79.3  	14  	MARBLE (repeat 9)	lure    	0.587	NR  	1   	NR      	NR      
+129 	80    	4   	SKETCH (repeat 6)	lure    	0.503	NR  	1   	NR      	NR      
+130 	80.6  	3   	WAGON (repeat 8)	lure    	0.614	NR  	1   	NR      	NR      
+131 	81.3  	10  	MORNING (repeat 11)	lure    	0.579	NR  	1   	NR      	NR      
+132 	82    	7   	PATCH (repeat 9)	lure    	0.687	NR  	1   	NR      	NR      
+133 	82.8  	13  	FORT (repeat 9)	lure    	0.451	NR  	1   	NR      	NR      
+134 	83.3  	14  	MARBLE (repeat 10)	lure    	0.474	NR  	1   	NR      	NR      
+135 	83.9  	7   	PATCH (repeat 10)	lure    	0.452	NR  	1   	NR      	NR      
+136 	84.4  	21  	BLACKBERRY	fruit   	0.95	0.862	1   	target  	target  
+137 	85.4  	14  	MARBLE (repeat 11)	lure    	0.362	NR  	1   	NR      	NR      
+138 	85.9  	7   	PATCH (repeat 11)	lure    	0.505	NR  	1   	NR      	NR      
+139 	86.5  	17  	SPOKE (repeat 8)	lure    	0.489	NR  	1   	NR      	NR      
+140 	87.1  	12  	TARGET (repeat 6)	lure    	0.474	NR  	1   	NR      	NR      
+141 	87.7  	17  	SPOKE (repeat 9)	lure    	0.408	NR  	1   	NR      	NR      
+142 	88.2  	10  	MORNING (repeat 12)	lure    	0.282	NR  	1   	NR      	NR      
+143 	88.5  	16  	DISC (repeat 8)	lure    	0.552	NR  	1   	NR      	NR      
+144 	89.2  	13  	FORT (repeat 10)	lure    	0.276	NR  	1   	NR      	NR      
+145 	89.6  	17  	SPOKE (repeat 10)	lure    	0.284	NR  	1   	NR      	NR      
+146 	89.9  	11  	FRONTIER (repeat 9)	lure    	0.308	NR  	1   	NR      	NR      
+147 	90.3  	8   	HURDLE (repeat 10)	lure    	0.472	NR  	1   	NR      	NR      
+148 	90.9  	3   	WAGON (repeat 9)	lure    	0.658	NR  	1   	NR      	NR      
+149 	91.6  	6   	POUCH (repeat 5)	lure    	0.32	NR  	1   	NR      	NR      
+150 	92    	16  	DISC (repeat 9)	lure    	0.494	NR  	1   	NR      	NR      
+151 	92.6  	7   	PATCH (repeat 12)	lure    	0.571	NR  	1   	NR      	NR      
+152 	93.3  	11  	FRONTIER (repeat 10)	lure    	0.665	NR  	1   	NR      	NR      
+153 	94    	14  	MARBLE (repeat 12)	lure    	0.53	NR  	1   	NR      	NR      
+154 	94.7  	4   	SKETCH (repeat 7)	lure    	0.64	NR  	1   	NR      	NR      
+155 	95.4  	8   	HURDLE (repeat 11)	lure    	0.613	NR  	1   	NR      	NR      
+156 	96.1  	6   	POUCH (repeat 6)	lure    	0.452	NR  	1   	NR      	NR      
+157 	96.7  	5   	PAGE (repeat 8)	lure    	0.532	NR  	1   	NR      	NR      
+158 	97.3  	2   	PLANET (repeat 6)	lure    	0.452	NR  	1   	NR      	NR      
+159 	97.8  	10  	MORNING (repeat 13)	lure    	0.556	NR  	1   	NR      	NR      
+160 	98.5  	6   	POUCH (repeat 7)	lure    	0.452	NR  	1   	NR      	NR      
+161 	99    	11  	FRONTIER (repeat 11)	lure    	0.599	NR  	1   	NR      	NR      
+162 	99.7  	9   	ENGINE (repeat 6)	lure    	0.451	NR  	1   	NR      	NR      
+163 	100.3 	8   	HURDLE (repeat 12)	lure    	0.491	NR  	1   	NR      	NR      
+164 	100.8 	13  	FORT (repeat 11)	lure    	0.452	NR  	1   	NR      	NR      
+165 	101.4 	9   	ENGINE (repeat 7)	lure    	0.439	NR  	1   	NR      	NR      
+166 	101.9 	10  	MORNING (repeat 14)	lure    	0.452	NR  	1   	NR      	NR      
+167 	102.5 	11  	FRONTIER (repeat 12)	lure    	0.254	NR  	1   	NR      	NR      
+168 	102.8 	4   	SKETCH (repeat 8)	lure    	0.452	NR  	1   	NR      	NR      
+169 	103.4 	17  	SPOKE (repeat 11)	lure    	0.495	NR  	1   	NR      	NR      
+170 	104   	12  	TARGET (repeat 7)	lure    	0.452	NR  	1   	NR      	NR      
+171 	104.5 	22  	BANANA    	fruit   	0.951	0.545	1   	target  	target  
+172 	105.6 	2   	PLANET (repeat 7)	lure    	0.62	NR  	1   	NR      	NR      
+173 	106.3 	8   	HURDLE (repeat 13)	lure    	0.57	NR  	1   	NR      	NR      
+174 	107   	5   	PAGE (repeat 9)	lure    	0.291	NR  	1   	NR      	NR      
+175 	107.4 	1   	EASEL (repeat 5)	lure    	0.415	NR  	1   	NR      	NR      
+176 	107.9 	10  	MORNING (repeat 15)	lure    	0.552	NR  	1   	NR      	NR      
+177 	108.6 	13  	FORT (repeat 12)	lure    	0.558	NR  	1   	NR      	NR      
+178 	109.2 	5   	PAGE (repeat 10)	lure    	0.455	NR  	1   	NR      	NR      
+179 	109.8 	10  	MORNING (repeat 16)	lure    	0.464	NR  	1   	NR      	NR      
+180 	110.4 	11  	FRONTIER (repeat 13)	lure    	0.257	NR  	1   	NR      	NR      
+181 	110.7 	17  	SPOKE (repeat 12)	lure    	0.519	NR  	1   	NR      	NR      
+182 	111.4 	11  	FRONTIER (repeat 14)	lure    	0.319	NR  	1   	NR      	NR      
+183 	111.8 	4   	SKETCH (repeat 9)	lure    	0.56	NR  	1   	NR      	NR      
+184 	112.4 	10  	MORNING (repeat 17)	lure    	0.266	NR  	1   	NR      	NR      
+185 	112.8 	2   	PLANET (repeat 8)	lure    	0.313	NR  	1   	NR      	NR      
+186 	113.2 	13  	FORT (repeat 13)	lure    	0.399	NR  	1   	NR      	NR      
+187 	113.7 	9   	ENGINE (repeat 8)	lure    	0.469	NR  	1   	NR      	NR      
+188 	114.3 	4   	SKETCH (repeat 10)	lure    	0.411	NR  	1   	NR      	NR      
+189 	114.8 	10  	MORNING (repeat 18)	lure    	0.573	NR  	1   	NR      	NR      
+190 	115.5 	8   	HURDLE (repeat 14)	lure    	0.624	NR  	1   	NR      	NR      
+191 	116.3 	9   	ENGINE (repeat 9)	lure    	0.451	NR  	1   	NR      	NR      
+192 	116.8 	1   	EASEL (repeat 6)	lure    	0.38	NR  	1   	NR      	NR      
+193 	117.3 	13  	FORT (repeat 14)	lure    	0.452	NR  	1   	NR      	NR      
+194 	117.8 	3   	WAGON (repeat 10)	lure    	0.299	NR  	1   	NR      	NR      
+195 	118.3 	4   	SKETCH (repeat 11)	lure    	0.452	NR  	1   	NR      	NR      
+196 	118.8 	3   	WAGON (repeat 11)	lure    	0.556	NR  	1   	NR      	NR      
+197 	119.5 	5   	PAGE (repeat 11)	lure    	0.452	NR  	1   	NR      	NR      
+198 	120.1 	23  	RASPBERRY 	fruit   	0.951	0.444	1   	target  	target  
+199 	121.1 	7   	PATCH (repeat 13)	lure    	0.525	NR  	1   	NR      	NR      
+200 	121.8 	17  	SPOKE (repeat 13)	lure    	0.391	NR  	1   	NR      	NR      
+201 	122.3 	4   	SKETCH (repeat 12)	lure    	0.292	NR  	1   	NR      	NR      
+202 	122.6 	5   	PAGE (repeat 12)	lure    	0.501	NR  	1   	NR      	NR      
+203 	123.2 	4   	SKETCH (repeat 13)	lure    	0.385	NR  	1   	NR      	NR      
+204 	123.7 	13  	FORT (repeat 15)	lure    	0.584	NR  	1   	NR      	NR      
+205 	124.4 	6   	POUCH (repeat 8)	lure    	0.254	NR  	1   	NR      	NR      
+206 	124.8 	9   	ENGINE (repeat 10)	lure    	0.378	NR  	1   	NR      	NR      
+207 	125.3 	7   	PATCH (repeat 14)	lure    	0.288	NR  	1   	NR      	NR      
+208 	125.7 	2   	PLANET (repeat 9)	lure    	0.571	NR  	1   	NR      	NR      
+209 	126.4 	17  	SPOKE (repeat 14)	lure    	0.382	NR  	1   	NR      	NR      
+210 	126.9 	6   	POUCH (repeat 9)	lure    	0.326	NR  	1   	NR      	NR      
+211 	127.3 	1   	EASEL (repeat 7)	lure    	0.43	NR  	1   	NR      	NR      
+212 	127.9 	11  	FRONTIER (repeat 15)	lure    	0.643	NR  	1   	NR      	NR      
+213 	128.6 	4   	SKETCH (repeat 14)	lure    	0.686	NR  	1   	NR      	NR      
+214 	129.4 	6   	POUCH (repeat 10)	lure    	0.283	NR  	1   	NR      	NR      
+215 	129.8 	10  	MORNING (repeat 19)	lure    	0.492	NR  	1   	NR      	NR      
+216 	130.4 	4   	SKETCH (repeat 15)	lure    	0.413	NR  	1   	NR      	NR      
+217 	130.9 	7   	PATCH (repeat 15)	lure    	0.329	NR  	1   	NR      	NR      
+218 	131.4 	2   	PLANET (repeat 10)	lure    	0.497	NR  	1   	NR      	NR      
+219 	132   	11  	FRONTIER (repeat 16)	lure    	0.453	NR  	1   	NR      	NR      
+220 	132.6 	13  	FORT (repeat 16)	lure    	0.282	NR  	1   	NR      	NR      
+221 	132.9 	1   	EASEL (repeat 8)	lure    	0.457	NR  	1   	NR      	NR      
+222 	133.5 	2   	PLANET (repeat 11)	lure    	0.495	NR  	1   	NR      	NR      
+223 	134.1 	4   	SKETCH (repeat 16)	lure    	0.452	NR  	1   	NR      	NR      
+224 	134.7 	3   	WAGON (repeat 12)	lure    	0.277	NR  	1   	NR      	NR      
+225 	135.1 	5   	PAGE (repeat 13)	lure    	0.452	NR  	1   	NR      	NR      
+226 	135.7 	24  	BLUEBERRY 	fruit   	0.95	0.452	1   	target  	target  
+227 	136.7 	3   	WAGON (repeat 13)	lure    	0.63	NR  	1   	NR      	NR      
+228 	137.5 	9   	ENGINE (repeat 11)	lure    	0.578	NR  	1   	NR      	NR      
+229 	138.2 	3   	WAGON (repeat 14)	lure    	0.359	NR  	1   	NR      	NR      
+230 	138.6 	7   	PATCH (repeat 16)	lure    	0.693	NR  	1   	NR      	NR      
+231 	139.4 	5   	PAGE (repeat 14)	lure    	0.29	NR  	1   	NR      	NR      
+232 	139.8 	9   	ENGINE (repeat 12)	lure    	0.379	NR  	1   	NR      	NR      
+233 	140.3 	5   	PAGE (repeat 15)	lure    	0.6 	NR  	1   	NR      	NR      
+234 	141   	1   	EASEL (repeat 9)	lure    	0.529	NR  	1   	NR      	NR      
+235 	141.6 	16  	DISC (repeat 10)	lure    	0.696	NR  	1   	NR      	NR      
+236 	142.4 	2   	PLANET (repeat 12)	lure    	0.259	NR  	1   	NR      	NR      
+237 	142.8 	17  	SPOKE (repeat 15)	lure    	0.693	NR  	1   	NR      	NR      
+238 	143.6 	12  	TARGET (repeat 8)	lure    	0.513	NR  	1   	NR      	NR      
+239 	144.2 	1   	EASEL (repeat 10)	lure    	0.636	NR  	1   	NR      	NR      
+240 	144.9 	10  	MORNING (repeat 20)	lure    	0.528	NR  	1   	NR      	NR      
+241 	145.6 	17  	SPOKE (repeat 16)	lure    	0.578	NR  	1   	NR      	NR      
+242 	146.3 	5   	PAGE (repeat 16)	lure    	0.485	NR  	1   	NR      	NR      
