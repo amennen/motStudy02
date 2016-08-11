@@ -1,0 +1,11 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	68.9  	5   	STADIUM   	rt-targ 	1.95	0.972	1   	target  	target  
+2   	110.9 	2   	CART      	rt-targ 	1.95	1.188	1   	target  	target  
+3   	152.9 	1   	METAL     	rt-targ 	1.95	0.908	1   	non-target	non-target
+4   	194.9 	3   	CURB      	rt-targ 	1.95	0.91	1   	target  	target  
+5   	236.9 	9   	FOAM      	rt-targ 	1.952	0.869	1   	target  	target  
+6   	278.9 	6   	SAWDUST   	rt-targ 	1.951	0.95	1   	target  	target  
+7   	320.9 	7   	NOZZLE    	rt-targ 	1.95	0.886	0   	target  	non-target
+8   	362.9 	4   	SACK      	rt-targ 	1.95	1.102	1   	non-target	non-target
+9   	404.9 	8   	COACH     	rt-targ 	1.95	1.063	1   	target  	target  
+10  	446.9 	10  	PARADE    	rt-targ 	1.951	0.832	1   	target  	target  
