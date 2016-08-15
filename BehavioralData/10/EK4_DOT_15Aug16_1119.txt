@@ -1,0 +1,9 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	34.3  	26  	POUCH     	target  	1.951	NR  	0   	NR      	target  
+2   	97.3  	28  	PUPPET    	target  	1.953	1.252	1   	target  	target  
+3   	154   	25  	CYCLONE   	target  	1.95	1.649	1   	non-target	non-target
+4   	199.1 	22  	MALLET    	target  	1.951	NR  	0   	NR      	target  
+5   	241.1 	21  	TIMBER    	target  	1.955	1.167	1   	non-target	non-target
+6   	283.1 	24  	APRON     	target  	1.952	1.444	0   	non-target	target  
+7   	325.1 	27  	STEEL     	target  	1.954	1.184	1   	non-target	non-target
+8   	367.1 	23  	TARGET    	target  	1.952	1.078	1   	non-target	non-target
