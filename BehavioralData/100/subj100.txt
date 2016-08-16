@@ -795,3 +795,6 @@ trial	TR	prompt active	speed	ds	flip error	found file	FileTR	CategSep	LastFile
 8	13	1		15.000	  NaN	0.0311		NaN		1		  NaN		
 8	14	0		15.000	  NaN	0.0163		NaN		1		  NaN		
 8	15	0		15.000	  NaN	0.0008		NaN		1		  NaN		
+trial	TR	prompt active	speed	ds	flip error	found file	FileTR	CategSep	LastFile
+1	1	0		0.500	  NaN	0.0112		NaN		1		  NaN		
+1	2	0		0.500	  NaN	0.0084		NaN		1		  NaN		

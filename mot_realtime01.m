@@ -63,7 +63,7 @@ for i=1:NUM_TASK_RUNS
 end
 RECALL2 = MOT{end} + 1; % post-scan rsvp memory test
 ASSOCIATES = RECALL2 + 1;
-
+%ANATOMICAL_PREP = ASSOCIATES + 1;
 % name strings
 SESSIONSTRINGS{SETUP} = 'GENERATE PAIRINGS'; % set up rsvp study learn associates
 SESSIONSTRINGS{FAMILIARIZE} = 'FAMILIARIZE1'; % rsvp study learn associates
@@ -94,7 +94,7 @@ SESSIONSTRINGS{RECALL_PRACTICE} = 'DELIBERATE RECALL PRACTICE'; % get used to ta
 SESSIONSTRINGS{RECALL1} = 'RECALL1'; % baseline recollection, used to train recollection classifier
 SESSIONSTRINGS{RECALL2} = 'RECALL2'; % post-test recollection, used to measure effectiveness of manipulation
 SESSIONSTRINGS{ASSOCIATES} = 'ASSOCIATES TASK'; % face-scene classification
-
+%SESSIONSTRINGS{ANATOMICAL_PREP} = 'ANATOMICAL PREP'; %prepping for first scan
 % SETUP: prepare experiment
 if ~exist('SUBJECT','var'), SUBJECT = -1; end
 if ~exist('SESSION','var'),
@@ -1273,6 +1273,37 @@ switch SESSION
         %% MOT
     case [MOT_PREP MOT MOT_PRACTICE MOT_PRACTICE2 MOT_LOCALIZER]
         
+        
+        if SESSION == MOT_PRACTICE2
+            displayText(mainWindow,['Welcome to your fMRI scanning session!\n\nOnce you''re all the way inside the scanner and can read this text, please reach up to your eyes and ' ...
+                'fine-tune the position of your mirror. You want to set it so you can see as much of the screen as comfortably as possible. This will be your last chance to adjust ' ...
+                'your mirror, so be sure to set it just right.\n\nOnce you''ve adjusted the mirror to your satisfaction, please press the index finger button to test your button pad.'] ...
+                ,minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
+            waitForKeyboard(kbTrig_keycode,DEVICE);
+            displayText(mainWindow,'Great. I detected that button press, which means at least one button works. Now let''s try the rest of them. Please press the middle finger button.' ...
+                ,minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
+            waitForKeyboard(keys.code(3,:),DEVICE);
+            displayText(mainWindow,'And now the ring finger button...',minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
+            waitForKeyboard(keys.code(4,:),DEVICE);
+            displayText(mainWindow,'And now the pinky finger button...',minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
+            waitForKeyboard(keys.code(5,:),DEVICE);
+            displayText(mainWindow,'And now the thumb button...',minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
+            waitForKeyboard(keys.code(1,:),DEVICE);
+            displayText(mainWindow,['Good news! It looks like the button pad is working just fine.\n\nJust a reminder that we can hear your voice when the scanner is at rest, so ' ...
+                'just speak up to ask or tell us something. During a scan, we will abort right away if you use the squeeze ball, but please do so only if there''s something urgent ' ...
+                'we need to address immediately.\n\n-- please press the index finger button to continue --'],minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
+            waitForKeyboard(kbTrig_keycode,DEVICE);
+            displayText(mainWindow,['During the scan today, it is crucial that you keep your head still. Even a tiny head movement, e.g., caused by stretching your legs, will blur ' ...
+                'your brain scan. This is for the same reason that moving objects appear blurry in a photograph.\n\nAs it can be uncomfortable to stay still for a long time, please ' ...
+                'go ahead and take the opportunity to stretch or scratch whenever the scanner is silent. Just try your best to keep your head in the same place when you do so.\n\n' ...
+                '-- please press the index finger button to continue --'],minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
+            waitForKeyboard(kbTrig_keycode,DEVICE);
+            displayText(mainWindow,['We''re now going to start with a five-minute scan while you complete some training tasks in preparation for later. Please work through these and we''ll get in ' ...
+                'touch with you when you finish.\n\n-- please press the index finger button to continue --'],INSTANT,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
+            waitForKeyboard(kbTrig_keycode,DEVICE);
+        end
+
+        
         % stimulus presentation parameters
         instant = 0;
         num_dots = 5; %where set total dots
@@ -2247,31 +2278,31 @@ switch SESSION
         
     case SCAN_PREP
         % instructions
-        displayText(mainWindow,['Welcome to your fMRI scanning session!\n\nOnce you''re all the way inside the scanner and can read this text, please reach up to your eyes and ' ...
-            'fine-tune the position of your mirror. You want to set it so you can see as much of the screen as comfortably as possible. This will be your last chance to adjust ' ...
-            'your mirror, so be sure to set it just right.\n\nOnce you''ve adjusted the mirror to your satisfaction, please press the index finger button to test your button pad.'] ...
-            ,minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
-        waitForKeyboard(kbTrig_keycode,DEVICE);
-        displayText(mainWindow,'Great. I detected that button press, which means at least one button works. Now let''s try the rest of them. Please press the middle finger button.' ...
-            ,minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
-        waitForKeyboard(keys.code(3,:),DEVICE);
-        displayText(mainWindow,'And now the ring finger button...',minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
-        waitForKeyboard(keys.code(4,:),DEVICE);
-        displayText(mainWindow,'And now the pinky finger button...',minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
-        waitForKeyboard(keys.code(5,:),DEVICE);
-        displayText(mainWindow,'And now the thumb button...',minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
-        waitForKeyboard(keys.code(1,:),DEVICE);
-        displayText(mainWindow,['Good news! It looks like the button pad is working just fine.\n\nJust a reminder that we can hear your voice when the scanner is at rest, so ' ...
-            'just speak up to ask or tell us something. During a scan, we will abort right away if you use the squeeze ball, but please do so only if there''s something urgent ' ...
-            'we need to address immediately.\n\n-- please press the index finger button to continue --'],minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
-        waitForKeyboard(kbTrig_keycode,DEVICE);
-        displayText(mainWindow,['During the scan today, it is crucial that you keep your head still. Even a tiny head movement, e.g., caused by stretching your legs, will blur ' ...
-            'your brain scan. This is for the same reason that moving objects appear blurry in a photograph.\n\nAs it can be uncomfortable to stay still for a long time, please ' ...
-            'go ahead and take the opportunity to stretch or scratch whenever the scanner is silent. Just try your best to keep your head in the same place when you do so.\n\n' ...
-            '-- please press the index finger button to continue --'],minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
-        waitForKeyboard(kbTrig_keycode,DEVICE);
-        displayText(mainWindow,['We''re now going to have a short functional run before you work through a variety of tasks. Please work through these and we''ll get in ' ...
-            'touch with you when you finish.\n\n-- please press the index finger button to continue --'],INSTANT,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
+%         displayText(mainWindow,['Welcome to your fMRI scanning session!\n\nOnce you''re all the way inside the scanner and can read this text, please reach up to your eyes and ' ...
+%             'fine-tune the position of your mirror. You want to set it so you can see as much of the screen as comfortably as possible. This will be your last chance to adjust ' ...
+%             'your mirror, so be sure to set it just right.\n\nOnce you''ve adjusted the mirror to your satisfaction, please press the index finger button to test your button pad.'] ...
+%             ,minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
+%         waitForKeyboard(kbTrig_keycode,DEVICE);
+%         displayText(mainWindow,'Great. I detected that button press, which means at least one button works. Now let''s try the rest of them. Please press the middle finger button.' ...
+%             ,minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
+%         waitForKeyboard(keys.code(3,:),DEVICE);
+%         displayText(mainWindow,'And now the ring finger button...',minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
+%         waitForKeyboard(keys.code(4,:),DEVICE);
+%         displayText(mainWindow,'And now the pinky finger button...',minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
+%         waitForKeyboard(keys.code(5,:),DEVICE);
+%         displayText(mainWindow,'And now the thumb button...',minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
+%         waitForKeyboard(keys.code(1,:),DEVICE);
+%         displayText(mainWindow,['Good news! It looks like the button pad is working just fine.\n\nJust a reminder that we can hear your voice when the scanner is at rest, so ' ...
+%             'just speak up to ask or tell us something. During a scan, we will abort right away if you use the squeeze ball, but please do so only if there''s something urgent ' ...
+%             'we need to address immediately.\n\n-- please press the index finger button to continue --'],minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
+%         waitForKeyboard(kbTrig_keycode,DEVICE);
+%         displayText(mainWindow,['During the scan today, it is crucial that you keep your head still. Even a tiny head movement, e.g., caused by stretching your legs, will blur ' ...
+%             'your brain scan. This is for the same reason that moving objects appear blurry in a photograph.\n\nAs it can be uncomfortable to stay still for a long time, please ' ...
+%             'go ahead and take the opportunity to stretch or scratch whenever the scanner is silent. Just try your best to keep your head in the same place when you do so.\n\n' ...
+%             '-- please press the index finger button to continue --'],minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
+%         waitForKeyboard(kbTrig_keycode,DEVICE);
+        displayText(mainWindow,['Great! Now, we''re now going to have a short functional run before you work through a variety of tasks. Please work through these and we''ll get in ' ...
+             'touch with you when you finish.\n\n-- please press the index finger button to continue --'],INSTANT,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
         waitForKeyboard(kbTrig_keycode,DEVICE);
         DrawFormattedText(mainWindow,'Waiting for scanner start, hold tight!','center','center',COLORS.MAINFONTCOLOR,WRAPCHARS);
         Screen('Flip', mainWindow);
