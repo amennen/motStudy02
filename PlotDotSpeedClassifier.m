@@ -9,13 +9,13 @@ allsep = [];
 nstim = 10;
 nTRs = 15;
 nblock = 3;
-svec = 9 %[3:5 7];
+svec = [3:5 7:10];
 nsub = length(svec);
 sepbystim = zeros(nstim,nTRs*3);
 speedbystim = zeros(nstim,nTRs*3);
 MOT_PREP = 5;
 colors = [110 62 106;83 200 212; 187 124 181]/255;
-plotstim = 1;
+plotstim = 0;
 plotmixedstim = 0;
 for s = 1:nsub
     subjectNum = svec(s);
@@ -203,7 +203,8 @@ for s = 1:nsub
     text(-.68,.33, sprintf('fastS = %4.1f', hardSpeed), 'FontSize', 18)
     print(thisfig, sprintf('%sevidencedist.pdf', plotDir), '-dpdf')
     
-    [thisfig,maxLoc] = plotDist(fbsep,1,[-.5:.1:.5]);
+    xvals = [-.5:.1:.5];
+    [thisfig,maxLoc,nCounts] = plotDist(fbsep,1,xvals);
     ylim([0 .4])
     xlim([-.7 .7])
     title(sprintf('Subject %i Evidence Distribution, Fb Only', subjectNum))
@@ -214,7 +215,9 @@ for s = 1:nsub
     text(-.68,.38,['cm = ' num2str(maxLoc)], 'FontSize', 18);
     text(-.68,.33, sprintf('fastS = %4.1f', hardSpeed), 'FontSize', 18)
     print(thisfig, sprintf('%sfb_evidencedist.pdf', plotDir), '-dpdf')
-    
+    idealInd = find(xvals >0.05 & xvals <0.15);
+    ratioIdeal(s) = nCounts(idealInd);
+    allcm(s) = maxLoc;
 %     figure;
 %     scatter(allspeeds,allsep);
 %     %lsline;
@@ -436,3 +439,33 @@ title('Absolute Value Differences')
 set(findall(gcf,'-property','FontSize'),'FontSize',20)
 ylim([0 0.4])
 print(thisfig, sprintf('%sboundaryvsinner.pdf', plotDir), '-dpdf')
+
+%% now compare ratio ideal
+firstgroup = ratioIdeal(1:4);
+nnew = 3;
+secondgroup = ratioIdeal(end-nnew+1:end);
+avgratio = [mean(firstgroup) mean(secondgroup)];
+eavgratio = [std(firstgroup)/sqrt(length(firstgroup)-1) std(secondgroup)/sqrt(length(secondgroup)-1)];
+thisfig = figure;
+barwitherr(eavgratio,avgratio)
+set(gca,'XTickLabel' , ['Group 1';'Group 2']);
+xlabel('Subject Group')
+ylabel('Good Evidence Ratio')
+title('Ratio of Good Evidence by Subject Group')
+set(findall(gcf,'-property','FontSize'),'FontSize',20)
+ylim([0 0.3])
+
+%% now compare cm of feedback
+firstgroup = allcm(1:4);
+nnew = 3;
+secondgroup = allcm(end-nnew+1:end);
+avgratio = [mean(firstgroup) mean(secondgroup)];
+eavgratio = [std(firstgroup)/sqrt(length(firstgroup)-1) std(secondgroup)/sqrt(length(secondgroup)-1)];
+thisfig = figure;
+barwitherr(eavgratio,avgratio)
+set(gca,'XTickLabel' , ['Group 1';'Group 2']);
+xlabel('Subject Group')
+ylabel('CM of Evidence')
+title('CM of Evidence by Subject Group')
+set(findall(gcf,'-property','FontSize'),'FontSize',20)
+ylim([-.2 0.2])

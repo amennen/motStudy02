@@ -15,16 +15,17 @@
 %subjectNum = 3;
 %runNum = 1;
 updated =1; %for only looking at the results recorded after making differences (minimum dot speed, increase starting speed, average over 2)
-svec = [3:5 7:9];
-runvec = [1 1 2 1 1 1];
+nnew = 3;
+svec = [3:5 7:10];
+runvec = [1 1 2 1 1 1 1];
 if length(runvec)~=length(svec)
     error('Enter in the runs AND date numbers!!')
 end
-datevec = {'7-12-16', '7-14-16', '7-14-16', '7-15-16', '8-10-16', '8-11-16'};
+datevec = {'7-12-16', '7-14-16', '7-14-16', '7-15-16', '8-10-16', '8-11-16', '8-16-16'};
 if updated
-    svec = svec(end-1:end);
-    runvec = runvec(end-1:end);
-    datevec = datevec(end-1:end);
+    svec = svec(end-nnew +1:end);
+    runvec = runvec(end-nnew +1:end);
+    datevec = datevec(end-nnew +1:end);
 end
 NSUB = length(svec);
 for s = 1:NSUB

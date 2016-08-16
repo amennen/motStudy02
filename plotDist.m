@@ -1,4 +1,4 @@
-function [fighandle, cm,counts] = plotDist(data,keepbars,varargin)
+function [fighandle, cm, normalizedCounts] = plotDist(data,keepbars,varargin)
 
 if ~isempty(varargin)
     [counts,bins]=hist(data,varargin{1});%# create histogram from a normal distribution.
@@ -17,7 +17,7 @@ t = linspace(bins(1)-dx/2,bins(end)+dx/2,n+1);
 Fvals = cumsum([0,counts.*dx])/sum(counts);
 F = spline(t, [0, Fvals, 0]);
 DF = fnder(F);  % computes its first derivative
-
+normalizedCounts = counts/sum(counts);
 %#METHOD 2: DIVIDE BY AREA
 fighandle = figure;
 if keepbars
