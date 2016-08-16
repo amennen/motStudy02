@@ -1,0 +1,5 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	35.2  	45  	RECORD    	lure_easy	1.951	1.445	1   	non-target	non-target
+2   	77.2  	46  	JEEP      	lure_hard	1.951	0.78	0   	non-target	target  
+3   	119.2 	24  	APRON     	targ_easy	1.951	1.397	1   	non-target	non-target
+4   	161.2 	25  	CYCLONE   	targ_hard	1.95	0.918	0   	target  	non-target
