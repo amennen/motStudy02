@@ -1,0 +1,9 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	9.9   	23  	MORNING   	stair   	3.453	1.25	1   	generic 	generic 
+2   	24.4  	27  	CHISEL    	stair   	3.454	1.444	1   	full    	full    
+3   	37.6  	28  	DISTRICT  	stair   	3.455	1.702	1   	1 detail	1 detail
+4   	50.4  	25  	BATON     	stair   	3.455	1.125	1   	full    	full    
+5   	62.4  	22  	LEVER     	stair   	3.454	1.659	1   	1 detail	1 detail
+6   	74.4  	26  	JEEP      	stair   	3.454	1.73	1   	2+ details	2+ details
+7   	86.4  	24  	MAST      	stair   	3.453	1.447	1   	1 detail	1 detail
+8   	98.4  	21  	STEEL     	stair   	3.455	1.91	1   	2+ details	2+ details

@@ -1,0 +1,9 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	34.2  	21  	STEEL     	target  	1.951	NR  	0   	NR      	target  
+2   	93.7  	23  	MORNING   	target  	1.955	1.331	1   	target  	target  
+3   	147.8 	22  	LEVER     	target  	1.954	1.043	1   	target  	target  
+4   	195.9 	26  	JEEP      	target  	1.951	1.236	1   	non-target	non-target
+5   	237.9 	28  	DISTRICT  	target  	1.956	0.967	1   	non-target	non-target
+6   	279.9 	24  	MAST      	target  	1.951	0.718	1   	target  	target  
+7   	321.9 	25  	BATON     	target  	1.955	1.242	1   	non-target	non-target
+8   	363.9 	27  	CHISEL    	target  	1.952	0.906	1   	non-target	non-target
