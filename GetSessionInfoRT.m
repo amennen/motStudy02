@@ -69,7 +69,8 @@ if ismember(SESSION,MOT)
     % take out now
 else
     iTR.start = convertTR(timing.trig.wait,timing.plannedOnsets.prompt,config.TR);
-    trialDur = timing.plannedOnsets.vis(1) - timing.plannedOnsets.prompt(1) +4; %added 4 to go 2 TR's ahead 
+    %trialDur = timing.plannedOnsets.vis(1) - timing.plannedOnsets.prompt(1) +4; %added 4 to go 2 TR's ahead 
+    trialDur = timing.plannedOnsets.math(1) - timing.plannedOnsets.prompt(1) + 4; %for entire recall period = 15 TR's total, then go two past
 end
 trialDurTR = (trialDur/config.TR) - 1; %20s/2 = 10 - 1 = 9 TRs
 if SESSION == 18 && N_TRS_LOC > 0 %shift over a little bit more

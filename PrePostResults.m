@@ -14,10 +14,14 @@
 %variables
 %subjectNum = 3;
 %runNum = 1;
-updated =1; %for only looking at the results recorded after making differences (minimum dot speed, increase starting speed, average over 2)
+plotDir = ['/Data1/code/' projectName '/' 'Plots' '/' ];
+updated =0; %for only looking at the results recorded after making differences (minimum dot speed, increase starting speed, average over 2)
+oldonly = 1;
 nnew = 3;
+nold = 4;
 svec = [3:5 7:10];
 runvec = [1 1 2 1 1 1 1];
+nTRsperTrial = 19;
 if length(runvec)~=length(svec)
     error('Enter in the runs AND date numbers!!')
 end
@@ -26,6 +30,11 @@ if updated
     svec = svec(end-nnew +1:end);
     runvec = runvec(end-nnew +1:end);
     datevec = datevec(end-nnew +1:end);
+end
+if oldonly
+    svec = svec(1:nold);
+    runvec = runvec(1:nold);
+    datevec = datevec(1:nold);
 end
 NSUB = length(svec);
 for s = 1:NSUB
@@ -69,7 +78,7 @@ for s = 1:NSUB
         %shape by trial
         %ind = union(testTrials,testTrials+shiftTR);
         %z = reshape(ind,8,20);
-        z = reshape(categSep,8,20); %for 20 trials --make sure this works here!
+        z = reshape(categSep,nTRsperTrial,20); %for 20 trials --make sure this works here!
         byTrial = z';
         RTtrials = byTrial(trials.hard,:);
         %now do in that specific order
@@ -100,18 +109,17 @@ allOMIT = mean(OMITavg);
 eOMIT = std(OMITavg,[],1)/sqrt(NSUB-1);
 alldiffmeans = [allRT;allOMIT];
 alldiffstd = [eRT;eOMIT];
-mseb(1:8,alldiffmeans, alldiffstd)
+mseb(1:nTRsperTrial,alldiffmeans, alldiffstd)
 legend('Realtime', 'Omit')
-title('Post - Pre MOT Classifier Difference')
-set(gca, 'XTick', [1:8])
-set(gca,'XTickLabel',['-2'; '-1'; ' 0'; ' 1'; ' 2'; ' 3'; ' 4'; ' 5']);
+title(sprintf('Post - Pre MOT Classifier Difference, n = %i',NSUB))
+set(gca, 'XTick', [1:nTRsperTrial])
+%set(gca,'XTickLabel',['-2'; '-1'; ' 0'; ' 1'; ' 2'; ' 3'; ' 4'; ' 5'; '6'; '7'; '8'; '9'; ']);
 ylabel('Target - Lure Evidence')
 xlabel('TR (2s)')
 set(findall(gcf,'-property','FontSize'),'FontSize',16)
-line([3 3], [-1 1], 'Color', 'k', 'LineWidth', 3);
-line([6 6], [-1 1], 'Color', 'k', 'LineWidth', 3);
+%line([3 3], [-1 1], 'Color', 'k', 'LineWidth', 3);
+%line([6 6], [-1 1], 'Color', 'k', 'LineWidth', 3);
 
-xlim([1 8])
+xlim([1 nTRsperTrial])
 ylim([-.25 .25])
-filename = 'newplot1';
-print(h1,'-dpdf', filename);
+print(h1, sprintf('%sresultsAllTR_old.pdf', plotDir), '-dpdf')
