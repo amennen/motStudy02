@@ -1,0 +1,21 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	43.8  	6   	CHASM     	realtime	3.951	2.281	1   	full    	1 detail, 2+ details, full
+2   	83.8  	12  	AXLE      	omit    	3.95	1.641	1   	2+ details	1 detail, 2+ details, full
+3   	123.8 	18  	BASIN     	omit    	3.95	1.665	1   	2+ details	1 detail, 2+ details, full
+4   	163.8 	2   	FERRY     	realtime	3.951	1.721	1   	2+ details	1 detail, 2+ details, full
+5   	203.7 	20  	LENS      	omit    	3.95	1.218	0   	no image	1 detail, 2+ details, full
+6   	243.7 	10  	BELT      	realtime	3.95	2.282	1   	full    	1 detail, 2+ details, full
+7   	283.7 	16  	TRACK     	omit    	3.95	1.523	1   	full    	1 detail, 2+ details, full
+8   	323.7 	8   	SPEAR     	realtime	3.95	2.219	1   	full    	1 detail, 2+ details, full
+9   	363.7 	4   	CARAVAN   	realtime	3.951	0.987	0   	no image	1 detail, 2+ details, full
+10  	403.7 	17  	ROOT      	omit    	3.95	2.211	1   	2+ details	1 detail, 2+ details, full
+11  	443.7 	5   	QUILL     	realtime	3.95	1.428	1   	full    	1 detail, 2+ details, full
+12  	483.7 	15  	CLOAK     	omit    	3.951	2.228	0   	generic 	1 detail, 2+ details, full
+13  	523.7 	19  	PORTAL    	omit    	3.95	1.772	1   	2+ details	1 detail, 2+ details, full
+14  	563.7 	1   	RACKET    	realtime	3.951	1.733	1   	2+ details	1 detail, 2+ details, full
+15  	603.7 	13  	PURSE     	omit    	3.95	1.581	1   	2+ details	1 detail, 2+ details, full
+16  	643.7 	7   	GLASS     	realtime	3.95	2.277	0   	no image	1 detail, 2+ details, full
+17  	683.7 	11  	PENNY     	omit    	3.951	1.87	0   	no image	1 detail, 2+ details, full
+18  	723.7 	3   	RELIC     	realtime	3.95	1.806	1   	2+ details	1 detail, 2+ details, full
+19  	763.7 	14  	PLANET    	omit    	3.951	1.839	1   	2+ details	1 detail, 2+ details, full
+20  	803.7 	9   	BOTTLE    	realtime	3.95	1.239	0   	no image	1 detail, 2+ details, full

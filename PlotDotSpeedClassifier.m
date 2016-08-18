@@ -9,7 +9,7 @@ allsep = [];
 nstim = 10;
 nTRs = 15;
 nblock = 3;
-svec = 9 %[3:5 7];
+svec = [3:5 7:10];
 nsub = length(svec);
 sepbystim = zeros(nstim,nTRs*3);
 speedbystim = zeros(nstim,nTRs*3);
@@ -17,6 +17,8 @@ MOT_PREP = 5;
 colors = [110 62 106;83 200 212; 187 124 181]/255;
 plotstim = 1;
 plotmixedstim = 0;
+allplotDir = ['/Data1/code/' projectName '/' 'Plots' '/' ];
+
 for s = 1:nsub
     subjectNum = svec(s);
      allsep = [];
@@ -203,7 +205,8 @@ for s = 1:nsub
     text(-.68,.33, sprintf('fastS = %4.1f', hardSpeed), 'FontSize', 18)
     print(thisfig, sprintf('%sevidencedist.pdf', plotDir), '-dpdf')
     
-    [thisfig,maxLoc] = plotDist(fbsep,1,[-.5:.1:.5]);
+    xvals = [-.5:.1:.5];
+    [thisfig,maxLoc,nCounts] = plotDist(fbsep,1,xvals);
     ylim([0 .4])
     xlim([-.7 .7])
     title(sprintf('Subject %i Evidence Distribution, Fb Only', subjectNum))
@@ -214,7 +217,9 @@ for s = 1:nsub
     text(-.68,.38,['cm = ' num2str(maxLoc)], 'FontSize', 18);
     text(-.68,.33, sprintf('fastS = %4.1f', hardSpeed), 'FontSize', 18)
     print(thisfig, sprintf('%sfb_evidencedist.pdf', plotDir), '-dpdf')
-    
+    idealInd = find(xvals >0.05 & xvals <0.15);
+    ratioIdeal(s) = nCounts(idealInd);
+    allcm(s) = maxLoc;
 %     figure;
 %     scatter(allspeeds,allsep);
 %     %lsline;
@@ -229,13 +234,22 @@ for s = 1:nsub
 %     text(10,.65, ['slope = ' num2str(p(1))])
 %     title(['Category Separation vs. Dot Speed, Subject ' num2str(subjectNum) ' All Trials'])
 %     set(findall(gcf,'-property','FontSize'),'FontSize',16)
-%     
+if s < 8 %average over 3 TR's
     vec2avg = [0.1*ones(10,2) sepbystim];
     vec2mix = [0.1*ones(10,2) sepmixed];
     for i = 1:size(sepbystim,2)
         smoothedsep(:,i) = mean(vec2avg(:,i:i+2),2);
         smoothedmixedsep(:,i) = mean(vec2mix(:,i:i+2),2);
     end
+else %average over 2 TR's
+    vec2avg = [0.1*ones(10,1) sepbystim];
+    vec2mix = [0.1*ones(10,1) sepmixed];
+    for i = 1:size(sepbystim,2)
+        smoothedsep(:,i) = mean(vec2avg(:,i:i+1),2);
+        smoothedmixedsep(:,i) = mean(vec2mix(:,i:i+1),2);
+    end
+end
+        
 %     
     figure;
     for rep = 1:(length(allsep)/15)-1
@@ -292,7 +306,7 @@ for s = 1:nsub
         end
         line([0 46], [0.1 0.1], 'color', [140 136 141]/255, 'LineWidth', 2.5,'LineStyle', '--');
 %         savefig(sprintf('%sstim%i.fig', plotDir,stim));
-%         print(thisfig, sprintf('%sstim%i.pdf', plotDir,stim), '-dpdf')
+         print(thisfig, sprintf('%sstim%i.pdf', plotDir,stim), '-dpdf')
     end
     end
     if plotmixedstim
@@ -436,3 +450,34 @@ title('Absolute Value Differences')
 set(findall(gcf,'-property','FontSize'),'FontSize',20)
 ylim([0 0.4])
 print(thisfig, sprintf('%sboundaryvsinner.pdf', plotDir), '-dpdf')
+
+%% now compare ratio ideal
+firstgroup = ratioIdeal(1:4);
+nnew = 3;
+secondgroup = ratioIdeal(end-nnew+1:end);
+avgratio = [mean(firstgroup) mean(secondgroup)];
+eavgratio = [std(firstgroup)/sqrt(length(firstgroup)-1) std(secondgroup)/sqrt(length(secondgroup)-1)];
+thisfig = figure;
+barwitherr(eavgratio,avgratio)
+set(gca,'XTickLabel' , ['Group 1';'Group 2']);
+xlabel('Subject Group')
+ylabel('Good Evidence Ratio')
+title('Ratio of Good Evidence by Subject Group')
+set(findall(gcf,'-property','FontSize'),'FontSize',20)
+ylim([0 0.3])
+
+%% now compare cm of feedback
+firstgroup = allcm(1:4);
+nnew = 3;
+secondgroup = allcm(end-nnew+1:end);
+avgratio = [mean(firstgroup) mean(secondgroup)];
+eavgratio = [std(firstgroup)/sqrt(length(firstgroup)-1) std(secondgroup)/sqrt(length(secondgroup)-1)];
+thisfig = figure;
+barwitherr(eavgratio,avgratio)
+set(gca,'XTickLabel' , ['Old 4';'New 3']);
+xlabel('Subject Group')
+ylabel('CM of Evidence')
+title('CM of Evidence by Subject Group')
+set(findall(gcf,'-property','FontSize'),'FontSize',20)
+ylim([-.2 0.2])
+print(thisfig, sprintf('%scmbygroup.pdf', allplotDir), '-dpdf')

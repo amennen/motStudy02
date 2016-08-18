@@ -1,0 +1,19 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	8.6   	38  	MATTER    	localizer	3.451	1.376	1   	generic 	generic 
+2   	20.6  	33  	BANNER    	localizer	3.45	1.576	1   	full    	full    
+3   	32.6  	39  	TICKET    	localizer	3.45	2.112	1   	1 detail	1 detail
+4   	44.6  	44  	GALLERY   	localizer	3.45	1.304	1   	2+ details	2+ details
+5   	56.6  	31  	GRAVEL    	localizer	3.45	1.136	1   	2+ details	2+ details
+6   	68.6  	34  	BLIZZARD  	localizer	3.45	1.032	1   	2+ details	2+ details
+7   	80.6  	36  	ORNAMENT  	localizer	3.45	1.065	1   	2+ details	2+ details
+8   	92.6  	29  	BRACELET  	localizer	3.452	1.073	0   	no image	generic 
+9   	108.6 	35  	ARCTIC    	localizer	3.452	1.377	1   	1 detail	1 detail
+10  	120.6 	32  	WALLET    	localizer	3.45	1.793	0   	1 detail	generic 
+11  	136.6 	42  	RUNG      	localizer	3.45	2.097	1   	generic 	generic 
+12  	148.6 	41  	JAIL      	localizer	3.451	1.241	1   	generic 	generic 
+13  	160.6 	37  	FLEET     	localizer	3.451	1.209	1   	1 detail	1 detail
+14  	172.6 	30  	SPARK     	localizer	3.451	1.369	1   	2+ details	2+ details
+15  	184.6 	43  	MIRROR    	localizer	3.45	0.985	1   	2+ details	2+ details
+16  	196.6 	40  	PENDULUM  	localizer	3.451	1.314	1   	generic 	generic 
+17  	208.6 	32  	WALLET (repeat 1)	localizer	3.45	0.874	1   	full    	full    
+18  	220.6 	29  	BRACELET (repeat 1)	localizer	3.45	0.778	1   	full    	full    
