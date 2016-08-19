@@ -978,6 +978,11 @@ SESSION 10 ended 15-Aug-2016 12:15:55 for SUBJECT number 10
 
 
 ******************************************************************************
+<<<<<<< HEAD
+
+
+SESSION 24 ended 16-Aug-2016 12:18:30 for SUBJECT number 10
+=======
 trial	TR	prompt active	speed	ds	flip error	found file	FileTR	CategSep	LastFile
 1	1	0		0.500	  NaN	0.0076		NaN		1		  NaN		
 1	2	0		0.500	  NaN	0.0079		NaN		1		  NaN		
@@ -1049,11 +1054,14 @@ SESSION 14 ended 16-Aug-2016 10:39:22 for SUBJECT number 10
 
 
 SESSION 15 ended 16-Aug-2016 10:43:41 for SUBJECT number 10
+>>>>>>> 1c97e81097bcc8f44248c386caea6ccafa43c70d
 
 
 
 
 ******************************************************************************
+<<<<<<< HEAD
+=======
 
 SESSION 16 initiated 16-Aug-2016 10:43:47 for SUBJECT number 10
 
@@ -2090,3 +2098,4 @@ trial	TR	prompt active	speed	ds	flip error	found file	FileTR	CategSep	LastFile
 
 SESSION 23 ended 16-Aug-2016 12:14:05 for SUBJECT number 10
 
+>>>>>>> 1c97e81097bcc8f44248c386caea6ccafa43c70d
