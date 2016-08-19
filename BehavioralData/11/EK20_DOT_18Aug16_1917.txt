@@ -1,0 +1,11 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	66.7  	7   	COACH     	rt-targ 	1.95	0.752	1   	target  	target  
+2   	108.7 	2   	COAL      	rt-targ 	1.951	0.905	1   	non-target	non-target
+3   	150.7 	10  	ASHES     	rt-targ 	1.95	0.753	1   	target  	target  
+4   	192.7 	5   	COLUMN    	rt-targ 	1.951	0.865	1   	target  	target  
+5   	234.7 	6   	PENDULUM  	rt-targ 	1.95	1.234	1   	non-target	non-target
+6   	276.7 	9   	SOAP      	rt-targ 	1.95	0.866	1   	target  	target  
+7   	318.7 	1   	STAKE     	rt-targ 	1.951	1.274	1   	non-target	non-target
+8   	360.7 	3   	PERMIT    	rt-targ 	1.951	1.051	1   	non-target	non-target
+9   	402.7 	8   	FRAME     	rt-targ 	1.952	0.867	1   	target  	target  
+10  	444.7 	4   	NICKEL    	rt-targ 	1.951	0.811	1   	target  	target  
