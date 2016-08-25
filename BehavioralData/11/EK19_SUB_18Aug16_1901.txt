@@ -1,0 +1,21 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	49.3  	10  	ASHES     	realtime	3.95	2.345	0   	no image	1 detail, 2+ details, full
+2   	89.3  	11  	SHIRT     	omit    	3.951	1.009	0   	no image	1 detail, 2+ details, full
+3   	129.3 	16  	MIRROR    	omit    	3.95	2.01	0   	generic 	1 detail, 2+ details, full
+4   	169.3 	4   	NICKEL    	realtime	3.951	0.834	0   	no image	1 detail, 2+ details, full
+5   	209.3 	2   	COAL      	realtime	3.953	1.915	1   	1 detail	1 detail, 2+ details, full
+6   	249.3 	20  	CINDER    	omit    	3.95	2.835	0   	no image	1 detail, 2+ details, full
+7   	289.3 	12  	SPARK     	omit    	3.951	2.795	0   	no image	1 detail, 2+ details, full
+8   	329.3 	7   	COACH     	realtime	3.95	1.307	1   	2+ details	1 detail, 2+ details, full
+9   	369.3 	18  	RUST      	omit    	3.95	1.196	1   	1 detail	1 detail, 2+ details, full
+10  	409.3 	5   	COLUMN    	realtime	3.951	0.739	1   	1 detail	1 detail, 2+ details, full
+11  	449.3 	6   	PENDULUM  	realtime	3.951	1.484	0   	no image	1 detail, 2+ details, full
+12  	489.3 	14  	GLOBE     	omit    	3.951	1.284	1   	1 detail	1 detail, 2+ details, full
+13  	529.3 	13  	PUPPET    	omit    	3.953	1.66	0   	no image	1 detail, 2+ details, full
+14  	569.3 	1   	STAKE     	realtime	3.951	1.445	0   	no image	1 detail, 2+ details, full
+15  	609.3 	3   	PERMIT    	realtime	3.95	2.285	0   	no image	1 detail, 2+ details, full
+16  	649.3 	17  	WIRE      	omit    	3.95	2.269	0   	no image	1 detail, 2+ details, full
+17  	689.3 	15  	BRACELET  	omit    	3.951	0.67	1   	1 detail	1 detail, 2+ details, full
+18  	729.3 	8   	FRAME     	realtime	3.952	0.742	1   	1 detail	1 detail, 2+ details, full
+19  	769.3 	9   	SOAP      	realtime	3.951	2.67	0   	no image	1 detail, 2+ details, full
+20  	809.3 	19  	PIPE      	omit    	3.952	NR  	0   	NR      	1 detail, 2+ details, full

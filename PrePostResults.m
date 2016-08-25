@@ -14,18 +14,21 @@
 %variables
 %subjectNum = 3;
 %runNum = 1;
-plotDir = ['/Data1/code/' projectName '/' 'Plots' '/' ];
-updated =0; %for only looking at the results recorded after making differences (minimum dot speed, increase starting speed, average over 2)
-oldonly = 1;
-nnew = 3;
+projectName = 'motStudy02';
+
+plotDir = ['/Data1/code/' projectName '/' 'Plots' '/' ]; %should be all
+%plot dir?
+updated =1; %for only looking at the results recorded after making differences (minimum dot speed, increase starting speed, average over 2)
+oldonly = 0;
+nnew = 4;
 nold = 4;
-svec = [3:5 7:10];
-runvec = [1 1 2 1 1 1 1];
+svec = [3:5 7:11];
+runvec = [1 1 2 1 1 1 1 1];
 nTRsperTrial = 19;
 if length(runvec)~=length(svec)
     error('Enter in the runs AND date numbers!!')
 end
-datevec = {'7-12-16', '7-14-16', '7-14-16', '7-15-16', '8-10-16', '8-11-16', '8-16-16'};
+datevec = {'7-12-16', '7-14-16', '7-14-16', '7-15-16', '8-10-16', '8-11-16', '8-16-16', '8-18-16'};
 if updated
     svec = svec(end-nnew +1:end);
     runvec = runvec(end-nnew +1:end);
@@ -52,7 +55,6 @@ for s = 1:NSUB
     
     shiftTR = 2;
     
-    projectName = 'motStudy02';
     setenv('FSLOUTPUTTYPE','NIFTI_GZ');
     save_dir = ['/Data1/code/' projectName '/data/' num2str(subjectNum) '/']; %this is where she sets the save directory!
     process_dir = ['/Data1/code/' projectName '/data/' num2str(subjectNum) '/' 'reg' '/'];
@@ -122,4 +124,4 @@ set(findall(gcf,'-property','FontSize'),'FontSize',16)
 
 xlim([1 nTRsperTrial])
 ylim([-.25 .25])
-print(h1, sprintf('%sresultsAllTR_old.pdf', plotDir), '-dpdf')
+%print(h1, sprintf('%sresultsAllTR_old.pdf', plotDir), '-dpdf')
