@@ -12,7 +12,7 @@
 
 %%
 
-function mot_realtime01(SUBJECT,SESSION,SET_SPEED,scanNum,scanNow)
+function mot_realtime01b(SUBJECT,SESSION,SET_SPEED,scanNum,scanNow,s2)
 
 %SUBJECT: Subject number
 %SESSION: task that they're going to do (listed below)
@@ -287,7 +287,8 @@ LEARN = 6;
 LOC = 7;
 
 % stimulus filepaths
-MATLAB_STIM_FILE = [ppt_dir 'mot_realtime01_subj_' num2str(SUBJECT) '_stimAssignment.mat'];
+MATLAB_STIM_FILE = [ppt_dir 'mot_realtime01b_subj_' num2str(SUBJECT) '_stimAssignment.mat'];
+MATLAB_PREV_STIM = [ppt_dir 'mot_realtime01_subj_' num2str(s2) '_stimAssignment.mat'];
 CUELISTFILE = [base_path 'stimuli/text/wordpool.txt'];
 CUELISTFILE_TARGETS = [base_path 'stimuli/text/wordpool_targets_anne.txt'];
 %      CALIBRATION_TARGET = [base_path 'stimuli/NTB_5cal-10left-5up_1600x1200_black.jpg'];
@@ -350,82 +351,10 @@ Screen('TextSize',mainWindow,stim.fontSize);
 switch SESSION
     %% 0. SETUP
     case SETUP
-        %this is where we get the actual stimuli start with cue pairs--
-        preparedCues = readStimulusFile(CUELISTFILE_TARGETS,stim.num_total);
-        pics = readStimulusFile_evenIO(PICLISTFILE,stim.num_total); %now it alternates starting O, I, O, I, ...
-        
-        pairIndex = 1:stim.num_total;
-        
-        %[picSort sortOrder] = sort(pics);
-        %cueSort = preparedCues(sortOrder);
-        %pairSort = pairIndex(sortOrder);
-        NUMLURES = 23; %hardcoded
-        
-        %nullPics = picSort(1:stim.num_total);
-        %nullCues = cueSort(1:stim.num_total);
-        %nullPairs = pair(1:stim.num_total);
-        
-        %        compilePics = nullPics;
-        
-        % chop up targets into conditions
-        sortIndex = 1;
-        exposIndex = 1;
-        
-        for cond = [REALTIME OMIT LEARN LOC]
-            condIndex = 1;
-            switch cond % temp
-                case REALTIME
-                    numInCondition = stim.num_realtime;
-                case OMIT
-                    numInCondition = stim.num_omit;
-                case LEARN
-                    numInCondition = stim.num_learn;
-                case LOC
-                    numInCondition = stim.num_localizer;
-            end
-            for item = 1:numInCondition
-                
-                currCues{condIndex} = preparedCues{exposIndex};
-                currPics{condIndex} = pics{exposIndex};
-                
-                currPicCat{condIndex} = SCENE;
-                currPairs{condIndex} = pairIndex(exposIndex);
-                null_init{condIndex} = 0;
-                sortIndex = sortIndex+1;
-                condIndex = condIndex+1;
-                exposIndex = exposIndex+1;
-                %cues{LAT_MVT}{cond}{1}(item) = logical(randi(2)-1);
-            end
-            sort2 = randperm(length(currCues));
-            currCues = currCues(sort2);
-            currPairs = currPairs(sort2);
-            for exposureNum = 1:NUM_TASK_RUNS
-                cues{STIMULI}{cond}{exposureNum} = currCues;
-                cues{ID}{cond}{exposureNum} = currPairs;
-                cues{ACT_READOUT}{cond}{exposureNum} = null_init;
-                cues{EXPOS_DELTA}{cond}{exposureNum} = null_init;
-                %cues{LAT_MVT}{cond}{exposureNum} = cues{LAT_MVT}{cond}{1};
-            end
-            clear currCues currPics currPairs null_init
-        end
-        
-        % now let's add some lure words / RSVP practice pool words
-        lureCandidates = Shuffle(setdiff(readStimulusFile(CUELISTFILE_TARGETS,[]),preparedCues)); %find words we haven't assigned
-        lureWords = lureCandidates(1:NUMLURES); %take the number of lure words we need, set at 23
-        %motLures = lureCandidates(NUMLURES+1:NUMLURES+NUM_MOTLURES*NUM_TASK_RUNS);
-        
-        % and lures for the recognition test
-        candidates = readStimulusFile_evenIO(PICLISTFILE,ALLMATERIALS);
-        candidates = transpose(candidates);
-        unused = setdiff(candidates,pics); %find all pictures we didn't use before
-        %         unused = setdiff(setdiff(candidates,pics),localizerStim{SCENE});
-        for i = 1:stim.num_realtime+stim.num_omit+3 %add 3 here to make sure for preparation!!
-            recogLures{i} = unused{i}; %%think about this for later!!
-        end
-        stimmap = makeMap(preparedCues);
-        
+        %this is where we load the stimuli from the previous subject
+        load(MATLAB_PREV_STIM);
         % clean up
-        system(['cp ' base_path 'mot_realtime01.m ' ppt_dir 'mot_realtime01_executed.m']);
+        system(['cp ' base_path 'mot_realtime01b.m ' ppt_dir 'mot_realtime01b_executed.m']);
         save(MATLAB_STIM_FILE, 'cues','preparedCues','pics','pairIndex','lureWords','recogLures','stimmap');
         
         mot_realtime01(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow);
@@ -455,14 +384,21 @@ switch SESSION
         % initialization
         trial = 0;
         printlog(LOG_NAME,'session\ttrial\tpair\tonset\tdur\tcue         \tassociate   \n');
-
-        if SESSION == FAMILIARIZE
-            [stim.cond stim.condString stimList] = counterbalance_items({cues{STIMULI}{LEARN}{1}},{CONDSTRINGS{LEARN}}); %this just gets the cue words
-        elseif SESSION == FAMILIARIZE2
-            [stim.cond stim.condString stimList] = counterbalance_items({cues{STIMULI}{REALTIME}{1}, cues{STIMULI}{OMIT}{1}},CONDSTRINGS);
-        elseif SESSION == FAMILIARIZE3
-            [stim.cond stim.condString stimList] = counterbalance_items({cues{STIMULI}{LOC}{1}},{CONDSTRINGS{LOC}});
-        end
+        
+        % load in previous subject's info
+        sessionFile = dir(fullfile(behavioral_dir, ['mot_realtime01_' num2str(s2) '_' num2str(SESSION)  '*.mat']));
+        load(fullfile(behavioral_dir, sessionFile(end).name));
+        
+        
+        
+        % open that specific session
+%         if SESSION == FAMILIARIZE
+%             [stim.cond stim.condString stimList] = counterbalance_items({cues{STIMULI}{LEARN}{1}},{CONDSTRINGS{LEARN}}); %this just gets the cue words
+%         elseif SESSION == FAMILIARIZE2
+%             [stim.cond stim.condString stimList] = counterbalance_items({cues{STIMULI}{REALTIME}{1}, cues{STIMULI}{OMIT}{1}},CONDSTRINGS);
+%         elseif SESSION == FAMILIARIZE3
+%             [stim.cond stim.condString stimList] = counterbalance_items({cues{STIMULI}{LOC}{1}},{CONDSTRINGS{LOC}});
+%         end
         picList = lutSort(stimList, preparedCues, pics);
         IDlist = lutSort(stimList, preparedCues, pairIndex);
         if SESSION == FAMILIARIZE2
@@ -508,10 +444,12 @@ switch SESSION
             fprintf('Flip time error = %.4f\n', timing.actualOnsets.preITI(n) - timing.plannedOnsets.preITI(n));
             
             trial = trial + 1;
-            stim.stim{trial} = stimList{n};
-            stim.picStim{trial} = picList{n};
-            stim.id(trial) = IDlist(n);
-            %stim.onsetTime(trial) = GetSecs - stim.expStartTime;
+            
+            %take out setting things here because already loaded
+            %stim.stim{trial} = stimList{n};
+            %stim.picStim{trial} = picList{n};
+            %stim.id(trial) = IDlist(n);
+            
             
             %present cue
             timespec = timing.plannedOnsets.cue(n) - SLACK; %subtract so it's coming at the next possible refresh
@@ -576,6 +514,10 @@ switch SESSION
         stim.triggerCounter = 1;
         stim.missedTriggers = 0;
         stim.loopNumber = 1;
+        
+        %check if this leads to errors with all the loading stim
+        sessionFile = dir(fullfile(behavioral_dir, ['mot_realtime01_' num2str(s2) '_' num2str(SESSION)  '*.mat']));
+        load(fullfile(behavioral_dir, sessionFile(end).name));
         
         % sequence preparation
         if SESSION == TOCRITERION1
@@ -712,9 +654,7 @@ switch SESSION
                     outsidePics = allOtherOutside(randperm(length(allOtherOutside),1));
                     insidePics = allOtherInside(randperm(length(allOtherInside),2));
                 end
-                lureIndices = Shuffle([outsidePics insidePics]); %shuffles the order of 2 inside, 2 outside but they're indexes
-                
-               
+                lureIndices = Shuffle([outsidePics insidePics]);
                 
                 for i=1:length(lureIndices)
                     stim.choicePos(stim.trial,lureIndex(i)) = lureIndices(i);
