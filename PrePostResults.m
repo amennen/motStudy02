@@ -22,13 +22,13 @@ updated =1; %for only looking at the results recorded after making differences (
 oldonly = 0;
 nnew = 4;
 nold = 4;
-svec = [3:5 7:11];
-runvec = [1 1 2 1 1 1 1 1];
+svec = [3:5 7:12];
+runvec = [1 1 2 1 1 1 1 1 1];
 nTRsperTrial = 19;
 if length(runvec)~=length(svec)
     error('Enter in the runs AND date numbers!!')
 end
-datevec = {'7-12-16', '7-14-16', '7-14-16', '7-15-16', '8-10-16', '8-11-16', '8-16-16', '8-18-16'};
+datevec = {'7-12-16', '7-14-16', '7-14-16', '7-15-16', '8-10-16', '8-11-16', '8-16-16', '8-18-16', '8-27-16'};
 if updated
     svec = svec(end-nnew +1:end);
     runvec = runvec(end-nnew +1:end);
