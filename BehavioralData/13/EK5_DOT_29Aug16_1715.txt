@@ -1,0 +1,49 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	34.2  	22  	MUZZLE    	target  	1.955	1.206	1   	non-target	non-target
+2   	76.2  	25  	CARAVAN   	target  	1.95	1.057	0   	target  	non-target
+3   	118.2 	22  	MUZZLE (repeat 1)	target  	1.955	1.249	1   	non-target	non-target
+4   	160.2 	25  	CARAVAN (repeat 1)	target  	1.956	1.343	0   	target  	non-target
+5   	202.2 	21  	DIAL      	target  	1.955	1.636	0   	target  	non-target
+6   	294.9 	24  	MERCURY   	target  	1.952	1.459	1   	target  	target  
+7   	336.9 	23  	RADIO     	target  	1.951	0.905	1   	target  	target  
+8   	378.9 	28  	ISSUE     	target  	1.955	1.224	1   	non-target	non-target
+9   	420.9 	26  	WIRE      	target  	1.955	1.027	1   	non-target	non-target
+10  	462.9 	21  	DIAL (repeat 1)	target  	1.951	NR  	0   	NR      	non-target
+11  	514.8 	22  	MUZZLE (repeat 2)	target  	1.951	NR  	0   	NR      	target  
+12  	556.8 	24  	MERCURY (repeat 1)	target  	1.951	NR  	0   	NR      	target  
+13  	598.8 	26  	WIRE (repeat 1)	target  	1.956	1.105	1   	target  	target  
+14  	640.8 	21  	DIAL (repeat 2)	target  	1.955	1.926	1   	target  	target  
+15  	682.7 	24  	MERCURY (repeat 2)	target  	1.956	1.423	1   	non-target	non-target
+16  	730.7 	22  	MUZZLE (repeat 3)	target  	1.956	1.276	1   	non-target	non-target
+17  	772.7 	28  	ISSUE (repeat 1)	target  	1.956	1.295	0   	target  	non-target
+18  	814.7 	21  	DIAL (repeat 3)	target  	1.951	NR  	0   	NR      	target  
+19  	856.7 	28  	ISSUE (repeat 2)	target  	1.952	1.89	0   	non-target	target  
+20  	898.7 	27  	LETTER    	target  	1.953	1.186	1   	non-target	non-target
+21  	942.6 	22  	MUZZLE (repeat 4)	target  	1.954	0.96	1   	target  	target  
+22  	984.6 	21  	DIAL (repeat 4)	target  	1.95	1.054	1   	target  	target  
+23  	1026.6	22  	MUZZLE (repeat 5)	target  	1.953	0.9 	1   	target  	target  
+24  	1068.6	27  	LETTER (repeat 1)	target  	1.955	1.137	1   	target  	target  
+25  	1110.6	26  	WIRE (repeat 2)	target  	1.953	0.869	1   	target  	target  
+26  	1188.3	23  	RADIO (repeat 1)	target  	1.952	0.914	1   	target  	target  
+27  	1230.3	24  	MERCURY (repeat 3)	target  	1.952	1.112	1   	non-target	non-target
+28  	1272.3	25  	CARAVAN (repeat 2)	target  	1.953	0.941	1   	target  	target  
+29  	1314.3	27  	LETTER (repeat 2)	target  	1.955	1.517	1   	non-target	non-target
+30  	1356.3	24  	MERCURY (repeat 4)	target  	1.951	1.115	1   	non-target	non-target
+31  	1402.4	21  	DIAL (repeat 5)	target  	1.955	0.958	1   	target  	target  
+32  	1444.4	23  	RADIO (repeat 2)	target  	1.953	1.304	1   	non-target	non-target
+33  	1486.4	26  	WIRE (repeat 3)	target  	1.955	1.029	1   	target  	target  
+34  	1528.4	27  	LETTER (repeat 3)	target  	1.955	1.32	1   	non-target	non-target
+35  	1570.4	23  	RADIO (repeat 3)	target  	1.956	1.318	1   	target  	target  
+36  	1617.3	26  	WIRE (repeat 4)	target  	1.955	0.975	1   	target  	target  
+37  	1659.3	27  	LETTER (repeat 4)	target  	1.956	1.11	1   	non-target	non-target
+38  	1701.3	28  	ISSUE (repeat 3)	target  	1.955	1.291	0   	non-target	target  
+39  	1743.3	28  	ISSUE (repeat 4)	target  	1.955	1.249	1   	target  	target  
+40  	1785.3	23  	RADIO (repeat 4)	target  	1.954	1.165	1   	non-target	non-target
+41  	1829.4	26  	WIRE (repeat 5)	target  	1.951	NR  	0   	NR      	target  
+42  	1871.4	25  	CARAVAN (repeat 3)	target  	1.951	NR  	0   	NR      	non-target
+43  	1913.4	25  	CARAVAN (repeat 4)	target  	1.954	1.12	1   	non-target	non-target
+44  	1955.4	27  	LETTER (repeat 5)	target  	1.951	NR  	0   	NR      	non-target
+45  	1997.4	25  	CARAVAN (repeat 5)	target  	1.951	NR  	0   	NR      	non-target
+46  	2042.5	24  	MERCURY (repeat 5)	target  	1.951	1.114	1   	non-target	non-target
+47  	2084.5	23  	RADIO (repeat 5)	target  	1.951	NR  	0   	NR      	target  
+48  	2126.5	28  	ISSUE (repeat 5)	target  	1.951	NR  	0   	NR      	target  
