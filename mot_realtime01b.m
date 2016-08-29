@@ -389,7 +389,7 @@ switch SESSION
         sessionFile = dir(fullfile(behavioral_dir, ['mot_realtime01_' num2str(s2) '_' num2str(SESSION)  '*.mat']));
         load(fullfile(behavioral_dir, sessionFile(end).name));
         
-        
+        % NOT YOKED FOR
         
         % open that specific session
 %         if SESSION == FAMILIARIZE
@@ -399,8 +399,8 @@ switch SESSION
 %         elseif SESSION == FAMILIARIZE3
 %             [stim.cond stim.condString stimList] = counterbalance_items({cues{STIMULI}{LOC}{1}},{CONDSTRINGS{LOC}});
 %         end
-        picList = lutSort(stimList, preparedCues, pics);
-        IDlist = lutSort(stimList, preparedCues, pairIndex);
+        %picList = lutSort(stimList, preparedCues, pics);
+        %IDlist = lutSort(stimList, preparedCues, pairIndex);
         if SESSION == FAMILIARIZE2
             halfway = ['Great job, youre''re halfway there! You can take a stretching or bathroom break if you need to now. \n\n-- press ' PROGRESS_TEXT ' to continue when you''re ready. --'];
             displayText(mainWindow,halfway,INSTANT,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
