@@ -29,6 +29,7 @@ if length(runvec)~=length(svec)
     error('Enter in the runs AND date numbers!!')
 end
 datevec = {'7-12-16', '7-14-16', '7-14-16', '7-15-16', '8-10-16', '8-11-16', '8-16-16', '8-18-16', '8-27-16'};
+%datevec = {'7-12-16', '7-14-16', '7-14-16', '7-15-16', '8-10-16', '8-11-16', '8-16-16', '8-18-16'}
 if updated
     svec = svec(end-nnew +1:end);
     runvec = runvec(end-nnew +1:end);
