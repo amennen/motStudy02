@@ -15,20 +15,20 @@
 %subjectNum = 3;
 %runNum = 1;
 projectName = 'motStudy02';
-
+onlyRem = 1; %if should only look at the stimuli that subject answered >1 for remembering in recall 1
 plotDir = ['/Data1/code/' projectName '/' 'Plots' '/' ]; %should be all
 %plot dir?
 updated =1; %for only looking at the results recorded after making differences (minimum dot speed, increase starting speed, average over 2)
 oldonly = 0;
-nnew = 4;
+nnew = 6;
 nold = 4;
-svec = [3:5 7:12];
-runvec = [1 1 2 1 1 1 1 1 1];
+svec = [3:5 7:13];
+runvec = [1 1 2 1 1 1 1 1 1 1];
 nTRsperTrial = 19;
 if length(runvec)~=length(svec)
     error('Enter in the runs AND date numbers!!')
 end
-datevec = {'7-12-16', '7-14-16', '7-14-16', '7-15-16', '8-10-16', '8-11-16', '8-16-16', '8-18-16', '8-27-16'};
+datevec = {'7-12-16', '7-14-16', '7-14-16', '7-15-16', '8-10-16', '8-11-16', '8-16-16', '8-18-16', '8-27-16', '8-30-16'};
 %datevec = {'7-12-16', '7-14-16', '7-14-16', '7-15-16', '8-10-16', '8-11-16', '8-16-16', '8-18-16'}
 if updated
     svec = svec(end-nnew +1:end);
@@ -70,11 +70,31 @@ for s = 1:NSUB
     
     % get recall data from subject
     for i = 1:2
+        
+        % only take the stimuli that they remember
+        if i == 1 %if recall one check
+           r = dir(fullfile(behavioral_dir, ['EK' num2str(recallSession(i)) '_' 'SUB'  '*.mat'])); 
+           r = load(fullfile(behavioral_dir,r(end).name)); 
+           trials = table2cell(r.datastruct.trials);
+           stimID = cell2mat(trials(:,8));
+           cond = cell2mat(trials(:,9));
+           rating = cell2mat(trials(:,12));
+           sub.hard = rating(find(cond==1));
+           sub.easy = rating(find(cond==2));
+        end
+        
         scanNum = recallScan(i);
         SESSION = recallSession(i);
         [patterns, t ] = RecallFileProcess(subjectNum,runNum,scanNum,SESSION,date,featureSelect); %this will give the category sep for every TR but now we have to pull out the TR's we
         %want and their conditions
         [~,trials,stimOrder] = GetSessionInfoRT(subjectNum,SESSION,behavioral_dir);
+        
+        sub.Orderhard = sub.hard(stimOrder.hard);
+        sub.Ordereasy = sub.easy(stimOrder.easy);
+        
+        keep.hard = find(sub.Orderhard>1);
+        keep.easy = find(sub.Ordereasy>1);
+        
         testTrials = find(any(patterns.regressor.allCond));
         allcond = patterns.regressor.allCond(:,testTrials);
         categSep = patterns.categSep(:,union(testTrials,testTrials+shiftTR)); %all testTR's plus 2 before
@@ -95,9 +115,15 @@ for s = 1:NSUB
     end
     
     % now find post - pre difference
-    PrePostRT = RTevidence(:,:,2) - RTevidence(:,:,1);
+    if onlyRem 
+        PrePostRT = RTevidence(keep.hard,:,2) - RTevidence(keep.hard,:,1);
+        PrePostOMIT = OMITevidence(keep.easy,:,2) - OMITevidence(keep.easy,:,1);
+    else
+        PrePostRT = RTevidence(:,:,2) - RTevidence(:,:,1);
+        PrePostOMIT = OMITevidence(:,:,2) - OMITevidence(:,:,1);
+    end
     RTavg(s,:) = mean(PrePostRT,1);
-    PrePostOMIT = OMITevidence(:,:,2) - OMITevidence(:,:,1);
+    
     OMITavg(s,:) = mean(PrePostOMIT,1);
     
     
