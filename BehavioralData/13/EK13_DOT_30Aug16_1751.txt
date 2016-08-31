@@ -1,0 +1,5 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	35.7  	45  	PILE      	lure_hard	1.951	1.324	0   	non-target	target  
+2   	77.7  	46  	SACK      	lure_easy	1.951	0.852	1   	target  	target  
+3   	119.7 	23  	RADIO     	targ_easy	1.95	1.333	1   	target  	target  
+4   	161.7 	22  	MUZZLE    	targ_hard	1.95	1.157	1   	non-target	non-target
