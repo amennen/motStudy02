@@ -1444,7 +1444,10 @@ switch SESSION
             try
                 %will need to add this file to the folder to get it to work
                 fileCandidates = dir([ppt_dir 'mot_realtime01_' num2str(SUBJECT) '_' num2str(MOT_PREP)  '*.mat']);
-                matlabOpenFile = [ppt_dir fileCandidates(end).name];
+                dates = [fileCandidates.datenum];
+                names = {fileCandidates.name};
+                [~,newest] = max(dates);
+                matlabOpenFile = [ppt_dir names{newest}];
                 lastRun = load(matlabOpenFile);
                 
             catch
@@ -1488,7 +1491,7 @@ switch SESSION
             square_bounds = [CENTER-(stim.square_dims/2) CENTER+(stim.square_dims/2)-1];
             stim.condString = condmap.descriptors(stim.cond);
         else
-            stim.lureWords = lureWords(1:5);
+            stim.lureWords = lureWords(1:5); %don't need these anymore but oh well
             [stim.cond stim.condString stim.stim] = counterbalance_items({cues{STIMULI}{REALTIME}{1}}, MOT_RT_STRINGS,1);
             condmap = makeMap({'rt-targ'});
         end
@@ -1575,12 +1578,12 @@ switch SESSION
             stim.instruct_nextMOT = ['You will now continue with the same multitasking task.' final_instruct_continue];
             displayText(mainWindow,stim.instruct_nextMOT,minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
             %also load in last session information here
-            allLast = dir([ppt_dir 'mot_realtime01_' num2str(SUBJECT) '_' num2str(SESSION-1) '*']);
-            last = load([ppt_dir allLast(end).name]);
+            allLast = findNewestFile(ppt_dir,[ppt_dir 'mot_realtime01_' num2str(SUBJECT) '_' num2str(SESSION-1) '*']);
+            last = load(allLast);
             lastSpeed = last.stim.lastSpeed; %matrix of motRun (1-3), stimID
             lastDecoding = last.stim.lastRTDecoding;
             lastDecodingFunction = last.stim.lastRTDecodingFunction;
-            fprintf(['Loaded speed and classification information from ' allLast(end).name '\n']);
+            fprintf(['Loaded speed and classification information from ' names{newest} '\n']);
         else
             displayText(mainWindow,stim.instruct_summary,minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
         end

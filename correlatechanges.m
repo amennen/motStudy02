@@ -28,13 +28,12 @@ for s = 1:nsub
         behavioral_dir = [fileparts(which('mot_realtime01.m')) '/BehavioralData/' num2str(subjectNum) '/'];
         save_dir = ['/Data1/code/' projectName '/data/' num2str(subjectNum) '/']; %this is where she sets the save directory!
         runHeader = fullfile(save_dir,[ 'motRun' num2str(blockNum) '/']);
-        fileSpeed = dir(fullfile(behavioral_dir, ['mot_realtime01_' num2str(subjectNum) '_' num2str(SESSION)  '*.mat']));
+        fileSpeed = findnewestfile(behavioral_dir,fullfile(behavioral_dir, ['mot_realtime01_' num2str(subjectNum) '_' num2str(SESSION)  '*.mat']));
         plotDir = ['/Data1/code/' projectName '/' 'Plots' '/' num2str(subjectNum) '/'];
         if ~exist(plotDir, 'dir')
             mkdir(plotDir);
         end
-        matlabOpenFile = [behavioral_dir '/' fileSpeed(end).name];
-        d = load(matlabOpenFile);
+        d = load(fileSpeed);
         allSpeed = d.stim.motionSpeed; %matrix of TR's
         speedVector = reshape(allSpeed,1,numel(allSpeed));
         allMotionTRs = convertTR(d.timing.trig.wait,d.timing.plannedOnsets.motion,d.config.TR); %row,col = mTR,trialnumber

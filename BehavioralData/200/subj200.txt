@@ -1,0 +1,59 @@
+
+SESSION 2 initiated 01-Sep-2016 10:51:45 for SUBJECT number 200
+
+session	trial	pair	onset	dur	cue         	associate   
+
+SESSION 2 initiated 01-Sep-2016 11:01:39 for SUBJECT number 200
+
+session	trial	pair	onset	dur	cue         	associate   
+
+SESSION 2 initiated 01-Sep-2016 11:06:57 for SUBJECT number 200
+
+session	trial	pair	onset	dur	cue         	associate   
+2	1	24	2001  	2003  	BASIN       	pici27.jpg  
+2	2	28	10003 	1996  	PAGE        	pici16.jpg  
+2	3	22	18051 	1949  	EASEL       	pici19.jpg  
+2	4	27	26006 	1991  	SPEAR       	pico32.jpg  
+2	5	25	33999 	2014  	EXIT        	pico27.jpg  
+2	6	26	42004 	2001  	PUDDLE      	pici04.jpg  
+2	7	21	50011 	2054  	PUZZLE      	pico07.jpg  
+2	8	23	58002 	2002  	TRACK       	pico20.jpg  
+
+
+SESSION 2 ended 01-Sep-2016 11:08:07 for SUBJECT number 200
+
+
+
+
+******************************************************************************
+
+SESSION 2 initiated 01-Sep-2016 11:16:18 for SUBJECT number 200
+
+session	trial	pair	onset	dur	cue         	associate   
+2	1	24	1999  	2003  	BASIN       	pici27.jpg  
+2	2	28	10007 	1994  	PAGE        	pici16.jpg  
+2	3	22	18020 	1994  	EASEL       	pici19.jpg  
+2	4	27	26012 	1992  	SPEAR       	pico32.jpg  
+2	5	25	34009 	2001  	EXIT        	pico27.jpg  
+2	6	26	41999 	2002  	PUDDLE      	pici04.jpg  
+2	7	21	50005 	2001  	PUZZLE      	pico07.jpg  
+
+SESSION 2 initiated 01-Sep-2016 11:37:07 for SUBJECT number 200
+
+session	trial	pair	onset	dur	cue         	associate   
+2	1	26	2003  	1997  	BLIZZARD    	pici22.jpg  
+2	2	24	10004 	2002  	ROOT        	pici25.jpg  
+2	3	27	18000 	2003  	CIRCUIT     	pico31.jpg  
+2	4	23	25999 	2002  	SPEAR       	pico13.jpg  
+2	5	28	34003 	1999  	SHIRT       	pici18.jpg  
+2	6	21	42000 	2005  	BADGE       	pico02.jpg  
+2	7	25	50002 	2001  	PIPE        	pico30.jpg  
+2	8	22	57999 	2003  	CART        	pici16.jpg  
+
+SESSION 2 initiated 01-Sep-2016 13:27:09 for SUBJECT number 200
+
+session	trial	pair	onset	dur	cue         	associate   
+
+
+SESSION 14 ended 01-Sep-2016 14:39:13 for SUBJECT number 200
+

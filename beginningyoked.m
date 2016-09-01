@@ -5,6 +5,13 @@
 %figure out how we'd do the training--we'd have to have them pause for like
 %5 min or train after we match (or match by demographics only)
 
+mot_realtime01(100,10,1,0,0)
+mot_realtime01b(200,10,1,0,0,100)
+
+
+fname = findNewestFile(ppt_dir2,fullfile(ppt_dir2, ['mot_realtime01_' num2str(s2) '_' num2str(SESSION)  '*.mat']));
+        load(fname);
+
 subjectNum = 5;
 behavioral_dir = [fileparts(which('mot_realtime01.m')) '/BehavioralData/' num2str(subjectNum) '/'];
 MATLAB_STIM_FILE = [behavioral_dir 'mot_realtime01_subj_' num2str(subjectNum) '_stimAssignment.mat'];
@@ -36,11 +43,11 @@ MOT_PREP = MOT_PRACTICE + 1;%5 %going to be yoked after this
 FAMILIARIZE2 = MOT_PREP + 2; % rsvp study learn associates %7
 TOCRITERION2 = FAMILIARIZE2 + 1; % rsvp train to critereon
 TOCRITERION2_REP = TOCRITERION2 + 1;
-RSVP = TOCRITERION2_REP + 1; % rsvp train to critereon
+RSVP = TOCRITERION2_REP + 1; % rsvp train to critereon 10
 
 % day 2
-SCAN_PREP = RSVP + 2;
-MOT_PRACTICE2 = SCAN_PREP + 1; %12
+SCAN_PREP = RSVP + 2; %12
+MOT_PRACTICE2 = SCAN_PREP + 1; %13
 RECALL_PRACTICE = MOT_PRACTICE2 + 1;
 %SCAN_PREP = RECALL_PRACTICE + 1;
 RSVP2 = RECALL_PRACTICE + 1; % rsvp train to critereon

@@ -84,15 +84,18 @@ end
 
 
 %load trained model
-allfn = dir([locPatterns_dir '/loctrainedModel' '*']);
+fname = findNewestFile(locPatterns_dir,[locPatterns_dir '/loctrainedModel' '*']);
+load(fname);
+
+%allfn = dir([locPatterns_dir '/loctrainedModel' '*']);
 %take the last model saved
-load(fullfile(locPatterns_dir, allfn(end).name));
+%load(fullfile(locPatterns_dir, allfn(end).name));
 fprintf('\n*********************************************\n');
-fprintf(['* Loaded ' allfn(end).name '\n']);
+fprintf(['* Loaded ' fname'\n']);
 
 %load featureSelected voxels
-allLast = dir([locPatterns_dir 'locpatternsdata_' '*']);
-loc = load(fullfile(locPatterns_dir,allLast(end).name));
+allLast = findNewestFile(locPatterns_dir,[locPatterns_dir 'locpatternsdata_' '*']);
+loc = load(allLast);
 
 %load this run's regressors and information (do this after load so loading
 %doesn't overwrite)

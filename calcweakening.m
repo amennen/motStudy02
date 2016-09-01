@@ -44,11 +44,14 @@ for s = 1:nsub
         save_dir = ['/Data1/code/' projectName '/data/' num2str(subjectNum) '/']; %this is where she sets the save directory!
         runHeader = fullfile(save_dir,[ 'motRun' num2str(blockNum) '/']);
         fileSpeed = dir(fullfile(behavioral_dir, ['mot_realtime01_' num2str(subjectNum) '_' num2str(SESSION)  '*.mat']));
+        names = {fileSpeed.name};
+        dates = [fileSpeed.datenum];
+        [~,newest] = max(dates);
         plotDir = ['/Data1/code/' projectName '/' 'Plots' '/' num2str(subjectNum) '/'];
         if ~exist(plotDir, 'dir')
             mkdir(plotDir);
         end
-        matlabOpenFile = [behavioral_dir '/' fileSpeed(end).name];
+        matlabOpenFile = [behavioral_dir '/' names{newest}];
         d = load(matlabOpenFile);
         allSpeed = d.stim.motionSpeed; %matrix of TR's
         speedVector = reshape(allSpeed,1,numel(allSpeed));
@@ -56,6 +59,9 @@ for s = 1:nsub
         allMotionTRs = allMotionTRs + 2;%[allMotionTRs; allMotionTRs(end,:)+1; allMotionTRs(end,:) + 2]; %add in the next 2 TR's for HDF
         TRvector = reshape(allMotionTRs,1,numel(allMotionTRs));
         run = dir([runHeader 'motpatternsdata_' num2str(SESSION) '*']);
+        names = {run.name};
+        dates = [fun.datenum];
+        [~,newest] = max(dates);
         run = load(fullfile(runHeader,run(end).name));
         categsep = run.patterns.categsep(TRvector - 10); %minus 10 because we take out those 10
         sepbytrial = reshape(categsep,nTRs,10);

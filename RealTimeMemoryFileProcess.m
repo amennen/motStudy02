@@ -119,6 +119,8 @@ end
 allfn = dir([locPatterns_dir 'loctrainedModel_' num2str(runNum) '*']); %
 %take the last model saved
 load(fullfile(locPatterns_dir, allfn(end).name));
+%fname = findNewestFile(ppt_dir2,fullfile(ppt_dir2, ['mot_realtime01_' num2str(s2) '_' num2str(SESSION)  '*.mat']));
+%load(fname);
 fprintf('\n*********************************************\n');
 fprintf(['* Loaded ' allfn(end).name '\n']);
 %load localizer run's standard deviation and voxelInfo
