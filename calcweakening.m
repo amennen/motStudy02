@@ -19,9 +19,10 @@ nblock = 3;
 updated =0; %for only looking at the results recorded after making differences (minimum dot speed, increase starting speed, average over 2)
 oldonly = 0;
 
-nnew = 4;
 nold = 4;
-svec = [3:5 7:11];
+svec = [3:5 7:13];
+nnew = length(svec) - nold;
+
 if updated
     svec = svec(end-nnew +1:end);
 elseif oldonly
@@ -60,7 +61,7 @@ for s = 1:nsub
         TRvector = reshape(allMotionTRs,1,numel(allMotionTRs));
         run = dir([runHeader 'motpatternsdata_' num2str(SESSION) '*']);
         names = {run.name};
-        dates = [fun.datenum];
+        dates = [run.datenum];
         [~,newest] = max(dates);
         run = load(fullfile(runHeader,run(end).name));
         categsep = run.patterns.categsep(TRvector - 10); %minus 10 because we take out those 10
