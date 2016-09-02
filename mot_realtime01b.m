@@ -2042,11 +2042,11 @@ switch SESSION
         p = load(fname);
         %usedWords = table2cell(p.datastruct.stimmap);
         %usedWords = [usedWords(:,1)];
-        trials = table2cell(p.datastruct.trials);
-        durations = cell2mat(trials(:,20));
+        %trials = table2cell(p.datastruct.trials);
+        %durations = cell2mat(trials(:,20));
         %stimid = cell2mat(trials(:,8));
         %shownwords = usedWords(stimid);
-        usedWords = stim.stim;
+        %usedWords = stim.stim;
         % stimulus presentation parameters
         secs_per_item = 8*SPEED; % secs per item
         stim.targetLatencyMean = 12*SPEED; % time between target exposures for use in distribution. count on this being about 0.5s longer than specified, since filler items will spill over
@@ -2076,7 +2076,7 @@ switch SESSION
         PROGRESS = INDEXFINGER;
         % final initialization
         %fillerCueTargets = readStimulusFile(CUETARGETFILE,ALLMATERIALS);
-        %triggerNext = false;
+        triggerNext = false;
         condmap = makeMap({'realtime','omit','lure','fruit'});
         fruitHarvestEK = initEasyKeys([exp_string_long '_FH'], SUBJ_NAME, ppt_dir,...
             'default_respmap', rsvp_scale, ...
@@ -2085,7 +2085,7 @@ switch SESSION
             'device', DEVICE);
         fruitHarvestEK = startSession(fruitHarvestEK);
         stim.trial = 0;
-        countdown = 0;
+        %countdown = 0;
         
         %stim.availableFruit = round(length(stim.fillerCues) * 0.5);
         stim.scanLength = secs_per_item * length(stim.fillerCues) + stim.availableFruit;
@@ -2102,7 +2102,7 @@ switch SESSION
         stim.enterLoop = GetSecs;
         stim.expDuration = 0;
         % keep pumping out filler words until the time is up
-        while stim.expDuration < ((stim.scanLength)/60) %4 seconds less
+        while stim.trial < length(stim.stim) %stim.expDuration < ((stim.scanLength)/60) %4 seconds less changed so it stops after the right number of stim
             
             % initialize trial
             stim.trial = stim.trial + 1;
@@ -2140,7 +2140,6 @@ switch SESSION
             cresp_map = zeros(1,256);
             valid_map = keys.map(2,:);
             %stim.promptDur(stim.trial) = unifrnd(stim.shortest_expos,stim.longest_expos);
-            duration = stim.promptDur(stim.trial);
             
             if stim.cond(stim.trial) == FRUIT
                 cresp = {INDEXFINGER};
@@ -2206,8 +2205,8 @@ switch SESSION
             % report
             % log the stimulus and compute prior exposures
             stim.expDuration = (GetSecs() - stim.sessionStartTime) / 60;
-            stim.harvest_rate = mean(fruitHarvestEK.trials.acc(stim.cond == FRUIT));
-            stim.false_fruit = sum(1-fruitHarvestEK.trials.acc(stim.cond ~= FRUIT));
+            stim.harvest_rate = mean(fruitHarvestEK.trials.acc(stim.cond(1:stim.trial) == FRUIT)); %fix these!!
+            stim.false_fruit = sum(1-fruitHarvestEK.trials.acc(stim.cond(1:stim.trial) ~= FRUIT));
             
             % save to file
             if mod(stim.trial,10)==0 || (stim.enterLoop >= (stim.scanLength-(STABILIZATIONTIME)))
