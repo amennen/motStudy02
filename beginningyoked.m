@@ -5,7 +5,7 @@
 %figure out how we'd do the training--we'd have to have them pause for like
 %5 min or train after we match (or match by demographics only)
 
-mot_realtime01(100,10,1,0,0)
+mot_realtime01(100,24,1,0,0)
 mot_realtime01b(200,10,1,0,0,100)
 
 

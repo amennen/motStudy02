@@ -57,3 +57,55 @@ session	trial	pair	onset	dur	cue         	associate
 
 SESSION 14 ended 01-Sep-2016 14:39:13 for SUBJECT number 200
 
+
+
+SESSION 10 ended 02-Sep-2016 14:25:35 for SUBJECT number 200
+
+
+
+
+******************************************************************************
+
+SESSION 2 initiated 03-Sep-2016 11:43:52 for SUBJECT number 200
+
+session	trial	pair	onset	dur	cue         	associate   
+
+SESSION 2 initiated 03-Sep-2016 11:46:15 for SUBJECT number 200
+
+session	trial	pair	onset	dur	cue         	associate   
+
+SESSION 2 initiated 03-Sep-2016 11:47:46 for SUBJECT number 200
+
+session	trial	pair	onset	dur	cue         	associate   
+
+SESSION 2 initiated 03-Sep-2016 11:59:27 for SUBJECT number 200
+
+session	trial	pair	onset	dur	cue         	associate   
+2	1	25	2004  	2018  	PIPE        	pico30.jpg  
+2	2	27	10005 	2016  	CIRCUIT     	pico31.jpg  
+2	3	22	18005 	2001  	CART        	pici16.jpg  
+2	4	26	26006 	2000  	BLIZZARD    	pici22.jpg  
+2	5	28	34006 	2001  	SHIRT       	pici18.jpg  
+2	6	24	42007 	1999  	ROOT        	pici25.jpg  
+2	7	23	50006 	2001  	SPEAR       	pico13.jpg  
+2	8	21	58008 	2001  	BADGE       	pico02.jpg  
+
+
+SESSION 2 ended 03-Sep-2016 12:00:37 for SUBJECT number 200
+
+
+
+
+******************************************************************************
+
+
+SESSION 14 ended 03-Sep-2016 12:26:11 for SUBJECT number 200
+
+
+
+SESSION 24 ended 03-Sep-2016 13:59:06 for SUBJECT number 200
+
+
+
+
+******************************************************************************

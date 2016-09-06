@@ -388,7 +388,7 @@ switch SESSION
         
         % load in previous subject's info
         fname = findNewestFile(ppt_dir2,fullfile(ppt_dir2, ['mot_realtime01_' num2str(s2) '_' num2str(SESSION)  '*.mat']));
-        load(fname);
+        y = load(fname);
         
         
         % open that specific session
@@ -401,6 +401,8 @@ switch SESSION
 %         end
         %picList = lutSort(stimList, preparedCues, pics);
         %IDlist = lutSort(stimList, preparedCues, pairIndex);
+        config.nTrials = y.config.nTrials;
+
         if SESSION == FAMILIARIZE2
             halfway = ['Great job, youre''re halfway there! You can take a stretching or bathroom break if you need to now. \n\n-- press ' PROGRESS_TEXT ' to continue when you''re ready. --'];
             displayText(mainWindow,halfway,INSTANT,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
@@ -420,20 +422,24 @@ switch SESSION
         stim.subjStartTime = waitForKeyboard(kbTrig_keycode,KEYDEVICES);
         runStart = GetSecs;
         %first isi here
-        %config.TR = stim.TRlength;
-        %config.nTRs.ISI = stim.isiDuration/stim.TRlength;
-        %config.nTRs.cue = stim.cueDuration/stim.TRlength;
-        %config.nTRs.pic = stim.picDuration/stim.TRlength;
+        config.TR = stim.TRlength;
+        config.nTRs.ISI = stim.isiDuration/stim.TRlength;
+        config.nTRs.cue = stim.cueDuration/stim.TRlength;
+        config.nTRs.pic = stim.picDuration/stim.TRlength;
         %config.nTrials = length(stimList);
         
-        %config.nTRs.perTrial =  config.nTRs.ISI + config.nTRs.cue + config.nTRs.pic;
-        %config.nTRs.perBlock = (config.nTRs.perTrial)*config.nTrials+ config.nTRs.ISI; %includes the last ISI and 20 s fixation in the beginning
+        config.nTRs.perTrial =  config.nTRs.ISI + config.nTRs.cue + config.nTRs.pic;
+        config.nTRs.perBlock = (config.nTRs.perTrial)*config.nTrials+ config.nTRs.ISI; %includes the last ISI and 20 s fixation in the beginning
         % calculate all future onsets
         timing.plannedOnsets.preITI(1:config.nTrials) = runStart + ((0:config.nTrials-1)*config.nTRs.perTrial)*config.TR;
         timing.plannedOnsets.cue(1:config.nTrials) = timing.plannedOnsets.preITI + config.nTRs.ISI*config.TR;
         timing.plannedOnsets.pic(1:config.nTrials) = timing.plannedOnsets.cue + config.nTRs.cue*config.TR;
         timing.plannedOnsets.lastITI = timing.plannedOnsets.pic(end) + config.nTRs.pic*config.TR;
         
+        stim.stim = y.stim.stim;
+        stim.id = y.stim.id;
+        stim.picStim = y.stim.picStim;
+        stim.cond = y.stim.cond;
         
         % repeat trials for full stimulus set
         for n=1:config.nTrials
@@ -517,7 +523,11 @@ switch SESSION
         
         %check if this leads to errors with all the loading stim
         fname = findNewestFile(ppt_dir2,fullfile(ppt_dir2, ['mot_realtime01_' num2str(s2) '_' num2str(SESSION)  '*.mat']));
-        load(fname);
+        y = load(fname);
+        
+        fname = findNewestFile(ppt_dir2,fullfile(ppt_dir,['EK' num2str(SESSION) '*.mat']));
+        y2 = load(fname);
+       
 
         % sequence preparation
         if SESSION == TOCRITERION1
@@ -530,7 +540,8 @@ switch SESSION
             [cond strings stimList] = counterbalance_items({cues{STIMULI}{LOC}{1}},{CONDSTRINGS{LOC}});
             condmap = makeMap({'localizer'});
         end
-        %first pics is all pics, preparedCues is all cues--pics is then the
+        %first pics is all pics, preparedCues is all cues--pics is then
+        %the' 
         %stimuli that were used in the run
         pics = lutSort(stimList, preparedCues, pics);
         pairIndex = lutSort(stimList, preparedCues, pairIndex);
@@ -804,7 +815,12 @@ switch SESSION
         
         % load previous
         fname = findNewestFile(ppt_dir2,fullfile(ppt_dir2, ['mot_realtime01_' num2str(s2) '_' num2str(SESSION)  '*.mat']));
-        load(fname);
+        y = load(fname);
+        
+        stim.stim = y.stim.stim;
+        stim.cond = y.stim.cond;
+        stim.condString = y.stim.condString;
+        stim.id = y.stim.id;
 
         % stimulus presentation parameters
         stim.promptDur = 8*SPEED; % cue word alone
@@ -1078,6 +1094,9 @@ switch SESSION
         
     case ASSOCIATES
         
+        fname = findNewestFile(ppt_dir2,fullfile(ppt_dir2, ['mot_realtime01_' num2str(s2) '_' num2str(SESSION)  '*.mat']));
+        y = load(fname);
+        
         % declarations
         stim.promptDur = 0.6*SPEED;
         stim.listenDur = 0.4*SPEED;
@@ -1094,10 +1113,13 @@ switch SESSION
         stim.missedTriggers = 0;
         
         % prepare counterbalanced trial sequence (at most 2 in a row)
-        [stim.cond stim.condString stim.associate] = counterbalance_items({cues{STIMULI}{REALTIME}{1}, cues{STIMULI}{OMIT}{1}, recogLures(4:end)},CONDSTRINGS);
-        stim.associate = [recogLures(1:3) stim.associate];
-        stim.cond = [PRACTICE PRACTICE PRACTICE stim.cond];
-        stim.condString = [CONDSTRINGS{PRACTICE} CONDSTRINGS{PRACTICE} CONDSTRINGS{PRACTICE} stim.condString];
+        %[stim.cond stim.condString stim.associate] = counterbalance_items({cues{STIMULI}{REALTIME}{1}, cues{STIMULI}{OMIT}{1}, recogLures(4:end)},CONDSTRINGS);
+        %stim.associate = [recogLures(1:3) stim.associate];
+        %stim.cond = [PRACTICE PRACTICE PRACTICE stim.cond];
+        %stim.condString = [CONDSTRINGS{PRACTICE} CONDSTRINGS{PRACTICE} CONDSTRINGS{PRACTICE} stim.condString];
+        stim.cond = y.stim.cond;
+        stim.condString = y.stim.condString;
+        stim.associate = y.stim.associate;
         
         % display instructions
         DrawFormattedText(mainWindow,' ','center','center',COLORS.MAINFONTCOLOR,WRAPCHARS);
@@ -2036,10 +2058,10 @@ switch SESSION
     case {RSVP,RSVP2}
         
         fname = findNewestFile(ppt_dir2,fullfile(ppt_dir2, ['mot_realtime01_' num2str(s2) '_' num2str(SESSION)  '*.mat']));
-        load(fname);
+        y = load(fname);
         %also have to open trial information
-        fname = findNewestFile(ppt_dir2,fullfile(ppt_dir2, ['EK' num2str(SESSION)  '*.mat']));
-        p = load(fname);
+%         fname = findNewestFile(ppt_dir2,fullfile(ppt_dir2, ['EK' num2str(SESSION)  '*.mat']));
+%         p = load(fname);
         %usedWords = table2cell(p.datastruct.stimmap);
         %usedWords = [usedWords(:,1)];
         %trials = table2cell(p.datastruct.trials);
@@ -2087,7 +2109,9 @@ switch SESSION
         stim.trial = 0;
         %countdown = 0;
         
-        %stim.availableFruit = round(length(stim.fillerCues) * 0.5);
+        stim.fillerCues = y.stim.fillerCues;
+        stim.availableFruit = round(length(stim.fillerCues) * 0.5);
+
         stim.scanLength = secs_per_item * length(stim.fillerCues) + stim.availableFruit;
         
         % display or skip instructions, depending on session
@@ -2101,11 +2125,13 @@ switch SESSION
         %idealLag = normrnd(stim.targetLatencyMean,stim.targetLatencySd);
         stim.enterLoop = GetSecs;
         stim.expDuration = 0;
+        stim.stim = y.stim.stim;
         % keep pumping out filler words until the time is up
         while stim.trial < length(stim.stim) %stim.expDuration < ((stim.scanLength)/60) %4 seconds less changed so it stops after the right number of stim
-            
             % initialize trial
             stim.trial = stim.trial + 1;
+            stim.cond(stim.trial) = y.stim.cond(stim.trial);
+            stim.promptDur(stim.trial) = y.stim.promptDur(stim.trial);
             %cueDistance = GetSecs() - lastCue; % rear-view mirror
             %if countdown, countdown = countdown - 1; end
             
@@ -2205,8 +2231,8 @@ switch SESSION
             % report
             % log the stimulus and compute prior exposures
             stim.expDuration = (GetSecs() - stim.sessionStartTime) / 60;
-            stim.harvest_rate = mean(fruitHarvestEK.trials.acc(stim.cond(1:stim.trial) == FRUIT)); %fix these!!
-            stim.false_fruit = sum(1-fruitHarvestEK.trials.acc(stim.cond(1:stim.trial) ~= FRUIT));
+            stim.harvest_rate = mean(fruitHarvestEK.trials.acc(stim.cond == FRUIT)); %fix these!!
+            stim.false_fruit = sum(1-fruitHarvestEK.trials.acc(stim.cond ~= FRUIT));
             
             % save to file
             if mod(stim.trial,10)==0 || (stim.enterLoop >= (stim.scanLength-(STABILIZATIONTIME)))
