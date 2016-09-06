@@ -1,0 +1,11 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	9.9   	27  	TRIPOD    	stair   	3.455	2.493	1   	generic 	generic 
+2   	25.2  	23  	RAKE      	stair   	3.451	NR  	0   	NR      	2+ details
+3   	46.5  	21  	GIFT      	stair   	3.455	1.944	1   	full    	full    
+4   	60.1  	25  	LABEL     	stair   	3.455	1.995	1   	full    	full    
+5   	72.1  	28  	BRUSH     	stair   	3.451	NR  	0   	NR      	full    
+6   	88.1  	22  	STAPLE    	stair   	3.45	1.084	1   	full    	full    
+7   	100.1 	26  	PANEL     	stair   	3.455	1.586	1   	1 detail	1 detail
+8   	112.1 	24  	ESSAY     	stair   	3.45	1.192	1   	2+ details	2+ details
+9   	124.1 	23  	RAKE (repeat 1)	stair   	3.456	1.046	1   	full    	full    
+10  	136.1 	28  	BRUSH (repeat 1)	stair   	3.45	1.317	1   	2+ details	2+ details
