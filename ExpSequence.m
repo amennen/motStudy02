@@ -121,5 +121,5 @@ blockNum = 3;
 RealTimeMemoryFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{3},blockNum,runNum);
 
 %% RECALL 2
-scanNum = 25%21;
+scanNum = 27%21;
 mot_realtime01(SUBJECT,RECALL2,[],scanNum,scanNow);

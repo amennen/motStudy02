@@ -6,7 +6,7 @@
 %look at the recognition memory at the end and listen to wav files! (use
 %recogdata.m to look at the recognition memory)
 projectName = 'motStudy02';
-svec = 8:13;
+svec = 8:14;
 NSUB = length(svec);
 recallSession = [19 23];
 nstim = 10;

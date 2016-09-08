@@ -3,7 +3,7 @@ recog = 24; %associates task
 projectName = 'motStudy02';
 allplotDir = ['/Data1/code/' projectName '/' 'Plots' '/' ];
 
-svec = 8:13;
+svec = 8:14;
 NSUB = length(svec);
 
 for s = 1:NSUB

@@ -50,6 +50,8 @@ for s = 1:NSUB
     recallScan = [13 21];
     if subjectNum == 8
         recallScan = [13 23];
+    elseif subjectNum == 14
+        recallScan = [17 27];
     end
     recallSession = [19 23];
     %date = '7-12-16';
