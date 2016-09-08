@@ -4,8 +4,8 @@
 %day 1 can't be yoked because we won't know who we're matching with who***
 %figure out how we'd do the training--we'd have to have them pause for like
 %5 min or train after we match (or match by demographics only)
-
-mot_realtime01(100,3,1,0,0)
+session =1;
+mot_realtime01(100,session,1,0,0)
 mot_realtime01b(200,4,1,0,0,100)
 
 

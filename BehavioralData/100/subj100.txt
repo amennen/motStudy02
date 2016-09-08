@@ -1038,3 +1038,7 @@ trial	TR	prompt active	speed	ds	flip error	found file	FileTR	CategSep	LastFile
 8	13	1		15.000	  NaN	0.0101		NaN		1		  NaN		
 8	14	0		15.000	  NaN	0.0103		NaN		1		  NaN		
 8	15	0		15.000	  NaN	0.0103		NaN		1		  NaN		
+
+SESSION 2 initiated 08-Sep-2016 11:15:42 for SUBJECT number 100
+
+session	trial	pair	onset	dur	cue         	associate   
