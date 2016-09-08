@@ -91,7 +91,7 @@ load(fname);
 %take the last model saved
 %load(fullfile(locPatterns_dir, allfn(end).name));
 fprintf('\n*********************************************\n');
-fprintf(['* Loaded ' fname'\n']);
+fprintf(['* Loaded ' fname '\n']);
 
 %load featureSelected voxels
 allLast = findNewestFile(locPatterns_dir,[locPatterns_dir 'locpatternsdata_' '*']);

@@ -9,13 +9,14 @@ allsep = [];
 nstim = 10;
 nTRs = 15;
 nblock = 3;
-svec = [3:5 7:11];
+svec = [3:5 7:13];
+%svec = 8:13;
 nsub = length(svec);
 sepbystim = zeros(nstim,nTRs*3);
 speedbystim = zeros(nstim,nTRs*3);
 MOT_PREP = 5;
 colors = [110 62 106;83 200 212; 187 124 181]/255;
-plotstim = 1;
+plotstim = 0;
 plotmixedstim = 0;
 allplotDir = ['/Data1/code/' projectName '/' 'Plots' '/' ];
 
@@ -38,7 +39,7 @@ for s = 1:nsub
         prep = dir([behavioral_dir 'mot_realtime01_' num2str(subjectNum) '_' num2str(MOT_PREP)  '*.mat']);
         prepfile = [behavioral_dir prep(end).name];
         lastRun = load(prepfile);
-        hardSpeed = 30 - lastRun.stim.tGuess(end);
+        hardSpeed(s) = 30 - lastRun.stim.tGuess(end);
         plotDir = ['/Data1/code/' projectName '/' 'Plots' '/' num2str(subjectNum) '/'];
         if ~exist(plotDir, 'dir')
             mkdir(plotDir);
@@ -125,7 +126,7 @@ for s = 1:nsub
     xlim([-.5 7])
     set(findall(gcf,'-property','FontSize'),'FontSize',20)
     text(4.7,.75,['cm = ' num2str(maxLoc)], 'FontSize', 18);
-    text(4.7,.65, sprintf('fastS = %4.1f', hardSpeed), 'FontSize', 18)
+    text(4.7,.65, sprintf('fastS = %4.1f', hardSpeed(s)), 'FontSize', 18)
     print(thisfig, sprintf('%sgoodspeedsdist.pdf', plotDir), '-dpdf')
     
     fbnewspeedbystim = reshape(fbspeedbystim,1,numel(fbspeedbystim));
@@ -140,7 +141,8 @@ for s = 1:nsub
     xlim([-.5 7])
     set(findall(gcf,'-property','FontSize'),'FontSize',20)
     text(4.7,.75,['cm = ' num2str(maxLoc)], 'FontSize', 18);
-    text(4.7,.65, sprintf('fastS = %4.1f', hardSpeed), 'FontSize', 18)
+    goodSpeedFb(s) = mean(fbgoodSpeeds);
+    text(4.7,.65, sprintf('fastS = %4.1f', hardSpeed(s)), 'FontSize', 18)
     print(thisfig, sprintf('%sfb_goodspeedsdist.pdf', plotDir), '-dpdf')
     %look up how to change yaxis categories
     %do to later: rearrange all motion trials by stimulus ID and then plot on
@@ -158,7 +160,7 @@ for s = 1:nsub
     xlim([-.5 7])
     set(findall(gcf,'-property','FontSize'),'FontSize',20)
     text(4.7,.75,['cm = ' num2str(maxLoc)], 'FontSize', 18);
-    text(4.7,.65, sprintf('fastS = %4.1f', hardSpeed), 'FontSize', 18)
+    text(4.7,.65, sprintf('fastS = %4.1f', hardSpeed(s)), 'FontSize', 18)
     print(thisfig, sprintf('%sfb_allspeedsdist.pdf', plotDir), '-dpdf')
     %look up how to change yaxis categories
     %do to later: rearrange all motion trials by stimulus ID and then plot on
@@ -187,7 +189,7 @@ for s = 1:nsub
     line([maxLoc maxLoc], [0 1], 'color', 'k', 'LineWidth', 2);
     set(findall(gcf,'-property','FontSize'),'FontSize',20)
     text(4.7,.75,['cm = ' num2str(maxLoc)], 'FontSize', 18);
-    text(4.7,.65, sprintf('fastS = %4.1f', hardSpeed), 'FontSize', 18)
+    text(4.7,.65, sprintf('fastS = %4.1f', hardSpeed(s)), 'FontSize', 18)
    print(fighandle, sprintf('%sfb_allspeedsratiodist.pdf', plotDir), '-dpdf')
 
     
@@ -202,7 +204,7 @@ for s = 1:nsub
     line([maxLoc maxLoc], [0 1], 'color', 'k', 'LineWidth', 2);
     set(findall(gcf,'-property','FontSize'),'FontSize',20)
     text(-.68,.38,['cm = ' num2str(maxLoc)], 'FontSize', 18);
-    text(-.68,.33, sprintf('fastS = %4.1f', hardSpeed), 'FontSize', 18)
+    text(-.68,.33, sprintf('fastS = %4.1f', hardSpeed(s)), 'FontSize', 18)
     print(thisfig, sprintf('%sevidencedist.pdf', plotDir), '-dpdf')
     
     xvals = [-.5:.1:.5];
@@ -215,7 +217,7 @@ for s = 1:nsub
     line([maxLoc maxLoc], [0 1], 'color', 'k', 'LineWidth', 2);
     set(findall(gcf,'-property','FontSize'),'FontSize',20)
     text(-.68,.38,['cm = ' num2str(maxLoc)], 'FontSize', 18);
-    text(-.68,.33, sprintf('fastS = %4.1f', hardSpeed), 'FontSize', 18)
+    text(-.68,.33, sprintf('fastS = %4.1f', hardSpeed(s)), 'FontSize', 18)
     print(thisfig, sprintf('%sfb_evidencedist.pdf', plotDir), '-dpdf')
     idealInd = find(xvals >0.05 & xvals <0.15);
     ratioIdeal(s) = nCounts(idealInd);
@@ -428,28 +430,28 @@ end
 
 end
 
-thisfig = figure;
-barwitherr(std(d1,[],1)/sqrt(nsub-1),mean(d1))
-set(gca,'XTickLabel' , ['Stim ';'Mixed']);
-xlabel('Category')
-ylabel('Average Differences')
-title('Absolute Value Boundary Differences')
-set(findall(gcf,'-property','FontSize'),'FontSize',20)
-ylim([0 0.4])
-print(thisfig, sprintf('%sbystimvsorder.pdf', plotDir), '-dpdf')
-
-boundarystim = d1(:,1);
-avges = [mean(boundarystim) mean(innerdiff)];
-errors = [std(boundarystim) std(innerdiff)]/sqrt(nsub-1);
-thisfig = figure;
-barwitherr(errors,avges)
-set(gca,'XTickLabel' , ['Boundary';'In Trial']);
-xlabel('Category')
-ylabel('Average Differences')
-title('Absolute Value Differences')
-set(findall(gcf,'-property','FontSize'),'FontSize',20)
-ylim([0 0.4])
-print(thisfig, sprintf('%sboundaryvsinner.pdf', plotDir), '-dpdf')
+% thisfig = figure;
+% barwitherr(std(d1,[],1)/sqrt(nsub-1),mean(d1))
+% set(gca,'XTickLabel' , ['Stim ';'Mixed']);
+% xlabel('Category')
+% ylabel('Average Differences')
+% title('Absolute Value Boundary Differences')
+% set(findall(gcf,'-property','FontSize'),'FontSize',20)
+% ylim([0 0.4])
+% print(thisfig, sprintf('%sbystimvsorder.pdf', plotDir), '-dpdf')
+% 
+% boundarystim = d1(:,1);
+% avges = [mean(boundarystim) mean(innerdiff)];
+% errors = [std(boundarystim) std(innerdiff)]/sqrt(nsub-1);
+% thisfig = figure;
+% barwitherr(errors,avges)
+% set(gca,'XTickLabel' , ['Boundary';'In Trial']);
+% xlabel('Category')
+% ylabel('Average Differences')
+% title('Absolute Value Differences')
+% set(findall(gcf,'-property','FontSize'),'FontSize',20)
+% ylim([0 0.4])
+% print(thisfig, sprintf('%sboundaryvsinner.pdf', plotDir), '-dpdf')
 
 %% now compare ratio ideal
 firstgroup = ratioIdeal(1:4);
@@ -467,8 +469,9 @@ set(findall(gcf,'-property','FontSize'),'FontSize',20)
 ylim([0 0.3])
 
 %% now compare cm of feedback
-firstgroup = allcm(1:4);
-nnew = 3;
+nold = 4;
+firstgroup = allcm(1:nold);
+nnew = length(svec) - nold;
 secondgroup = allcm(end-nnew+1:end);
 avgratio = [mean(firstgroup) mean(secondgroup)];
 eavgratio = [std(firstgroup)/sqrt(length(firstgroup)-1) std(secondgroup)/sqrt(length(secondgroup)-1)];
@@ -481,3 +484,23 @@ title('CM of Evidence by Subject Group')
 set(findall(gcf,'-property','FontSize'),'FontSize',20)
 ylim([-.2 0.2])
 print(thisfig, sprintf('%scmbygroup.pdf', allplotDir), '-dpdf')
+
+%% now look at if max dot speeds determine anything
+% looking at the mean center of mass of evidence
+speed2 = hardSpeed(end-nnew+1:end);
+figure;
+plot(speed2,secondgroup, '.');
+
+% mean dot speed used in feedback
+goodSpeed2 = goodSpeedFb(end-nnew+1:end);
+thisfig = figure;
+%plot(speed2,goodSpeed2, '.')
+s = 100;
+scatter(speed2,goodSpeed2, s,'fill','MarkerEdgeColor','b',...
+               'MarkerFaceColor','c',...
+               'LineWidth',3.5);
+xlabel('Staircased Speed')
+ylabel('Mean of Good Speed during FB')
+title('Good Speed vs. Staircased Speed')
+set(findall(gcf,'-property','FontSize'),'FontSize',20)
+print(thisfig, sprintf('%sgoodfbspeedvsstaircased.pdf', allplotDir), '-dpdf')

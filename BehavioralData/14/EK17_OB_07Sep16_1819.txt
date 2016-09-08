@@ -1,0 +1,17 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	8.7   	40  	COACH     	localizer	3.45	2.224	1   	1 detail	1 detail
+2   	20.7  	44  	POWDER    	localizer	3.45	1.584	1   	2+ details	2+ details
+3   	32.7  	42  	PICK      	localizer	3.45	1.072	1   	2+ details	2+ details
+4   	44.7  	39  	EARTHQUAKE	localizer	3.45	1.296	1   	full    	full    
+5   	56.7  	32  	FORT      	localizer	3.45	1.24	1   	2+ details	2+ details
+6   	68.7  	33  	PUMP      	localizer	3.451	1.897	1   	2+ details	2+ details
+7   	80.7  	38  	RACK      	localizer	3.453	1.969	1   	2+ details	2+ details
+8   	92.7  	30  	SAWDUST   	localizer	3.451	1.457	1   	1 detail	1 detail
+9   	104.7 	29  	QUILL     	localizer	3.451	0.985	1   	2+ details	2+ details
+10  	116.7 	41  	GALLON    	localizer	3.451	0.953	1   	full    	full    
+11  	128.7 	37  	RUST      	localizer	3.45	1.369	1   	generic 	generic 
+12  	140.7 	34  	PHONE     	localizer	3.453	1.961	1   	full    	full    
+13  	152.7 	43  	DOME      	localizer	3.451	0.977	1   	full    	full    
+14  	164.7 	35  	LEVEL     	localizer	3.451	1.721	1   	1 detail	1 detail
+15  	176.7 	36  	FLEET     	localizer	3.451	1.369	1   	full    	full    
+16  	188.7 	31  	STAR      	localizer	3.453	1.17	1   	1 detail	1 detail

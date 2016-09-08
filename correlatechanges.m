@@ -16,6 +16,7 @@ nsub = length(svec);
 sepbystim = zeros(nstim,nTRs*3);
 speedbystim = zeros(nstim,nTRs*3);
 num2avg = 2; %including starting point--change to 2 now that we're only smoothing over 2 TR's
+allplotDir = ['/Data1/code/' projectName '/' 'Plots' '/' ];
 
 for s = 1:nsub
     subjectNum = svec(s);
@@ -28,7 +29,7 @@ for s = 1:nsub
         behavioral_dir = [fileparts(which('mot_realtime01.m')) '/BehavioralData/' num2str(subjectNum) '/'];
         save_dir = ['/Data1/code/' projectName '/data/' num2str(subjectNum) '/']; %this is where she sets the save directory!
         runHeader = fullfile(save_dir,[ 'motRun' num2str(blockNum) '/']);
-        fileSpeed = findnewestfile(behavioral_dir,fullfile(behavioral_dir, ['mot_realtime01_' num2str(subjectNum) '_' num2str(SESSION)  '*.mat']));
+        fileSpeed = findNewestFile(behavioral_dir,fullfile(behavioral_dir, ['mot_realtime01_' num2str(subjectNum) '_' num2str(SESSION)  '*.mat']));
         plotDir = ['/Data1/code/' projectName '/' 'Plots' '/' num2str(subjectNum) '/'];
         if ~exist(plotDir, 'dir')
             mkdir(plotDir);
@@ -103,6 +104,7 @@ for s = 1:nsub
     xlabel('Speed Change')
     ylabel('Classification Change')
     [rho,pval] = corrcoef([newspeeds' newseps']);
+    corrcoeff(s) = rho(1,2);
     text(2,.85,['corr = ' num2str(rho(1,2))]);
     text(2,.65, ['p = ' num2str(pval(1,2))])
     
@@ -152,3 +154,15 @@ for s = 1:nsub
     set(findall(gcf,'-property','FontSize'),'FontSize',20)
    print(h, sprintf('%sAVG%i_correlations.pdf', plotDir,num2avg), '-dpdf')
 end
+
+%% now see if correlation is related to fast dot speed change
+getSpeed;
+thisfig = figure;
+scatter(hardSpeed,corrcoeff,'fill','MarkerEdgeColor','b',...
+        'MarkerFaceColor','c',...
+        'LineWidth',2.5);
+xlabel('Staircased Speed')
+ylabel('Corr(\Delta S, \Delta Evidence)')
+title('FB Correlation vs. Staircased Speed')
+set(findall(gcf,'-property','FontSize'),'FontSize',20)
+print(thisfig, sprintf('%scorrspeed.pdf', allplotDir), '-dpdf')

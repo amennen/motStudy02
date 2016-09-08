@@ -22,13 +22,13 @@ updated =1; %for only looking at the results recorded after making differences (
 oldonly = 0;
 nnew = 6;
 nold = 4;
-svec = [3:5 7:13];
-runvec = [1 1 2 1 1 1 1 1 1 1];
+svec = [3:5 7:14];
+runvec = [1 1 2 1 1 1 1 1 1 1 1];
 nTRsperTrial = 19;
 if length(runvec)~=length(svec)
     error('Enter in the runs AND date numbers!!')
 end
-datevec = {'7-12-16', '7-14-16', '7-14-16', '7-15-16', '8-10-16', '8-11-16', '8-16-16', '8-18-16', '8-27-16', '8-30-16'};
+datevec = {'7-12-16', '7-14-16', '7-14-16', '7-15-16', '8-10-16', '8-11-16', '8-16-16', '8-18-16', '8-27-16', '8-30-16', '9-7-16'};
 %datevec = {'7-12-16', '7-14-16', '7-14-16', '7-15-16', '8-10-16', '8-11-16', '8-16-16', '8-18-16'}
 if updated
     svec = svec(end-nnew +1:end);
@@ -151,4 +151,4 @@ set(findall(gcf,'-property','FontSize'),'FontSize',16)
 
 xlim([1 nTRsperTrial])
 ylim([-.25 .25])
-%print(h1, sprintf('%sresultsAllTR_old.pdf', plotDir), '-dpdf')
+print(h1, sprintf('%sresults_updated0907.pdf', plotDir), '-dpdf')

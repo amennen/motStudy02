@@ -1,6 +1,7 @@
 %recognition task
 recog = 24; %associates task
 projectName = 'motStudy02';
+allplotDir = ['/Data1/code/' projectName '/' 'Plots' '/' ];
 
 svec = 8:13;
 NSUB = length(svec);
@@ -23,7 +24,7 @@ for s = 1:NSUB
 end
 eALLD = [std(hard_score)/sqrt(NSUB-1);std(easy_score)/sqrt(NSUB-1)];
 ALLD = [mean(hard_score); mean(easy_score)];
-figure;
+h = figure;
 barwitherr(eALLD,ALLD)
 set(gca,'XTickLabel' , ['RT  '; 'Omit']);
 title('Recognition Accuracy')
@@ -31,11 +32,12 @@ xlabel('Stim Type')
 ylabel('Recognition Rate (%)')
 %ylim([1 5.5])
 fig=gcf;
-set(findall(fig,'-property','FontSize'),'FontSize',12)
+set(findall(fig,'-property','FontSize'),'FontSize',20)
+print(h, sprintf('%srecogacc.pdf', allplotDir), '-dpdf')
 
 eALLD = [nanstd(hard_rt)/sqrt(NSUB-1);nanstd(easy_rt)/sqrt(NSUB-1)];
 ALLD = [nanmean(hard_rt); nanmean(easy_rt)];
-figure;
+h = figure;
 barwitherr(eALLD,ALLD)
 set(gca,'XTickLabel' , ['RT  '; 'Omit']);
 title('Recognition RT')
@@ -43,4 +45,5 @@ xlabel('Stim Type')
 ylabel('RT (s)')
 %ylim([1 5.5])
 fig=gcf;
-set(findall(fig,'-property','FontSize'),'FontSize',12)
+set(findall(fig,'-property','FontSize'),'FontSize',20)
+print(h, sprintf('%srecogrt.pdf', allplotDir), '-dpdf')

@@ -13,8 +13,8 @@ allsep = [];
 nstim = 10;
 nTRs = 15;
 sepTRs = 17;
+FBTRs = 11;
 nblock = 3;
-
 %if both zero, then look at all subjects for differences
 updated =0; %for only looking at the results recorded after making differences (minimum dot speed, increase starting speed, average over 2)
 oldonly = 0;
@@ -58,7 +58,9 @@ for s = 1:nsub
         speedVector = reshape(allSpeed,1,numel(allSpeed));
         allMotionTRs = convertTR(d.timing.trig.wait,d.timing.plannedOnsets.motion,d.config.TR); %row,col = mTR,trialnumber
         allMotionTRs = allMotionTRs + 2;%[allMotionTRs; allMotionTRs(end,:)+1; allMotionTRs(end,:) + 2]; %add in the next 2 TR's for HDF
+        onlyFbTRs = allMotionTRs(5:end,:);
         TRvector = reshape(allMotionTRs,1,numel(allMotionTRs));
+        FBTRVector = reshape(onlyFbTRs,1,numel(onlyFbTRs));
         run = dir([runHeader 'motpatternsdata_' num2str(SESSION) '*']);
         names = {run.name};
         dates = [run.datenum];
@@ -75,14 +77,18 @@ for s = 1:nsub
         sepinorder = sepbytrial(indSort,:);
         speedinorder = speedbytrial(indSort,:);
         sepbystim(:,(iblock-1)*nTRs + 1: iblock*nTRs ) = sepinorder;
+        FBsepbystim(:,(iblock-1)*FBTRs + 1: iblock*FBTRs ) = sepinorder(:,5:end);
         speedbystim(:,(iblock-1)*nTRs + 1: iblock*nTRs ) = speedinorder;
+        FBspeedbystim(:,(iblock-1)*FBTRs + 1: iblock*FBTRs ) = speedinorder(:,5:end);
         allspeedchanges = d.stim.changeSpeed;
         speedchange = allspeedchanges'; % now in trial, TR order
         speedchangeinorder = speedchange(indSort,:);
         dsbystim(:,(iblock-1)*nTRs + 1: iblock*nTRs ) = speedchangeinorder;
         meandiffbyblock(iblock) = mean(mean(abs(diff(sepbystim,1,2))));
+        FBmeandiffbyblock(iblock) = mean(mean(abs(diff(FBsepbystim,1,2))));
     end
     meandiff = mean(meandiffbyblock);
+    FBmeandiff = mean(FBmeandiffbyblock);
     if s < 8 %average over 3 TR's
         vec2avg = [0.1*ones(10,2) sepbystim];
         for i = 1:size(sepbystim,2)
@@ -99,12 +105,44 @@ for s = 1:nsub
     zerotime = [];
     posinc = [];
     negdec = [];
+%     for i = 1:nstim
+%         %thisSep = smoothedsep(i,:); %can choose to look at smoothed
+%         %version or raw separation
+%         thisSep = sepbystim(i,:);
+%         thisdS = dsbystim(i,:);
+%         thisSpeed = speedbystim(i,:);
+%         highPts = find(thisSep>0.15);
+%         %acceptable = intersect(find(mod(1:45,15)~=1),find(mod(1:45,15)~=2)); % don't take if in the first 2 TR's because weren't looking at anything 
+%         %keep = find(ismember(highPts,acceptable));
+%         %highPts = highPts(keep);
+%         dist = nan(1,length(highPts));
+%         clear avgds;
+%         for h = 1:length(highPts)
+%             newvals = thisSep(highPts(h)+1:end);
+%             %nextdown = find(newvals<0);
+%             nextdown = find(thisSep(highPts(h)) - newvals >= meandiff*2 );
+%             if ~isempty(nextdown)
+%                 dist(h) = nextdown(1);
+%                 %avgds(h) = sum(thisdS(highPts(h)+1:highPts(h)+nextdown(1)));
+%                 avgds(h) = thisSpeed(highPts(h)+nextdown(1)) - thisSpeed(highPts(h));
+%                 if avgds(h) > 0
+%                     postime = [postime dist(h)];
+%                     posinc = [posinc avgds(h)];
+%                 elseif avgds(h) < 0
+%                     negtime = [negtime dist(h)];
+%                     negdec = [negdec avgds(h)];
+%                 end
+%             end
+%         end
+%         distDec1(s,i) = nanmean(dist); 
+%     end
+    
+    % now do for FB TRs only
     for i = 1:nstim
         %thisSep = smoothedsep(i,:); %can choose to look at smoothed
         %version or raw separation
-        thisSep = sepbystim(i,:);
-        thisdS = dsbystim(i,:);
-        thisSpeed = speedbystim(i,:);
+        thisSep = FBsepbystim(i,:);
+        thisSpeed = FBspeedbystim(i,:);
         highPts = find(thisSep>0.15);
         %acceptable = intersect(find(mod(1:45,15)~=1),find(mod(1:45,15)~=2)); % don't take if in the first 2 TR's because weren't looking at anything 
         %keep = find(ismember(highPts,acceptable));
@@ -114,22 +152,26 @@ for s = 1:nsub
         for h = 1:length(highPts)
             newvals = thisSep(highPts(h)+1:end);
             %nextdown = find(newvals<0);
-            nextdown = find(thisSep(highPts(h)) - newvals >= meandiff*2 );
+            nextdown = find(thisSep(highPts(h)) - newvals >= FBmeandiff );
             if ~isempty(nextdown)
-                dist(h) = nextdown(1);
-                %avgds(h) = sum(thisdS(highPts(h)+1:highPts(h)+nextdown(1)));
-                avgds(h) = thisSpeed(highPts(h)+nextdown(1)) - thisSpeed(highPts(h));
-                if avgds(h) > 0
-                    postime = [postime dist(h)];
-                    posinc = [posinc avgds(h)];
-                elseif avgds(h) < 0
-                    negtime = [negtime dist(h)];
-                    negdec = [negdec avgds(h)];
+                actualIndex = highPts(h)+nextdown(1);
+                if (~mod(actualIndex,FBTRs) || mod(actualIndex,FBTRs) > mod(highPts(h),FBTRs)) && (mod(highPts(h),FBTRs)) %only accept if in the same block
+                    dist(h) = nextdown(1);
+                    %avgds(h) = sum(thisdS(highPts(h)+1:highPts(h)+nextdown(1)));
+                    avgds(h) = thisSpeed(highPts(h)+nextdown(1)) - thisSpeed(highPts(h));
+                    if avgds(h) > 0
+                        postime = [postime dist(h)];
+                        posinc = [posinc avgds(h)];
+                    elseif avgds(h) < 0
+                        negtime = [negtime dist(h)];
+                        negdec = [negdec avgds(h)];
+                    end
                 end
             end
         end
         distDec1(s,i) = nanmean(dist); 
     end
+    
     npos(s) = length(postime);
     nneg(s) = length(negtime);
     posavg(s) = mean(posinc);
@@ -143,13 +185,12 @@ end
 %% now compare decrease of retrieval evidence across both groups
 if (~updated && ~oldonly)
     firstgroup = distDec2(1:4);
-    nnew = 4;
     secondgroup = distDec2(end-nnew+1:end);
     avgratio = [mean(firstgroup) mean(secondgroup)];
     eavgratio = [std(firstgroup)/sqrt(length(firstgroup)-1) std(secondgroup)/sqrt(length(secondgroup)-1)];
     thisfig = figure;
     barwitherr(eavgratio,avgratio)
-    set(gca,'XTickLabel' , ['Old 4';'New 4']);
+    set(gca,'XTickLabel' , ['Old 4';'New 6']);
     xlabel('Subject Group')
     ylabel('TR''s to Decrease')
     title('Time to Decrease Evidence by Group')
@@ -170,9 +211,9 @@ if (~updated && ~oldonly)
     thisfig = figure;
     barwitherr(eavgratio,avgratio)
     set(gca,'XTickLabel' , ['dS > 0';'dS < 0']);
-    legend('Old 4', 'New 4')
+    legend('Old 4', 'New 6')
     ylabel('TR''s to Decrease')
-    title('Evidence Response Time, Separated by dS')
+    title('Evidence Response Time, Separated by \DeltaS')
     set(findall(gcf,'-property','FontSize'),'FontSize',20)
     print(thisfig, sprintf('%sweakeningbygroupbysign.pdf', allplotDir), '-dpdf')
 end
