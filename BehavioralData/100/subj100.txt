@@ -1042,3 +1042,11 @@ trial	TR	prompt active	speed	ds	flip error	found file	FileTR	CategSep	LastFile
 SESSION 2 initiated 08-Sep-2016 11:15:42 for SUBJECT number 100
 
 session	trial	pair	onset	dur	cue         	associate   
+
+
+SESSION 3 ended 09-Sep-2016 10:50:17 for SUBJECT number 100
+
+
+
+
+******************************************************************************

@@ -4,9 +4,9 @@
 %day 1 can't be yoked because we won't know who we're matching with who***
 %figure out how we'd do the training--we'd have to have them pause for like
 %5 min or train after we match (or match by demographics only)
-session =1;
+session =3;
 mot_realtime01(100,session,1,0,0)
-mot_realtime01b(200,4,1,0,0,100)
+mot_realtime01b(200,session,1,0,0,100)
 
 
 fname = findNewestFile(ppt_dir2,fullfile(ppt_dir2, ['mot_realtime01_' num2str(s2) '_' num2str(SESSION)  '*.mat']));

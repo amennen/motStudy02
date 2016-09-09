@@ -150,7 +150,10 @@ if SESSION >= MOT{1}
 end
 if ~exist(data_dir,'dir'), mkdir(data_dir); end
 ppt_dir = [data_dir filesep SUBJ_NAME filesep];
-ppt_dir2 = [data_dir filesep num2str(s2) filesep];
+if SESSION > 5
+    ppt_dir2 = [data_dir filesep num2str(s2) filesep];
+    MATLAB_PREV_STIM = [ppt_dir2 'mot_realtime01_subj_' num2str(s2) '_stimAssignment.mat'];
+end
 if ~exist(ppt_dir,'dir'), mkdir(ppt_dir); end
 base_path = [fileparts(which('mot_realtime01.m')) filesep];
 MATLAB_SAVE_FILE = [ppt_dir MATLAB_SAVE_FILE];
@@ -289,9 +292,9 @@ LOC = 7;
 
 % stimulus filepaths
 MATLAB_STIM_FILE = [ppt_dir 'mot_realtime01b_subj_' num2str(SUBJECT) '_stimAssignment.mat'];
-MATLAB_PREV_STIM = [ppt_dir2 'mot_realtime01_subj_' num2str(s2) '_stimAssignment.mat'];
 CUELISTFILE = [base_path 'stimuli/text/wordpool.txt'];
 CUELISTFILE_TARGETS = [base_path 'stimuli/text/wordpool_targets_anne.txt'];
+TRAININGCUELIST = [base_path 'stimuli/text/wordpool_targets_training.txt'];
 %      CALIBRATION_TARGET = [base_path 'stimuli/NTB_5cal-10left-5up_1600x1200_black.jpg'];
 CALIBRATION_TARGET = [base_path 'stimuli/NTB_5cal-10left-5up_1280x720_black.jpg'];
 CUETARGETFILE = [base_path 'stimuli/text/ed_plants.txt'];
@@ -300,6 +303,8 @@ DESIGNFILE = [base_path 'khenderson_localizer_design_' int2str(mod(SUBJECT,3)+1)
 %PICLISTFILE = {[base_path 'stimuli/bw_bedrooms.txt'],CATFILES{2}, CATFILES{3}, CATFILES{4}};
 PICLISTFILE = [base_path 'stimuli/SCREENNAMES.txt'];
 PICFOLDER = [base_path 'stimuli/STIM/ALLIMAGES' filesep];
+TRAININGPICFOLDER = [base_path 'stimuli/STIM/training' filesep];
+TRAININGLISTFILE = [base_path 'stimuli/TRAININGSCREEN.txt'];
 % present mapping without keylabels if ppt. is in the scanner
 if CURRENTLY_ONLINE && SESSION > TOCRITERION3
     KEY_MAPPING = [base_path 'stimuli/bwvividness.jpg'];
@@ -353,7 +358,18 @@ switch SESSION
     %% 0. SETUP
     case SETUP
         %this is where we load the stimuli from the previous subject
-        load(MATLAB_PREV_STIM);
+%         if SESSION == 7
+%         load(MATLAB_PREV_STIM);
+%         end
+
+        %don't need a stimulus file for everything because we can just go
+        %by session
+        trainWords = readStimulusFile(TRAININGCUELIST,stim.num_learn);
+        cues{STIMULI}{LEARN}{1} = trainWords;
+        trainPics = readStimulusFile_evenIO(TRAININGLISTFILE,stim.num_learn);
+        
+        %figure out how to save
+        
         % clean up
         system(['cp ' base_path 'mot_realtime01b.m ' ppt_dir 'mot_realtime01b_executed.m']);
         save(MATLAB_STIM_FILE, 'cues','preparedCues','pics','pairIndex','lureWords','recogLures','stimmap');
