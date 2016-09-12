@@ -477,7 +477,7 @@ switch SESSION
             fprintf('Flip time error = %.4f\n', timing.actualOnsets.cue(n) - timing.plannedOnsets.cue(n));
             % prepare cue+associate window
             %RESCALE_FACTOR = (PICDIMS/WINDOWSIZE.pixels)/4;%be 1/4 of the screen
-            if SESSION < 6
+            if SESSION < 5
                 picIndex = prepImage(strcat(TRAININGPICFOLDER, stim.picStim{trial}),mainWindow);
             else
                 picIndex = prepImage(strcat(PICFOLDER, stim.picStim{trial}),mainWindow);
@@ -546,17 +546,16 @@ switch SESSION
         if SESSION == TOCRITERION1
             [cond strings stimList] = counterbalance_items({cues{STIMULI}{LEARN}{1}},{CONDSTRINGS{LEARN}});
             condmap = makeMap({'stair'});
-            pics = lutSort(stimList, cues{STIMULI}{LEARN}{1}, trainPics);
-            pairIndex = lutSort(stimList, cues{STIMULI}{LEARN}{1}, 1:stim.num_learn);
+            pics = lutSort(stimList, preparedCues, pics);
+            pairIndex = lutSort(stimList, preparedCues, pairIndex);
             preparedCues = stimList;
-            stimmap = makeMap(cues{STIMULI}{LEARN}{1});
         elseif SESSION == TOCRITERION2 || SESSION == TOCRITERION2_REP
              fname = findNewestFile(ppt_dir2,fullfile(ppt_dir2, ['mot_realtime01_' num2str(s2) '_' num2str(SESSION)  '*.mat']));
              y = load(fname);
              choicePos = y.stim.choicePos; % in (trials, position)
              fname = findNewestFile(ppt_dir2,fullfile(ppt_dir2,['EK' num2str(SESSION) '*.mat']));
              y2 = load(fname);
-             stimmap = makeMap(preparedCues);
+             
             if SESSION == TOCRITERION2 || SESSION == TOCRITERION_REP
              %check if this leads to errors with all the loading stim
             condmap = makeMap({'realtime','omit'});
@@ -696,19 +695,12 @@ switch SESSION
                 for i=1:length(lureIndices)
                     stim.choicePos(stim.trial,lureIndex(i)) = lureIndices(i);
                     picLures{i} = allOtherPics{lureIndices(i)};
-                    if SESSION < 6
-                    picIndex(lureIndex(i)) = prepImage(char(strcat(TRAININGPICFOLDER, picLures{i})),mainWindow);
-                    else
                     picIndex(lureIndex(i)) = prepImage(char(strcat(PICFOLDER, picLures{i})),mainWindow);
-                    end
                 end
                 
                 % close and replace the lure in the spot that belongs to the target
-                if SESSION < 6
-                    picIndex(cpos{stim.trial}) = prepImage(strcat(TRAININGPICFOLDER, pics{n}),mainWindow);
-                else
-                    picIndex(cpos{stim.trial}) = prepImage(strcat(PICFOLDER, pics{n}),mainWindow); %%ooooh here you take the lure out and add target
-                end
+                picIndex(cpos{stim.trial}) = prepImage(strcat(PICFOLDER, pics{n}),mainWindow); %%ooooh here you take the lure out and add target
+                
                 stim.choicePos(stim.trial,cpos{stim.trial}) = n;
                 
                 % draw exemplar options
@@ -759,11 +751,7 @@ switch SESSION
                 
                 % present cue+associate window
                 if stim.gotItem(n) ~= CORRECT
-                    if SESSION < 6
-                        picIndex(1) = prepImage(strcat(TRAININGPICFOLDER, pics{n}),mainWindow);
-                    else
                     picIndex(1) = prepImage(strcat(PICFOLDER, pics{n}),mainWindow);
-                    end
                     topLeft(HORIZONTAL) = CENTER(HORIZONTAL) - (PICDIMS(HORIZONTAL)*RESCALE_FACTOR/2);
                     topLeft(VERTICAL) = stim.picRow - (PICDIMS(VERTICAL)*RESCALE_FACTOR)/2;
                     DrawFormattedText(mainWindow,preparedCues{n},'center',stim.textRow,COLORS.MAINFONTCOLOR,WRAPCHARS);
@@ -1280,6 +1268,9 @@ switch SESSION
     case [MOT_PREP MOT MOT_PRACTICE MOT_PRACTICE2 MOT_LOCALIZER]
         
         
+        fname = findNewestFile(ppt_dir2,fullfile(ppt_dir2, ['mot_realtime01_' num2str(s2) '_' num2str(SESSION)  '*.mat']));
+        y = load(fname);
+        prevSpeeds = y.stim.motionSpeed; %in nTRs,nTrials
         
         if SESSION == MOT_PRACTICE2
             displayText(mainWindow,['Welcome to your fMRI scanning session!\n\nOnce you''re all the way inside the scanner and can read this text, please reach up to your eyes and ' ...
@@ -1369,7 +1360,6 @@ switch SESSION
                 day_2 = true;
                 realtime = true; %use this to make other conditions below!
         end
-       
         
         if SESSION == MOT_PRACTICE || SESSION == MOT_PRACTICE2
             stim.header = 'MULTI-TASKING -- PRACTICE';
@@ -1468,49 +1458,42 @@ switch SESSION
        % keymap_image = imread(KEY_MAPPING);
       %  keymap_prompt = Screen('MakeTexture', mainWindow, keymap_image);
         
-      
+      % put in previous stimuli
+      stim.stim = y.stim.stim;
+      stim.condString = y.stim.condString;
+      stim.cond = y.stim.cond;
+      stim.lureWords = y.stim.lureWords;
+      stim.id = y.stim.id;
       
         % allocate stimuli
         if ~day_2
-            %then we want to use practice stim
-            stim.lureWords = [];
-            stimmap = makeMap(cues{STIMULI}{LEARN}{1});
-            if SESSION == MOT_PRACTICE
-                [stim.cond stim.condString stim.stim] = counterbalance_items({cues{STIMULI}{LEARN}{1}},{MOTSTRINGS{LEARN}},0);
-            else %MOT_PREP
-                [stim.cond stim.condString stim.stim] = counterbalance_items({[cues{STIMULI}{LEARN}{1} cues{STIMULI}{LEARN}{1} cues{STIMULI}{LEARN}{1} cues{STIMULI}{LEARN}{1} cues{STIMULI}{LEARN}{1} cues{STIMULI}{LEARN}{1}]},{MOTSTRINGS{LEARN}},0);
-            end
+%             stim.lureWords = [];
+%             if SESSION == MOT_PRACTICE
+%                 [stim.cond stim.condString stim.stim] = counterbalance_items({cues{STIMULI}{LEARN}{1}},{MOTSTRINGS{LEARN}},0);
+%             else %MOT_PREP
+%                 [stim.cond stim.condString stim.stim] = counterbalance_items({[cues{STIMULI}{LEARN}{1} cues{STIMULI}{LEARN}{1} cues{STIMULI}{LEARN}{1} cues{STIMULI}{LEARN}{1} cues{STIMULI}{LEARN}{1} cues{STIMULI}{LEARN}{1}]},{MOTSTRINGS{LEARN}},0);
+%             end
             condmap = makeMap({'target'});
+        elseif SESSION==MOT_PRACTICE2
+%             stim.lureWords = lureWords(6:7);
+%             numItems = length(cues{STIMULI}{LOC}{1});
+%             halfItems = numItems / 2;
+%             [stim.cond stim.condString stim.stim] = counterbalance_items({cues{STIMULI}{LEARN}{1}(1) cues{STIMULI}{LEARN}{1}(2), stim.lureWords(1), stim.lureWords(2)},MOTSTRINGS,1);
+            condmap = makeMap({'targ_hard','targ_easy','lure_hard','lure_easy'});
+            square_bounds = [CENTER-(stim.square_dims/2) CENTER+(stim.square_dims/2)-1];
+%             stim.condString = condmap.descriptors(stim.cond);
+        elseif SESSION == MOT_LOCALIZER
+%             stim.lureWords = lureWords(8:23);
+%             numItems = length(cues{STIMULI}{LOC}{1});
+%             halfItems = numItems / 2;
+%             [stim.cond stim.condString stim.stim] = counterbalance_items({cues{STIMULI}{LOC}{1}(1:8), cues{STIMULI}{LOC}{1}(9:16), stim.lureWords(1:8), stim.lureWords(9:16)},MOTSTRINGS,1); %looks like he wanted to separate easy/hard conditions
+            condmap = makeMap({'targ_hard','targ_easy','lure_hard','lure_easy'});
+            square_bounds = [CENTER-(stim.square_dims/2) CENTER+(stim.square_dims/2)-1];
+%             stim.condString = condmap.descriptors(stim.cond);
         else
-            stim.stim = y.stim.stim;
-            stim.condString = y.stim.condString;
-            stim.cond = y.stim.cond;
-            stim.lureWords = y.stim.lureWords;
-            stim.id = y.stim.id;
-            stim.speed = y.stim.speed;
-            stimID = stim.id;
-            stimCond = stim.cond;
-            if SESSION==MOT_PRACTICE2
-                %             stim.lureWords = lureWords(6:7);
-                %             numItems = length(cues{STIMULI}{LOC}{1});
-                %             halfItems = numItems / 2;
-                [stim.cond stim.condString stim.stim] = counterbalance_items({cues{STIMULI}{LEARN}{1}(1) cues{STIMULI}{LEARN}{1}(2), stim.lureWords(1), stim.lureWords(2)},MOTSTRINGS,1);
-                condmap = makeMap({'targ_hard','targ_easy','lure_hard','lure_easy'});
-                square_bounds = [CENTER-(stim.square_dims/2) CENTER+(stim.square_dims/2)-1];
-                %             stim.condString = condmap.descriptors(stim.cond);
-            elseif SESSION == MOT_LOCALIZER
-                %             stim.lureWords = lureWords(8:23);
-                %             numItems = length(cues{STIMULI}{LOC}{1});
-                %             halfItems = numItems / 2;
-                %             [stim.cond stim.condString stim.stim] = counterbalance_items({cues{STIMULI}{LOC}{1}(1:8), cues{STIMULI}{LOC}{1}(9:16), stim.lureWords(1:8), stim.lureWords(9:16)},MOTSTRINGS,1); %looks like he wanted to separate easy/hard conditions
-                condmap = makeMap({'targ_hard','targ_easy','lure_hard','lure_easy'});
-                square_bounds = [CENTER-(stim.square_dims/2) CENTER+(stim.square_dims/2)-1];
-                %             stim.condString = condmap.descriptors(stim.cond);
-            else
-                %             stim.lureWords = lureWords(1:5);
-                %             [stim.cond stim.condString stim.stim] = counterbalance_items({cues{STIMULI}{REALTIME}{1}}, MOT_RT_STRINGS,1);
-                condmap = makeMap({'rt-targ'});
-            end
+%             stim.lureWords = lureWords(1:5);
+%             [stim.cond stim.condString stim.stim] = counterbalance_items({cues{STIMULI}{REALTIME}{1}}, MOT_RT_STRINGS,1);
+            condmap = makeMap({'rt-targ'});
         end
         square_bounds = [CENTER-(stim.square_dims/2) CENTER+(stim.square_dims/2)-1];
 %         stim.condString = condmap.descriptors(stim.cond);
@@ -1531,6 +1514,7 @@ switch SESSION
 %         end
         
         % FIGURE OUT HERE WHAT TO DO
+        stim.speed = y.stim.speed;
         for i=1:length(stim.cond)
             
             if ~day_2 && ~stair
@@ -1704,10 +1688,11 @@ switch SESSION
         
         
         %save the timing, stim ID, and stim conditions here!
-        if SESSION > 19
+        stimID = stim.id;
+        stimCond = stim.cond;
         sessionInfoFile = fullfile(ppt_dir, ['SessionInfo' '_' num2str(SESSION) '.mat']);
         save(sessionInfoFile, 'stimCond','stimID', 'timing', 'config'); 
-        end
+                
         
         for n=1:length(stim.cond)
             stim.trial = n;
