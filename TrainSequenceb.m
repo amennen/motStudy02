@@ -1,7 +1,7 @@
 base_path = [fileparts(which('mot_realtime01.m')) filesep];
 cd(base_path);
 
-SUBJECT = 14;
+SUBJECT = 200;
 SVEC = 8:14;
 
 NUM_TASK_RUNS = 3;
@@ -39,9 +39,13 @@ ASSOCIATES = RECALL2 + 1;
 %% first practice set
 mot_realtime01b(SUBJECT, SETUP, [], 0, 0);
 
+%for testing
+mot_realtime01b(SUBJECT,SETUP,1,0,0);
 % this will continue to train test and practice MOT, then move on to
 % MOT_Practice, MOT_PREP
-s2 = findMatch(SUBJECT,SVEC);
+s2 = findMatch(SUBJECT,SVEC)
+mot_realtime01b(SUBJECT, FAMILIARIZE2, 1, 0, 0,s2); %continue because want to not go through the break
+
 mot_realtime01b(SUBJECT, FAMILIARIZE2, [], 0, 0,s2); %continue because want to not go through the break
 
 %% now train on actual stimulus pairs

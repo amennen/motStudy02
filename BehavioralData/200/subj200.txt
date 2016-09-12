@@ -368,3 +368,35 @@ trial	TR	prompt active	speed	ds	flip error	found file	FileTR	CategSep	LastFile
 5	13	1		14.350	  NaN	0.0132		NaN		1		  NaN		
 5	14	0		14.350	  NaN	0.0133		NaN		1		  NaN		
 5	15	0		14.350	  NaN	0.0143		NaN		1		  NaN		
+
+SESSION 7 initiated 12-Sep-2016 10:59:01 for SUBJECT number 200
+
+session	trial	pair	onset	dur	cue         	associate   
+7	1	15	2002  	2000  	GIFT        	pico26.jpg  
+7	2	7	9999  	2000  	GALLERY     	pico12.jpg  
+7	3	10	17997 	2001  	SCREEN      	pici42.jpg  
+7	4	20	25995 	2002  	AXLE        	pici03.jpg  
+7	5	5	34002 	1995  	COUNCIL     	pico27.jpg  
+7	6	19	42002 	2001  	ROOT        	pico28.jpg  
+7	7	18	50013 	1988  	DEPOT       	pici07.jpg  
+7	8	1	57997 	2002  	SPEAR       	pico02.jpg  
+7	9	16	66004 	2002  	PASTEL      	pici41.jpg  
+7	10	4	74002 	2002  	PARCEL      	pici05.jpg  
+7	11	12	81999 	2002  	RECORD      	pici16.jpg  
+7	12	6	89999 	2002  	PAGE        	pici10.jpg  
+7	13	11	98007 	1990  	ATOM        	pico04.jpg  
+7	14	9	106002	1999  	NOVEL       	pico03.jpg  
+7	15	17	113999	2000  	PELLET      	pico32.jpg  
+7	16	3	121996	2000  	SWORD       	pico20.jpg  
+7	17	2	129999	2002  	SHOVEL      	pici20.jpg  
+7	18	14	138006	2001  	MAZE        	pici25.jpg  
+7	19	13	145996	2004  	TART        	pico23.jpg  
+7	20	8	154002	2001  	COLLAR      	pici24.jpg  
+
+
+SESSION 7 ended 12-Sep-2016 11:02:01 for SUBJECT number 200
+
+
+
+
+******************************************************************************
