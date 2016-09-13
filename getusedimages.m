@@ -29,7 +29,8 @@ for s = 1:NSUB
     training = z.stim.associate;
     trainCues = z.stim.stim;
     usedBad = setdiff(allPics,training);
-    usedWords = setdiff(allWords,trainCues);
+    %usedWords = setdiff(allWords,trainCues);
+    usedWords = allWords;
     %then open familiarization to get training pics
   
     %good pool are the training pics and unused images

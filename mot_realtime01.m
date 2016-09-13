@@ -289,7 +289,7 @@ LOC = 7;
 % stimulus filepaths
 MATLAB_STIM_FILE = [ppt_dir 'mot_realtime01_subj_' num2str(SUBJECT) '_stimAssignment.mat'];
 CUELISTFILE = [base_path 'stimuli/text/wordpool.txt'];
-CUELISTFILE_TARGETS = [base_path 'stimuli/text/wordpool_targets_anne.txt'];
+CUELISTFILE_TARGETS = [base_path 'stimuli/text/wordpool_targets_woTrain.txt']; %changed for subject 15 just to be sure that the words for practice aren't going to be assigned to more people!
 %      CALIBRATION_TARGET = [base_path 'stimuli/NTB_5cal-10left-5up_1600x1200_black.jpg'];
 CALIBRATION_TARGET = [base_path 'stimuli/NTB_5cal-10left-5up_1280x720_black.jpg'];
 CUETARGETFILE = [base_path 'stimuli/text/ed_plants.txt'];
