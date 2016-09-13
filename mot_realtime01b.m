@@ -557,9 +557,6 @@ switch SESSION
         stim.triggerCounter = 1;
         stim.missedTriggers = 0;
         stim.loopNumber = 1;
-        
-       
-       
 
         % sequence preparation
         if SESSION == TOCRITERION1
@@ -569,12 +566,18 @@ switch SESSION
             pairIndex = lutSort(stimList, cues{STIMULI}{LEARN}{1}, 1:stim.num_learn);
             preparedCues = stimList;
             stimmap = makeMap(cues{STIMULI}{LEARN}{1});
+            nstim = length(preparedCues);
         else
              fname = findNewestFile(ppt_dir2,fullfile(ppt_dir2, ['mot_realtime01_' num2str(s2) '_' num2str(SESSION)  '*.mat']));
              y = load(fname);
              choicePos = y.stim.choicePos; % in (trials, position)
              fname = findNewestFile(ppt_dir2,fullfile(ppt_dir2,['EK' num2str(SESSION) '*.mat']));
              y2 = load(fname);
+             trials = table2cell(y2.datastruct.trials);
+             stimID = cell2mat(trials(:,8));
+             nstim = length(unique(stimID));
+             cpos = cell2mat(trials(:,22)) -1; %this is the position of the correct choice on every trial
+             %y2 has the correct positions!
              %stimmap = makeMap(preparedCues); taking this out because if
              %we take one part of the cues will be different
              %do: make map of preparedCues--but in this cae it's just the
@@ -584,19 +587,19 @@ switch SESSION
              %first round
              %figure out how to set only those stimuli? maybe just by going
              %through those indices/ look how it was done before
-            if SESSION == TOCRITERION2 || SESSION == TOCRITERION_REP
-             %check if this leads to errors with all the loading stim
-            condmap = makeMap({'realtime','omit'});
-            else
-            condmap = makeMap({'localizer'});
-            end
+             if SESSION == TOCRITERION2 || SESSION == TOCRITERION_REP
+                 %check if this leads to errors with all the loading stim
+                 condmap = makeMap({'realtime','omit'});
+             else
+                 condmap = makeMap({'localizer'});
+             end
         end
         %first pics is all pics, preparedCues is all cues--pics is then
         %the' 
         %stimuli that were used in the run
         
-        stim.gotItem(1:length(preparedCues)) = NORESP;
-        
+        %stim.gotItem(1:length(preparedCues)) = NORESP;
+        stim.gotItem(1:nstim) = NORESP;
         % initialize questions
         mc_promptDur = 3.5 * SPEED;
         mc_listenDur = 0 * SPEED;
@@ -660,12 +663,18 @@ switch SESSION
         config.nTRs.trial(2) = config.nTRs.ISI + config.nTRs.cue + config.nTRs.mc;
         config.nTRs.trial(1) = config.nTRs.trial(2) + config.nTRs.reStudy;
         
-        while n < length(preparedCues)
+        while n < nstim
             % initialize trial
             n = n+1;
             if stim.gotItem(n) ~= CORRECT
                 stim.gotItem(n) = NORESP;
                 stim.trial = stim.trial + 1; %this is different from n!!! n is for stimulus number, stim.trial is trial number
+                
+                %so basically all the rigging is going to be done in the
+                %first round, meaning if the trial number is LEQ the number
+                %of stimuli (20) then check these things for choice
+                %position and the other stimuli shown with it then
+                %otherwise run like normal
                 
                 timing.plannedOnsets.preITI(stim.trial) = runStart;
                 if stim.trial > 1
