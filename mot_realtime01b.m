@@ -571,7 +571,7 @@ switch SESSION
             match = 1;
             fname = findNewestFile(ppt_dir2,fullfile(ppt_dir2, ['mot_realtime01_' num2str(s2) '_' num2str(SESSION)  '*.mat']));
             y = load(fname);
-            choicePos = y.stim.choicePos; % in (trials, position)
+            stim.choicePos = y.stim.choicePos(1:nstim,:); % in (trials, position)
             fname = findNewestFile(ppt_dir2,fullfile(ppt_dir2,['EK' num2str(SESSION) '*.mat']));
             y2 = load(fname);
             trials = table2cell(y2.datastruct.trials);
@@ -710,17 +710,36 @@ switch SESSION
                 %yoke if within the first presentation
                 if match && stim.trial <= nstim 
                     cpos{stim.trial} = prev_cpos(stim.trial);
+                    
+                    lureIndex = setdiff(1:CHOICES,cpos{stim.trial}); %this is the index in the positioning of the lure images
+                    temp_pics = pics; %these are the 5 used in the learning trial
+                    numLures = 0;
+                    fullidx = 1:length(temp_pics);
+                    notidx = n;
+                    good_idx = setdiff(fullidx,notidx); %this is the index for all images in the data set
+                    inside = isempty(strfind(pics{n}, 'o')); %if this is true, then the trial's image is an indoor image
+                    outside = ~inside;
+                    allOtherPics = pics;
+                    allOtherPics(n) = [];
+                    indexC = strfind(allOtherPics, 'o');
+                    allOtherOutside = find(not(cellfun('isempty', indexC)));
+                    allOtherInside = setdiff(1:length(allOtherPics),allOtherOutside);
+                    
+                    
+                    for i=1:CHOICES-1
+                    picLures{i} = allOtherPics{stim.choicePos(stim.trial,lureIndex(i))}; %so lure indices(i) should be from 1:npics-1 (all other pics but the correct one)
+                    end
+
+                   
                     %then put which were the lures and then their positions
                 else 
-                    
-                    
+                    cpos{stim.trial} = randi(4);  
                 end
-                
                 
                 %so go from the beginning getting the correct position
                 %cpos--get from stim.cpos, then get indexing for the other
                 %pictures that isn't for that stimulus
-                cpos{stim.trial} = randi(4);
+                
                 lureIndex = setdiff(1:CHOICES,cpos{stim.trial}); %this is the index in the positioning of the lure images
                 temp_pics = pics; %these are the 5 used in the learning trial
                 numLures = 0;
@@ -747,7 +766,7 @@ switch SESSION
                 
                 for i=1:length(lureIndices)
                     stim.choicePos(stim.trial,lureIndex(i)) = lureIndices(i);
-                    picLures{i} = allOtherPics{lureIndices(i)};
+                    picLures{i} = allOtherPics{lureIndices(i)}; %so lure indices(i) should be from 1:npics-1 (all other pics but the correct one)
                     if SESSION < 6
                     picIndex(lureIndex(i)) = prepImage(char(strcat(TRAININGPICFOLDER, picLures{i})),mainWindow);
                     else
