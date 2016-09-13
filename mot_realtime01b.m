@@ -557,42 +557,49 @@ switch SESSION
         stim.triggerCounter = 1;
         stim.missedTriggers = 0;
         stim.loopNumber = 1;
-
+        match = 0;
         % sequence preparation
         if SESSION == TOCRITERION1
             [cond strings stimList] = counterbalance_items({cues{STIMULI}{LEARN}{1}},{CONDSTRINGS{LEARN}});
             condmap = makeMap({'stair'});
             pics = lutSort(stimList, cues{STIMULI}{LEARN}{1}, trainPics);
             pairIndex = lutSort(stimList, cues{STIMULI}{LEARN}{1}, 1:stim.num_learn);
-            preparedCues = stimList;
+%             preparedCues = stimList; % so this is the stimuli in order we'll present for the first round
             stimmap = makeMap(cues{STIMULI}{LEARN}{1});
             nstim = length(preparedCues);
         else
-             fname = findNewestFile(ppt_dir2,fullfile(ppt_dir2, ['mot_realtime01_' num2str(s2) '_' num2str(SESSION)  '*.mat']));
-             y = load(fname);
-             choicePos = y.stim.choicePos; % in (trials, position)
-             fname = findNewestFile(ppt_dir2,fullfile(ppt_dir2,['EK' num2str(SESSION) '*.mat']));
-             y2 = load(fname);
-             trials = table2cell(y2.datastruct.trials);
-             stimID = cell2mat(trials(:,8));
-             nstim = length(unique(stimID));
-             cpos = cell2mat(trials(:,22)) -1; %this is the position of the correct choice on every trial
-             %y2 has the correct positions!
-             %stimmap = makeMap(preparedCues); taking this out because if
-             %we take one part of the cues will be different
-             %do: make map of preparedCues--but in this cae it's just the
-             %list of stimuli but I think they're already ordered in the
-             %way they'll be presented? at least in the first round-
-             %we could just do this from the start--or just no yoke the
-             %first round
-             %figure out how to set only those stimuli? maybe just by going
-             %through those indices/ look how it was done before
-             if SESSION == TOCRITERION2 || SESSION == TOCRITERION_REP
-                 %check if this leads to errors with all the loading stim
-                 condmap = makeMap({'realtime','omit'});
-             else
-                 condmap = makeMap({'localizer'});
-             end
+            match = 1;
+            fname = findNewestFile(ppt_dir2,fullfile(ppt_dir2, ['mot_realtime01_' num2str(s2) '_' num2str(SESSION)  '*.mat']));
+            y = load(fname);
+            choicePos = y.stim.choicePos; % in (trials, position)
+            fname = findNewestFile(ppt_dir2,fullfile(ppt_dir2,['EK' num2str(SESSION) '*.mat']));
+            y2 = load(fname);
+            trials = table2cell(y2.datastruct.trials);
+            stimID = cell2mat(trials(:,8));
+            nstim = length(unique(stimID));
+            stimList = preparedCues(stimID(1:nstim));
+            pairIndex = stimID(1:nstim);
+            pics = pics(stimID(1:nstim));
+            prev_cpos = cell2mat(trials(:,22)) -1; %this is the position of the correct choice on every trial
+            cond = cell2mat(trials(:,9));
+            cond = cond(1:nstim);
+            strings = y.stim.condString(1:nstim);
+            %y2 has the correct positions!
+            %stimmap = makeMap(preparedCues); taking this out because if
+            %we take one part of the cues will be different
+            %do: make map of preparedCues--but in this cae it's just the
+            %list of stimuli but I think they're already ordered in the
+            %way they'll be presented? at least in the first round-
+            %we could just do this from the start--or just no yoke the
+            %first round
+            %figure out how to set only those stimuli? maybe just by going
+            %through those indices/ look how it was done before
+            if SESSION == TOCRITERION2 || SESSION == TOCRITERION_REP
+                %check if this leads to errors with all the loading stim
+                condmap = makeMap({'realtime','omit'});
+            else
+                condmap = makeMap({'localizer'});
+            end
         end
         %first pics is all pics, preparedCues is all cues--pics is then
         %the' 
@@ -663,7 +670,7 @@ switch SESSION
         config.nTRs.trial(2) = config.nTRs.ISI + config.nTRs.cue + config.nTRs.mc;
         config.nTRs.trial(1) = config.nTRs.trial(2) + config.nTRs.reStudy;
         
-        while n < nstim
+        while n < nstim %cycle through all stimuli
             % initialize trial
             n = n+1;
             if stim.gotItem(n) ~= CORRECT
@@ -685,7 +692,7 @@ switch SESSION
                 fprintf('Flip time error = %.4f\n', timing.actualOnsets.preITI(stim.trial) - timing.plannedOnsets.preITI(stim.trial));
                 
                 % show cue window
-                stim.stim{stim.trial} = preparedCues{n};
+                stim.stim{stim.trial} = stimList{n};
                 stim.associate{stim.trial} = pics{n};
                 stim.id(stim.trial) = pairIndex(n);
                 stim.cond(stim.trial) = cond(n);
@@ -700,6 +707,15 @@ switch SESSION
                 fprintf('Flip time error = %.4f\n', timing.actualOnsets.cue(stim.trial) - timing.plannedOnsets.cue(stim.trial));
                 
                 % choose lures
+                %yoke if within the first presentation
+                if match && stim.trial <= nstim 
+                    cpos{stim.trial} = prev_cpos(stim.trial);
+                    %then put which were the lures and then their positions
+                else 
+                    
+                    
+                end
+                
                 
                 %so go from the beginning getting the correct position
                 %cpos--get from stim.cpos, then get indexing for the other
@@ -847,11 +863,11 @@ switch SESSION
             
             
             % when training to criteron, shuffle and repeat incorrect items on list until all items correct
-            if (n == length(preparedCues)) && (sum(stim.gotItem) < length(preparedCues)) % do this only on the last time
-                n = 0;
+            if (n == length(stimList)) && (sum(stim.gotItem) < length(stimList)) % do this only on the last time
+                n = 0; %reset n to next round!!
                 stim.loopNumber = stim.loopNumber + 1;
                 revisedOrder = randperm(length(preparedCues));
-                preparedCues = preparedCues(revisedOrder);
+                stimList = stimList(revisedOrder);
                 pics = pics(revisedOrder);
                 cond = cond(revisedOrder);
                 strings = strings(revisedOrder);
