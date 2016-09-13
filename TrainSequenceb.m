@@ -44,7 +44,7 @@ mot_realtime01b(SUBJECT,SETUP,1,0,0);
 % this will continue to train test and practice MOT, then move on to
 % MOT_Practice, MOT_PREP
 s2 = findMatch(SUBJECT,SVEC)
-mot_realtime01b(SUBJECT, TOCRITERION2, 1, 0, 0,s2); %continue because want to not go through the break
+mot_realtime01b(SUBJECT,ASSOCIATES, 1, 0, 0,s2); %continue because want to not go through the break
 
 mot_realtime01b(SUBJECT, FAMILIARIZE2, [], 0, 0,s2); %continue because want to not go through the break
 

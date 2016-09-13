@@ -571,12 +571,12 @@ switch SESSION
             match = 1;
             fname = findNewestFile(ppt_dir2,fullfile(ppt_dir2, ['mot_realtime01_' num2str(s2) '_' num2str(SESSION)  '*.mat']));
             y = load(fname);
-            stim.choicePos = y.stim.choicePos(1:nstim,:); % in (trials, position)
             fname = findNewestFile(ppt_dir2,fullfile(ppt_dir2,['EK' num2str(SESSION) '*.mat']));
             y2 = load(fname);
             trials = table2cell(y2.datastruct.trials);
             stimID = cell2mat(trials(:,8));
             nstim = length(unique(stimID));
+            stim.choicePos = y.stim.choicePos(1:nstim,:); % in (trials, position)
             stimList = preparedCues(stimID(1:nstim));
             pairIndex = stimID(1:nstim);
             pics = pics(stimID(1:nstim));
@@ -594,7 +594,7 @@ switch SESSION
             %first round
             %figure out how to set only those stimuli? maybe just by going
             %through those indices/ look how it was done before
-            if SESSION == TOCRITERION2 || SESSION == TOCRITERION_REP
+            if SESSION == TOCRITERION2 || SESSION == TOCRITERION2_REP
                 %check if this leads to errors with all the loading stim
                 condmap = makeMap({'realtime','omit'});
             else
@@ -703,14 +703,37 @@ switch SESSION
                 
                 timing.plannedOnsets.cue(stim.trial) = timing.plannedOnsets.preITI(stim.trial) + config.nTRs.ISI*config.TR;
                 timespec = timing.plannedOnsets.cue(stim.trial) - SLACK;
-                timing.actualOnsets.cue(stim.trial) = displayText_specific(mainWindow,preparedCues{n},'center',COLORS.MAINFONTCOLOR,WRAPCHARS,timespec);
+                timing.actualOnsets.cue(stim.trial) = displayText_specific(mainWindow,stimList{n},'center',COLORS.MAINFONTCOLOR,WRAPCHARS,timespec);
                 fprintf('Flip time error = %.4f\n', timing.actualOnsets.cue(stim.trial) - timing.plannedOnsets.cue(stim.trial));
                 
                 % choose lures
                 %yoke if within the first presentation
-                if match && stim.trial <= nstim 
+                if match && stim.trial <= nstim
                     cpos{stim.trial} = prev_cpos(stim.trial);
                     
+                    lureIndex = setdiff(1:CHOICES,cpos{stim.trial}); %this is the index in the positioning of the lure images
+                    temp_pics = pics; %these are the 5 used in the learning trial
+                    numLures = 0;
+                    fullidx = 1:length(temp_pics);
+                    notidx = n;
+                    good_idx = setdiff(fullidx,notidx); %this is the index for all images in the data set
+                    inside = isempty(strfind(pics{n}, 'o')); %if this is true, then the trial's image is an indoor image
+                    outside = ~inside;
+                    allOtherPics = pics;
+                    allOtherPics(n) = [];
+                    
+                    for i=1:CHOICES-1
+                        picLures{i} = allOtherPics{stim.choicePos(stim.trial,lureIndex(i))}; %so lure indices(i) should be from 1:npics-1 (all other pics but the correct one)
+                        if SESSION < MOT_PREP
+                            picIndex(lureIndex(i)) = prepImage(char(strcat(TRAININGPICFOLDER, picLures{i})),mainWindow);
+                        else
+                            picIndex(lureIndex(i)) = prepImage(char(strcat(PICFOLDER, picLures{i})),mainWindow);
+                        end
+                        
+                    end
+                    %then put which were the lures and then their positions
+                else
+                    cpos{stim.trial} = randi(4);
                     lureIndex = setdiff(1:CHOICES,cpos{stim.trial}); %this is the index in the positioning of the lure images
                     temp_pics = pics; %these are the 5 used in the learning trial
                     numLures = 0;
@@ -725,55 +748,31 @@ switch SESSION
                     allOtherOutside = find(not(cellfun('isempty', indexC)));
                     allOtherInside = setdiff(1:length(allOtherPics),allOtherOutside);
                     
-                    
-                    for i=1:CHOICES-1
-                    picLures{i} = allOtherPics{stim.choicePos(stim.trial,lureIndex(i))}; %so lure indices(i) should be from 1:npics-1 (all other pics but the correct one)
+                    % choose 2 of each inside/outside
+                    if inside %choose 2 outside
+                        outsidePics = allOtherOutside(randperm(length(allOtherOutside),2));
+                        insidePics = allOtherInside(randperm(length(allOtherInside),1));
+                    else % if outside, choose 2 inside
+                        outsidePics = allOtherOutside(randperm(length(allOtherOutside),1));
+                        insidePics = allOtherInside(randperm(length(allOtherInside),2));
                     end
-
-                   
-                    %then put which were the lures and then their positions
-                else 
-                    cpos{stim.trial} = randi(4);  
+                    lureIndices = Shuffle([outsidePics insidePics]);
+                    
+                    for i=1:length(lureIndices)
+                        stim.choicePos(stim.trial,lureIndex(i)) = lureIndices(i);
+                        picLures{i} = allOtherPics{lureIndices(i)}; %so lure indices(i) should be from 1:npics-1 (all other pics but the correct one)
+                        if SESSION < MOT_PREP
+                            picIndex(lureIndex(i)) = prepImage(char(strcat(TRAININGPICFOLDER, picLures{i})),mainWindow);
+                        else
+                            picIndex(lureIndex(i)) = prepImage(char(strcat(PICFOLDER, picLures{i})),mainWindow);
+                        end
+                    end   
                 end
                 
                 %so go from the beginning getting the correct position
                 %cpos--get from stim.cpos, then get indexing for the other
                 %pictures that isn't for that stimulus
-                
-                lureIndex = setdiff(1:CHOICES,cpos{stim.trial}); %this is the index in the positioning of the lure images
-                temp_pics = pics; %these are the 5 used in the learning trial
-                numLures = 0;
-                fullidx = 1:length(temp_pics);
-                notidx = n;
-                good_idx = setdiff(fullidx,notidx); %this is the index for all images in the data set
-                inside = isempty(strfind(pics{n}, 'o')); %if this is true, then the trial's image is an indoor image
-                outside = ~inside;
-                allOtherPics = pics;
-                allOtherPics(n) = [];
-                indexC = strfind(allOtherPics, 'o');
-                allOtherOutside = find(not(cellfun('isempty', indexC)));
-                allOtherInside = setdiff(1:length(allOtherPics),allOtherOutside);
-                
-                % choose 2 of each inside/outside
-                if inside %choose 2 outside
-                    outsidePics = allOtherOutside(randperm(length(allOtherOutside),2));
-                    insidePics = allOtherInside(randperm(length(allOtherInside),1));
-                else % if outside, choose 2 inside
-                    outsidePics = allOtherOutside(randperm(length(allOtherOutside),1));
-                    insidePics = allOtherInside(randperm(length(allOtherInside),2));
-                end
-                lureIndices = Shuffle([outsidePics insidePics]);
-                
-                for i=1:length(lureIndices)
-                    stim.choicePos(stim.trial,lureIndex(i)) = lureIndices(i);
-                    picLures{i} = allOtherPics{lureIndices(i)}; %so lure indices(i) should be from 1:npics-1 (all other pics but the correct one)
-                    if SESSION < 6
-                    picIndex(lureIndex(i)) = prepImage(char(strcat(TRAININGPICFOLDER, picLures{i})),mainWindow);
-                    else
-                    picIndex(lureIndex(i)) = prepImage(char(strcat(PICFOLDER, picLures{i})),mainWindow);
-                    end
-                end
-                
+
                 % close and replace the lure in the spot that belongs to the target
                 if SESSION < 6
                     picIndex(cpos{stim.trial}) = prepImage(strcat(TRAININGPICFOLDER, pics{n}),mainWindow);
@@ -793,7 +792,7 @@ switch SESSION
                     Screen('DrawTexture', mainWindow, picIndex(i), [0 0 PICDIMS],[topLeft topLeft+destDims]);
                     topLeft(HORIZONTAL) = topLeft(HORIZONTAL) + destDims(HORIZONTAL) + stim.gapWidth;
                 end
-                DrawFormattedText(mainWindow,preparedCues{n},'center',stim.textRow,COLORS.MAINFONTCOLOR,WRAPCHARS);
+                DrawFormattedText(mainWindow,stimList{n},'center',stim.textRow,COLORS.MAINFONTCOLOR,WRAPCHARS);
                 %multiple choice
                 timing.plannedOnsets.mc(stim.trial) = timing.plannedOnsets.cue(stim.trial) + config.nTRs.cue*config.TR;
                 timespec =  timing.plannedOnsets.mc(stim.trial) - SLACK;
@@ -837,7 +836,7 @@ switch SESSION
                     end
                     topLeft(HORIZONTAL) = CENTER(HORIZONTAL) - (PICDIMS(HORIZONTAL)*RESCALE_FACTOR/2);
                     topLeft(VERTICAL) = stim.picRow - (PICDIMS(VERTICAL)*RESCALE_FACTOR)/2;
-                    DrawFormattedText(mainWindow,preparedCues{n},'center',stim.textRow,COLORS.MAINFONTCOLOR,WRAPCHARS);
+                    DrawFormattedText(mainWindow,stimList{n},'center',stim.textRow,COLORS.MAINFONTCOLOR,WRAPCHARS);
                     Screen('DrawTexture', mainWindow, picIndex(1), [0 0 PICDIMS],[topLeft topLeft+PICDIMS*RESCALE_FACTOR]);
                     
                     timing.plannedOnsets.reStudy(stim.trial) = timing.plannedOnsets.mc(stim.trial) + config.nTRs.mc*config.TR;
@@ -885,7 +884,7 @@ switch SESSION
             if (n == length(stimList)) && (sum(stim.gotItem) < length(stimList)) % do this only on the last time
                 n = 0; %reset n to next round!!
                 stim.loopNumber = stim.loopNumber + 1;
-                revisedOrder = randperm(length(preparedCues));
+                revisedOrder = randperm(length(stimList));
                 stimList = stimList(revisedOrder);
                 pics = pics(revisedOrder);
                 cond = cond(revisedOrder);
@@ -973,10 +972,10 @@ switch SESSION
         
         % initialize stimulus order with initial warmup item
         if SESSION == RECALL_PRACTICE
-            %stim.stim = cues{STIMULI}{LEARN}{1}(1:3);
-            %stim.cond = [PRACTICE, PRACTICE, PRACTICE];
+            stim.stim = cues{STIMULI}{LEARN}{1}(1:3);
+            stim.cond = [PRACTICE, PRACTICE, PRACTICE];
             condmap = makeMap({'PRACTICE'});
-            %stim.condString = {CONDSTRINGS{PRACTICE}, CONDSTRINGS{PRACTICE}, CONDSTRINGS{PRACTICE}};
+            stim.condString = {CONDSTRINGS{PRACTICE}, CONDSTRINGS{PRACTICE}, CONDSTRINGS{PRACTICE}};
             displayText(mainWindow,['MENTAL PICTURES TASK - PRACTICE\n\nThis is a memory test with some differences ' ...
                 'from earlier: you will get only one try per item, there is no feedback, and you will verbally recall the scenes instead of choosing the correct option.' ...
                 'Please carefully review today''s instructions, since many things have ' ...
@@ -1553,6 +1552,8 @@ switch SESSION
             end
             condmap = makeMap({'target'});
         else
+            fname = findNewestFile(ppt_dir2,fullfile(ppt_dir2, ['mot_realtime01_' num2str(s2) '_' num2str(SESSION)  '*.mat']));
+            y = load(fname);
             stim.stim = y.stim.stim;
             stim.condString = y.stim.condString;
             stim.cond = y.stim.cond;
@@ -1561,6 +1562,7 @@ switch SESSION
             stim.speed = y.stim.speed;
             stimID = stim.id;
             stimCond = stim.cond;
+            prevSpeeds = y.stim.motionSpeed;
             if SESSION==MOT_PRACTICE2
                 % can specify lure words the same way because we're
                 % repeating the lurewords from subjects
@@ -1572,7 +1574,7 @@ switch SESSION
                 square_bounds = [CENTER-(stim.square_dims/2) CENTER+(stim.square_dims/2)-1];
                 %             stim.condString = condmap.descriptors(stim.cond);
             elseif SESSION == MOT_LOCALIZER
-                             stim.lureWords = lureWords(8:23);
+                stim.lureWords = lureWords(8:23);
                 %             numItems = length(cues{STIMULI}{LOC}{1});
                 %             halfItems = numItems / 2;
                 %             [stim.cond stim.condString stim.stim] = counterbalance_items({cues{STIMULI}{LOC}{1}(1:8), cues{STIMULI}{LOC}{1}(9:16), stim.lureWords(1:8), stim.lureWords(9:16)},MOTSTRINGS,1); %looks like he wanted to separate easy/hard conditions
@@ -1610,23 +1612,25 @@ switch SESSION
                 stim.speed(i) = stim.maxspeed - tGuess; %setting practice speed to initial tGuess
                 %stim.repulse(i) = 5/3;
             else
-                if SESSION > 5 && SESSION < MOT{1} %change dot speeds for practice and localizer, but then we want to change dot speed!
-                    switch stim.cond(i)
-                        case {1,3} %for either of the hard cases
-                            stim.speed(i) = finalSpeed; %will have to load last speed and find the speed here
-                            % repulsor_force(i) = repulsor_force_small * finalSpeed/0.5;
-                        case {2,4} %for either of the easy cases
-                            stim.speed(i) = 0.5;%5;%finalSpeed*.5; %again load last speed found here, change to accept max speed-see what first person has for this to decide
-                            %repulsor_force(i) = repulsor_force_small;
-                    end
-                    if stim.cond(i) > 2
-                        lureCounter = lureCounter + 1;
-                    end
-                    stim.condString{i} = mot_conds{stim.cond(i)};
-                else %for MOT real-time trials
-                    % repulsor_force(i) = stim.speed;
-                    stim.speed(i) = 2; %initialize each trial here!!!
-                end
+                %right now taking out because we want the speeds to be the
+                %same for these (not going to change them after loading)
+%                 if SESSION > 5 && SESSION < MOT{1} %change dot speeds for practice and localizer, but then we want to change dot speed!
+%                     switch stim.cond(i)
+%                         case {1,3} %for either of the hard cases
+%                             stim.speed(i) = finalSpeed; %will have to load last speed and find the speed here
+%                             % repulsor_force(i) = repulsor_force_small * finalSpeed/0.5;
+%                         case {2,4} %for either of the easy cases
+%                             stim.speed(i) = 0.5;%5;%finalSpeed*.5; %again load last speed found here, change to accept max speed-see what first person has for this to decide
+%                             %repulsor_force(i) = repulsor_force_small;
+%                     end
+%                     if stim.cond(i) > 2
+%                         lureCounter = lureCounter + 1;
+%                     end
+%                     stim.condString{i} = mot_conds{stim.cond(i)};
+%                 else %for MOT real-time trials
+%                     % repulsor_force(i) = stim.speed;
+%                     stim.speed(i) = 2; %initialize each trial here!!!
+%                 end
             end
             
         end
@@ -1668,12 +1672,12 @@ switch SESSION
             stim.instruct_nextMOT = ['You will now continue with the same multitasking task.' final_instruct_continue];
             displayText(mainWindow,stim.instruct_nextMOT,minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
             %also load in last session information here
-            allLast = findNewestFile(ppt_dir,[ppt_dir 'mot_realtime01_' num2str(SUBJECT) '_' num2str(SESSION-1) '*']);
+            allLast = findNewestFile(ppt_dir2,[ppt_dir2 'mot_realtime01_' num2str(s2) '_' num2str(SESSION-1) '*']);
             last = load(allLast);
             lastSpeed = last.stim.lastSpeed; %matrix of motRun (1-3), stimID
             lastDecoding = last.stim.lastRTDecoding;
             lastDecodingFunction = last.stim.lastRTDecodingFunction;
-            fprintf(['Loaded speed and classification information from ' allLast(end).name '\n']);
+            fprintf(['Loaded speed and classification information from ' allLast '\n']);
         else
             displayText(mainWindow,stim.instruct_summary,minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
         end
@@ -1774,10 +1778,10 @@ switch SESSION
         stim.lastRTDecodingFunction = nan(1,stim.num_realtime);
         stim.changeSpeed = nan(mTr,length(stim.cond));
         stim.motionSpeed = nan(mTr,length(stim.cond));
-        
+       
         
         %save the timing, stim ID, and stim conditions here!
-        if SESSION > 19
+        if SESSION > RECALL1
         sessionInfoFile = fullfile(ppt_dir, ['SessionInfo' '_' num2str(SESSION) '.mat']);
         save(sessionInfoFile, 'stimCond','stimID', 'timing', 'config'); 
         end
@@ -1975,8 +1979,8 @@ switch SESSION
                             %runs--save by id, don't save if not lure trial
                             if TRcounter == config.nTRs.motion %on last TR
                                 stim.lastSpeed(stim.id(stim.trial)) = current_speed; %going to save it in a matrix of run,stimID
-                                stim.lastRTDecoding(stim.id(stim.trial)) = y.stim.lastRTDecoding;%rtData.rtDecoding(allMotionTRs(TRcounter-2,n)); %file 9 that's applied now
-                                stim.lastRTDecodingFunction(stim.id(stim.trial)) = y.stim.lastRTDecodingFunction; %rtData.rtDecodingFunction(allMotionTRs(TRcounter-2,n));
+                                stim.lastRTDecoding(stim.id(stim.trial)) = y.stim.lastRTDecoding(stim.id(stim.trial));%rtData.rtDecoding(allMotionTRs(TRcounter-2,n)); %file 9 that's applied now
+                                stim.lastRTDecodingFunction(stim.id(stim.trial)) = y.stim.lastRTDecodingFunction(stim.id(stim.trial)); %rtData.rtDecodingFunction(allMotionTRs(TRcounter-2,n));
                             end
                         end
                         remainingTR(nextTRPos) = 0;

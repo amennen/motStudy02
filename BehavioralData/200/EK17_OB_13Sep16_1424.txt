@@ -1,0 +1,19 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	9.3   	30  	GALLON    	localizer	3.452	NR  	0   	NR      	1 detail
+2   	25.3  	38  	MAGNET    	localizer	3.451	NR  	0   	NR      	1 detail
+3   	41.3  	31  	SCOUT     	localizer	3.451	NR  	0   	NR      	1 detail
+4   	57.3  	32  	IODINE    	localizer	3.451	NR  	0   	NR      	2+ details
+5   	73.3  	39  	RACKET    	localizer	3.451	NR  	0   	NR      	full    
+6   	89.3  	43  	RAVINE    	localizer	3.451	NR  	0   	NR      	2+ details
+7   	105.3 	36  	CHART     	localizer	3.451	NR  	0   	NR      	full    
+8   	121.3 	29  	POLISH    	localizer	3.451	NR  	0   	NR      	2+ details
+9   	137.3 	41  	PUDDLE    	localizer	3.451	NR  	0   	NR      	2+ details
+10  	153.3 	44  	PHONE     	localizer	3.451	NR  	0   	NR      	full    
+11  	169.3 	42  	FERRY     	localizer	3.451	NR  	0   	NR      	2+ details
+12  	185.3 	33  	JOURNAL   	localizer	3.451	NR  	0   	NR      	2+ details
+13  	201.3 	40  	RAKE      	localizer	3.451	NR  	0   	NR      	1 detail
+14  	217.3 	34  	SIGN      	localizer	3.451	NR  	0   	NR      	generic 
+15  	233.3 	37  	JEEP      	localizer	3.451	NR  	0   	NR      	1 detail
+16  	249.3 	35  	TRIPOD    	localizer	3.451	NR  	0   	NR      	1 detail
+17  	265.3 	42  	FERRY (repeat 1)	localizer	3.451	NR  	0   	NR      	generic 
+18  	281.3 	34  	SIGN (repeat 1)	localizer	3.451	NR  	0   	NR      	2+ details

@@ -1583,7 +1583,7 @@ switch SESSION
             lastSpeed = last.stim.lastSpeed; %matrix of motRun (1-3), stimID
             lastDecoding = last.stim.lastRTDecoding;
             lastDecodingFunction = last.stim.lastRTDecodingFunction;
-            fprintf(['Loaded speed and classification information from ' names{newest} '\n']);
+            fprintf(['Loaded speed and classification information from ' allLast '\n']);
         else
             displayText(mainWindow,stim.instruct_summary,minimumDisplay,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
         end

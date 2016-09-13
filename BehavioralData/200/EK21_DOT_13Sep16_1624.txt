@@ -1,0 +1,11 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	36.7  	10  	SCREEN    	rt-targ 	1.952	NR  	0   	NR      	target  
+2   	78.7  	6   	PAGE      	rt-targ 	1.951	NR  	0   	NR      	non-target
+3   	120.7 	9   	NOVEL     	rt-targ 	1.951	NR  	0   	NR      	target  
+4   	162.7 	8   	COLLAR    	rt-targ 	1.951	NR  	0   	NR      	non-target
+5   	204.7 	4   	PARCEL    	rt-targ 	1.951	NR  	0   	NR      	non-target
+6   	246.7 	7   	GALLERY   	rt-targ 	1.951	NR  	0   	NR      	non-target
+7   	288.7 	5   	COUNCIL   	rt-targ 	1.951	NR  	0   	NR      	target  
+8   	330.7 	3   	SWORD     	rt-targ 	1.951	NR  	0   	NR      	non-target
+9   	372.7 	1   	SPEAR     	rt-targ 	1.951	NR  	0   	NR      	non-target
+10  	414.7 	2   	SHOVEL    	rt-targ 	1.951	NR  	0   	NR      	non-target
