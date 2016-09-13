@@ -1,0 +1,23 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	8.1   	15  	PATCH     	omit    	3.454	1.118	1   	full    	full    
+2   	20.1  	2   	FOSSIL    	realtime	3.452	1.572	1   	2+ details	2+ details
+3   	32.1  	5   	LABEL     	realtime	3.453	2.347	1   	full    	full    
+4   	44.1  	13  	ENGINE    	omit    	3.456	0.889	1   	2+ details	2+ details
+5   	56.1  	18  	PARADE    	omit    	3.453	1.511	1   	full    	full    
+6   	68.1  	4   	PILE      	realtime	3.454	1.405	1   	2+ details	2+ details
+7   	80.1  	6   	MUZZLE    	realtime	3.455	1.06	0   	generic 	1 detail
+8   	96.1  	20  	POLE      	omit    	3.455	1.159	0   	full    	2+ details
+9   	112.1 	1   	SACK      	realtime	3.453	1.121	1   	generic 	generic 
+10  	124.1 	11  	BELT      	omit    	3.454	2.239	1   	2+ details	2+ details
+11  	136.1 	19  	POLISH    	omit    	3.453	1.95	1   	1 detail	1 detail
+12  	148.1 	3   	COAL      	realtime	3.454	1.516	1   	full    	full    
+13  	160.1 	10  	BUBBLE    	realtime	3.456	2.475	1   	full    	full    
+14  	172.1 	12  	RULER     	omit    	3.453	1.92	1   	1 detail	1 detail
+15  	184.1 	8   	NOZZLE    	realtime	3.456	0.975	1   	generic 	generic 
+16  	196.1 	14  	ORNAMENT  	omit    	3.454	0.805	1   	full    	full    
+17  	208.1 	16  	PIANO     	omit    	3.451	1.315	1   	1 detail	1 detail
+18  	220.1 	9   	MORNING   	realtime	3.451	0.831	1   	1 detail	1 detail
+19  	232.1 	7   	ATLAS     	realtime	3.452	1.135	1   	1 detail	1 detail
+20  	244.1 	17  	BADGE     	omit    	3.453	1.437	1   	1 detail	1 detail
+21  	256.1 	6   	MUZZLE (repeat 1)	realtime	3.456	1.036	1   	full    	full    
+22  	268.1 	20  	POLE (repeat 1)	omit    	3.451	2.306	1   	generic 	generic 

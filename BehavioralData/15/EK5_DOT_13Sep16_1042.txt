@@ -1,0 +1,49 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	34.2  	22  	BRASS     	target  	1.955	0.729	1   	target  	target  
+2   	76.2  	27  	SHELL     	target  	1.95	0.84	0   	target  	non-target
+3   	118.2 	24  	CONE      	target  	1.955	1.143	0   	non-target	target  
+4   	160.2 	24  	CONE (repeat 1)	target  	1.955	0.834	1   	target  	target  
+5   	202.2 	22  	BRASS (repeat 1)	target  	1.954	0.904	0   	target  	non-target
+6   	271   	21  	TAPE      	target  	1.955	1.511	1   	non-target	non-target
+7   	313   	22  	BRASS (repeat 2)	target  	1.954	1.381	1   	target  	target  
+8   	355   	23  	LEVEL     	target  	1.953	1.058	1   	target  	target  
+9   	397   	28  	WAGON     	target  	1.956	0.986	0   	non-target	target  
+10  	439   	21  	TAPE (repeat 1)	target  	1.955	0.622	1   	target  	target  
+11  	484   	25  	TART      	target  	1.954	1.112	1   	non-target	non-target
+12  	526   	23  	LEVEL (repeat 1)	target  	1.955	1.03	0   	non-target	target  
+13  	568   	27  	SHELL (repeat 1)	target  	1.954	0.87	1   	non-target	non-target
+14  	610   	27  	SHELL (repeat 2)	target  	1.951	1.356	1   	target  	target  
+15  	652   	27  	SHELL (repeat 3)	target  	1.956	1.679	0   	non-target	target  
+16  	696   	24  	CONE (repeat 2)	target  	1.954	1.1 	1   	target  	target  
+17  	738   	25  	TART (repeat 1)	target  	1.952	0.972	1   	target  	target  
+18  	780   	26  	BANNER    	target  	1.955	0.952	1   	non-target	non-target
+19  	822   	28  	WAGON (repeat 1)	target  	1.956	0.983	1   	target  	target  
+20  	864   	28  	WAGON (repeat 2)	target  	1.955	1.155	1   	target  	target  
+21  	932.6 	27  	SHELL (repeat 4)	target  	1.952	0.947	0   	non-target	target  
+22  	974.6 	25  	TART (repeat 2)	target  	1.955	1.088	1   	target  	target  
+23  	1016.6	23  	LEVEL (repeat 2)	target  	1.953	1.07	1   	target  	target  
+24  	1058.6	27  	SHELL (repeat 5)	target  	1.952	1.227	1   	target  	target  
+25  	1100.6	24  	CONE (repeat 3)	target  	1.951	NR  	0   	NR      	target  
+26  	1180.5	22  	BRASS (repeat 3)	target  	1.953	1.052	1   	non-target	non-target
+27  	1222.5	26  	BANNER (repeat 1)	target  	1.956	0.956	1   	non-target	non-target
+28  	1264.5	26  	BANNER (repeat 2)	target  	1.954	0.968	1   	non-target	non-target
+29  	1306.5	22  	BRASS (repeat 4)	target  	1.956	1.109	1   	target  	target  
+30  	1348.5	28  	WAGON (repeat 3)	target  	1.953	1.059	1   	non-target	non-target
+31  	1395.5	21  	TAPE (repeat 2)	target  	1.951	NR  	0   	NR      	target  
+32  	1437.5	21  	TAPE (repeat 3)	target  	1.955	1.118	1   	non-target	non-target
+33  	1479.5	21  	TAPE (repeat 4)	target  	1.955	0.849	0   	non-target	target  
+34  	1521.5	23  	LEVEL (repeat 3)	target  	1.956	0.577	1   	target  	target  
+35  	1563.5	28  	WAGON (repeat 4)	target  	1.952	0.877	1   	non-target	non-target
+36  	1617.7	23  	LEVEL (repeat 4)	target  	1.952	0.931	1   	non-target	non-target
+37  	1659.7	24  	CONE (repeat 4)	target  	1.956	1.112	1   	target  	target  
+38  	1701.7	23  	LEVEL (repeat 5)	target  	1.955	0.926	1   	non-target	non-target
+39  	1743.7	24  	CONE (repeat 5)	target  	1.955	1.02	1   	non-target	non-target
+40  	1785.6	26  	BANNER (repeat 3)	target  	1.951	1.154	1   	target  	target  
+41  	1850.6	25  	TART (repeat 3)	target  	1.955	1.312	1   	non-target	non-target
+42  	1892.6	21  	TAPE (repeat 5)	target  	1.955	1.054	1   	target  	target  
+43  	1934.6	26  	BANNER (repeat 4)	target  	1.953	0.941	1   	non-target	non-target
+44  	1976.6	22  	BRASS (repeat 5)	target  	1.951	0.889	0   	non-target	target  
+45  	2018.6	25  	TART (repeat 4)	target  	1.956	1.071	1   	non-target	non-target
+46  	2062.5	28  	WAGON (repeat 5)	target  	1.955	1.477	1   	non-target	non-target
+47  	2104.5	26  	BANNER (repeat 5)	target  	1.953	0.868	1   	non-target	non-target
+48  	2146.5	25  	TART (repeat 5)	target  	1.952	1.296	0   	non-target	target  
