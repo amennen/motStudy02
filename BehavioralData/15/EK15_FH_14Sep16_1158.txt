@@ -1,0 +1,239 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	8.7   	1   	PORTAL    	lure    	0.354	NR  	1   	NR      	NR      
+2   	9.1   	2   	ROOT      	lure    	0.419	NR  	1   	NR      	NR      
+3   	9.6   	3   	PENNY     	lure    	0.322	NR  	1   	NR      	NR      
+4   	10    	4   	MALLET    	lure    	0.551	NR  	1   	NR      	NR      
+5   	10.6  	5   	SKETCH    	lure    	0.531	NR  	1   	NR      	NR      
+6   	11.1  	4   	MALLET (repeat 1)	lure    	0.287	NR  	1   	NR      	NR      
+7   	11.5  	3   	PENNY (repeat 1)	lure    	0.529	NR  	1   	NR      	NR      
+8   	12.1  	6   	DRILL     	lure    	0.618	NR  	1   	NR      	NR      
+9   	12.7  	7   	WALLET    	lure    	0.5 	NR  	1   	NR      	NR      
+10  	13.3  	3   	PENNY (repeat 2)	lure    	0.447	NR  	1   	NR      	NR      
+11  	13.8  	8   	MAZE      	lure    	0.334	NR  	1   	NR      	NR      
+12  	14.2  	5   	SKETCH (repeat 1)	lure    	0.625	NR  	1   	NR      	NR      
+13  	14.9  	9   	CLUB      	lure    	0.467	NR  	1   	NR      	NR      
+14  	15.4  	5   	SKETCH (repeat 2)	lure    	0.637	NR  	1   	NR      	NR      
+15  	16.1  	7   	WALLET (repeat 1)	lure    	0.451	NR  	1   	NR      	NR      
+16  	16.6  	10  	CONTRACT  	lure    	0.594	NR  	1   	NR      	NR      
+17  	17.2  	2   	ROOT (repeat 1)	lure    	0.452	NR  	1   	NR      	NR      
+18  	17.7  	7   	WALLET (repeat 2)	lure    	0.354	NR  	1   	NR      	NR      
+19  	18.1  	11  	SWORD     	lure    	0.452	NR  	1   	NR      	NR      
+20  	18.6  	12  	WATERMELON	fruit   	0.95	0.547	1   	target  	target  
+21  	19.7  	7   	WALLET (repeat 3)	lure    	0.316	NR  	1   	NR      	NR      
+22  	20    	1   	PORTAL (repeat 1)	lure    	0.689	NR  	1   	NR      	NR      
+23  	20.8  	11  	SWORD (repeat 1)	lure    	0.398	NR  	1   	NR      	NR      
+24  	21.2  	1   	PORTAL (repeat 2)	lure    	0.557	NR  	1   	NR      	NR      
+25  	21.8  	13  	PANEL     	lure    	0.484	NR  	1   	NR      	NR      
+26  	22.4  	1   	PORTAL (repeat 3)	lure    	0.521	NR  	1   	NR      	NR      
+27  	23    	10  	CONTRACT (repeat 1)	lure    	0.619	NR  	1   	NR      	NR      
+28  	23.6  	1   	PORTAL (repeat 4)	lure    	0.47	NR  	1   	NR      	NR      
+29  	24.2  	9   	CLUB (repeat 1)	lure    	0.366	NR  	1   	NR      	NR      
+30  	24.6  	14  	SHIRT     	lure    	0.405	NR  	1   	NR      	NR      
+31  	25    	10  	CONTRACT (repeat 2)	lure    	0.275	NR  	1   	NR      	NR      
+32  	25.4  	15  	DRUM      	lure    	0.572	NR  	1   	NR      	NR      
+33  	26    	9   	CLUB (repeat 2)	lure    	0.601	NR  	1   	NR      	NR      
+34  	26.7  	5   	SKETCH (repeat 3)	lure    	0.634	NR  	1   	NR      	NR      
+35  	27.4  	7   	WALLET (repeat 4)	lure    	0.468	NR  	1   	NR      	NR      
+36  	27.9  	6   	DRILL (repeat 1)	lure    	0.554	NR  	1   	NR      	NR      
+37  	28.5  	11  	SWORD (repeat 2)	lure    	0.473	NR  	1   	NR      	NR      
+38  	29    	7   	WALLET (repeat 5)	lure    	0.353	NR  	1   	NR      	NR      
+39  	29.5  	15  	DRUM (repeat 1)	lure    	0.402	NR  	1   	NR      	NR      
+40  	29.9  	5   	SKETCH (repeat 4)	lure    	0.48	NR  	1   	NR      	NR      
+41  	30.5  	7   	WALLET (repeat 6)	lure    	0.46	NR  	1   	NR      	NR      
+42  	31    	16  	MELON     	fruit   	0.951	0.797	1   	target  	target  
+43  	32    	6   	DRILL (repeat 2)	lure    	0.452	NR  	1   	NR      	NR      
+44  	32.5  	10  	CONTRACT (repeat 3)	lure    	0.285	NR  	1   	NR      	NR      
+45  	32.9  	11  	SWORD (repeat 3)	lure    	0.572	NR  	1   	NR      	NR      
+46  	33.5  	4   	MALLET (repeat 2)	lure    	0.593	NR  	1   	NR      	NR      
+47  	34.2  	3   	PENNY (repeat 3)	lure    	0.699	NR  	1   	NR      	NR      
+48  	35    	10  	CONTRACT (repeat 4)	lure    	0.294	NR  	1   	NR      	NR      
+49  	35.3  	8   	MAZE (repeat 1)	lure    	0.611	NR  	1   	NR      	NR      
+50  	36    	6   	DRILL (repeat 3)	lure    	0.39	NR  	1   	NR      	NR      
+51  	36.5  	5   	SKETCH (repeat 5)	lure    	0.596	NR  	1   	NR      	NR      
+52  	37.1  	2   	ROOT (repeat 2)	lure    	0.434	NR  	1   	NR      	NR      
+53  	37.6  	11  	SWORD (repeat 4)	lure    	0.317	NR  	1   	NR      	NR      
+54  	38    	9   	CLUB (repeat 3)	lure    	0.527	NR  	1   	NR      	NR      
+55  	38.6  	2   	ROOT (repeat 3)	lure    	0.532	NR  	1   	NR      	NR      
+56  	39.2  	17  	BUCKLE    	lure    	0.458	NR  	1   	NR      	NR      
+57  	39.7  	9   	CLUB (repeat 4)	lure    	0.319	NR  	1   	NR      	NR      
+58  	40.1  	7   	WALLET (repeat 7)	lure    	0.279	NR  	1   	NR      	NR      
+59  	40.5  	14  	SHIRT (repeat 1)	lure    	0.288	NR  	1   	NR      	NR      
+60  	40.8  	18  	CURB      	lure    	0.314	NR  	1   	NR      	NR      
+61  	41.2  	11  	SWORD (repeat 5)	lure    	0.378	NR  	1   	NR      	NR      
+62  	41.7  	18  	CURB (repeat 1)	lure    	0.395	NR  	1   	NR      	NR      
+63  	42.1  	2   	ROOT (repeat 4)	lure    	0.538	NR  	1   	NR      	NR      
+64  	42.7  	18  	CURB (repeat 2)	lure    	0.452	NR  	1   	NR      	NR      
+65  	43.3  	13  	PANEL (repeat 1)	lure    	0.492	NR  	1   	NR      	NR      
+66  	43.8  	6   	DRILL (repeat 4)	lure    	0.452	NR  	1   	NR      	NR      
+67  	44.4  	3   	PENNY (repeat 4)	lure    	0.47	NR  	1   	NR      	NR      
+68  	44.9  	18  	CURB (repeat 3)	lure    	0.452	NR  	1   	NR      	NR      
+69  	45.5  	19  	MANGO     	fruit   	0.951	0.683	1   	target  	target  
+70  	46.5  	17  	BUCKLE (repeat 1)	lure    	0.274	NR  	1   	NR      	NR      
+71  	46.8  	4   	MALLET (repeat 3)	lure    	0.408	NR  	1   	NR      	NR      
+72  	47.3  	17  	BUCKLE (repeat 2)	lure    	0.47	NR  	1   	NR      	NR      
+73  	47.9  	15  	DRUM (repeat 2)	lure    	0.537	NR  	1   	NR      	NR      
+74  	48.5  	1   	PORTAL (repeat 5)	lure    	0.564	NR  	1   	NR      	NR      
+75  	49.1  	4   	MALLET (repeat 4)	lure    	0.551	NR  	1   	NR      	NR      
+76  	49.7  	5   	SKETCH (repeat 6)	lure    	0.676	NR  	1   	NR      	NR      
+77  	50.5  	2   	ROOT (repeat 5)	lure    	0.325	NR  	1   	NR      	NR      
+78  	50.9  	17  	BUCKLE (repeat 3)	lure    	0.595	NR  	1   	NR      	NR      
+79  	51.6  	8   	MAZE (repeat 2)	lure    	0.633	NR  	1   	NR      	NR      
+80  	52.3  	11  	SWORD (repeat 6)	lure    	0.294	NR  	1   	NR      	NR      
+81  	52.6  	7   	WALLET (repeat 8)	lure    	0.429	NR  	1   	NR      	NR      
+82  	53.1  	2   	ROOT (repeat 6)	lure    	0.54	NR  	1   	NR      	NR      
+83  	53.7  	11  	SWORD (repeat 7)	lure    	0.675	NR  	1   	NR      	NR      
+84  	54.5  	8   	MAZE (repeat 3)	lure    	0.625	NR  	1   	NR      	NR      
+85  	55.1  	15  	DRUM (repeat 3)	lure    	0.616	NR  	1   	NR      	NR      
+86  	55.8  	10  	CONTRACT (repeat 5)	lure    	0.483	NR  	1   	NR      	NR      
+87  	56.4  	7   	WALLET (repeat 9)	lure    	0.517	NR  	1   	NR      	NR      
+88  	57    	10  	CONTRACT (repeat 6)	lure    	0.532	NR  	1   	NR      	NR      
+89  	57.6  	9   	CLUB (repeat 5)	lure    	0.452	NR  	1   	NR      	NR      
+90  	58.1  	20  	KIWI      	fruit   	0.951	0.623	1   	target  	target  
+91  	59.2  	13  	PANEL (repeat 2)	lure    	0.336	NR  	1   	NR      	NR      
+92  	59.6  	3   	PENNY (repeat 5)	lure    	0.359	NR  	1   	NR      	NR      
+93  	60    	11  	SWORD (repeat 8)	lure    	0.349	NR  	1   	NR      	NR      
+94  	60.4  	17  	BUCKLE (repeat 4)	lure    	0.623	NR  	1   	NR      	NR      
+95  	61.1  	8   	MAZE (repeat 4)	lure    	0.549	NR  	1   	NR      	NR      
+96  	61.8  	3   	PENNY (repeat 6)	lure    	0.266	NR  	1   	NR      	NR      
+97  	62.1  	11  	SWORD (repeat 9)	lure    	0.627	NR  	1   	NR      	NR      
+98  	62.8  	8   	MAZE (repeat 5)	lure    	0.441	NR  	1   	NR      	NR      
+99  	63.3  	17  	BUCKLE (repeat 5)	lure    	0.282	NR  	1   	NR      	NR      
+100 	63.7  	1   	PORTAL (repeat 6)	lure    	0.478	NR  	1   	NR      	NR      
+101 	64.2  	9   	CLUB (repeat 6)	lure    	0.475	NR  	1   	NR      	NR      
+102 	64.8  	13  	PANEL (repeat 3)	lure    	0.585	NR  	1   	NR      	NR      
+103 	65.4  	8   	MAZE (repeat 6)	lure    	0.642	NR  	1   	NR      	NR      
+104 	66.2  	15  	DRUM (repeat 4)	lure    	0.33	NR  	1   	NR      	NR      
+105 	66.6  	10  	CONTRACT (repeat 7)	lure    	0.414	NR  	1   	NR      	NR      
+106 	67    	6   	DRILL (repeat 5)	lure    	0.625	NR  	1   	NR      	NR      
+107 	67.8  	18  	CURB (repeat 4)	lure    	0.701	NR  	1   	NR      	NR      
+108 	68.5  	15  	DRUM (repeat 5)	lure    	0.353	NR  	1   	NR      	NR      
+109 	69    	2   	ROOT (repeat 7)	lure    	0.493	NR  	1   	NR      	NR      
+110 	69.6  	17  	BUCKLE (repeat 6)	lure    	0.537	NR  	1   	NR      	NR      
+111 	70.2  	3   	PENNY (repeat 7)	lure    	0.452	NR  	1   	NR      	NR      
+112 	70.7  	1   	PORTAL (repeat 7)	lure    	0.273	NR  	1   	NR      	NR      
+113 	71.1  	15  	DRUM (repeat 6)	lure    	0.451	NR  	1   	NR      	NR      
+114 	71.6  	4   	MALLET (repeat 5)	lure    	0.614	NR  	1   	NR      	NR      
+115 	72.3  	6   	DRILL (repeat 6)	lure    	0.452	NR  	1   	NR      	NR      
+116 	72.8  	18  	CURB (repeat 5)	lure    	0.464	NR  	1   	NR      	NR      
+117 	73.4  	6   	DRILL (repeat 7)	lure    	0.452	NR  	1   	NR      	NR      
+118 	73.9  	1   	PORTAL (repeat 8)	lure    	0.371	NR  	1   	NR      	NR      
+119 	74.4  	4   	MALLET (repeat 6)	lure    	0.452	NR  	1   	NR      	NR      
+120 	74.9  	7   	WALLET (repeat 10)	lure    	0.279	NR  	1   	NR      	NR      
+121 	75.3  	14  	SHIRT (repeat 2)	lure    	0.452	NR  	1   	NR      	NR      
+122 	75.8  	13  	PANEL (repeat 4)	lure    	0.623	NR  	1   	NR      	NR      
+123 	76.5  	1   	PORTAL (repeat 9)	lure    	0.452	NR  	1   	NR      	NR      
+124 	77.1  	17  	BUCKLE (repeat 7)	lure    	0.603	NR  	1   	NR      	NR      
+125 	77.8  	11  	SWORD (repeat 10)	lure    	0.452	NR  	1   	NR      	NR      
+126 	78.3  	21  	BLACKBERRY	fruit   	0.952	0.69	1   	target  	target  
+127 	79.3  	15  	DRUM (repeat 7)	lure    	0.258	NR  	1   	NR      	NR      
+128 	79.7  	11  	SWORD (repeat 11)	lure    	0.61	NR  	1   	NR      	NR      
+129 	80.4  	14  	SHIRT (repeat 3)	lure    	0.282	NR  	1   	NR      	NR      
+130 	80.7  	8   	MAZE (repeat 7)	lure    	0.471	NR  	1   	NR      	NR      
+131 	81.3  	9   	CLUB (repeat 7)	lure    	0.691	NR  	1   	NR      	NR      
+132 	82.1  	17  	BUCKLE (repeat 8)	lure    	0.3 	NR  	1   	NR      	NR      
+133 	82.4  	10  	CONTRACT (repeat 8)	lure    	0.667	NR  	1   	NR      	NR      
+134 	83.2  	18  	CURB (repeat 6)	lure    	0.68	NR  	1   	NR      	NR      
+135 	84    	4   	MALLET (repeat 7)	lure    	0.329	NR  	1   	NR      	NR      
+136 	84.4  	6   	DRILL (repeat 8)	lure    	0.414	NR  	1   	NR      	NR      
+137 	84.9  	7   	WALLET (repeat 11)	lure    	0.688	NR  	1   	NR      	NR      
+138 	85.7  	10  	CONTRACT (repeat 9)	lure    	0.641	NR  	1   	NR      	NR      
+139 	86.4  	5   	SKETCH (repeat 7)	lure    	0.602	NR  	1   	NR      	NR      
+140 	87.1  	18  	CURB (repeat 7)	lure    	0.287	NR  	1   	NR      	NR      
+141 	87.5  	1   	PORTAL (repeat 10)	lure    	0.371	NR  	1   	NR      	NR      
+142 	87.9  	8   	MAZE (repeat 8)	lure    	0.291	NR  	1   	NR      	NR      
+143 	88.3  	17  	BUCKLE (repeat 9)	lure    	0.588	NR  	1   	NR      	NR      
+144 	89    	18  	CURB (repeat 8)	lure    	0.668	NR  	1   	NR      	NR      
+145 	89.7  	13  	PANEL (repeat 5)	lure    	0.451	NR  	1   	NR      	NR      
+146 	90.3  	2   	ROOT (repeat 8)	lure    	0.631	NR  	1   	NR      	NR      
+147 	91    	13  	PANEL (repeat 6)	lure    	0.451	NR  	1   	NR      	NR      
+148 	91.5  	7   	WALLET (repeat 12)	lure    	0.363	NR  	1   	NR      	NR      
+149 	92    	6   	DRILL (repeat 9)	lure    	0.451	NR  	1   	NR      	NR      
+150 	92.5  	8   	MAZE (repeat 9)	lure    	0.642	NR  	1   	NR      	NR      
+151 	93.3  	1   	PORTAL (repeat 11)	lure    	0.452	NR  	1   	NR      	NR      
+152 	93.8  	22  	CHERRY    	fruit   	0.954	0.764	1   	target  	target  
+153 	94.9  	10  	CONTRACT (repeat 10)	lure    	0.261	NR  	1   	NR      	NR      
+154 	95.2  	11  	SWORD (repeat 12)	lure    	0.323	NR  	1   	NR      	NR      
+155 	95.6  	1   	PORTAL (repeat 12)	lure    	0.4 	NR  	1   	NR      	NR      
+156 	96.1  	18  	CURB (repeat 9)	lure    	0.489	NR  	1   	NR      	NR      
+157 	96.7  	6   	DRILL (repeat 10)	lure    	0.27	NR  	1   	NR      	NR      
+158 	97.1  	15  	DRUM (repeat 8)	lure    	0.502	NR  	1   	NR      	NR      
+159 	97.7  	17  	BUCKLE (repeat 10)	lure    	0.298	NR  	1   	NR      	NR      
+160 	98.1  	9   	CLUB (repeat 8)	lure    	0.345	NR  	1   	NR      	NR      
+161 	98.5  	4   	MALLET (repeat 8)	lure    	0.659	NR  	1   	NR      	NR      
+162 	99.3  	3   	PENNY (repeat 8)	lure    	0.577	NR  	1   	NR      	NR      
+163 	100   	4   	MALLET (repeat 9)	lure    	0.563	NR  	1   	NR      	NR      
+164 	100.6 	15  	DRUM (repeat 9)	lure    	0.647	NR  	1   	NR      	NR      
+165 	101.4 	8   	MAZE (repeat 10)	lure    	0.461	NR  	1   	NR      	NR      
+166 	101.9 	18  	CURB (repeat 10)	lure    	0.688	NR  	1   	NR      	NR      
+167 	102.7 	7   	WALLET (repeat 13)	lure    	0.264	NR  	1   	NR      	NR      
+168 	103.1 	10  	CONTRACT (repeat 11)	lure    	0.366	NR  	1   	NR      	NR      
+169 	103.6 	9   	CLUB (repeat 9)	lure    	0.539	NR  	1   	NR      	NR      
+170 	104.2 	10  	CONTRACT (repeat 12)	lure    	0.305	NR  	1   	NR      	NR      
+171 	104.6 	18  	CURB (repeat 11)	lure    	0.386	NR  	1   	NR      	NR      
+172 	105.1 	10  	CONTRACT (repeat 13)	lure    	0.307	NR  	1   	NR      	NR      
+173 	105.5 	15  	DRUM (repeat 10)	lure    	0.451	NR  	1   	NR      	NR      
+174 	106   	8   	MAZE (repeat 11)	lure    	0.424	NR  	1   	NR      	NR      
+175 	106.6 	10  	CONTRACT (repeat 14)	lure    	0.451	NR  	1   	NR      	NR      
+176 	107.1 	2   	ROOT (repeat 9)	lure    	0.613	NR  	1   	NR      	NR      
+177 	107.8 	5   	SKETCH (repeat 8)	lure    	0.452	NR  	1   	NR      	NR      
+178 	108.3 	3   	PENNY (repeat 9)	lure    	0.443	NR  	1   	NR      	NR      
+179 	108.9 	17  	BUCKLE (repeat 11)	lure    	0.451	NR  	1   	NR      	NR      
+180 	109.4 	23  	PEACH     	fruit   	0.953	NR  	0   	NR      	target  
+181 	110.5 	3   	PENNY (repeat 10)	lure    	0.433	NR  	1   	NR      	NR      
+182 	111   	7   	WALLET (repeat 14)	lure    	0.553	NR  	1   	NR      	NR      
+183 	111.6 	10  	CONTRACT (repeat 15)	lure    	0.641	NR  	1   	NR      	NR      
+184 	112.4 	9   	CLUB (repeat 10)	lure    	0.654	NR  	1   	NR      	NR      
+185 	113.2 	15  	DRUM (repeat 11)	lure    	0.322	NR  	1   	NR      	NR      
+186 	113.6 	9   	CLUB (repeat 11)	lure    	0.327	NR  	1   	NR      	NR      
+187 	114   	8   	MAZE (repeat 12)	lure    	0.61	NR  	1   	NR      	NR      
+188 	114.7 	3   	PENNY (repeat 11)	lure    	0.454	NR  	1   	NR      	NR      
+189 	115.2 	15  	DRUM (repeat 12)	lure    	0.254	NR  	1   	NR      	NR      
+190 	115.6 	5   	SKETCH (repeat 9)	lure    	0.637	NR  	1   	NR      	NR      
+191 	116.3 	2   	ROOT (repeat 10)	lure    	0.355	NR  	1   	NR      	NR      
+192 	116.7 	11  	SWORD (repeat 13)	lure    	0.385	NR  	1   	NR      	NR      
+193 	117.2 	9   	CLUB (repeat 12)	lure    	0.318	NR  	1   	NR      	NR      
+194 	117.7 	14  	SHIRT (repeat 4)	lure    	0.686	NR  	1   	NR      	NR      
+195 	118.5 	5   	SKETCH (repeat 10)	lure    	0.572	NR  	1   	NR      	NR      
+196 	119.2 	11  	SWORD (repeat 14)	lure    	0.441	NR  	1   	NR      	NR      
+197 	119.7 	13  	PANEL (repeat 7)	lure    	0.478	NR  	1   	NR      	NR      
+198 	120.3 	14  	SHIRT (repeat 5)	lure    	0.576	NR  	1   	NR      	NR      
+199 	121   	17  	BUCKLE (repeat 12)	lure    	0.452	NR  	1   	NR      	NR      
+200 	121.6 	9   	CLUB (repeat 13)	lure    	0.369	NR  	1   	NR      	NR      
+201 	122   	15  	DRUM (repeat 13)	lure    	0.452	NR  	1   	NR      	NR      
+202 	122.6 	13  	PANEL (repeat 8)	lure    	0.553	NR  	1   	NR      	NR      
+203 	123.3 	6   	DRILL (repeat 11)	lure    	0.452	NR  	1   	NR      	NR      
+204 	123.8 	24  	ORANGE    	fruit   	0.95	0.66	1   	target  	target  
+205 	124.9 	7   	WALLET (repeat 15)	lure    	0.284	NR  	1   	NR      	NR      
+206 	125.3 	15  	DRUM (repeat 14)	lure    	0.48	NR  	1   	NR      	NR      
+207 	125.9 	9   	CLUB (repeat 14)	lure    	0.376	NR  	1   	NR      	NR      
+208 	126.4 	1   	PORTAL (repeat 13)	lure    	0.309	NR  	1   	NR      	NR      
+209 	126.8 	11  	SWORD (repeat 15)	lure    	0.329	NR  	1   	NR      	NR      
+210 	127.3 	7   	WALLET (repeat 16)	lure    	0.603	NR  	1   	NR      	NR      
+211 	128   	4   	MALLET (repeat 10)	lure    	0.301	NR  	1   	NR      	NR      
+212 	128.4 	3   	PENNY (repeat 12)	lure    	0.56	NR  	1   	NR      	NR      
+213 	129   	14  	SHIRT (repeat 6)	lure    	0.287	NR  	1   	NR      	NR      
+214 	129.4 	17  	BUCKLE (repeat 13)	lure    	0.648	NR  	1   	NR      	NR      
+215 	130.2 	3   	PENNY (repeat 13)	lure    	0.405	NR  	1   	NR      	NR      
+216 	130.7 	6   	DRILL (repeat 12)	lure    	0.358	NR  	1   	NR      	NR      
+217 	131.2 	9   	CLUB (repeat 15)	lure    	0.379	NR  	1   	NR      	NR      
+218 	131.6 	2   	ROOT (repeat 11)	lure    	0.695	NR  	1   	NR      	NR      
+219 	132.5 	5   	SKETCH (repeat 11)	lure    	0.459	NR  	1   	NR      	NR      
+220 	133   	2   	ROOT (repeat 12)	lure    	0.535	NR  	1   	NR      	NR      
+221 	133.7 	9   	CLUB (repeat 16)	lure    	0.417	NR  	1   	NR      	NR      
+222 	134.2 	8   	MAZE (repeat 13)	lure    	0.604	NR  	1   	NR      	NR      
+223 	135   	10  	CONTRACT (repeat 16)	lure    	0.444	NR  	1   	NR      	NR      
+224 	135.5 	7   	WALLET (repeat 17)	lure    	0.629	NR  	1   	NR      	NR      
+225 	136.3 	8   	MAZE (repeat 14)	lure    	0.567	NR  	1   	NR      	NR      
+226 	137   	17  	BUCKLE (repeat 14)	lure    	0.42	NR  	1   	NR      	NR      
+227 	137.5 	10  	CONTRACT (repeat 17)	lure    	0.623	NR  	1   	NR      	NR      
+228 	138.3 	2   	ROOT (repeat 13)	lure    	0.565	NR  	1   	NR      	NR      
+229 	138.9 	7   	WALLET (repeat 18)	lure    	0.32	NR  	1   	NR      	NR      
+230 	139.4 	8   	MAZE (repeat 15)	lure    	0.671	NR  	1   	NR      	NR      
+231 	140.2 	14  	SHIRT (repeat 7)	lure    	0.368	NR  	1   	NR      	NR      
+232 	140.6 	1   	PORTAL (repeat 14)	lure    	0.46	NR  	1   	NR      	NR      
+233 	141.2 	17  	BUCKLE (repeat 15)	lure    	0.541	NR  	1   	NR      	NR      
+234 	141.8 	15  	DRUM (repeat 15)	lure    	0.568	NR  	1   	NR      	NR      
+235 	142.5 	4   	MALLET (repeat 11)	lure    	0.455	NR  	1   	NR      	NR      
+236 	143.1 	11  	SWORD (repeat 16)	lure    	0.576	NR  	1   	NR      	NR      
+237 	143.7 	13  	PANEL (repeat 9)	lure    	0.458	NR  	1   	NR      	NR      
+238 	144.3 	7   	WALLET (repeat 19)	lure    	0.321	NR  	1   	NR      	NR      
