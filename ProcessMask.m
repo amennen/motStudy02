@@ -57,7 +57,7 @@ else
     dicom_dir = ['/Data1/subjects/' datestr(allDates{subjNum},10) datestr(allDates{subjNum},5) datestr(allDates{subjNum},7) '.' subjectName '.' subjectName '/'];
 end
 %scan numbers: mprage is 5, epis are 9:2:19
-scanNum = 9%5;change back!!
+scanNum = 5;%should be 5-change back!!
 highres_scanstr = num2str(scanNum, '%2.2i');
 
 %fileStr = num2str(fileNum, '%3.3i');
