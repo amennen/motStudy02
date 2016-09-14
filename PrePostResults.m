@@ -15,20 +15,21 @@
 %subjectNum = 3;
 %runNum = 1;
 projectName = 'motStudy02';
-onlyRem = 1; %if should only look at the stimuli that subject answered >1 for remembering in recall 1
+onlyRem = 0; %if should only look at the stimuli that subject answered >1 for remembering in recall 1
+onlyForg = 1;
 plotDir = ['/Data1/code/' projectName '/' 'Plots' '/' ]; %should be all
 %plot dir?
 updated =1; %for only looking at the results recorded after making differences (minimum dot speed, increase starting speed, average over 2)
 oldonly = 0;
 nold = 4;
-svec = [3:5 7:14];
+svec = [3:5 7:15];
 nnew = length(svec) - nold;
-runvec = [1 1 2 1 1 1 1 1 1 1 1];
+runvec = [1 1 2 1 1 1 1 1 1 1 1 1];
 nTRsperTrial = 19;
 if length(runvec)~=length(svec)
     error('Enter in the runs AND date numbers!!')
 end
-datevec = {'7-12-16', '7-14-16', '7-14-16', '7-15-16', '8-10-16', '8-11-16', '8-16-16', '8-18-16', '8-27-16', '8-30-16', '9-7-16'};
+datevec = {'7-12-16', '7-14-16', '7-14-16', '7-15-16', '8-10-16', '8-11-16', '8-16-16', '8-18-16', '8-27-16', '8-30-16', '9-7-16', '9-14-16'};
 %datevec = {'7-12-16', '7-14-16', '7-14-16', '7-15-16', '8-10-16', '8-11-16', '8-16-16', '8-18-16'}
 if updated
     svec = svec(end-nnew +1:end);
@@ -120,9 +121,14 @@ for s = 1:NSUB
     if onlyRem 
         PrePostRT = RTevidence(keep.hard,:,2) - RTevidence(keep.hard,:,1);
         PrePostOMIT = OMITevidence(keep.easy,:,2) - OMITevidence(keep.easy,:,1);
-    else
+    elseif onlyRem == 0 && onlyForg == 0
         PrePostRT = RTevidence(:,:,2) - RTevidence(:,:,1);
         PrePostOMIT = OMITevidence(:,:,2) - OMITevidence(:,:,1);
+    elseif onlyForg
+        forg_hard = setdiff(1:size(RTevidence,1),keep.hard);
+        forg_easy = setdiff(1:size(RTevidence,1),keep.easy);
+        PrePostRT = RTevidence(forg_hard,:,2) - RTevidence(forg_hard,:,1);
+        PrePostOMIT = OMITevidence(forg_easy,:,2) - OMITevidence(forg_easy,:,1);
     end
     RTavg(s,:) = mean(PrePostRT,1);
     
@@ -134,10 +140,10 @@ end
 h1 = figure;
 %alldiffmeans = [RTavg;OMITavg];
 %alldiffstd = [std(PrePostRT)/sqrt(size(PrePostRT,1)-1);std(PrePostOMIT)/sqrt(size(PrePostRT,1)-1)];
-allRT = mean(RTavg);
-eRT = std(RTavg,[],1)/sqrt(NSUB-1);
-allOMIT = mean(OMITavg);
-eOMIT = std(OMITavg,[],1)/sqrt(NSUB-1);
+allRT = nanmean(RTavg);
+eRT = nanstd(RTavg,[],1)/sqrt(NSUB-1);
+allOMIT = nanmean(OMITavg);
+eOMIT = nanstd(OMITavg,[],1)/sqrt(NSUB-1);
 alldiffmeans = [allRT;allOMIT];
 alldiffstd = [eRT;eOMIT];
 mseb(1:nTRsperTrial,alldiffmeans, alldiffstd)
@@ -153,4 +159,4 @@ set(findall(gcf,'-property','FontSize'),'FontSize',16)
 
 xlim([1 nTRsperTrial])
 ylim([-.25 .25])
-print(h1, sprintf('%sresults_updated0907.pdf', plotDir), '-dpdf')
+print(h1, sprintf('%sresults_updated0914_aonlyForg.pdf', plotDir), '-dpdf')

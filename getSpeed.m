@@ -1,6 +1,6 @@
 % get dot speeds for every subject
 
-subvec = [8:14];
+subvec = [8:15];
 MOT_PREP = 5;
 MAX_SPEED = 30;
 for s = 1:length(subvec)

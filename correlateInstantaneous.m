@@ -11,13 +11,14 @@ nstim = 10;
 nTRs = 15;
 sepTRs = 17;
 nblock = 3;
-svec = 8:14; %[3:5 7]; %subjects 3,4,5,7 are for initial RT, subjects 8-10 are after changes
+svec = 8:15; %[3:5 7]; %subjects 3,4,5,7 are for initial RT, subjects 8-10 are after changes
 nsub = length(svec);
 sepbystim = zeros(nstim,nTRs*3);
 speedbystim = zeros(nstim,nTRs*3);
 num2avg = 2; %including starting point--change to 2 now that we're only smoothing over 2 TR's
 allplotDir = ['/Data1/code/' projectName '/' 'Plots' '/' ];
 shifts = -3:8;
+ds= 1; %whether or not to look at changes in dot speed or just dot speed
 for s = 1:nsub
     subjectNum = svec(s);
     runNum = 1;
@@ -69,13 +70,15 @@ for s = 1:nsub
         [~,indSort] = sort(d.stim.id);
         sepinorder = sepbytrial(indSort,:);
         speedinorder = speedbytrial(indSort,:);
-%         sepbystim(:,(iblock-1)*(nTRs-1) + 1: iblock*(nTRs-1),s ) = sepinorder(:,2:end);
-%         speedbystim(:,(iblock-1)*(nTRs-1) + 1: iblock*(nTRs-1),s ) = diff(speedinorder,1,2); %instead of speed in order bc relative speed only (could also normalize speed)
-%       
+        if ds
+        sepbystim(:,(iblock-1)*(nTRs-1) + 1: iblock*(nTRs-1),s ) = sepinorder(:,2:end);
+        speedbystim(:,(iblock-1)*(nTRs-1) + 1: iblock*(nTRs-1),s ) = diff(speedinorder,1,2); %instead of speed in order bc relative speed only (could also normalize speed)
+      else
         subjmeanspeed = mean(reshape(speedinorder,1,numel(speedinorder)));
         subjstdspeed = std(reshape(speedinorder,1,numel(speedinorder)));
         sepbystim(:,(iblock-1)*(nTRs) + 1: iblock*(nTRs),s ) = sepinorder;
         speedbystim(:,(iblock-1)*(nTRs) + 1: iblock*(nTRs),s ) = (speedinorder-subjmeanspeed)./subjstdspeed; 
+        end
     end
     newseps = reshape(sepbystim(:,:,s),1,numel(sepbystim(:,:,s)));
     newspeeds = reshape(speedbystim(:,:,s),1,numel(speedbystim(:,:,s)));
@@ -121,7 +124,7 @@ set(gca,'XTickLabel',['-3'; '-2'; '-1'; ' 0'; ' 1'; ' 2'; ' 3'; ' 4'; ' 5'; ' 6'
 ylabel('Correlation')
 xlabel('TR Shift')
 set(findall(gcf,'-property','FontSize'),'FontSize',16)
-print(h1, sprintf('%scorrSHIFT.pdf', allplotDir), '-dpdf')
+print(h1, sprintf('%scorrSHIFT_ds.pdf', allplotDir), '-dpdf')
 
 %line([3 3], [-1 1], 'Color', 'k', 'LineWidth', 3);
 %line([6 6], [-1 1], 'Color', 'k', 'LineWidth', 3);
