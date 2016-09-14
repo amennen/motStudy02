@@ -69,10 +69,13 @@ for s = 1:nsub
         [~,indSort] = sort(d.stim.id);
         sepinorder = sepbytrial(indSort,:);
         speedinorder = speedbytrial(indSort,:);
-        sepbystim(:,(iblock-1)*nTRs + 1: iblock*nTRs,s ) = sepinorder;
-        speedbystim(:,(iblock-1)*nTRs + 1: iblock*nTRs,s ) = speedinorder;
-        
-
+%         sepbystim(:,(iblock-1)*(nTRs-1) + 1: iblock*(nTRs-1),s ) = sepinorder(:,2:end);
+%         speedbystim(:,(iblock-1)*(nTRs-1) + 1: iblock*(nTRs-1),s ) = diff(speedinorder,1,2); %instead of speed in order bc relative speed only (could also normalize speed)
+%       
+        subjmeanspeed = mean(reshape(speedinorder,1,numel(speedinorder)));
+        subjstdspeed = std(reshape(speedinorder,1,numel(speedinorder)));
+        sepbystim(:,(iblock-1)*(nTRs) + 1: iblock*(nTRs),s ) = sepinorder;
+        speedbystim(:,(iblock-1)*(nTRs) + 1: iblock*(nTRs),s ) = (speedinorder-subjmeanspeed)./subjstdspeed; 
     end
     newseps = reshape(sepbystim(:,:,s),1,numel(sepbystim(:,:,s)));
     newspeeds = reshape(speedbystim(:,:,s),1,numel(speedbystim(:,:,s)));
@@ -110,12 +113,16 @@ h1 = figure;
 allRT = mean(corrcoeff,1);
 eRT = std(corrcoeff,[],1)/sqrt(nsub-1);
 mseb(1:length(allRT),allRT, eRT)
-title(sprintf('Correlations, n = %i',nsub))
-%set(gca, 'XTick', [1:nTRsperTrial])
-%set(gca,'XTickLabel',['-2'; '-1'; ' 0'; ' 1'; ' 2'; ' 3'; ' 4'; ' 5'; '6'; '7'; '8'; '9'; ']);
-ylabel('Target - Lure Evidence')
-xlabel('TR (2s)')
+title(sprintf('Classifier Evidence and Normalized Speed Correlations'))
+xlim([1 length(allRT)])
+ylim([-.1 0.25])
+set(gca, 'XTick', 1:length(allRT))
+set(gca,'XTickLabel',['-3'; '-2'; '-1'; ' 0'; ' 1'; ' 2'; ' 3'; ' 4'; ' 5'; ' 6'; ' 7'; ' 8']);
+ylabel('Correlation')
+xlabel('TR Shift')
 set(findall(gcf,'-property','FontSize'),'FontSize',16)
+print(h1, sprintf('%scorrSHIFT.pdf', allplotDir), '-dpdf')
+
 %line([3 3], [-1 1], 'Color', 'k', 'LineWidth', 3);
 %line([6 6], [-1 1], 'Color', 'k', 'LineWidth', 3);
 %now average over all subjects

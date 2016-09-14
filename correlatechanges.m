@@ -11,7 +11,7 @@ nstim = 10;
 nTRs = 15;
 sepTRs = 17;
 nblock = 3;
-svec = 8:13; %[3:5 7]; %subjects 3,4,5,7 are for initial RT, subjects 8-10 are after changes
+svec = 8:14; %[3:5 7]; %subjects 3,4,5,7 are for initial RT, subjects 8-10 are after changes
 nsub = length(svec);
 sepbystim = zeros(nstim,nTRs*3);
 speedbystim = zeros(nstim,nTRs*3);
@@ -92,8 +92,8 @@ for s = 1:nsub
     newspeeds = reshape(allspeedchanges(:,:,s),1,numel(allspeedchanges(:,:,s)));
     newseps = reshape(allsepchanges(:,:,s),1,numel(allsepchanges(:,:,s)));
     izero = find(newspeeds==0);
-   % newspeeds(izero) = [];
-   % newseps(izero) = [];
+    % newspeeds(izero) = [];
+    % newseps(izero) = [];
     
     h = figure;
     x = newspeeds;
@@ -152,17 +152,24 @@ for s = 1:nsub
     xlim([-6 6 ])
     title(sprintf('AVG Subject %i Real-time Correlations',subjectNum));
     set(findall(gcf,'-property','FontSize'),'FontSize',20)
-   print(h, sprintf('%sAVG%i_correlations.pdf', plotDir,num2avg), '-dpdf')
+    print(h, sprintf('%sAVG%i_correlations.pdf', plotDir,num2avg), '-dpdf')
 end
 
 %% now see if correlation is related to fast dot speed change
 getSpeed;
 thisfig = figure;
 scatter(hardSpeed,corrcoeff,'fill','MarkerEdgeColor','b',...
-        'MarkerFaceColor','c',...
-        'LineWidth',2.5);
+    'MarkerFaceColor','c',...
+    'LineWidth',2.5);
 xlabel('Staircased Speed')
 ylabel('Corr(\Delta S, \Delta Evidence)')
 title('FB Correlation vs. Staircased Speed')
+p = polyfit(hardSpeed,corrcoeff,1);
+yfit = polyval(p,hardSpeed);
+hold on;
+plot(hardSpeed,yfit, '--k', 'LineWidth', 3);
+ylim([-.35 -.1])
 set(findall(gcf,'-property','FontSize'),'FontSize',20)
 print(thisfig, sprintf('%scorrspeed.pdf', allplotDir), '-dpdf')
+
+

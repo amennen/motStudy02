@@ -20,9 +20,9 @@ plotDir = ['/Data1/code/' projectName '/' 'Plots' '/' ]; %should be all
 %plot dir?
 updated =1; %for only looking at the results recorded after making differences (minimum dot speed, increase starting speed, average over 2)
 oldonly = 0;
-nnew = 6;
 nold = 4;
 svec = [3:5 7:14];
+nnew = length(svec) - nold;
 runvec = [1 1 2 1 1 1 1 1 1 1 1];
 nTRsperTrial = 19;
 if length(runvec)~=length(svec)
