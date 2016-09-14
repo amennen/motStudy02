@@ -47,4 +47,4 @@ mot_realtime01(SUBJECT, FAMILIARIZE2, [], 0, 0); %continue because want to not g
 mot_realtime01(SUBJECT, FAMILIARIZE2, [], 0, 0);
 
 %% after scanner, test associates
-mot_realtime01(SUBJECT,ASSOCIATES, [], 0, 0);
+mot_realtime01(SUBJECT,ASSOCIATES, [], 0, 0); 
