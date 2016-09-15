@@ -172,4 +172,8 @@ ylim([-.35 -.1])
 set(findall(gcf,'-property','FontSize'),'FontSize',20)
 print(thisfig, sprintf('%scorrspeed.pdf', allplotDir), '-dpdf')
 
-
+%%
+thisfig = plotDist(corrcoeff,1,0,5)
+xlabel('Corr(\Delta S, \Delta Evidence)')
+title('Correlation Distribution')
+print(thisfig, sprintf('%scorrDist.pdf', allplotDir), '-dpdf')

@@ -18,7 +18,7 @@ sepbystim = zeros(nstim,nTRs*3);
 speedbystim = zeros(nstim,nTRs*3);
 MOT_PREP = 5;
 colors = [110 62 106;83 200 212; 187 124 181]/255;
-plotstim = 1; %if you want trial by trial plots
+plotstim = 0; %if you want trial by trial plots
 plotmixedstim = 0; %if you want trial by trial plots with mixed stimuli
 allplotDir = ['/Data1/code/' projectName '/' 'Plots' '/' ];
 
@@ -120,7 +120,7 @@ for s = 1:nsub
     newsepbystim = reshape(sepbystim,1,numel(sepbystim));
     [good] = find(newsepbystim > 0.05 & newsepbystim < 0.15);
     goodSpeeds = newspeedbystim(good);
-    [thisfig,maxLoc] = plotDist(goodSpeeds,1,-1:.5:6.5);
+    [thisfig,maxLoc] = plotDist(goodSpeeds,1,1,-1:.5:6.5);
     line([maxLoc maxLoc], [0 1], 'color', 'k', 'LineWidth', 2);
     title(sprintf('Subject %i Distribution of Good Speeds', subjectNum))
     xlabel('Dot Speed')
@@ -135,7 +135,7 @@ for s = 1:nsub
     fbnewsepbystim = reshape(fbsepbystim,1,numel(fbsepbystim));
     [fbgood] = find(fbnewsepbystim > 0.05 & fbnewsepbystim < 0.15);
     fbgoodSpeeds = fbnewspeedbystim(fbgood);
-    [thisfig,maxLoc,counts1] = plotDist(fbgoodSpeeds,1,-1:.5:6.5);
+    [thisfig,maxLoc,counts1] = plotDist(fbgoodSpeeds,1,1,-1:.5:6.5);
     line([maxLoc maxLoc], [0 1], 'color', 'k', 'LineWidth', 2);
     title(sprintf('Subject %i Distribution of Good Speeds, Fb Only', subjectNum))
     xlabel('Dot Speed')
@@ -154,7 +154,7 @@ for s = 1:nsub
     fbnewsepbystim = reshape(fbsepbystim,1,numel(fbsepbystim));
     %[fbgood] = find(fbnewsepbystim > 0.05 & fbnewsepbystim < 0.15);
     %fbgoodSpeeds = fbnewspeedbystim(fbgood);
-    [thisfig,maxLoc,counts2] = plotDist(fbnewspeedbystim,1,-1:.5:6.5);
+    [thisfig,maxLoc,counts2] = plotDist(fbnewspeedbystim,1,1,-1:.5:6.5);
     line([maxLoc maxLoc], [0 1], 'color', 'k', 'LineWidth', 2);
     title(sprintf('Subject %i Distribution of All Speeds, Fb Only', subjectNum))
     xlabel('Dot Speed')
@@ -197,7 +197,7 @@ for s = 1:nsub
     
     
     
-    [thisfig,maxLoc] = plotDist(allsep,1,[-.5:.1:.5]);
+    [thisfig,maxLoc] = plotDist(allsep,1,1,[-.5:.1:.5]);
     ylim([0 .4])
     xlim([-.7 .7])
     title(sprintf('Subject %i Evidence Distribution', subjectNum))
@@ -210,7 +210,7 @@ for s = 1:nsub
     print(thisfig, sprintf('%sevidencedist.pdf', plotDir), '-dpdf')
     
     xvals = [-.5:.1:.5];
-    [thisfig,maxLoc,nCounts] = plotDist(fbsep,1,xvals);
+    [thisfig,maxLoc,nCounts] = plotDist(fbsep,1,1,xvals);
     ylim([0 .4])
     xlim([-.7 .7])
     title(sprintf('Subject %i Evidence Distribution, Fb Only', subjectNum))
@@ -501,6 +501,10 @@ s = 100;
 scatter(speed2,goodSpeed2, s,'fill','MarkerEdgeColor','b',...
                'MarkerFaceColor','c',...
                'LineWidth',3.5);
+p = polyfit(speed2,goodSpeed2,1);
+yfit = polyval(p,speed2);
+hold on;
+plot(speed2,yfit, '--k', 'LineWidth', 3)
 xlabel('Staircased Speed')
 ylabel('Mean of Good Speed during FB')
 title('Good Speed vs. Staircased Speed')

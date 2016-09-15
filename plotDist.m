@@ -1,10 +1,11 @@
 function [fighandle, cm, normalizedCounts] = plotDist(data,keepbars,varargin)
 
 if ~isempty(varargin)
-    [counts,bins]=hist(data,varargin{1});%# create histogram from a normal distribution.
+    [counts,bins]=hist(data,varargin{2});%# create histogram from a normal distribution.
 else
     [counts,bins]=hist(data);
 end
+keepline = varargin{1};
 cm = (1/sum(counts))*dot(counts,bins);
 %[fks,xi] = ksdensity(inData,bins);
 bins_interp = linspace(bins(1),bins(end),500);
@@ -25,7 +26,9 @@ if keepbars
     hold on
 end
 %plot(xi,fks*length(inData), 'r')
+if keepline
 plot(bins_interp, counts_interp/sum(counts), 'color', [84 255 199]/255, 'LineWidth', 3);
+end
 %plot(xvals,y,'linewidth', 2);
 %fnplt(DF, 'r', 2)
 %plot(x,g,'r');hold off
