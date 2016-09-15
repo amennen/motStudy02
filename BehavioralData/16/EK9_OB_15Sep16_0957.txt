@@ -1,0 +1,21 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	8.1   	12  	PHONE     	omit    	3.455	1.082	1   	generic 	generic 
+2   	20.1  	4   	PLANET    	realtime	3.455	1.009	1   	1 detail	1 detail
+3   	32.1  	3   	BOTTLE    	realtime	3.455	1.247	1   	generic 	generic 
+4   	44.1  	18  	SANDPAPER 	omit    	3.453	2.173	1   	1 detail	1 detail
+5   	56.1  	2   	ATLAS     	realtime	3.454	0.915	1   	2+ details	2+ details
+6   	68.1  	11  	CHROME    	omit    	3.454	2.425	1   	full    	full    
+7   	80.1  	16  	MALLET    	omit    	3.455	1.056	1   	2+ details	2+ details
+8   	92.1  	6   	HURDLE    	realtime	3.45	1.582	1   	full    	full    
+9   	104.1 	15  	BRASS     	omit    	3.452	1.22	1   	generic 	generic 
+10  	116.1 	1   	MOON      	realtime	3.455	1.715	1   	2+ details	2+ details
+11  	128.1 	13  	APRON     	omit    	3.456	1.48	1   	2+ details	2+ details
+12  	140.1 	5   	SHOVEL    	realtime	3.45	1.535	1   	2+ details	2+ details
+13  	152.1 	19  	CONE      	omit    	3.455	1.925	1   	1 detail	1 detail
+14  	164.1 	7   	POLISH    	realtime	3.455	1.179	1   	2+ details	2+ details
+15  	176.1 	10  	MAGNET    	realtime	3.451	1.482	1   	full    	full    
+16  	188.1 	14  	RAVINE    	omit    	3.456	1.807	1   	full    	full    
+17  	200.1 	20  	FRAME     	omit    	3.455	3.102	1   	2+ details	2+ details
+18  	212.1 	9   	DOME      	realtime	3.452	1.148	1   	1 detail	1 detail
+19  	224.1 	8   	ROPE      	realtime	3.453	0.602	1   	full    	full    
+20  	236.1 	17  	TART      	omit    	3.455	1.121	1   	full    	full    
