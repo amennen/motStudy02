@@ -288,7 +288,7 @@ LEARN = 6;
 LOC = 7;
 
 % stimulus filepaths
-MATLAB_STIM_FILE = [ppt_dir 'mot_realtime01b_subj_' num2str(SUBJECT) '_stimAssignment.mat'];
+MATLAB_STIM_FILE = [ppt_dir 'mot_realtime01_subj_' num2str(SUBJECT) '_stimAssignment.mat'];
 CUELISTFILE = [base_path 'stimuli/text/wordpool.txt'];
 CUELISTFILE_TARGETS = [base_path 'stimuli/text/wordpool_targets_anne.txt'];
 TRAININGCUELIST = [base_path 'stimuli/text/wordpool_targets_training.txt'];
@@ -351,6 +351,15 @@ end
 
 %this has to be after you load the actual subject info
 if SESSION > MOT_PREP
+    if s2 < 0 %put an error message exciting here
+        Screen('TextSize',mainWindow,stim.fontSize);
+        halfway = ['Thanks so much for participating! Unfortunately, we cannot continue the experiment because you haven''t matched a previous '...
+            'subject''s data. This is purely by chance and is in no way a reflection of your performance. Please notify the experimenter now.'];
+        displayText(mainWindow,halfway,INSTANT,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
+        WaitSecs(60)
+        sca;
+        error('Could not continue :(')
+    else
     ppt_dir2 = [data_dir filesep num2str(s2) filesep];
     MATLAB_PREV_STIM = [ppt_dir2 'mot_realtime01_subj_' num2str(s2) '_stimAssignment.mat'];
     s_prev = load(MATLAB_PREV_STIM);
@@ -367,6 +376,7 @@ if SESSION > MOT_PREP
     save(MATLAB_STIM_FILE, 'cues', 'preparedCues', 'pics', 'pairIndex', 'lureWords', 'recogLures', 'stimmap', 'trainPics');
     clear cues preparedCues pics pairIndex lureWords recogLures stimmap
     load(MATLAB_STIM_FILE);
+    end
 end
 Screen('TextSize',mainWindow,stim.fontSize);
 
@@ -566,7 +576,7 @@ switch SESSION
             pairIndex = lutSort(stimList, cues{STIMULI}{LEARN}{1}, 1:stim.num_learn);
 %             preparedCues = stimList; % so this is the stimuli in order we'll present for the first round
             stimmap = makeMap(cues{STIMULI}{LEARN}{1});
-            nstim = length(preparedCues);
+            nstim = length(pics);
         else
             match = 1;
             fname = findNewestFile(ppt_dir2,fullfile(ppt_dir2, ['mot_realtime01_' num2str(s2) '_' num2str(SESSION)  '*.mat']));
@@ -914,7 +924,11 @@ switch SESSION
         %return
         %normally would go to session 4 but instead we want to go to
         if SESSION ~= TOCRITERION3
-            mot_realtime01b(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow);
+            if SESSION > MOT_PREP
+                mot_realtime01b(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow,s2);
+            else
+                mot_realtime01b(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow);
+            end
         end
         
         %% 3. PRE/POST MEMORY TEST
@@ -1614,23 +1628,25 @@ switch SESSION
             else
                 %right now taking out because we want the speeds to be the
                 %same for these (not going to change them after loading)
-%                 if SESSION > 5 && SESSION < MOT{1} %change dot speeds for practice and localizer, but then we want to change dot speed!
-%                     switch stim.cond(i)
-%                         case {1,3} %for either of the hard cases
-%                             stim.speed(i) = finalSpeed; %will have to load last speed and find the speed here
-%                             % repulsor_force(i) = repulsor_force_small * finalSpeed/0.5;
-%                         case {2,4} %for either of the easy cases
-%                             stim.speed(i) = 0.5;%5;%finalSpeed*.5; %again load last speed found here, change to accept max speed-see what first person has for this to decide
-%                             %repulsor_force(i) = repulsor_force_small;
-%                     end
-%                     if stim.cond(i) > 2
-%                         lureCounter = lureCounter + 1;
-%                     end
-%                     stim.condString{i} = mot_conds{stim.cond(i)};
-%                 else %for MOT real-time trials
-%                     % repulsor_force(i) = stim.speed;
-%                     stim.speed(i) = 2; %initialize each trial here!!!
-%                 end
+                if SESSION > 5 && SESSION < MOT{1} %change dot speeds for practice and localizer, but then we want to change dot speed! keep this because we're using an individual's subjects speed not RT
+                    switch stim.cond(i)
+                        case {1,3} %for either of the hard cases
+                            stim.speed(i) = finalSpeed; %will have to load last speed and find the speed here
+                            % repulsor_force(i) = repulsor_force_small * finalSpeed/0.5;
+                        case {2,4} %for either of the easy cases
+                            stim.speed(i) = 0.5;%5;%finalSpeed*.5; %again load last speed found here, change to accept max speed-see what first person has for this to decide
+                            %repulsor_force(i) = repulsor_force_small;
+                    end
+                    if stim.cond(i) > 2
+                        lureCounter = lureCounter + 1;
+                    end
+                    stim.condString{i} = mot_conds{stim.cond(i)};
+                else %for MOT real-time trials
+                    % repulsor_force(i) = stim.speed;
+                    %stim.speed(i) = 2; %initialize each trial here!!!
+                    %took this out for YC because we're just going to be
+                    %loading the speeds from previous subjects for MOT
+                end
             end
             
         end
@@ -2181,7 +2197,11 @@ switch SESSION
             %displayText(mainWindow,CONGRATS,CONGRATSDURATION,'center',COLORS.MAINFONTCOLOR,WRAPCHARS);
             endSession(dotEK, CONGRATS);
             if SESSION < MOT_LOCALIZER
-                mot_realtime01b(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow);
+                if SESSION > MOT_PREP
+                    mot_realtime01b(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow,s2);
+                else
+                    mot_realtime01b(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow);
+                end
             end
         end
         sca;
@@ -2391,7 +2411,11 @@ switch SESSION
             sca
         else
             endSession(fruitHarvestEK, CONGRATS);
-            mot_realtime01b(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow);
+            if SESSION > MOT_PREP
+                mot_realtime01b(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow,s2);
+            else
+                mot_realtime01b(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow);
+            end
         end
         
         %% SCAN PREP

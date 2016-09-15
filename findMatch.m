@@ -2,7 +2,7 @@
 %staircasing (session 5) and right before they go on to train for actual
 %stimuli (session 7)
 
-function [subject2, allSpeed] = findMatch(thisSubj,svec)
+function [subject2, allSpeed, hardSpeed] = findMatch(thisSubj,svec)
 
 % find yoked match for subject
 MOT_PREP = 5;
@@ -27,7 +27,10 @@ hardSpeed = MAX_SPEED - lastRun.stim.tGuess(end);
 
 alldiff = abs(allSpeed - hardSpeed);
 [~,ind] = min(alldiff);
-subject2 = svec(ind);
-
+if abs(alldiff(ind(1))) <= 2
+    subject2 = svec(ind(1)); %only take the first one if there happens to be multiple that are the same distance
+else
+    subject2 = -1; %in this case finish experiment
+end
 end
 

@@ -1,2 +1,0 @@
-trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
-1   	5.7   	1   	CAPSULE   	lure    	0.29	NR  	1   	NR      	NR      

@@ -1,0 +1,16 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	34.4  	3   	PUZZLE    	target  	1.951	NR  	0   	NR      	non-target
+2   	76.4  	8   	ISLAND    	target  	1.952	NR  	0   	NR      	non-target
+3   	118.4 	6   	CENT      	target  	1.952	NR  	0   	NR      	target  
+4   	160.4 	5   	PEBBLE    	target  	1.955	0.641	1   	target  	target  
+5   	202.4 	2   	RAINBOW   	target  	1.953	NR  	0   	NR      	target  
+6   	246.5 	3   	PUZZLE (repeat 1)	target  	1.952	0.626	0   	non-target	target  
+7   	288.5 	6   	CENT (repeat 1)	target  	1.953	NR  	0   	NR      	non-target
+8   	330.6 	6   	CENT (repeat 2)	target  	1.951	0.368	1   	non-target	non-target
+9   	372.6 	7   	BELL      	target  	1.953	NR  	0   	NR      	non-target
+10  	414.6 	2   	RAINBOW (repeat 1)	target  	1.955	0.149	1   	target  	target  
+11  	458   	4   	PIN       	target  	1.953	0.447	0   	non-target	target  
+12  	500   	8   	ISLAND (repeat 1)	target  	1.955	0.099	1   	non-target	non-target
+13  	542   	1   	HAMMER    	target  	1.955	0.063	1   	target  	target  
+14  	584   	2   	RAINBOW (repeat 2)	target  	1.954	NR  	0   	NR      	target  
+15  	626   	1   	HAMMER (repeat 1)	target  	1.955	0.528	1   	non-target	non-target

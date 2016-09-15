@@ -1,0 +1,28 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	8.2   	12  	BADGE     	omit    	3.451	2.052	0   	2+ details	1 detail
+2   	24.2  	7   	CHALK     	realtime	3.451	2.06	0   	1 detail	generic 
+3   	40.2  	8   	PLANET    	realtime	3.455	1.985	1   	2+ details	2+ details
+4   	52.2  	11  	PENNY     	omit    	3.456	1.931	1   	full    	full    
+5   	64.2  	17  	COAL      	omit    	3.455	1.185	1   	full    	full    
+6   	76.2  	10  	FOSSIL    	realtime	3.454	1.817	0   	generic 	full    
+7   	92.2  	14  	LEAD      	omit    	3.453	2.547	0   	generic 	full    
+8   	108.2 	1   	RAVINE    	realtime	3.455	1.501	1   	full    	full    
+9   	120.2 	4   	VAULT     	realtime	3.453	0.734	1   	2+ details	2+ details
+10  	132.2 	15  	FERRY     	omit    	3.455	1.557	1   	2+ details	2+ details
+11  	144.2 	9   	EXIT      	realtime	3.456	2.095	0   	generic 	1 detail
+12  	160.2 	18  	PASTEL    	omit    	3.455	1.626	1   	generic 	generic 
+13  	172.2 	19  	SPONGE    	omit    	3.456	1.349	1   	1 detail	1 detail
+14  	184.2 	2   	LIGHT     	realtime	3.456	1.862	1   	1 detail	1 detail
+15  	196.2 	16  	MALLET    	omit    	3.455	1.437	1   	full    	full    
+16  	208.2 	3   	RIDGE     	realtime	3.45	1.953	1   	1 detail	1 detail
+17  	220.2 	13  	CANDLE    	omit    	3.451	1.635	1   	1 detail	1 detail
+18  	232.2 	5   	CORK      	realtime	3.455	2.156	0   	1 detail	full    
+19  	248.2 	20  	MORNING   	omit    	3.452	0.809	1   	full    	full    
+20  	260.2 	6   	CARD      	realtime	3.453	1.742	1   	generic 	generic 
+21  	272.2 	7   	CHALK (repeat 1)	realtime	3.456	2.154	1   	1 detail	1 detail
+22  	284.2 	5   	CORK (repeat 1)	realtime	3.452	2.338	1   	2+ details	2+ details
+23  	296.2 	10  	FOSSIL (repeat 1)	realtime	3.451	NR  	0   	NR      	full    
+24  	312.2 	12  	BADGE (repeat 1)	omit    	3.455	2.122	1   	generic 	generic 
+25  	324.2 	14  	LEAD (repeat 1)	omit    	3.451	2.038	1   	full    	full    
+26  	336.2 	9   	EXIT (repeat 1)	realtime	3.452	0.866	1   	generic 	generic 
+27  	348.2 	10  	FOSSIL (repeat 2)	realtime	3.452	1.922	1   	generic 	generic 
