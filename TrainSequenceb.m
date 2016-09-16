@@ -1,7 +1,7 @@
 base_path = [fileparts(which('mot_realtime01.m')) filesep];
 cd(base_path);
 
-SUBJECT = 16;
+SUBJECT = 200;
 SVEC = 8:15;
 
 NUM_TASK_RUNS = 3;
@@ -20,7 +20,7 @@ RSVP = TOCRITERION2_REP + 1; % rsvp train to critereon
 
 % day 2
 SCAN_PREP = RSVP + 2;
-MOT_PRACTICE2 = SCAN_PREP + 1; %12
+MOT_PRACTICE2 = SCAN_PREP + 1; %13
 RECALL_PRACTICE = MOT_PRACTICE2 + 1;
 %SCAN_PREP = RECALL_PRACTICE + 1;
 RSVP2 = RECALL_PRACTICE + 1; % rsvp train to critereon
@@ -44,8 +44,8 @@ mot_realtime01b(SUBJECT, SETUP, [], 0, 0);
 % this will continue to train test and practice MOT, then move on to
 % MOT_Practice, MOT_PREP
 s2 = findMatch(SUBJECT,SVEC);
-
-%mot_realtime01b(SUBJECT,FAMILIARIZE2, 1, 0, 0,s2); %continue because want to not go through the break
+% TESTING TAKE OUT
+mot_realtime01b(SUBJECT,RECALL2, 1, 0, 0,s2); %continue because want to not go through the break
 
 mot_realtime01b(SUBJECT, FAMILIARIZE2, [], 0, 0,s2); %continue because want to not go through the break
 

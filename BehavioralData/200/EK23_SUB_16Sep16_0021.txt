@@ -1,0 +1,21 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	12.5  	3   	RIDGE     	realtime	3.952	NR  	0   	NR      	1 detail, 2+ details, full
+2   	52.5  	13  	CANDLE    	omit    	3.951	NR  	0   	NR      	1 detail, 2+ details, full
+3   	92.5  	4   	VAULT     	realtime	3.951	NR  	0   	NR      	1 detail, 2+ details, full
+4   	132.5 	16  	MALLET    	omit    	3.951	NR  	0   	NR      	1 detail, 2+ details, full
+5   	172.5 	8   	PLANET    	realtime	3.952	NR  	0   	NR      	1 detail, 2+ details, full
+6   	212.5 	12  	BADGE     	omit    	3.951	NR  	0   	NR      	1 detail, 2+ details, full
+7   	252.5 	2   	LIGHT     	realtime	3.955	NR  	0   	NR      	1 detail, 2+ details, full
+8   	292.5 	17  	COAL      	omit    	3.954	NR  	0   	NR      	1 detail, 2+ details, full
+9   	332.5 	1   	RAVINE    	realtime	3.954	NR  	0   	NR      	1 detail, 2+ details, full
+10  	372.5 	15  	FERRY     	omit    	3.954	NR  	0   	NR      	1 detail, 2+ details, full
+11  	412.5 	20  	MORNING   	omit    	3.955	NR  	0   	NR      	1 detail, 2+ details, full
+12  	452.5 	6   	CARD      	realtime	3.952	0.164	1   	1 detail	1 detail, 2+ details, full
+13  	492.5 	14  	LEAD      	omit    	3.955	NR  	0   	NR      	1 detail, 2+ details, full
+14  	532.5 	7   	CHALK     	realtime	3.954	NR  	0   	NR      	1 detail, 2+ details, full
+15  	572.5 	9   	EXIT      	realtime	3.956	NR  	0   	NR      	1 detail, 2+ details, full
+16  	612.5 	11  	PENNY     	omit    	3.951	NR  	0   	NR      	1 detail, 2+ details, full
+17  	652.5 	19  	SPONGE    	omit    	3.955	NR  	0   	NR      	1 detail, 2+ details, full
+18  	692.5 	5   	CORK      	realtime	3.954	NR  	0   	NR      	1 detail, 2+ details, full
+19  	732.5 	10  	FOSSIL    	realtime	3.956	NR  	0   	NR      	1 detail, 2+ details, full
+20  	772.5 	18  	PASTEL    	omit    	3.951	NR  	0   	NR      	1 detail, 2+ details, full

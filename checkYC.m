@@ -21,9 +21,9 @@ IDX = find(cellfun(@isequal,s2_stim.pics, s1_stim.pics))
 s1_stim.pics(21:28); %these should all be in the 00's
 s1_stim.preparedCues(21:28); %these should be only the training words
 
-%% check familiarization matches familiarize2
+%% check familiarization matches familiarize2, can also do familiarize 3 which is 16 (2,7,16)
 
-SESSION = 7;
+SESSION = 16; 
 
 
 fname = findNewestFile(s1_dir,fullfile(s1_dir, ['mot_realtime01_' num2str(s1) '_' num2str(SESSION)  '*.mat']));
@@ -32,29 +32,29 @@ s1_f = load(fname);
 fname = findNewestFile(s2_dir,fullfile(s2_dir, ['mot_realtime01_' num2str(s2) '_' num2str(SESSION)  '*.mat']));
 s2_f = load(fname);
 
-IDX = find(cellfun(@isequal,s1_f.stim.stim, s2_f.stim.stim)); %this should be ALL
-IDX = find(cellfun(@isequal,s1_f.stim.picStim, s2_f.stim.picStim)); %this should be ALL
+IDs = find(cellfun(@isequal,s1_f.stim.stim, s2_f.stim.stim)) %this should be ALL
+IDp = find(cellfun(@isequal,s1_f.stim.picStim, s2_f.stim.picStim)) %this should be ALL
 
 
-%% check to criterion matches
+%% check to criterion matches (to criteron 1, tc2, tc2rep, tc3-3,8,9,17)
 
-SESSION = 8;
+SESSION = 17;
 fname = findNewestFile(s1_dir,fullfile(s1_dir, ['mot_realtime01_' num2str(s1) '_' num2str(SESSION)  '*.mat']));
 s1_f = load(fname);
-
+nstim = length(unique(s1_f.stim.id));
 fname = findNewestFile(s2_dir,fullfile(s2_dir, ['mot_realtime01_' num2str(s2) '_' num2str(SESSION)  '*.mat']));
 s2_f = load(fname);
 
 % so for the first 20 trials, should be the same picture and associate
 
-IDXw = find(cellfun(@isequal,s1_f.stim.stim(1:20), s2_f.stim.stim(1:20))) %this should be ALL
-IDXp = find(cellfun(@isequal,s1_f.stim.associate(1:20), s2_f.stim.associate(1:20))) %this should be ALL
+IDXw = find(cellfun(@isequal,s1_f.stim.stim(1:nstim), s2_f.stim.stim(1:nstim))) %this should be ALL
+IDXp = find(cellfun(@isequal,s1_f.stim.associate(1:nstim), s2_f.stim.associate(1:nstim))) %this should be ALL
 
-c = isequal(s1_f.stim.choicePos(1:20,:),s2_f.stim.choicePos(1:20,:))
+c = isequal(s1_f.stim.choicePos(1:nstim,:),s2_f.stim.choicePos(1:nstim,:))
 
-%% check to see if RSVP is working!
+%% check to see if RSVP is working! can do RSVP and RSVP2 (10, 15 sessions)
 
-SESSION = 10;
+SESSION = 15;
 
 fname = findNewestFile(s1_dir,fullfile(s1_dir, ['mot_realtime01_' num2str(s1) '_' num2str(SESSION)  '*.mat']));
 s1_f = load(fname);
@@ -76,3 +76,51 @@ s2_dur = cell2mat(s2_trials(:,20));
 IDi = isequal(s1_id,s2_id)
 IDd = max(abs(s1_dur - s2_dur))
 abs(s1_dur - s2_dur)
+
+%% CHECK IF MOT_PRACTICE 2 IS SHOWING THE RIGHT PRACTICE WORDS & matched lure words, AND HAS THE DOT SPEED FROM THE SUBJECT, motLOC = 18
+SESSION = 22;
+fname = findNewestFile(s1_dir,fullfile(s1_dir, ['mot_realtime01_' num2str(s1) '_' num2str(SESSION)  '*.mat']));
+s1_f = load(fname);
+L1 = s1_f.stim.lureWords;
+trialSpeeds = s1_f.stim.speed;
+%make sure this is the right speed
+[z1 z2 z3] = findMatch(s1,8:15); %check z3 is the same speed as trialSpeeds
+
+fname = findNewestFile(s2_dir,fullfile(s2_dir, ['mot_realtime01_' num2str(s2) '_' num2str(SESSION)  '*.mat']));
+s2_f = load(fname);
+L2 = s2_f.stim.lureWords;
+lw = find(cellfun(@isequal, L1, L2))
+checkCond = isempty(find(~isequal(s1_f.stim.cond,s2_f.stim.cond)))
+if SESSION>=18 %if localizer or more check that all stimuli are the same
+    
+    allw = find(cellfun(@isequal, s1_f.stim.stim, s2_f.stim.stim))
+    if SESSION >=20 %if MOT or later
+        %also check to see if the dot speeds are exactly the same
+        checkSpeed= isempty(find(~isequal(s1_f.stim.motionSpeed,s2_f.stim.motionSpeed)))
+    end
+end
+
+%% CHECK IF RECALL_PRACTICE IS SHOWING WORDS, KEY PRESSES ARE RECORDED and then recall1 and 2: 19 and 23
+SESSION = 23;
+fname = findNewestFile(s1_dir,fullfile(s1_dir, ['mot_realtime01_' num2str(s1) '_' num2str(SESSION)  '*.mat']));
+s1_f = load(fname);
+
+fname = findNewestFile(s2_dir,fullfile(s2_dir, ['mot_realtime01_' num2str(s2) '_' num2str(SESSION)  '*.mat']));
+s2_f = load(fname);
+
+fname = findNewestFile(s1_dir,fullfile(s1_dir, ['EK' num2str(SESSION)  '*.mat']));
+s1_ek = load(fname);
+s1_ek.datastruct.trials; %check that key presses are correct
+allw = find(cellfun(@isequal, s1_f.stim.stim, s2_f.stim.stim))
+
+%% associates task is the same --pictures
+SESSION = 24;
+fname = findNewestFile(s1_dir,fullfile(s1_dir, ['mot_realtime01_' num2str(s1) '_' num2str(SESSION)  '*.mat']));
+s1_f = load(fname);
+
+fname = findNewestFile(s2_dir,fullfile(s2_dir, ['mot_realtime01_' num2str(s2) '_' num2str(SESSION)  '*.mat']));
+s2_f = load(fname);
+
+allpic = find(cellfun(@isequal, s1_f.stim.stim, s2_f.stim.stim))
+checkCond = isempty(find(~isequal(s1_f.stim.cond,s2_f.stim.cond)))
+checkid = isempty(find(~isequal(s1_f.stim.id,s2_f.stim.id)))

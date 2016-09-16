@@ -36,6 +36,9 @@ for s = 1:nsub
         end
         d = load(fileSpeed);
         allSpeed = d.stim.motionSpeed; %matrix of TR's
+        if subjectNum == 14
+            lasdlsa
+        end
         speedVector = reshape(allSpeed,1,numel(allSpeed));
         allMotionTRs = convertTR(d.timing.trig.wait,d.timing.plannedOnsets.motion,d.config.TR); %row,col = mTR,trialnumber
         allMotionTRs = [allMotionTRs; allMotionTRs(end,:)+1; allMotionTRs(end,:) + 2]; %add in the next 2 TR's for HDF
