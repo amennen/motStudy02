@@ -1,0 +1,18 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	8.6   	30  	EASEL     	localizer	3.452	1.163	1   	2+ details	2+ details
+2   	20.6  	33  	PIPE      	localizer	3.451	1.659	1   	1 detail	1 detail
+3   	32.6  	32  	DRILL     	localizer	3.451	1.443	1   	1 detail	1 detail
+4   	44.6  	40  	NOTE      	localizer	3.451	1.435	0   	no image	generic 
+5   	60.6  	41  	RADIO     	localizer	3.451	1.211	1   	2+ details	2+ details
+6   	72.6  	37  	CLUB      	localizer	3.451	1.243	1   	full    	full    
+7   	84.6  	31  	PYRAMID   	localizer	3.45	1.723	1   	1 detail	1 detail
+8   	96.6  	29  	BROOM     	localizer	3.45	1.083	1   	2+ details	2+ details
+9   	108.6 	44  	PLANK     	localizer	3.451	1.403	1   	full    	full    
+10  	120.6 	34  	IRON      	localizer	3.451	1.307	1   	full    	full    
+11  	132.6 	35  	ACRE      	localizer	3.451	1.652	1   	1 detail	1 detail
+12  	144.6 	43  	BASKET    	localizer	3.453	1.292	1   	2+ details	2+ details
+13  	156.6 	39  	RATTLE    	localizer	3.45	2.028	1   	full    	full    
+14  	168.6 	38  	SIGN      	localizer	3.451	1.332	1   	full    	full    
+15  	180.6 	42  	FLOOD     	localizer	3.45	1.284	1   	full    	full    
+16  	192.6 	36  	CHISEL    	localizer	3.45	2.38	1   	1 detail	1 detail
+17  	204.6 	40  	NOTE (repeat 1)	localizer	3.452	1.124	1   	2+ details	2+ details
