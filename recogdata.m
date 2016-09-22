@@ -7,14 +7,17 @@ svec = 8:15;
 NSUB = length(svec);
 
 for s = 1:NSUB
+    [allRem] = findRememberedStim(svec(s));
+    
     behavioral_dir = ['/Data1/code/' projectName '/' 'code' '/BehavioralData/' num2str(svec(s)) '/'];
         r = dir(fullfile(behavioral_dir, ['_' 'RECOG'  '*.mat'])); 
         r = load(fullfile(behavioral_dir,r(end).name)); 
         trials = table2cell(r.datastruct.trials);
         stimID = cell2mat(trials(:,8));
-        cond = cell2mat(trials(:,9));
-        acc = cell2mat(trials(:,11));
-        rt = cell2mat(trials(:,13));
+        goodTrials = find(ismember(stimID,allRem));
+        cond = cell2mat(trials(goodTrials,9));
+        acc = cell2mat(trials(goodTrials,11));
+        rt = cell2mat(trials(goodTrials,13));
         easy = find(cond==2);
         hard = find(cond==1);
         easy_score(s) = mean(acc(easy));
