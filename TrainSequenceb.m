@@ -1,7 +1,7 @@
 base_path = [fileparts(which('mot_realtime01.m')) filesep];
 cd(base_path);
 
-SUBJECT = 200;
+SUBJECT = 16;
 SVEC = 8:15;
 
 NUM_TASK_RUNS = 3;
@@ -53,4 +53,6 @@ mot_realtime01b(SUBJECT, FAMILIARIZE2, [], 0, 0,s2); %continue because want to n
 mot_realtime01b(SUBJECT, FAMILIARIZE2, [], 0, 0);
 
 %% after scanner, test associates
-mot_realtime01(SUBJECT,ASSOCIATES, [], 0, 0,2);
+s2 = findMatch(SUBJECT,SVEC)
+
+mot_realtime01b(SUBJECT,ASSOCIATES, [], 0, 0,s2);
