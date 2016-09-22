@@ -11,6 +11,7 @@ s2 = findMatch(SUBJECT,svec); %enter in s2!!
 SPTB_PATH = ['/Data1/code/SPTBanne'];
 addpath(genpath(SPTB_PATH));
 % if prev
+
 %     allScanNums = [7:2:19];
 % else
 %     allScanNums = [7 11:2:21];
@@ -63,11 +64,11 @@ ASSOCIATES = RECALL2 + 1;
 %% RUN MP_RAGE FIRST
 %% RUN VARIOUS BEHAVIORAL TASKS
 %first MOT_PRACTICE and RECALL PRACTICE
-mot_realtime01(SUBJECT,MOT_PRACTICE2, [],0,scanNow,s2); %will move automatically into RECALL_PRACTICE
+mot_realtime01b(SUBJECT,MOT_PRACTICE2, [],0,scanNow,s2); %will move automatically into RECALL_PRACTICE
 %then start RSVP task5
 %% SCAN_PREP: instructions and also 8 seconds
 scanNum = 7;
-mot_realtime01(SUBJECT,SCAN_PREP,[],scanNum,scanNow,s2)
+mot_realtime01b(SUBJECT,SCAN_PREP,[],scanNum,scanNow,s2)
 
 %% SCAN_PREP FILE PROCESS
 scanNum = 7; %change 
@@ -76,12 +77,12 @@ ProcessMask(SUBJECT,processNew,prev,scanNum,runNum) %have it so it waits until i
 
 %% NOW RUN FIELD MAPS WHILE NEXT BEHAVIORAL TASKS (RSVP2,FAMILIARIZE3,TOCRITERION3)
 
-mot_realtime01(SUBJECT,RSVP2,[],0,scanNow,s2) %will continue until TOCRITERION3
+mot_realtime01b(SUBJECT,RSVP2,[],0,scanNow,s2) %will continue until TOCRITERION3
 %look for mask and test it
 
 %% LOCALIZER DISPLAY
 scanNum = 11;
-mot_realtime01(SUBJECT,MOT_LOCALIZER,[],scanNum,scanNow,s2);
+mot_realtime01b(SUBJECT,MOT_LOCALIZER,[],scanNum,scanNow,s2);
 
 %% LOCALIZER FILE PROCESS
 scanNum = 11;
@@ -92,11 +93,11 @@ LocalizerFileProcess(SUBJECT,crossval,featureSelect,prev,scanNow,scanNum,MOT_LOC
 
 %% RECALL 1
 scanNum = 13;
-mot_realtime01(SUBJECT,RECALL1,[],scanNum,scanNow,s2);
+mot_realtime01b(SUBJECT,RECALL1,[],scanNum,scanNow,s2);
 
 %% MOT RUN 1 DISPLAY
 scanNum = 15; %new would be 15
-mot_realtime01(SUBJECT,MOT{1},[],scanNum,scanNow,s2);
+mot_realtime01b(SUBJECT,MOT{1},[],scanNum,scanNow,s2);
 %% MOT RUN 1 FILE PROCESS
 scanNum = 15;%normally 15;
 blockNum = 1;
@@ -105,7 +106,7 @@ RealTimeMemoryFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{1},bloc
 
 %% MOT RUN 2 DISPLAY
 scanNum = 17;
-mot_realtime01(SUBJECT,MOT{2},[],scanNum,scanNow,s2);
+mot_realtime01b(SUBJECT,MOT{2},[],scanNum,scanNow,s2);
 %% MOT RUN 2 FILE PROCESS
 scanNum = 17;
 featureSelect = 1;
@@ -114,7 +115,7 @@ RealTimeMemoryFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{2},bloc
 
 %% MOT RUN 3 DISPLAY
 scanNum = 19;
-mot_realtime01(SUBJECT,MOT{3},[],scanNum,scanNow,s2);
+mot_realtime01b(SUBJECT,MOT{3},[],scanNum,scanNow,s2);
 %% MOT RUN 3 FILE PROCESS
 scanNum = 19;
 featureSelect = 1;
@@ -123,4 +124,4 @@ RealTimeMemoryFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{3},bloc
 
 %% RECALL 2
 scanNum = 21;
-mot_realtime01(SUBJECT,RECALL2,[],scanNum,scanNow,s2);
+mot_realtime01b(SUBJECT,RECALL2,[],scanNum,scanNow,s2);

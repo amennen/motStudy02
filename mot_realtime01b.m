@@ -1797,10 +1797,9 @@ switch SESSION
        
         
         %save the timing, stim ID, and stim conditions here!
-        if SESSION > RECALL1
         sessionInfoFile = fullfile(ppt_dir, ['SessionInfo' '_' num2str(SESSION) '.mat']);
-        save(sessionInfoFile, 'stimCond','stimID', 'timing', 'config'); 
-        end
+        save(sessionInfoFile, 'stimCond','stimID','timing', 'config'); 
+        
         
         for n=1:length(stim.cond)
             stim.trial = n;
