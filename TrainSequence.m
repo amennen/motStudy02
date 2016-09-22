@@ -1,7 +1,7 @@
 base_path = [fileparts(which('mot_realtime01.m')) filesep];
 cd(base_path);
 
-SUBJECT = 15;
+SUBJECT = 18;
 
 
 NUM_TASK_RUNS = 3;

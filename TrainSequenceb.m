@@ -1,8 +1,8 @@
 base_path = [fileparts(which('mot_realtime01.m')) filesep];
 cd(base_path);
 
-SUBJECT = 16;
-SVEC = 8:15;
+SUBJECT = 19;
+SVEC = [12:15 18];
 
 NUM_TASK_RUNS = 3;
 % orientation session
@@ -37,7 +37,7 @@ RECALL2 = MOT{end} + 1; % post-scan rsvp memory test
 ASSOCIATES = RECALL2 + 1;
 
 %% first practice set
-mot_realtime01b(SUBJECT, SETUP, [], 0, 0);
+mot_realtime01b(SUBJECT, 4, [], 0, 0);
 
 %for testing
 %mot_realtime01b(SUBJECT,TOCRITERION1,[],0,0);
@@ -45,7 +45,7 @@ mot_realtime01b(SUBJECT, SETUP, [], 0, 0);
 % MOT_Practice, MOT_PREP
 s2 = findMatch(SUBJECT,SVEC);
 % TESTING TAKE OUT
-mot_realtime01b(SUBJECT,RECALL2, 1, 0, 0,s2); %continue because want to not go through the break
+%mot_realtime01b(SUBJECT,RECALL2, 1, 0, 0,s2); %continue because want to not go through the break
 
 mot_realtime01b(SUBJECT, FAMILIARIZE2, [], 0, 0,s2); %continue because want to not go through the break
 

@@ -1,0 +1,9 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	34.3  	27  	CARAVAN   	target  	1.952	NR  	0   	NR      	target  
+2   	99.2  	24  	BOLT      	target  	1.955	0.798	0   	non-target	target  
+3   	160   	26  	LENS      	target  	1.95	0.943	0   	target  	non-target
+4   	212.3 	28  	RACK      	target  	1.956	0.95	1   	target  	target  
+5   	254.3 	21  	QUILL     	target  	1.951	0.78	0   	non-target	target  
+6   	296.3 	25  	DEPOT     	target  	1.954	0.993	0   	non-target	target  
+7   	338.3 	23  	FRAME     	target  	1.954	0.441	1   	target  	target  
+8   	380.3 	22  	BROOM     	target  	1.952	0.951	1   	target  	target  
