@@ -7,6 +7,9 @@
 %recogdata.m to look at the recognition memory)
 projectName = 'motStudy02';
 svec = 8:15;
+keepSub = [4 7 8 12:15];
+goodSubIndices = find(ismember(svec,keepSub));
+svec = svec(goodSubIndices);
 NSUB = length(svec);
 recallSession = [19 23];
 nstim = 10;
@@ -67,7 +70,7 @@ ylabel('Level of Detail Difference')
 fig=gcf;
 set(findall(fig,'-property','FontSize'),'FontSize',20)
 %legend('Pre MOT', 'Post MOT')
-print(h, sprintf('%sratingsRt.pdf', allplotDir), '-dpdf')
+print(h, sprintf('%sratingsRt_good.pdf', allplotDir), '-dpdf')
 
 
 

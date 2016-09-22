@@ -11,7 +11,7 @@ nstim = 10;
 nTRs = 15;
 sepTRs = 17;
 nblock = 3;
-svec = 8:15; %[3:5 7]; %subjects 3,4,5,7 are for initial RT, subjects 8-10 are after changes
+svec = 8:16; %[3:5 7]; %subjects 3,4,5,7 are for initial RT, subjects 8-10 are after changes
 nsub = length(svec);
 sepbystim = zeros(nstim,nTRs*3);
 speedbystim = zeros(nstim,nTRs*3);
@@ -36,9 +36,7 @@ for s = 1:nsub
         end
         d = load(fileSpeed);
         allSpeed = d.stim.motionSpeed; %matrix of TR's
-        if subjectNum == 14
-            lasdlsa
-        end
+        
         speedVector = reshape(allSpeed,1,numel(allSpeed));
         allMotionTRs = convertTR(d.timing.trig.wait,d.timing.plannedOnsets.motion,d.config.TR); %row,col = mTR,trialnumber
         allMotionTRs = [allMotionTRs; allMotionTRs(end,:)+1; allMotionTRs(end,:) + 2]; %add in the next 2 TR's for HDF
@@ -97,25 +95,27 @@ for s = 1:nsub
     izero = find(newspeeds==0);
     % newspeeds(izero) = [];
     % newseps(izero) = [];
-    
+    if subjectNum == 12
+        sads
+    end
     h = figure;
     x = newspeeds;
     y = newseps;
-    scatter(newspeeds,newseps,'fill','MarkerEdgeColor','b',...
-        'MarkerFaceColor','c',...
-        'LineWidth',2.5);
-    xlabel('Speed Change')
-    ylabel('Classification Change')
+    scatter(newspeeds,newseps,'fill','MarkerEdgeColor',[207 127 102]/255,...
+        'MarkerFaceColor',[255 255 255]/255,...
+        'LineWidth',2);
+    xlabel('\Delta Speed')
+    ylabel('\Delta  Retrieval - Control Evidence')
     [rho,pval] = corrcoef([newspeeds' newseps']);
     corrcoeff(s) = rho(1,2);
-    text(2,.85,['corr = ' num2str(rho(1,2))]);
+    text(2,.85,['\rho = ' num2str(rho(1,2))]);
     text(2,.65, ['p = ' num2str(pval(1,2))])
     
     p = polyfit(x,y,1);
     yfit = polyval(p,x)
     hold on;
-    plot(x,yfit, '--k', 'LineWidth', 3);
-    text(2,.45, ['slope = ' num2str(p(1))])
+    plot(x,yfit, '--k', 'LineWidth', 3, 'Color', [207 64 19]/255);
+    %text(2,.45, ['slope = ' num2str(p(1))])
     
     ylim([-1 1])
     xlim([-6 6 ])
@@ -142,7 +142,7 @@ for s = 1:nsub
     xlabel('Speed Change')
     ylabel('Classification Change')
     [rho,pval] = corrcoef([x' y']);
-    text(2,.85,['corr = ' num2str(rho(1,2))]);
+    text(2,.85,['\Delta = ' num2str(rho(1,2))]);
     text(2,.65, ['p = ' num2str(pval(1,2))]);
     
     p = polyfit(x,y,1);

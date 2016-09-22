@@ -4,6 +4,9 @@ projectName = 'motStudy02';
 allplotDir = ['/Data1/code/' projectName '/' 'Plots' '/' ];
 
 svec = 8:15;
+keepSub = [4 7 8 12:15];
+goodSubIndices = find(ismember(svec,keepSub));
+svec = svec(goodSubIndices);
 NSUB = length(svec);
 
 for s = 1:NSUB

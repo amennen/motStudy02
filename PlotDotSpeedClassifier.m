@@ -9,7 +9,7 @@ allsep = [];
 nstim = 10;
 nTRs = 15;
 nblock = 3;
-svec = [3:5 7:15];
+svec = [3:5 7:16];
 nold = 4;
 nnew = length(svec)-nold;
 %svec = 8:13;
@@ -17,8 +17,10 @@ nsub = length(svec);
 sepbystim = zeros(nstim,nTRs*3);
 speedbystim = zeros(nstim,nTRs*3);
 MOT_PREP = 5;
-colors = [110 62 106;83 200 212; 187 124 181]/255;
-plotstim = 0; %if you want trial by trial plots
+colors = [207 127 102;130 161 171; 207 64 19]/255;
+
+%colors = [110 62 106;83 200 212; 187 124 181]/255;
+plotstim = 1; %if you want trial by trial plots
 plotmixedstim = 0; %if you want trial by trial plots with mixed stimuli
 allplotDir = ['/Data1/code/' projectName '/' 'Plots' '/' ];
 
@@ -28,6 +30,7 @@ for s = 1:nsub
      fbsep = [];
      allspeeds = [];
     for iblock = 1:nblock
+        
         blockNum = iblock;
         SESSION = 19 + blockNum;
         %blockNum = SESSION - 20 + 1;
@@ -116,6 +119,7 @@ for s = 1:nsub
         fbsep = [fbsep fbsepvec];
         
     end
+    
     newspeedbystim = reshape(speedbystim,1,numel(speedbystim));
     newsepbystim = reshape(sepbystim,1,numel(sepbystim));
     [good] = find(newsepbystim > 0.05 & newsepbystim < 0.15);
@@ -253,7 +257,11 @@ else %average over 2 TR's
         smoothedmixedsep(:,i) = mean(vec2mix(:,i:i+1),2);
     end
 end
-        
+    if max(max(smoothedsep < -0.6)) || max(max(smoothedsep)) > 0.8
+        sprintf('BAD STIMULI for subject %i', subjectNum)
+    else
+        sprintf('OKAY for subject %i', subjectNum)
+    end  
 %     
     figure;
     for rep = 1:(length(allsep)/15)-1
@@ -293,8 +301,9 @@ end
         ylim(hAx(2),[-0.5 10])
         ylim(hAx(1), [-1 1])
         xlim([0.5 45.5])
-        set(hLine2, 'LineStyle', '--', 'Color', colors(2,:), 'LineWidth', 5)
-        set(hLine1, 'LineStyle', '-', 'Color', colors(1,:), 'LineWidth', 4, 'Marker', 'o', 'MarkerSize', 7)
+        set(hLine2, 'LineStyle', '-', 'Color', colors(2,:), 'LineWidth', 5)
+        set(hLine1, 'LineStyle', '-', 'Color', colors(1,:), 'LineWidth', 3, 'Marker', '.', 'MarkerSize', 25)
+        %set(hLine1, 'LineStyle', '-', 'Color', colors(1,:), 'LineWidth', 4, 'Marker', 'o', 'MarkerSize', 7)
         linkaxes([hAx(1) hAx(2)], 'x');
         title(sprintf('Subject: %i Stimulus ID: %i',subjectNum,stim));
         set(findall(gcf,'-property','FontSize'),'FontSize',20)
@@ -303,7 +312,7 @@ end
         set(hAx(2), 'YColor', colors(2,:), 'FontSize', 16, 'YTick', [0:10]); %'YTickLabel', {'0', '1', '2', '3', '4', '5})
         set(hAx(1), 'YColor', colors(1,:), 'FontSize', 16, 'YTick', [-1:.5:1], 'YTickLabel', {'-1', '-0.5', '0', '0.5', '1'});
         hold on;
-        plot(x,smoothedsep(stim,:), 'LineStyle', '-', 'Color', colors(3,:), 'LineWidth', 4, 'Marker', 'o', 'MarkerSize', 7)
+        plot(x,smoothedsep(stim,:), 'LineStyle', '-', 'Color', colors(3,:), 'LineWidth', 4, 'Marker', 'o', 'MarkerSize', 3)
         legend('Ev', 'Smoothed Ev', 'Dot Speed')
         for rep = 1:2
             line([rep*nTRs+.5 rep*nTRs + .5], [-10 15], 'color', 'k', 'LineWidth', 2);
@@ -325,8 +334,9 @@ end
         ylim(hAx(2),[-0.5 10])
         ylim(hAx(1), [-1 1])
         xlim([0.5 45.5])
-        set(hLine2, 'LineStyle', '--', 'Color', colors(2,:), 'LineWidth', 5)
+        set(hLine2, 'LineStyle', '-', 'Color', colors(2,:), 'LineWidth', 5)
         set(hLine1, 'LineStyle', '-', 'Color', colors(1,:), 'LineWidth', 4, 'Marker', 'o', 'MarkerSize', 7)
+        %set(hLine1, 'LineStyle', '-', 'Color', colors(1,:), 'LineWidth', 4, 'Marker', 'o', 'MarkerSize', 7)
         linkaxes([hAx(1) hAx(2)], 'x');
         title(sprintf('MIXED Subject: %i Stimulus ID: %i',subjectNum,stim));
         set(findall(gcf,'-property','FontSize'),'FontSize',20)
