@@ -1797,7 +1797,7 @@ switch SESSION
        
         
         %save the timing, stim ID, and stim conditions here!
-        if SESSION > RSVP
+        if SESSION > RSVP2
         sessionInfoFile = fullfile(ppt_dir, ['SessionInfo' '_' num2str(SESSION) '.mat']);
         save(sessionInfoFile, 'stimCond','stimID','timing', 'config'); 
         end

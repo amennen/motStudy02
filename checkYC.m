@@ -1,6 +1,6 @@
 % check yoking--created to make sure that things are okay
-svec = 8:14;
-s1 = 200; %this is the YC subject
+svec = 8:15;
+s1 = 16; %this is the YC subject
 s2 = findMatch(s1,svec);
 
 base_path = [fileparts(which('mot_realtime01.m')) filesep];
@@ -15,15 +15,15 @@ s1_stim = load(fname);
 fname = findNewestFile(s2_dir,fullfile(s2_dir, ['mot_realtime01_' 'subj_' num2str(s2) '_stimAssignment'  '*.mat']));
 s2_stim = load(fname);
 
-IDX = find(cellfun(@isequal,s2_stim.preparedCues, s1_stim.preparedCues)); %this should be everything except 21-28!
-IDX = find(cellfun(@isequal,s2_stim.pics, s1_stim.pics))
+IDX = find(cellfun(@isequal,s2_stim.preparedCues, s1_stim.preparedCues)) %this should be everything except 21-28!
+IDX = find(cellfun(@isequal,s2_stim.pics, s1_stim.pics)) %this should be everything except 21-28!
 
-s1_stim.pics(21:28); %these should all be in the 00's
-s1_stim.preparedCues(21:28); %these should be only the training words
+s1_stim.pics(21:28) %these should all be in the 00's
+s1_stim.preparedCues(21:28) %these should be only the training words
 
 %% check familiarization matches familiarize2, can also do familiarize 3 which is 16 (2,7,16)
 
-SESSION = 16; 
+SESSION = 8; 
 
 
 fname = findNewestFile(s1_dir,fullfile(s1_dir, ['mot_realtime01_' num2str(s1) '_' num2str(SESSION)  '*.mat']));
@@ -77,8 +77,8 @@ IDi = isequal(s1_id,s2_id)
 IDd = max(abs(s1_dur - s2_dur))
 abs(s1_dur - s2_dur)
 
-%% CHECK IF MOT_PRACTICE 2 IS SHOWING THE RIGHT PRACTICE WORDS & matched lure words, AND HAS THE DOT SPEED FROM THE SUBJECT, motLOC = 18
-SESSION = 22;
+%% CHECK IF MOT_PRACTICE 2 IS SHOWING THE RIGHT PRACTICE WORDS & matched lure words, AND HAS THE DOT SPEED FROM THE SUBJECT, motLOC = 18, mot_practice2 = 13
+SESSION =13 %left off: figure out why for mot practice, the conditions aren't exactly the same--did i not match?
 fname = findNewestFile(s1_dir,fullfile(s1_dir, ['mot_realtime01_' num2str(s1) '_' num2str(SESSION)  '*.mat']));
 s1_f = load(fname);
 L1 = s1_f.stim.lureWords;
@@ -90,17 +90,18 @@ fname = findNewestFile(s2_dir,fullfile(s2_dir, ['mot_realtime01_' num2str(s2) '_
 s2_f = load(fname);
 L2 = s2_f.stim.lureWords;
 lw = find(cellfun(@isequal, L1, L2))
-checkCond = isempty(find(~isequal(s1_f.stim.cond,s2_f.stim.cond)))
+checkCond = sum(sum(s1_f.stim.cond == s2_f.stim.cond))/numel(s1_f.stim.cond)
+allw = find(cellfun(@isequal, s1_f.stim.stim, s2_f.stim.stim))
+
 if SESSION>=18 %if localizer or more check that all stimuli are the same
     
     allw = find(cellfun(@isequal, s1_f.stim.stim, s2_f.stim.stim))
     if SESSION >=20 %if MOT or later
         %also check to see if the dot speeds are exactly the same
-        checkSpeed= isempty(find(~isequal(s1_f.stim.motionSpeed,s2_f.stim.motionSpeed)))
-    end
+        checkSpeed= sum(sum(s1_f.stim.motionSpeed == s2_f.stim.motionSpeed))/numel(s1_f.stim.motionSpeed)
 end
-
-%% CHECK IF RECALL_PRACTICE IS SHOWING WORDS, KEY PRESSES ARE RECORDED and then recall1 and 2: 19 and 23
+end
+%% CHECK IF RECALL_PRACTICE IS SHOWING WORDS, KEY PRESSES ARE RECORDED and then recall1 and 2: 14, 19 and 23
 SESSION = 23;
 fname = findNewestFile(s1_dir,fullfile(s1_dir, ['mot_realtime01_' num2str(s1) '_' num2str(SESSION)  '*.mat']));
 s1_f = load(fname);
