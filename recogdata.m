@@ -3,7 +3,7 @@ recog = 24; %associates task
 projectName = 'motStudy02';
 allplotDir = ['/Data1/code/' projectName '/' 'Plots' '/' ];
 
-svec = 8:15;
+svec = [8:15 17]l;
 keepSub = [4 7 8 12:15];
 goodSubIndices = find(ismember(svec,keepSub));
 svec = svec(goodSubIndices);
