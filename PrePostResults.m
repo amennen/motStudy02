@@ -21,11 +21,11 @@ plotDir = ['/Data1/code/' projectName '/' 'Plots' '/' ]; %should be all
 %plot dir?
 updated =1; %for only looking at the results recorded after making differences (minimum dot speed, increase starting speed, average over 2)
 oldonly = 0;
-svec = [3:5 7:15];
-keepSub = [4 7 8 12:15];
+svec = [3:5 7:15 18];
+keepSub = [4 7 8 12:15 18];
 goodSubIndices = find(ismember(svec,keepSub));
-datevec = {'7-12-16', '7-14-16', '7-14-16', '7-15-16', '8-10-16', '8-11-16', '8-16-16', '8-18-16', '8-27-16', '8-30-16', '9-7-16', '9-14-16'};
-runvec = [1 1 2 1 1 1 1 1 1 1 1 1];
+datevec = {'7-12-16', '7-14-16', '7-14-16', '7-15-16', '8-10-16', '8-11-16', '8-16-16', '8-18-16', '8-27-16', '8-30-16', '9-7-16', '9-14-16', '9-23-16'};
+runvec = [1 1 2 1 1 1 1 1 1 1 1 1 1];
 
 svec = svec(goodSubIndices);
 datevec = datevec(goodSubIndices);
@@ -60,6 +60,8 @@ for s = 1:NSUB
         recallScan = [13 23];
     elseif subjectNum == 14
         recallScan = [17 27];
+    elseif subjectNum == 18
+        recallScan = [19 27];
     end
     recallSession = [19 23];
     %date = '7-12-16';
