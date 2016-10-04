@@ -1,0 +1,11 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	67.4  	10  	FOAM      	rt-targ 	1.954	0.835	1   	target  	target  
+2   	109.4 	8   	DRILL     	rt-targ 	1.951	0.947	1   	non-target	non-target
+3   	151.4 	9   	MALLET    	rt-targ 	1.95	1.067	1   	non-target	non-target
+4   	193.4 	2   	POLE      	rt-targ 	1.951	0.739	1   	non-target	non-target
+5   	235.4 	7   	EASEL     	rt-targ 	1.95	0.876	1   	non-target	non-target
+6   	277.4 	5   	TART      	rt-targ 	1.953	0.956	1   	target  	target  
+7   	319.4 	1   	BOTTLE    	rt-targ 	1.951	1.244	1   	non-target	non-target
+8   	361.3 	3   	POLISH    	rt-targ 	1.95	0.805	1   	non-target	non-target
+9   	403.3 	4   	CARD      	rt-targ 	1.951	1.157	1   	target  	target  
+10  	445.3 	6   	DEPOT     	rt-targ 	1.95	1.029	1   	non-target	non-target

@@ -1,0 +1,4 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	13.2  	27  	FERRY     	5       	3.951	3.107	1   	2+ details	1 detail, 2+ details, full
+2   	53.2  	24  	RACKET    	5       	3.951	3.531	1   	2+ details	1 detail, 2+ details, full
+3   	93.2  	25  	TRIPOD    	5       	3.951	2.724	1   	full    	1 detail, 2+ details, full

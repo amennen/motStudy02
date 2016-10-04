@@ -3,7 +3,7 @@ recog = 24; %associates task
 projectName = 'motStudy02';
 allplotDir = ['/Data1/code/' projectName '/' 'Plots' '/' ];
 
-svec = 8:15;
+svec = [8:15 17]l;
 keepSub = [4 7 8 12:15];
 goodSubIndices = find(ismember(svec,keepSub));
 svec = svec(goodSubIndices);
@@ -25,8 +25,8 @@ for s = 1:NSUB
         hard = find(cond==1);
         easy_score(s) = mean(acc(easy));
         hard_score(s) = mean(acc(hard));
-        easy_rt(s) = nanmean(rt(easy));
-        hard_rt(s) = nanmean(rt(hard));
+        easy_rt(s) = nanmedian(rt(easy));
+        hard_rt(s) = nanmedian(rt(hard));
 end
 eALLD = [std(hard_score)/sqrt(NSUB-1);std(easy_score)/sqrt(NSUB-1)];
 ALLD = [mean(hard_score); mean(easy_score)];
@@ -42,7 +42,7 @@ set(findall(fig,'-property','FontSize'),'FontSize',20)
 print(h, sprintf('%srecogacc.pdf', allplotDir), '-dpdf')
 
 eALLD = [nanstd(hard_rt)/sqrt(NSUB-1);nanstd(easy_rt)/sqrt(NSUB-1)];
-ALLD = [nanmean(hard_rt); nanmean(easy_rt)];
+ALLD = [nanmedian(hard_rt); nanmedian(easy_rt)];
 h = figure;
 barwitherr(eALLD,ALLD)
 set(gca,'XTickLabel' , ['RT  '; 'Omit']);

@@ -1,7 +1,8 @@
 base_path = [fileparts(which('mot_realtime01.m')) filesep];
 cd(base_path);
 
-SUBJECT = 19;
+SUBJECT = 20;
+%all given subjects: 8,12,13,14,15,18
 SVEC = [12:15 18];
 
 NUM_TASK_RUNS = 3;
@@ -37,7 +38,7 @@ RECALL2 = MOT{end} + 1; % post-scan rsvp memory test
 ASSOCIATES = RECALL2 + 1;
 
 %% first practice set
-mot_realtime01b(SUBJECT, 4, [], 0, 0);
+mot_realtime01b(SUBJECT, SETUP, [], 0, 0);
 
 %for testing
 %mot_realtime01b(SUBJECT,TOCRITERION1,[],0,0);
