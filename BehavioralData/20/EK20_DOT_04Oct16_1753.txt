@@ -1,0 +1,11 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	67.2  	1   	RAVINE    	rt-targ 	1.954	1.249	1   	non-target	non-target
+2   	109.2 	10  	FOSSIL    	rt-targ 	1.952	0.632	1   	non-target	non-target
+3   	151.2 	3   	RIDGE     	rt-targ 	1.95	1.553	1   	non-target	non-target
+4   	193.2 	2   	LIGHT     	rt-targ 	1.95	1.025	1   	target  	target  
+5   	235.2 	7   	CHALK     	rt-targ 	1.95	1.137	1   	non-target	non-target
+6   	277.2 	6   	CARD      	rt-targ 	1.95	1.85	1   	non-target	non-target
+7   	319.2 	9   	EXIT      	rt-targ 	1.952	1.034	1   	non-target	non-target
+8   	361.2 	8   	PLANET    	rt-targ 	1.951	0.938	1   	non-target	non-target
+9   	403.2 	5   	CORK      	rt-targ 	1.95	1.091	1   	target  	target  
+10  	445.2 	4   	VAULT     	rt-targ 	1.95	1.155	1   	non-target	non-target

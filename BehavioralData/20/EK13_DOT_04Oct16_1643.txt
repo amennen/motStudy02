@@ -1,0 +1,5 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	35.9  	21  	PUZZLE    	targ_hard	1.951	0.937	0   	non-target	target  
+2   	77.9  	45  	PUDDLE    	lure_easy	1.95	1.257	1   	non-target	non-target
+3   	119.9 	22  	PIN       	targ_easy	1.95	1.209	1   	non-target	non-target
+4   	161.9 	46  	IODINE    	lure_hard	1.95	1.002	1   	target  	target  
