@@ -3,7 +3,7 @@ cd(base_path);
 
 SUBJECT = 20;
 %all given subjects: 8,12,13,14,15,18
-SVEC = [12:15 18];
+SVEC = [12 13 15 18];
 
 NUM_TASK_RUNS = 3;
 % orientation session

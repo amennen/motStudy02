@@ -1,0 +1,49 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	34.2  	28  	CLUB      	target  	1.955	0.858	1   	non-target	non-target
+2   	76.2  	28  	CLUB (repeat 1)	target  	1.953	1.582	1   	non-target	non-target
+3   	118.2 	23  	CARBON    	target  	1.953	0.836	1   	non-target	non-target
+4   	160.2 	21  	CARAVAN   	target  	1.955	1.642	1   	non-target	non-target
+5   	202.2 	23  	CARBON (repeat 1)	target  	1.955	1.151	1   	target  	target  
+6   	310.7 	27  	PUDDLE    	target  	1.954	1.022	1   	non-target	non-target
+7   	352.7 	25  	VAULT     	target  	1.955	1.039	1   	non-target	non-target
+8   	394.7 	23  	CARBON (repeat 2)	target  	1.955	0.767	1   	target  	target  
+9   	436.7 	23  	CARBON (repeat 3)	target  	1.955	0.663	1   	target  	target  
+10  	478.7 	22  	PORTAL    	target  	1.951	1.187	1   	non-target	non-target
+11  	539.6 	24  	POLISH    	target  	1.952	0.794	0   	target  	non-target
+12  	581.6 	22  	PORTAL (repeat 1)	target  	1.95	0.888	0   	target  	non-target
+13  	623.6 	26  	MIRROR    	target  	1.951	0.743	1   	non-target	non-target
+14  	665.6 	26  	MIRROR (repeat 1)	target  	1.952	1.133	1   	non-target	non-target
+15  	707.6 	23  	CARBON (repeat 4)	target  	1.955	1.331	1   	non-target	non-target
+16  	751.6 	27  	PUDDLE (repeat 1)	target  	1.955	0.897	1   	non-target	non-target
+17  	793.6 	21  	CARAVAN (repeat 1)	target  	1.955	0.748	1   	target  	target  
+18  	835.6 	27  	PUDDLE (repeat 2)	target  	1.953	0.866	1   	non-target	non-target
+19  	877.6 	22  	PORTAL (repeat 2)	target  	1.951	0.922	1   	non-target	non-target
+20  	919.6 	21  	CARAVAN (repeat 2)	target  	1.953	0.968	1   	non-target	non-target
+21  	1047.3	24  	POLISH (repeat 1)	target  	1.953	0.897	1   	non-target	non-target
+22  	1089.3	26  	MIRROR (repeat 2)	target  	1.956	0.545	1   	target  	target  
+23  	1131.3	28  	CLUB (repeat 2)	target  	1.953	0.695	1   	target  	target  
+24  	1173.3	25  	VAULT (repeat 1)	target  	1.954	1.035	0   	non-target	target  
+25  	1215.3	25  	VAULT (repeat 2)	target  	1.955	0.938	1   	non-target	non-target
+26  	1305.1	26  	MIRROR (repeat 3)	target  	1.952	0.697	1   	target  	target  
+27  	1347.1	27  	PUDDLE (repeat 3)	target  	1.956	1.057	1   	non-target	non-target
+28  	1389.1	22  	PORTAL (repeat 3)	target  	1.955	0.78	0   	non-target	target  
+29  	1431.1	23  	CARBON (repeat 5)	target  	1.95	0.922	0   	target  	non-target
+30  	1473  	28  	CLUB (repeat 3)	target  	1.952	0.891	0   	non-target	target  
+31  	1516.6	26  	MIRROR (repeat 4)	target  	1.955	0.889	0   	non-target	target  
+32  	1558.6	24  	POLISH (repeat 2)	target  	1.953	1.167	1   	target  	target  
+33  	1600.6	25  	VAULT (repeat 3)	target  	1.955	1.012	0   	target  	non-target
+34  	1642.6	26  	MIRROR (repeat 5)	target  	1.952	0.697	1   	target  	target  
+35  	1684.6	21  	CARAVAN (repeat 3)	target  	1.955	1.031	1   	non-target	non-target
+36  	1761.4	24  	POLISH (repeat 3)	target  	1.951	0.887	0   	non-target	target  
+37  	1803.4	24  	POLISH (repeat 4)	target  	1.955	0.822	0   	target  	non-target
+38  	1845.4	27  	PUDDLE (repeat 4)	target  	1.954	1.034	1   	non-target	non-target
+39  	1887.4	25  	VAULT (repeat 4)	target  	1.955	0.953	1   	non-target	non-target
+40  	1929.4	28  	CLUB (repeat 4)	target  	1.951	1.127	0   	non-target	target  
+41  	1972.9	22  	PORTAL (repeat 4)	target  	1.955	1.223	1   	non-target	non-target
+42  	2014.9	22  	PORTAL (repeat 5)	target  	1.951	0.861	0   	non-target	target  
+43  	2056.9	27  	PUDDLE (repeat 5)	target  	1.952	0.842	1   	target  	target  
+44  	2098.9	21  	CARAVAN (repeat 4)	target  	1.955	0.976	0   	non-target	target  
+45  	2140.9	21  	CARAVAN (repeat 5)	target  	1.951	0.939	1   	non-target	non-target
+46  	2184.3	24  	POLISH (repeat 5)	target  	1.956	0.85	0   	non-target	target  
+47  	2226.3	28  	CLUB (repeat 5)	target  	1.953	0.754	1   	target  	target  
+48  	2268.3	25  	VAULT (repeat 5)	target  	1.953	1.022	1   	non-target	non-target
