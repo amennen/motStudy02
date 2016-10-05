@@ -1,0 +1,9 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	9.9   	21  	HOSE      	stair   	3.455	0.935	1   	full    	full    
+2   	26    	27  	JAIL      	stair   	3.45	0.91	1   	full    	full    
+3   	39.8  	23  	SCOUT     	stair   	3.454	0.721	1   	2+ details	2+ details
+4   	53.2  	22  	PHONE     	stair   	3.455	1.109	1   	2+ details	2+ details
+5   	65.2  	25  	PLANK     	stair   	3.456	0.851	1   	full    	full    
+6   	77.2  	24  	DOME      	stair   	3.453	0.889	1   	1 detail	1 detail
+7   	89.2  	28  	MATCH     	stair   	3.453	0.712	1   	generic 	generic 
+8   	101.3 	26  	STAPLE    	stair   	3.453	1.278	1   	1 detail	1 detail
