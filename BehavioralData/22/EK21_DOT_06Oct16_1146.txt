@@ -1,0 +1,11 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	66.8  	4   	FOIL      	rt-targ 	1.953	1.262	1   	non-target	non-target
+2   	108.8 	6   	CARD      	rt-targ 	1.951	0.855	1   	non-target	non-target
+3   	150.8 	1   	POLISH    	rt-targ 	1.953	0.783	1   	target  	target  
+4   	192.8 	7   	TIMBER    	rt-targ 	1.95	0.759	1   	target  	target  
+5   	234.8 	5   	BRASS     	rt-targ 	1.951	0.872	1   	non-target	non-target
+6   	276.8 	8   	RADIO     	rt-targ 	1.95	0.599	1   	target  	target  
+7   	318.8 	9   	GIFT      	rt-targ 	1.951	0.792	1   	non-target	non-target
+8   	360.8 	2   	ELBOW     	rt-targ 	1.951	0.817	1   	non-target	non-target
+9   	402.8 	3   	AXLE      	rt-targ 	1.95	0.817	0   	non-target	target  
+10  	444.8 	10  	PASTEL    	rt-targ 	1.951	0.761	1   	non-target	non-target

@@ -11,7 +11,7 @@ nstim = 10;
 nTRs = 15;
 sepTRs = 17;
 nblock = 3;
-svec = 8:16; %[3:5 7]; %subjects 3,4,5,7 are for initial RT, subjects 8-10 are after changes
+svec = [12:16 18 20]; %[3:5 7]; %subjects 3,4,5,7 are for initial RT, subjects 8-10 are after changes
 nsub = length(svec);
 sepbystim = zeros(nstim,nTRs*3);
 speedbystim = zeros(nstim,nTRs*3);
@@ -95,9 +95,9 @@ for s = 1:nsub
     izero = find(newspeeds==0);
     % newspeeds(izero) = [];
     % newseps(izero) = [];
-    if subjectNum == 12
-        sads
-    end
+%    if subjectNum == 12
+%        sads
+%    end
     h = figure;
     x = newspeeds;
     y = newseps;
