@@ -9,9 +9,10 @@ allsep = [];
 nstim = 10;
 nTRs = 15;
 nblock = 3;
-svec = [3:5 7:16 18 20];
-nold = 4;
-nnew = length(svec)-nold;
+svec = [8 12:16 18 20:22];
+RT = [8 12:15 18 21 22];
+YC = [16 20];
+
 %svec = 8:13;
 nsub = length(svec);
 sepbystim = zeros(nstim,nTRs*3);
@@ -466,36 +467,36 @@ end
 % print(thisfig, sprintf('%sboundaryvsinner.pdf', plotDir), '-dpdf')
 
 %% now compare ratio ideal
-firstgroup = ratioIdeal(1:4);
-nnew = 3;
-secondgroup = ratioIdeal(end-nnew+1:end);
-avgratio = [mean(firstgroup) mean(secondgroup)];
-eavgratio = [std(firstgroup)/sqrt(length(firstgroup)-1) std(secondgroup)/sqrt(length(secondgroup)-1)];
-thisfig = figure;
-barwitherr(eavgratio,avgratio)
-set(gca,'XTickLabel' , ['Group 1';'Group 2']);
-xlabel('Subject Group')
-ylabel('Good Evidence Ratio')
-title('Ratio of Good Evidence by Subject Group')
-set(findall(gcf,'-property','FontSize'),'FontSize',20)
-ylim([0 0.3])
+% firstgroup = ratioIdeal(1:4);
+% nnew = 3;
+% secondgroup = ratioIdeal(end-nnew+1:end);
+% avgratio = [mean(firstgroup) mean(secondgroup)];
+% eavgratio = [std(firstgroup)/sqrt(length(firstgroup)-1) std(secondgroup)/sqrt(length(secondgroup)-1)];
+% thisfig = figure;
+% barwitherr(eavgratio,avgratio)
+% set(gca,'XTickLabel' , ['Group 1';'Group 2']);
+% xlabel('Subject Group')
+% ylabel('Good Evidence Ratio')
+% title('Ratio of Good Evidence by Subject Group')
+% set(findall(gcf,'-property','FontSize'),'FontSize',20)
+% ylim([0 0.3])
 
-%% now compare cm of feedback
-nold = 4;
-firstgroup = allcm(1:nold);
-nnew = length(svec) - nold;
-secondgroup = allcm(end-nnew+1:end);
-avgratio = [mean(firstgroup) mean(secondgroup)];
-eavgratio = [std(firstgroup)/sqrt(length(firstgroup)-1) std(secondgroup)/sqrt(length(secondgroup)-1)];
-thisfig = figure;
-barwitherr(eavgratio,avgratio)
-set(gca,'XTickLabel' , ['Old 4';'New 3']);
-xlabel('Subject Group')
-ylabel('CM of Evidence')
-title('CM of Evidence by Subject Group')
-set(findall(gcf,'-property','FontSize'),'FontSize',20)
-ylim([-.2 0.2])
-print(thisfig, sprintf('%scmbygroup.pdf', allplotDir), '-dpdf')
+%% now compare cm of feedback-adapt for RT and YC
+% nold = 4;
+% firstgroup = allcm(1:nold);
+% nnew = length(svec) - nold;
+% secondgroup = allcm(end-nnew+1:end);
+% avgratio = [mean(firstgroup) mean(secondgroup)];
+% eavgratio = [std(firstgroup)/sqrt(length(firstgroup)-1) std(secondgroup)/sqrt(length(secondgroup)-1)];
+% thisfig = figure;
+% barwitherr(eavgratio,avgratio)
+% set(gca,'XTickLabel' , ['Old 4';'New 3']);
+% xlabel('Subject Group')
+% ylabel('CM of Evidence')
+% title('CM of Evidence by Subject Group')
+% set(findall(gcf,'-property','FontSize'),'FontSize',20)
+% ylim([-.2 0.2])
+% print(thisfig, sprintf('%scmbygroup.pdf', allplotDir), '-dpdf')
 
 %% now look at if max dot speeds determine anything
 % looking at the mean center of mass of evidence

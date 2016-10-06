@@ -2,11 +2,14 @@
 recog = 24; %associates task
 projectName = 'motStudy02';
 allplotDir = ['/Data1/code/' projectName '/' 'Plots' '/' ];
-
-svec = [8:15 17]l;
-keepSub = [4 7 8 12:15];
-goodSubIndices = find(ismember(svec,keepSub));
-svec = svec(goodSubIndices);
+svec = [8 12:15 18 21 22];
+RTgroup = 0;
+YCgroup = 1;
+if RTgroup
+svec = [8 12:15 18 21 22];
+elseif YCgroup
+    svec = [16 20];
+end
 NSUB = length(svec);
 
 for s = 1:NSUB
@@ -39,7 +42,7 @@ ylabel('Recognition Rate (%)')
 %ylim([1 5.5])
 fig=gcf;
 set(findall(fig,'-property','FontSize'),'FontSize',20)
-print(h, sprintf('%srecogacc.pdf', allplotDir), '-dpdf')
+%print(h, sprintf('%srecogacc.pdf', allplotDir), '-dpdf')
 
 eALLD = [nanstd(hard_rt)/sqrt(NSUB-1);nanstd(easy_rt)/sqrt(NSUB-1)];
 ALLD = [nanmedian(hard_rt); nanmedian(easy_rt)];
@@ -52,4 +55,4 @@ ylabel('RT (s)')
 %ylim([1 5.5])
 fig=gcf;
 set(findall(fig,'-property','FontSize'),'FontSize',20)
-print(h, sprintf('%srecogrt.pdf', allplotDir), '-dpdf')
+%print(h, sprintf('%srecogrt.pdf', allplotDir), '-dpdf')

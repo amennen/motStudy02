@@ -1,4 +1,4 @@
-function [patterns, t] = RecallFileProcess(subjectNum,runNum,scanNum,SESSION,date,featureSelect) %,rtfeedback)
+function [patterns, t] = RecallFileProcess(subjectNum,runNum,scanNum,SESSION,date,featureSelect,saveNew) %,rtfeedback)
 % function [patterns] = RealTimeMemoryFileProcess(subjectNum,subjectName,runNum,scanNum,rtData)
 %
 % this function describes the file processing procedure for the realtime
@@ -269,5 +269,6 @@ fprintf('run\tblock\tTR\tloaded\n');
     fprintf(dataFile,'%d\t%d\t%d\t%d\n',runNum,patterns.block(iTrial),thisTR,patterns.fileAvail(iTrial));
     fprintf('%d\t%d\t%d\t%d\n',runNum,patterns.block(iTrial),thisTR,patterns.fileAvail(iTrial));
     end
-save([save_dir 'recallpatternsdata_' num2str(SESSION) '_' datestr(now,30)],'patterns', 't');
-
+    if saveNew
+        save([save_dir 'recallpatternsdata_' num2str(SESSION) '_' datestr(now,30)],'patterns', 't');
+    end
