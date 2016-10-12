@@ -11,7 +11,11 @@ nstim = 10;
 nTRs = 15;
 sepTRs = 17;
 nblock = 3;
-svec = [12:16 18 20]; %[3:5 7]; %subjects 3,4,5,7 are for initial RT, subjects 8-10 are after changes
+svec = [12:16 18 20 21 22]; %[3:5 7]; %subjects 3,4,5,7 are for initial RT, subjects 8-10 are after changes
+RT = [12:15 18 21:22];
+YC = [16 20];
+iRT = find(ismember(svec,RT));
+iYC = find(ismember(svec,YC));
 nsub = length(svec);
 sepbystim = zeros(nstim,nTRs*3);
 speedbystim = zeros(nstim,nTRs*3);
@@ -161,19 +165,20 @@ end
 %% now see if correlation is related to fast dot speed change
 getSpeed;
 thisfig = figure;
-scatter(hardSpeed,corrcoeff,'fill','MarkerEdgeColor','b',...
+scatter(hardSpeed(iRT),corrcoeff(iRT),'fill','MarkerEdgeColor','b',...
     'MarkerFaceColor','c',...
     'LineWidth',2.5);
 xlabel('Staircased Speed')
 ylabel('Corr(\Delta S, \Delta Evidence)')
 title('FB Correlation vs. Staircased Speed')
-p = polyfit(hardSpeed,corrcoeff,1);
-yfit = polyval(p,hardSpeed);
+p = polyfit(hardSpeed(iRT),corrcoeff(iRT),1);
+yfit = polyval(p,hardSpeed(iRT));
 hold on;
-plot(hardSpeed,yfit, '--k', 'LineWidth', 3);
-ylim([-.35 -.1])
+plot(hardSpeed(iRT),yfit, '--k', 'LineWidth', 3);
+scatter(hardSpeed(iYC),corrcoeff(iYC), 'fill', 'MarkerEdgeColor', 'k','MarkerFaceColor', 'r', 'LineWidth', 2.5);
+%ylim([-.35 -.1])
 set(findall(gcf,'-property','FontSize'),'FontSize',20)
-print(thisfig, sprintf('%scorrspeed.pdf', allplotDir), '-dpdf')
+print(thisfig, sprintf('%scorrspeedNEW1007.pdf', allplotDir), '-dpdf')
 
 %%
 thisfig = plotDist(corrcoeff,1,0,5)

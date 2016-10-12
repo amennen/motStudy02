@@ -5,6 +5,7 @@
 
 %look at the recognition memory at the end and listen to wav files! (use
 %recogdata.m to look at the recognition memory)
+clear all;
 projectName = 'motStudy02';
 RTgroup =0;
 YCgroup = 1;
@@ -74,7 +75,7 @@ ylabel('Level of Detail Difference')
 fig=gcf;
 set(findall(fig,'-property','FontSize'),'FontSize',20)
 %legend('Pre MOT', 'Post MOT')
-%print(h, sprintf('%sratingsRt_good.pdf', allplotDir), '-dpdf')
+print(h, sprintf('%sYCONLY_ratings.pdf', allplotDir), '-dpdf')
 
 
 
