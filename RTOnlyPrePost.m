@@ -1,5 +1,5 @@
 % analyze pre- and post- MOT recall periods (RT groups post updating only)s
-
+clear all;
 projectName = 'motStudy02';
 onlyRem = 1; %if should only look at the stimuli that subject answered >1 for remembering in recall 1
 onlyForg = 0;
@@ -11,9 +11,9 @@ plotDir = ['/Data1/code/' projectName '/' 'Plots' '/' ]; %should be all
 updated =1; %for only looking at the results recorded after making differences (minimum dot speed, increase starting speed, average over 2)
 oldonly = 0;
 if RTgroup
-svec = [8 12:15 18 21 22];
-datevec = {'8-10-16', '8-27-16', '8-30-16', '9-7-16', '9-14-16', '9-23-16', '10-6-16', '10-6-16'};
-runvec = [1 1 1 1 1 1 1 2];
+    svec = [8 12:15 18 21 22];
+    datevec = {'8-10-16', '8-27-16', '8-30-16', '9-7-16', '9-14-16', '9-23-16', '10-6-16', '10-6-16'};
+    runvec = [1 1 1 1 1 1 1 2];
 elseif YCgroup
     svec = [16 20];
     datevec = {'9-16-16', '10-4-16'};
@@ -108,19 +108,23 @@ for s = 1:NSUB
     if onlyRem 
         PrePostRT = RTevidence(keep.hard,:,2) - RTevidence(keep.hard,:,1);
         PrePostOMIT = OMITevidence(keep.easy,:,2) - OMITevidence(keep.easy,:,1);
+	RTPOSTavg(s,:) = mean(RTevidence(keep.hard,:,2));
+	OMITPOSTavg(s,:) = mean(OMITevidence(keep.easy,:,2));
     elseif onlyRem == 0 && onlyForg == 0
         PrePostRT = RTevidence(:,:,2) - RTevidence(:,:,1);
         PrePostOMIT = OMITevidence(:,:,2) - OMITevidence(:,:,1);
+        RTPOSTavg(s,:) = mean(RTevidence(:,:,2));
+        OMITPOSTavg(s,:) = mean(OMITevidence(:,:,2)); 
     elseif onlyForg
         forg_hard = setdiff(1:size(RTevidence,1),keep.hard);
         forg_easy = setdiff(1:size(RTevidence,1),keep.easy);
         PrePostRT = RTevidence(forg_hard,:,2) - RTevidence(forg_hard,:,1);
         PrePostOMIT = OMITevidence(forg_easy,:,2) - OMITevidence(forg_easy,:,1);
+        RTPOSTavg(s,:) = mean(RTevidence(forg_hard,:,2));
+        OMITPOSTavg(s,:) = mean(OMITevidence(forg_easy,:,2));
     end
     RTavg(s,:) = mean(PrePostRT,1);
-    
     OMITavg(s,:) = mean(PrePostOMIT,1);
-    
     
 end
 
@@ -147,4 +151,30 @@ set(findall(gcf,'-property','FontSize'),'FontSize',16)
 xlim([1 nTRsperTrial])
 %xlim([1 8])
 ylim([-.25 .25])
-%print(h1, sprintf('%sresults_updated0920_rem_onlygoodsub.pdf', plotDir), '-dpdf')
+print(h1, sprintf('%sYCOnlyPrePost.pdf', plotDir), '-dpdf')
+
+h1 = figure;
+%alldiffmeans = [RTavg;OMITavg];
+%alldiffstd = [std(PrePostRT)/sqrt(size(PrePostRT,1)-1);std(PrePostOMIT)/sqrt(size(PrePostRT,1)-1)];
+allRT = nanmean(RTPOSTavg);
+eRT = nanstd(RTPOSTavg,[],1)/sqrt(NSUB-1);
+allOMIT = nanmean(OMITPOSTavg);
+eOMIT = nanstd(OMITPOSTavg,[],1)/sqrt(NSUB-1);
+alldiffmeans = [allRT;allOMIT];
+alldiffstd = [eRT;eOMIT];
+mseb(1:nTRsperTrial,alldiffmeans, alldiffstd)
+legend('Realtime', 'Omit')
+title(sprintf('Post MOT Classifier Difference, n = %i',NSUB))
+set(gca, 'XTick', [1:nTRsperTrial])
+%set(gca,'XTickLabel',['-2'; '-1'; ' 0'; ' 1'; ' 2'; ' 3'; ' 4'; ' 5'; '6'; '7'; '8'; '9'; ']);
+ylabel('Target - Lure Evidence')
+xlabel('TR (2s)')
+set(findall(gcf,'-property','FontSize'),'FontSize',16)
+%line([3 3], [-1 1], 'Color', 'k', 'LineWidth', 3);
+%line([6 6], [-1 1], 'Color', 'k', 'LineWidth', 3);
+
+xlim([1 nTRsperTrial])
+%xlim([1 8])
+ylim([-.25 .25])
+print(h1, sprintf('%sYCOnlyPost.pdf', plotDir), '-dpdf')
+                                                                              

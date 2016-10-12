@@ -16,18 +16,25 @@ sepTRs = 17;
 FBTRs = 11;
 nblock = 3;
 %if both zero, then look at all subjects for differences
-updated =0; %for only looking at the results recorded after making differences (minimum dot speed, increase starting speed, average over 2)
-oldonly = 0;
+% updated =0; %for only looking at the results recorded after making differences (minimum dot speed, increase starting speed, average over 2)
+% oldonly = 0;
+% 
+% nold = 4;
+% svec = [3:5 7:13];
+% nnew = length(svec) - nold;
+% 
+% if updated
+%     svec = svec(end-nnew +1:end);
+% elseif oldonly
+%     svec = svec(1:nold);
+% end
 
-nold = 4;
-svec = [3:5 7:13];
-nnew = length(svec) - nold;
+svec = [8 12:16 18 20:22];
+RT = [8 12:15 18 21 22];
+YC = [16 20];
+iRT = find(ismember(svec,RT));
+iYC = find(ismember(svec,YC));
 
-if updated
-    svec = svec(end-nnew +1:end);
-elseif oldonly
-    svec = svec(1:nold);
-end
 nsub = length(svec);
 sepbystim = zeros(nstim,nTRs*3);
 speedbystim = zeros(nstim,nTRs*3);
@@ -183,28 +190,27 @@ for s = 1:nsub
 end
 
 %% now compare decrease of retrieval evidence across both groups
-if (~updated && ~oldonly)
-    firstgroup = distDec2(1:4);
-    secondgroup = distDec2(end-nnew+1:end);
+%if (~updated && ~oldonly)
+    firstgroup = distDec2(iRT);
+    secondgroup = distDec2(iYC);
     avgratio = [mean(firstgroup) mean(secondgroup)];
     eavgratio = [std(firstgroup)/sqrt(length(firstgroup)-1) std(secondgroup)/sqrt(length(secondgroup)-1)];
     thisfig = figure;
     barwitherr(eavgratio,avgratio)
-    set(gca,'XTickLabel' , ['Old 4';'New 6']);
+    set(gca,'XTickLabel' , ['RT';'YC']);
     xlabel('Subject Group')
     ylabel('TR''s to Decrease')
     title('Time to Decrease Evidence by Group')
     set(findall(gcf,'-property','FontSize'),'FontSize',20)
     %ylim([-.2 0.2])
-    print(thisfig, sprintf('%sweakeningbygroup.pdf', allplotDir), '-dpdf')
-end
+    %print(thisfig, sprintf('%sweakeningbygroup.pdf', allplotDir), '-dpdf')
+%end
 
 %% now compare time to decrease with types of feedback
-if (~updated && ~oldonly)
-    firstPos = distPos(1:4);
-    secondPos = distPos(end-nnew+1:end);
-    firstNeg = distNeg(1:4);
-    secondNeg = distNeg(end-nnew+1:end);
+    firstPos = distPos(iRT);
+    secondPos = distPos(iYC);
+    firstNeg = distNeg(iRT);
+    secondNeg = distNeg(iYC);
     
     avgratio = [mean(firstPos)  mean(secondPos); mean(firstNeg) mean(secondNeg)];
     eavgratio = [std(firstPos)/sqrt(length(firstPos-1)) std(secondPos)/sqrt(length(secondPos-1));std(firstNeg)/sqrt(length(firstPos-1)) std(secondNeg)/sqrt(length(secondPos-1))];
@@ -215,5 +221,4 @@ if (~updated && ~oldonly)
     ylabel('TR''s to Decrease')
     title('Evidence Response Time, Separated by \DeltaS')
     set(findall(gcf,'-property','FontSize'),'FontSize',20)
-    print(thisfig, sprintf('%sweakeningbygroupbysign.pdf', allplotDir), '-dpdf')
-end
+    %print(thisfig, sprintf('%sweakeningbygroupbysign.pdf', allplotDir), '-dpdf')

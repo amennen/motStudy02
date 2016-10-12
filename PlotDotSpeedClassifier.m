@@ -12,7 +12,8 @@ nblock = 3;
 svec = [8 12:16 18 20:22];
 RT = [8 12:15 18 21 22];
 YC = [16 20];
-
+iRT = find(ismember(svec,RT));
+iYC = find(ismember(svec,YC));
 %svec = 8:13;
 nsub = length(svec);
 sepbystim = zeros(nstim,nTRs*3);
@@ -467,57 +468,59 @@ end
 % print(thisfig, sprintf('%sboundaryvsinner.pdf', plotDir), '-dpdf')
 
 %% now compare ratio ideal
-% firstgroup = ratioIdeal(1:4);
-% nnew = 3;
-% secondgroup = ratioIdeal(end-nnew+1:end);
-% avgratio = [mean(firstgroup) mean(secondgroup)];
-% eavgratio = [std(firstgroup)/sqrt(length(firstgroup)-1) std(secondgroup)/sqrt(length(secondgroup)-1)];
-% thisfig = figure;
-% barwitherr(eavgratio,avgratio)
-% set(gca,'XTickLabel' , ['Group 1';'Group 2']);
-% xlabel('Subject Group')
-% ylabel('Good Evidence Ratio')
-% title('Ratio of Good Evidence by Subject Group')
-% set(findall(gcf,'-property','FontSize'),'FontSize',20)
-% ylim([0 0.3])
+firstgroup = ratioIdeal(iRT);
+secondgroup = ratioIdeal(iYC);
+avgratio = [mean(firstgroup) mean(secondgroup)];
+eavgratio = [std(firstgroup)/sqrt(length(firstgroup)-1) std(secondgroup)/sqrt(length(secondgroup)-1)];
+thisfig = figure;
+barwitherr(eavgratio,avgratio)
+set(gca,'XTickLabel' , ['RT';'YC']);
+xlabel('Subject Group')
+ylabel('Good Evidence Ratio')
+title('Ratio of Good Evidence by Subject Group')
+set(findall(gcf,'-property','FontSize'),'FontSize',20)
+ylim([0 0.3])
 
 %% now compare cm of feedback-adapt for RT and YC
 % nold = 4;
-% firstgroup = allcm(1:nold);
-% nnew = length(svec) - nold;
-% secondgroup = allcm(end-nnew+1:end);
-% avgratio = [mean(firstgroup) mean(secondgroup)];
-% eavgratio = [std(firstgroup)/sqrt(length(firstgroup)-1) std(secondgroup)/sqrt(length(secondgroup)-1)];
-% thisfig = figure;
-% barwitherr(eavgratio,avgratio)
-% set(gca,'XTickLabel' , ['Old 4';'New 3']);
-% xlabel('Subject Group')
-% ylabel('CM of Evidence')
-% title('CM of Evidence by Subject Group')
-% set(findall(gcf,'-property','FontSize'),'FontSize',20)
-% ylim([-.2 0.2])
-% print(thisfig, sprintf('%scmbygroup.pdf', allplotDir), '-dpdf')
+firstgroup = allcm(iRT);
+secondgroup = allcm(iYC);
+avgratio = [mean(firstgroup) mean(secondgroup)];
+eavgratio = [std(firstgroup)/sqrt(length(firstgroup)-1) std(secondgroup)/sqrt(length(secondgroup)-1)];
+thisfig = figure;
+barwitherr(eavgratio,avgratio)
+set(gca,'XTickLabel' , ['RT';'YC']);
+xlabel('Subject Group')
+ylabel('CM of Evidence')
+title('CM of Evidence by Subject Group')
+set(findall(gcf,'-property','FontSize'),'FontSize',20)
+ylim([-.2 0.2])
+%print(thisfig, sprintf('%scmbygroup.pdf', allplotDir), '-dpdf')
 
 %% now look at if max dot speeds determine anything
 % looking at the mean center of mass of evidence
-speed2 = hardSpeed(end-nnew+1:end);
+%speed2 = hardSpeed(end-nnew+1:end);
 figure;
-plot(speed2,secondgroup, '.');
+plot(hardSpeed(iRT),allcm(iRT), 'k.', hardSpeed(iYC),allcm(iYC), 'r.');
+xlabel('Staircased Speed')
+ylabel('CM Evidence')
 
 % mean dot speed used in feedback
-goodSpeed2 = goodSpeedFb(end-nnew+1:end);
 thisfig = figure;
 %plot(speed2,goodSpeed2, '.')
 s = 100;
-scatter(speed2,goodSpeed2, s,'fill','MarkerEdgeColor','b',...
+scatter(hardSpeed(iRT),goodSpeedFb(iRT), s,'fill','MarkerEdgeColor','b',...
                'MarkerFaceColor','c',...
                'LineWidth',3.5);
-p = polyfit(speed2,goodSpeed2,1);
-yfit = polyval(p,speed2);
+p = polyfit(hardSpeed(iRT),goodSpeedFb(iRT),1);
+yfit = polyval(p,hardSpeed(iRT));
 hold on;
-plot(speed2,yfit, '--k', 'LineWidth', 3)
+plot(hardSpeed(iRT),yfit, '--k', 'LineWidth', 3)
+scatter(hardSpeed(iYC),goodSpeedFb(iYC), s,'fill','MarkerEdgeColor','k',...
+               'MarkerFaceColor','r',...
+               'LineWidth',3.5);
 xlabel('Staircased Speed')
 ylabel('Mean of Good Speed during FB')
 title('Good Speed vs. Staircased Speed')
 set(findall(gcf,'-property','FontSize'),'FontSize',20)
-print(thisfig, sprintf('%sgoodfbspeedvsstaircased.pdf', allplotDir), '-dpdf')
+%print(thisfig, sprintf('%sgoodfbspeedvsstaircased.pdf', allplotDir), '-dpdf')
