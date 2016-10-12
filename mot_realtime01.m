@@ -350,6 +350,12 @@ Screen('TextSize',mainWindow,stim.fontSize);
 switch SESSION
     %% 0. SETUP
     case SETUP
+        
+        %check to see if this was a previous yoked subject!!!!
+        previousYC = ~isempty(dir(fullfile(ppt_dir, ['EK5_DOT' '*.mat'])));
+        %if this is true, then they've already done this
+        
+        
         %this is where we get the actual stimuli start with cue pairs--
         preparedCues = readStimulusFile(CUELISTFILE_TARGETS,stim.num_total);
         pics = readStimulusFile_evenIO(PICLISTFILE,stim.num_total); %now it alternates starting O, I, O, I, ...
@@ -428,7 +434,11 @@ switch SESSION
         system(['cp ' base_path 'mot_realtime01.m ' ppt_dir 'mot_realtime01_executed.m']);
         save(MATLAB_STIM_FILE, 'cues','preparedCues','pics','pairIndex','lureWords','recogLures','stimmap');
         
-        mot_realtime01(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow);
+        if previousYC
+            mot_realtime01(SUBJECT,FAMILIARIZE2,SET_SPEED,scanNum,scanNow);
+        else
+            mot_realtime01(SUBJECT,SESSION+1,SET_SPEED,scanNum,scanNow);
+        end
         
         
         %% 1. FAMILIARIZATION

@@ -1,9 +1,9 @@
 base_path = [fileparts(which('mot_realtime01.m')) filesep];
 cd(base_path);
 
-SUBJECT = 20;
-%all given subjects: 8,12,13,14,15,18
-SVEC = [12 13 15 18];
+SUBJECT = 23;
+%all given subjects: 8,12,13,14,15,18, 21, 22
+SVEC = [12 13 15 18 21 22];
 
 NUM_TASK_RUNS = 3;
 % orientation session
@@ -45,6 +45,19 @@ mot_realtime01b(SUBJECT, SETUP, [], 0, 0);
 % this will continue to train test and practice MOT, then move on to
 % MOT_Practice, MOT_PREP
 s2 = findMatch(SUBJECT,SVEC);
+%if you don't have a match, then restart mot_realtime01 and go to
+%familiarize 2 with new data
+if s2 < 0 % if no match
+    subjDir = [base_path 'BehavioralData' filesep num2str(SUBJECT) filesep];
+    oldfile = [subjDir 'mot_realtime01_subj_' num2str(SUBJECT) '_stimAssignment.mat'];
+    newfile = [subjDir 'OLDstimAssignment.mat'];
+    system(['mv ' subjDir 'mot_realtime01_subj_' num2str(SUBJECT) '_stimAssignment.mat ' subjDir 'OLDstimAssignment.mat']);
+    mot_realtime01(SUBJECT,SETUP,[],0,0); % have mot go to familiarize 2 after making pairs!
+else %keep going 
+    mot_realtime01b(SUBJECT, FAMILIARIZE2, [], 0, 0,s2); %continue because want to not go through the break
+
+end
+
 % TESTING TAKE OUT
 %mot_realtime01b(SUBJECT,RECALL2, 1, 0, 0,s2); %continue because want to not go through the break
 
