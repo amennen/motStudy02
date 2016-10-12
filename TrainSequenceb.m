@@ -1,8 +1,8 @@
 base_path = [fileparts(which('mot_realtime01.m')) filesep];
 cd(base_path);
 
-SUBJECT = 23;
-%all given subjects: 8,12,13,14,15,18, 21, 22
+SUBJECT = 24;
+%all given subjects: 8,12,13,14,15,18,21,22
 SVEC = [12 13 15 18 21 22];
 
 NUM_TASK_RUNS = 3;
@@ -61,7 +61,7 @@ end
 % TESTING TAKE OUT
 %mot_realtime01b(SUBJECT,RECALL2, 1, 0, 0,s2); %continue because want to not go through the break
 
-mot_realtime01b(SUBJECT, FAMILIARIZE2, [], 0, 0,s2); %continue because want to not go through the break
+%mot_realtime01b(SUBJECT, FAMILIARIZE2, [], 0, 0,s2); %continue because want to not go through the break
 
 %% now train on actual stimulus pairs
 mot_realtime01b(SUBJECT, FAMILIARIZE2, [], 0, 0);
