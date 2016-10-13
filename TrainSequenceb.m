@@ -1,9 +1,9 @@
 base_path = [fileparts(which('mot_realtime01.m')) filesep];
 cd(base_path);
 
-SUBJECT = 24;
+SUBJECT = 25;
 %all given subjects: 8,12,13,14,15,18,21,22
-SVEC = [12 13 15 18 21 22];
+SVEC = [12 15 18 21 22];
 
 NUM_TASK_RUNS = 3;
 % orientation session
