@@ -1,0 +1,244 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	10.2  	1   	RELIC     	lure    	0.534	NR  	1   	NR      	NR      
+2   	10.7  	2   	ACRE      	lure    	0.628	NR  	1   	NR      	NR      
+3   	11.4  	3   	BATON     	lure    	0.255	NR  	1   	NR      	NR      
+4   	11.7  	2   	ACRE (repeat 1)	lure    	0.372	NR  	1   	NR      	NR      
+5   	12.2  	4   	ROPE      	lure    	0.4 	NR  	1   	NR      	NR      
+6   	12.6  	1   	RELIC (repeat 1)	lure    	0.454	NR  	1   	NR      	NR      
+7   	13.1  	5   	BUCKET    	lure    	0.597	NR  	1   	NR      	NR      
+8   	13.8  	6   	GRAVEL    	lure    	0.539	NR  	1   	NR      	NR      
+9   	14.4  	7   	CYCLONE   	lure    	0.524	NR  	1   	NR      	NR      
+10  	14.9  	2   	ACRE (repeat 2)	lure    	0.291	NR  	1   	NR      	NR      
+11  	15.3  	5   	BUCKET (repeat 1)	lure    	0.542	NR  	1   	NR      	NR      
+12  	15.9  	8   	FOAM      	lure    	0.362	NR  	1   	NR      	NR      
+13  	16.3  	6   	GRAVEL (repeat 1)	lure    	0.7 	NR  	1   	NR      	NR      
+14  	17    	2   	ACRE (repeat 3)	lure    	0.463	NR  	1   	NR      	NR      
+15  	17.5  	5   	BUCKET (repeat 2)	lure    	0.451	NR  	1   	NR      	NR      
+16  	18    	6   	GRAVEL (repeat 2)	lure    	0.357	NR  	1   	NR      	NR      
+17  	18.5  	3   	BATON (repeat 1)	lure    	0.452	NR  	1   	NR      	NR      
+18  	19    	9   	NOZZLE    	lure    	0.594	NR  	1   	NR      	NR      
+19  	19.6  	10  	CONTRACT  	lure    	0.451	NR  	1   	NR      	NR      
+20  	20.1  	5   	BUCKET (repeat 3)	lure    	0.528	NR  	1   	NR      	NR      
+21  	20.7  	4   	ROPE (repeat 1)	lure    	0.452	NR  	1   	NR      	NR      
+22  	21.2  	6   	GRAVEL (repeat 3)	lure    	0.487	NR  	1   	NR      	NR      
+23  	21.7  	11  	PYRAMID   	lure    	0.452	NR  	1   	NR      	NR      
+24  	22.3  	12  	KIWI      	fruit   	0.95	0.583	1   	target  	target  
+25  	23.3  	13  	TEAR      	lure    	0.573	NR  	1   	NR      	NR      
+26  	23.9  	14  	COAL      	lure    	0.422	NR  	1   	NR      	NR      
+27  	24.4  	5   	BUCKET (repeat 4)	lure    	0.424	NR  	1   	NR      	NR      
+28  	24.9  	15  	DOME      	lure    	0.396	NR  	1   	NR      	NR      
+29  	25.3  	11  	PYRAMID (repeat 1)	lure    	0.44	NR  	1   	NR      	NR      
+30  	25.8  	6   	GRAVEL (repeat 4)	lure    	0.371	NR  	1   	NR      	NR      
+31  	26.2  	11  	PYRAMID (repeat 2)	lure    	0.632	NR  	1   	NR      	NR      
+32  	26.9  	2   	ACRE (repeat 4)	lure    	0.565	NR  	1   	NR      	NR      
+33  	27.6  	4   	ROPE (repeat 2)	lure    	0.448	NR  	1   	NR      	NR      
+34  	28.1  	8   	FOAM (repeat 1)	lure    	0.292	NR  	1   	NR      	NR      
+35  	28.4  	5   	BUCKET (repeat 5)	lure    	0.367	NR  	1   	NR      	NR      
+36  	28.9  	3   	BATON (repeat 2)	lure    	0.389	NR  	1   	NR      	NR      
+37  	29.3  	5   	BUCKET (repeat 6)	lure    	0.578	NR  	1   	NR      	NR      
+38  	29.9  	10  	CONTRACT (repeat 1)	lure    	0.271	NR  	1   	NR      	NR      
+39  	30.3  	1   	RELIC (repeat 2)	lure    	0.479	NR  	1   	NR      	NR      
+40  	30.8  	8   	FOAM (repeat 2)	lure    	0.69	NR  	1   	NR      	NR      
+41  	31.6  	16  	ATLAS     	lure    	0.49	NR  	1   	NR      	NR      
+42  	32.1  	3   	BATON (repeat 3)	lure    	0.682	NR  	1   	NR      	NR      
+43  	32.9  	4   	ROPE (repeat 3)	lure    	0.427	NR  	1   	NR      	NR      
+44  	33.4  	9   	NOZZLE (repeat 1)	lure    	0.569	NR  	1   	NR      	NR      
+45  	34    	14  	COAL (repeat 1)	lure    	0.288	NR  	1   	NR      	NR      
+46  	34.3  	9   	NOZZLE (repeat 2)	lure    	0.452	NR  	1   	NR      	NR      
+47  	34.9  	17  	CANTELOUPE	fruit   	0.951	0.52	1   	target  	target  
+48  	35.9  	2   	ACRE (repeat 5)	lure    	0.365	NR  	1   	NR      	NR      
+49  	36.3  	11  	PYRAMID (repeat 3)	lure    	0.509	NR  	1   	NR      	NR      
+50  	36.9  	4   	ROPE (repeat 4)	lure    	0.511	NR  	1   	NR      	NR      
+51  	37.5  	8   	FOAM (repeat 3)	lure    	0.354	NR  	1   	NR      	NR      
+52  	37.9  	1   	RELIC (repeat 3)	lure    	0.652	NR  	1   	NR      	NR      
+53  	38.6  	14  	COAL (repeat 2)	lure    	0.473	NR  	1   	NR      	NR      
+54  	39.1  	18  	BOLT      	lure    	0.386	NR  	1   	NR      	NR      
+55  	39.6  	1   	RELIC (repeat 4)	lure    	0.627	NR  	1   	NR      	NR      
+56  	40.3  	15  	DOME (repeat 1)	lure    	0.264	NR  	1   	NR      	NR      
+57  	40.6  	18  	BOLT (repeat 1)	lure    	0.349	NR  	1   	NR      	NR      
+58  	41    	13  	TEAR (repeat 1)	lure    	0.562	NR  	1   	NR      	NR      
+59  	41.6  	4   	ROPE (repeat 5)	lure    	0.57	NR  	1   	NR      	NR      
+60  	42.3  	15  	DOME (repeat 2)	lure    	0.44	NR  	1   	NR      	NR      
+61  	42.8  	9   	NOZZLE (repeat 3)	lure    	0.419	NR  	1   	NR      	NR      
+62  	43.3  	14  	COAL (repeat 3)	lure    	0.449	NR  	1   	NR      	NR      
+63  	43.8  	4   	ROPE (repeat 6)	lure    	0.693	NR  	1   	NR      	NR      
+64  	44.5  	7   	CYCLONE (repeat 1)	lure    	0.402	NR  	1   	NR      	NR      
+65  	45    	11  	PYRAMID (repeat 4)	lure    	0.378	NR  	1   	NR      	NR      
+66  	45.4  	13  	TEAR (repeat 2)	lure    	0.344	NR  	1   	NR      	NR      
+67  	45.8  	10  	CONTRACT (repeat 2)	lure    	0.301	NR  	1   	NR      	NR      
+68  	46.2  	6   	GRAVEL (repeat 5)	lure    	0.287	NR  	1   	NR      	NR      
+69  	46.6  	16  	ATLAS (repeat 1)	lure    	0.452	NR  	1   	NR      	NR      
+70  	47.1  	18  	BOLT (repeat 2)	lure    	0.661	NR  	1   	NR      	NR      
+71  	47.8  	7   	CYCLONE (repeat 2)	lure    	0.452	NR  	1   	NR      	NR      
+72  	48.4  	19  	BLACKBERRY	fruit   	0.951	0.708	1   	target  	target  
+73  	49.4  	8   	FOAM (repeat 4)	lure    	0.285	NR  	1   	NR      	NR      
+74  	49.7  	4   	ROPE (repeat 7)	lure    	0.641	NR  	1   	NR      	NR      
+75  	50.4  	7   	CYCLONE (repeat 3)	lure    	0.45	NR  	1   	NR      	NR      
+76  	51    	13  	TEAR (repeat 3)	lure    	0.667	NR  	1   	NR      	NR      
+77  	51.7  	1   	RELIC (repeat 5)	lure    	0.658	NR  	1   	NR      	NR      
+78  	52.4  	15  	DOME (repeat 3)	lure    	0.373	NR  	1   	NR      	NR      
+79  	52.9  	8   	FOAM (repeat 5)	lure    	0.289	NR  	1   	NR      	NR      
+80  	53.2  	15  	DOME (repeat 4)	lure    	0.567	NR  	1   	NR      	NR      
+81  	53.9  	3   	BATON (repeat 4)	lure    	0.33	NR  	1   	NR      	NR      
+82  	54.3  	6   	GRAVEL (repeat 6)	lure    	0.318	NR  	1   	NR      	NR      
+83  	54.7  	7   	CYCLONE (repeat 4)	lure    	0.296	NR  	1   	NR      	NR      
+84  	55    	3   	BATON (repeat 5)	lure    	0.455	NR  	1   	NR      	NR      
+85  	55.6  	7   	CYCLONE (repeat 5)	lure    	0.355	NR  	1   	NR      	NR      
+86  	56    	4   	ROPE (repeat 8)	lure    	0.574	NR  	1   	NR      	NR      
+87  	56.7  	13  	TEAR (repeat 4)	lure    	0.443	NR  	1   	NR      	NR      
+88  	57.2  	4   	ROPE (repeat 9)	lure    	0.376	NR  	1   	NR      	NR      
+89  	57.6  	10  	CONTRACT (repeat 3)	lure    	0.26	NR  	1   	NR      	NR      
+90  	57.9  	2   	ACRE (repeat 6)	lure    	0.654	NR  	1   	NR      	NR      
+91  	58.7  	8   	FOAM (repeat 6)	lure    	0.363	NR  	1   	NR      	NR      
+92  	59.1  	18  	BOLT (repeat 3)	lure    	0.607	NR  	1   	NR      	NR      
+93  	59.8  	1   	RELIC (repeat 6)	lure    	0.451	NR  	1   	NR      	NR      
+94  	60.3  	20  	APPLE     	fruit   	0.951	0.582	1   	target  	target  
+95  	61.3  	8   	FOAM (repeat 7)	lure    	0.271	NR  	1   	NR      	NR      
+96  	61.7  	7   	CYCLONE (repeat 6)	lure    	0.409	NR  	1   	NR      	NR      
+97  	62.2  	16  	ATLAS (repeat 2)	lure    	0.278	NR  	1   	NR      	NR      
+98  	62.5  	15  	DOME (repeat 5)	lure    	0.484	NR  	1   	NR      	NR      
+99  	63.1  	7   	CYCLONE (repeat 7)	lure    	0.251	NR  	1   	NR      	NR      
+100 	63.4  	3   	BATON (repeat 6)	lure    	0.351	NR  	1   	NR      	NR      
+101 	63.8  	16  	ATLAS (repeat 3)	lure    	0.337	NR  	1   	NR      	NR      
+102 	64.2  	2   	ACRE (repeat 7)	lure    	0.337	NR  	1   	NR      	NR      
+103 	64.6  	3   	BATON (repeat 7)	lure    	0.533	NR  	1   	NR      	NR      
+104 	65.2  	18  	BOLT (repeat 4)	lure    	0.628	NR  	1   	NR      	NR      
+105 	65.9  	13  	TEAR (repeat 5)	lure    	0.341	NR  	1   	NR      	NR      
+106 	66.3  	4   	ROPE (repeat 10)	lure    	0.596	NR  	1   	NR      	NR      
+107 	67    	16  	ATLAS (repeat 4)	lure    	0.33	NR  	1   	NR      	NR      
+108 	67.4  	3   	BATON (repeat 8)	lure    	0.572	NR  	1   	NR      	NR      
+109 	68    	8   	FOAM (repeat 8)	lure    	0.252	NR  	1   	NR      	NR      
+110 	68.4  	1   	RELIC (repeat 7)	lure    	0.651	NR  	1   	NR      	NR      
+111 	69.1  	9   	NOZZLE (repeat 4)	lure    	0.427	NR  	1   	NR      	NR      
+112 	69.6  	10  	CONTRACT (repeat 4)	lure    	0.673	NR  	1   	NR      	NR      
+113 	70.4  	8   	FOAM (repeat 9)	lure    	0.591	NR  	1   	NR      	NR      
+114 	71.1  	10  	CONTRACT (repeat 5)	lure    	0.48	NR  	1   	NR      	NR      
+115 	71.6  	1   	RELIC (repeat 8)	lure    	0.644	NR  	1   	NR      	NR      
+116 	72.4  	5   	BUCKET (repeat 7)	lure    	0.451	NR  	1   	NR      	NR      
+117 	72.9  	21  	PLUM      	fruit   	0.951	0.879	1   	target  	target  
+118 	73.9  	10  	CONTRACT (repeat 6)	lure    	0.531	NR  	1   	NR      	NR      
+119 	74.6  	2   	ACRE (repeat 8)	lure    	0.531	NR  	1   	NR      	NR      
+120 	75.2  	13  	TEAR (repeat 6)	lure    	0.532	NR  	1   	NR      	NR      
+121 	75.8  	6   	GRAVEL (repeat 7)	lure    	0.579	NR  	1   	NR      	NR      
+122 	76.5  	13  	TEAR (repeat 7)	lure    	0.54	NR  	1   	NR      	NR      
+123 	77.1  	11  	PYRAMID (repeat 5)	lure    	0.422	NR  	1   	NR      	NR      
+124 	77.5  	6   	GRAVEL (repeat 8)	lure    	0.284	NR  	1   	NR      	NR      
+125 	77.9  	13  	TEAR (repeat 8)	lure    	0.522	NR  	1   	NR      	NR      
+126 	78.5  	15  	DOME (repeat 6)	lure    	0.398	NR  	1   	NR      	NR      
+127 	79    	1   	RELIC (repeat 9)	lure    	0.524	NR  	1   	NR      	NR      
+128 	79.6  	4   	ROPE (repeat 11)	lure    	0.26	NR  	1   	NR      	NR      
+129 	80    	9   	NOZZLE (repeat 5)	lure    	0.291	NR  	1   	NR      	NR      
+130 	80.3  	8   	FOAM (repeat 10)	lure    	0.663	NR  	1   	NR      	NR      
+131 	81.1  	7   	CYCLONE (repeat 8)	lure    	0.5 	NR  	1   	NR      	NR      
+132 	81.6  	1   	RELIC (repeat 10)	lure    	0.49	NR  	1   	NR      	NR      
+133 	82.2  	8   	FOAM (repeat 11)	lure    	0.329	NR  	1   	NR      	NR      
+134 	82.6  	16  	ATLAS (repeat 5)	lure    	0.636	0.449	0   	target  	NR      
+135 	83.4  	1   	RELIC (repeat 11)	lure    	0.3 	NR  	1   	NR      	NR      
+136 	83.8  	14  	COAL (repeat 4)	lure    	0.36	NR  	1   	NR      	NR      
+137 	84.2  	9   	NOZZLE (repeat 6)	lure    	0.335	0.227	0   	target  	NR      
+138 	84.6  	15  	DOME (repeat 7)	lure    	0.452	NR  	1   	NR      	NR      
+139 	85.2  	20  	APPLE (repeat 1)	fruit   	0.953	0.555	1   	target  	target  
+140 	86.2  	16  	ATLAS (repeat 6)	lure    	0.583	NR  	1   	NR      	NR      
+141 	86.9  	3   	BATON (repeat 9)	lure    	0.533	NR  	1   	NR      	NR      
+142 	87.6  	9   	NOZZLE (repeat 7)	lure    	0.492	NR  	1   	NR      	NR      
+143 	88.1  	4   	ROPE (repeat 12)	lure    	0.352	NR  	1   	NR      	NR      
+144 	88.6  	7   	CYCLONE (repeat 9)	lure    	0.618	NR  	1   	NR      	NR      
+145 	89.3  	2   	ACRE (repeat 9)	lure    	0.48	NR  	1   	NR      	NR      
+146 	89.9  	10  	CONTRACT (repeat 7)	lure    	0.398	NR  	1   	NR      	NR      
+147 	90.4  	3   	BATON (repeat 10)	lure    	0.302	NR  	1   	NR      	NR      
+148 	90.7  	13  	TEAR (repeat 9)	lure    	0.289	NR  	1   	NR      	NR      
+149 	91.1  	8   	FOAM (repeat 12)	lure    	0.589	NR  	1   	NR      	NR      
+150 	91.8  	14  	COAL (repeat 5)	lure    	0.344	NR  	1   	NR      	NR      
+151 	92.2  	1   	RELIC (repeat 12)	lure    	0.628	NR  	1   	NR      	NR      
+152 	92.9  	13  	TEAR (repeat 10)	lure    	0.418	NR  	1   	NR      	NR      
+153 	93.5  	6   	GRAVEL (repeat 9)	lure    	0.259	NR  	1   	NR      	NR      
+154 	93.8  	4   	ROPE (repeat 13)	lure    	0.604	NR  	1   	NR      	NR      
+155 	94.5  	13  	TEAR (repeat 11)	lure    	0.32	NR  	1   	NR      	NR      
+156 	94.9  	7   	CYCLONE (repeat 10)	lure    	0.465	NR  	1   	NR      	NR      
+157 	95.5  	2   	ACRE (repeat 10)	lure    	0.57	NR  	1   	NR      	NR      
+158 	96.2  	9   	NOZZLE (repeat 8)	lure    	0.681	NR  	1   	NR      	NR      
+159 	96.9  	2   	ACRE (repeat 11)	lure    	0.451	NR  	1   	NR      	NR      
+160 	97.5  	6   	GRAVEL (repeat 10)	lure    	0.638	NR  	1   	NR      	NR      
+161 	98.2  	5   	BUCKET (repeat 8)	lure    	0.451	NR  	1   	NR      	NR      
+162 	98.7  	6   	GRAVEL (repeat 11)	lure    	0.43	NR  	1   	NR      	NR      
+163 	99.3  	3   	BATON (repeat 11)	lure    	0.452	NR  	1   	NR      	NR      
+164 	99.8  	22  	MANGO     	fruit   	0.951	0.577	1   	target  	target  
+165 	100.9 	16  	ATLAS (repeat 7)	lure    	0.614	NR  	1   	NR      	NR      
+166 	101.6 	2   	ACRE (repeat 12)	lure    	0.324	NR  	1   	NR      	NR      
+167 	102   	16  	ATLAS (repeat 8)	lure    	0.368	NR  	1   	NR      	NR      
+168 	102.5 	3   	BATON (repeat 12)	lure    	0.343	NR  	1   	NR      	NR      
+169 	102.9 	11  	PYRAMID (repeat 6)	lure    	0.299	NR  	1   	NR      	NR      
+170 	103.3 	3   	BATON (repeat 13)	lure    	0.507	NR  	1   	NR      	NR      
+171 	104   	13  	TEAR (repeat 12)	lure    	0.643	NR  	1   	NR      	NR      
+172 	104.7 	15  	DOME (repeat 8)	lure    	0.44	NR  	1   	NR      	NR      
+173 	105.2 	3   	BATON (repeat 14)	lure    	0.663	NR  	1   	NR      	NR      
+174 	106   	2   	ACRE (repeat 13)	lure    	0.368	NR  	1   	NR      	NR      
+175 	106.5 	10  	CONTRACT (repeat 8)	lure    	0.646	NR  	1   	NR      	NR      
+176 	107.2 	2   	ACRE (repeat 14)	lure    	0.39	NR  	1   	NR      	NR      
+177 	107.7 	18  	BOLT (repeat 5)	lure    	0.637	NR  	1   	NR      	NR      
+178 	108.5 	6   	GRAVEL (repeat 12)	lure    	0.36	NR  	1   	NR      	NR      
+179 	108.9 	4   	ROPE (repeat 14)	lure    	0.678	NR  	1   	NR      	NR      
+180 	109.7 	5   	BUCKET (repeat 9)	lure    	0.595	NR  	1   	NR      	NR      
+181 	110.3 	9   	NOZZLE (repeat 9)	lure    	0.278	NR  	1   	NR      	NR      
+182 	110.7 	15  	DOME (repeat 9)	lure    	0.644	NR  	1   	NR      	NR      
+183 	111.4 	5   	BUCKET (repeat 10)	lure    	0.452	NR  	1   	NR      	NR      
+184 	112   	23  	PINEAPPLE 	fruit   	0.951	0.476	1   	target  	target  
+185 	113   	2   	ACRE (repeat 15)	lure    	0.594	NR  	1   	NR      	NR      
+186 	113.7 	18  	BOLT (repeat 6)	lure    	0.511	NR  	1   	NR      	NR      
+187 	114.3 	11  	PYRAMID (repeat 7)	lure    	0.692	NR  	1   	NR      	NR      
+188 	115.1 	6   	GRAVEL (repeat 13)	lure    	0.332	NR  	1   	NR      	NR      
+189 	115.5 	9   	NOZZLE (repeat 10)	lure    	0.311	NR  	1   	NR      	NR      
+190 	116   	13  	TEAR (repeat 13)	lure    	0.253	NR  	1   	NR      	NR      
+191 	116.3 	10  	CONTRACT (repeat 9)	lure    	0.371	NR  	1   	NR      	NR      
+192 	116.8 	4   	ROPE (repeat 15)	lure    	0.673	NR  	1   	NR      	NR      
+193 	117.6 	7   	CYCLONE (repeat 11)	lure    	0.613	NR  	1   	NR      	NR      
+194 	118.2 	15  	DOME (repeat 10)	lure    	0.667	NR  	1   	NR      	NR      
+195 	119   	3   	BATON (repeat 15)	lure    	0.58	NR  	1   	NR      	NR      
+196 	119.7 	14  	COAL (repeat 6)	lure    	0.55	NR  	1   	NR      	NR      
+197 	120.3 	10  	CONTRACT (repeat 10)	lure    	0.603	NR  	1   	NR      	NR      
+198 	121   	2   	ACRE (repeat 16)	lure    	0.39	NR  	1   	NR      	NR      
+199 	121.5 	8   	FOAM (repeat 13)	lure    	0.379	NR  	1   	NR      	NR      
+200 	122   	6   	GRAVEL (repeat 14)	lure    	0.629	NR  	1   	NR      	NR      
+201 	122.7 	2   	ACRE (repeat 17)	lure    	0.492	NR  	1   	NR      	NR      
+202 	123.3 	11  	PYRAMID (repeat 8)	lure    	0.328	NR  	1   	NR      	NR      
+203 	123.7 	13  	TEAR (repeat 14)	lure    	0.619	NR  	1   	NR      	NR      
+204 	124.4 	5   	BUCKET (repeat 11)	lure    	0.624	NR  	1   	NR      	NR      
+205 	125.1 	6   	GRAVEL (repeat 15)	lure    	0.622	NR  	1   	NR      	NR      
+206 	125.9 	9   	NOZZLE (repeat 11)	lure    	0.465	NR  	1   	NR      	NR      
+207 	126.4 	15  	DOME (repeat 11)	lure    	0.322	NR  	1   	NR      	NR      
+208 	126.9 	5   	BUCKET (repeat 12)	lure    	0.698	NR  	1   	NR      	NR      
+209 	127.7 	1   	RELIC (repeat 13)	lure    	0.299	NR  	1   	NR      	NR      
+210 	128   	13  	TEAR (repeat 15)	lure    	0.371	NR  	1   	NR      	NR      
+211 	128.5 	8   	FOAM (repeat 14)	lure    	0.294	NR  	1   	NR      	NR      
+212 	128.9 	13  	TEAR (repeat 16)	lure    	0.577	NR  	1   	NR      	NR      
+213 	129.6 	4   	ROPE (repeat 16)	lure    	0.638	NR  	1   	NR      	NR      
+214 	130.4 	2   	ACRE (repeat 18)	lure    	0.253	NR  	1   	NR      	NR      
+215 	130.7 	16  	ATLAS (repeat 9)	lure    	0.299	NR  	1   	NR      	NR      
+216 	131.1 	15  	DOME (repeat 12)	lure    	0.371	NR  	1   	NR      	NR      
+217 	131.6 	6   	GRAVEL (repeat 16)	lure    	0.3 	NR  	1   	NR      	NR      
+218 	132   	2   	ACRE (repeat 19)	lure    	0.305	NR  	1   	NR      	NR      
+219 	132.5 	5   	BUCKET (repeat 13)	lure    	0.484	NR  	1   	NR      	NR      
+220 	133.1 	15  	DOME (repeat 13)	lure    	0.526	NR  	1   	NR      	NR      
+221 	133.7 	2   	ACRE (repeat 20)	lure    	0.455	NR  	1   	NR      	NR      
+222 	134.3 	8   	FOAM (repeat 15)	lure    	0.278	NR  	1   	NR      	NR      
+223 	134.7 	16  	ATLAS (repeat 10)	lure    	0.296	NR  	1   	NR      	NR      
+224 	135.1 	6   	GRAVEL (repeat 17)	lure    	0.647	NR  	1   	NR      	NR      
+225 	135.8 	7   	CYCLONE (repeat 12)	lure    	0.557	NR  	1   	NR      	NR      
+226 	136.5 	8   	FOAM (repeat 16)	lure    	0.39	NR  	1   	NR      	NR      
+227 	137   	4   	ROPE (repeat 17)	lure    	0.373	NR  	1   	NR      	NR      
+228 	137.5 	15  	DOME (repeat 14)	lure    	0.289	NR  	1   	NR      	NR      
+229 	137.9 	4   	ROPE (repeat 18)	lure    	0.268	NR  	1   	NR      	NR      
+230 	138.3 	1   	RELIC (repeat 14)	lure    	0.363	NR  	1   	NR      	NR      
+231 	138.7 	8   	FOAM (repeat 17)	lure    	0.316	NR  	1   	NR      	NR      
+232 	139.2 	10  	CONTRACT (repeat 11)	lure    	0.421	NR  	1   	NR      	NR      
+233 	139.7 	11  	PYRAMID (repeat 9)	lure    	0.567	NR  	1   	NR      	NR      
+234 	140.3 	18  	BOLT (repeat 7)	lure    	0.323	NR  	1   	NR      	NR      
+235 	140.8 	2   	ACRE (repeat 21)	lure    	0.308	NR  	1   	NR      	NR      
+236 	141.2 	8   	FOAM (repeat 18)	lure    	0.481	NR  	1   	NR      	NR      
+237 	141.8 	3   	BATON (repeat 16)	lure    	0.671	NR  	1   	NR      	NR      
+238 	142.6 	10  	CONTRACT (repeat 12)	lure    	0.252	NR  	1   	NR      	NR      
+239 	142.9 	3   	BATON (repeat 17)	lure    	0.383	NR  	1   	NR      	NR      
+240 	143.4 	1   	RELIC (repeat 15)	lure    	0.312	NR  	1   	NR      	NR      
+241 	143.9 	10  	CONTRACT (repeat 13)	lure    	0.372	NR  	1   	NR      	NR      
+242 	144.3 	8   	FOAM (repeat 19)	lure    	0.483	NR  	1   	NR      	NR      
+243 	144.9 	1   	RELIC (repeat 16)	lure    	0.383	NR  	1   	NR      	NR      

@@ -1,0 +1,5 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	35.9  	45  	SACK      	lure_easy	1.951	0.899	1   	target  	target  
+2   	77.9  	21  	CENT      	targ_hard	1.95	0.514	1   	target  	target  
+3   	119.9 	22  	PEBBLE    	targ_easy	1.951	0.899	1   	target  	target  
+4   	161.9 	46  	PILE      	lure_hard	1.951	0.675	1   	target  	target  
