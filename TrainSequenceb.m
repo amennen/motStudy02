@@ -45,7 +45,7 @@ mot_realtime01b(SUBJECT, SETUP, [], 0, 0);
 % this will continue to train test and practice MOT, then move on to
 % MOT_Practice, MOT_PREP
 s2 = findMatch(SUBJECT,SVEC);
-%if you don't have a match, then restart mot_realtime01 and go to
+% then restart mot_realtime01 and go to
 %familiarize 2 with new data
 if s2 < 0 % if no match
     subjDir = [base_path 'BehavioralData' filesep num2str(SUBJECT) filesep];
