@@ -982,3 +982,11 @@ SESSION 10 ended 12-Oct-2016 17:51:34 for SUBJECT number 24
 SESSION 7 initiated 12-Oct-2016 17:51:40 for SUBJECT number 24
 
 session	trial	pair	onset	dur	cue         	associate   
+
+
+SESSION 24 ended 13-Oct-2016 18:30:51 for SUBJECT number 24
+
+
+
+
+******************************************************************************
