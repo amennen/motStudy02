@@ -17,7 +17,7 @@ while (GetSecs<timeToWait)
     if timeToWait < inf % if set a time, make sure it's within 1 TR
         if GetSecs > timeToWait - (TRlength - TRlength/2) %only look if within a TR
             [keyIsDown,secs,keyCode] = KbCheck(DEVICE);
-            if keyIsDown && any(find(keyCode) == TRIGGER_keycode)
+            if keyIsDown && any(ismember(TRIGGER_keycode,find(keyCode)))
                 recorded = true;
                 break;
             end
