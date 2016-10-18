@@ -1,0 +1,5 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	35.9  	21  	ISLAND    	targ_hard	1.95	0.765	1   	non-target	non-target
+2   	77.9  	45  	ISSUE     	lure_easy	1.95	0.821	1   	target  	target  
+3   	119.9 	46  	VAULT     	lure_hard	1.951	0.83	1   	target  	target  
+4   	161.9 	22  	PIN       	targ_easy	1.95	0.766	1   	non-target	non-target

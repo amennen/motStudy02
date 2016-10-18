@@ -2,7 +2,7 @@
 %%fmri session
 %first these are all the session numbers
 
-SUBJECT = 25; %experimental subject number
+SUBJECT = 26; %experimental subject number
 prev = 0; %if today's date (0) or previous date (1)
 scanNow = 1; %if using triggers (1)
 runNum = 1; %what number subject they are today
@@ -81,47 +81,47 @@ mot_realtime01b(SUBJECT,RSVP2,[],0,scanNow,s2) %will continue until TOCRITERION3
 %look for mask and test it
 
 %% LOCALIZER DISPLAY
-scanNum = 16%11;
+scanNum = 11;
 mot_realtime01b(SUBJECT,MOT_LOCALIZER,[],scanNum,scanNow,s2);
 
 %% LOCALIZER FILE PROCESS
-scanNum = 16%11;
-crossval = 0;=
-%crossval = 1;=
+scanNum = 11;
+crossval = 0;
+%crossval = 1;
 featureSelect = 1;
 LocalizerFileProcess(SUBJECT,crossval,featureSelect,prev,scanNow,scanNum,MOT_LOCALIZER,runNum)
 
 %% RECALL 1
-scanNum = 18%13;
+scanNum = 13;
 mot_realtime01b(SUBJECT,RECALL1,[],scanNum,scanNow,s2);
 
 %% MOT RUN 1 DISPLAY
-scanNum = 18%15; %new would be 15
+scanNum = 15; %new would be 15
 mot_realtime01b(SUBJECT,MOT{1},[],scanNum,scanNow,s2);
 %% MOT RUN 1 FILE PROCESS
-scanNum = 20%normally 15;
+scanNum = 15;
 blockNum = 1;
 featureSelect = 1;
 RealTimeMemoryFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{1},blockNum,runNum);
 
 %% MOT RUN 2 DISPLAY
-scanNum = 22%17;
+scanNum = 17;
 mot_realtime01b(SUBJECT,MOT{2},[],scanNum,scanNow,s2);
 %% MOT RUN 2 FILE PROCESS
-scanNum = 22%17;
+scanNum = 17;
 featureSelect = 1;
 blockNum = 2;
 RealTimeMemoryFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{2},blockNum,runNum);
 
 %% MOT RUN 3 DISPLAY
-scanNum = 24%19;
+scanNum = 19;
 mot_realtime01b(SUBJECT,MOT{3},[],scanNum,scanNow,s2);
 %% MOT RUN 3 FILE PROCESS
-scanNum = 24%19;
+scanNum = 19;
 featureSelect = 1;
 blockNum = 3;
 RealTimeMemoryFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{3},blockNum,runNum);
 
 %% RECALL 2
-scanNum = 26%21;
+scanNum = 21;
 mot_realtime01b(SUBJECT,RECALL2,[],scanNum,scanNow,s2);

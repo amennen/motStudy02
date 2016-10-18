@@ -15,9 +15,9 @@ if RTgroup
     datevec = {'8-10-16', '8-27-16', '8-30-16', '9-7-16', '9-14-16', '9-23-16', '10-6-16', '10-6-16'};
     runvec = [1 1 1 1 1 1 1 2];
 elseif YCgroup
-    svec = [16 20];
-    datevec = {'9-16-16', '10-4-16'};
-    runvec = [1 1];
+    svec = [16 20 24];
+    datevec = {'9-16-16', '10-4-16', '10-13-16'};
+    runvec = [1 1 1];
 end
 NSUB = length(svec);
 
@@ -71,6 +71,17 @@ for s = 1:NSUB
            rating = cell2mat(trials(:,12));
            sub.hard = rating(find(cond==1));
            sub.easy = rating(find(cond==2));
+           
+           scanNum = recallScan(i);
+           SESSION = recallSession(i);
+           [~,trials,stimOrder] = GetSessionInfoRT(subjectNum,SESSION,behavioral_dir);
+           
+           sub.Orderhard = sub.hard(stimOrder.hard);
+           sub.Ordereasy = sub.easy(stimOrder.easy);
+        
+           keep.hard = find(sub.Orderhard>1);
+           keep.easy = find(sub.Ordereasy>1);
+        
         end
         
         scanNum = recallScan(i);
@@ -82,8 +93,6 @@ for s = 1:NSUB
         sub.Orderhard = sub.hard(stimOrder.hard);
         sub.Ordereasy = sub.easy(stimOrder.easy);
         
-        keep.hard = find(sub.Orderhard>1);
-        keep.easy = find(sub.Ordereasy>1);
         
         testTrials = find(any(patterns.regressor.allCond));
         allcond = patterns.regressor.allCond(:,testTrials);

@@ -1,0 +1,21 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	45.2  	9   	MORNING   	realtime	3.951	1.532	1   	1 detail	1 detail, 2+ details, full
+2   	85.2  	18  	PARADE    	omit    	3.95	1.108	1   	1 detail	1 detail, 2+ details, full
+3   	125.2 	14  	ORNAMENT  	omit    	3.951	2.166	0   	generic 	1 detail, 2+ details, full
+4   	165.2 	8   	NOZZLE    	realtime	3.951	0.668	0   	no image	1 detail, 2+ details, full
+5   	205.2 	3   	COAL      	realtime	3.95	1.413	1   	1 detail	1 detail, 2+ details, full
+6   	245.2 	16  	PIANO     	omit    	3.953	1.125	1   	1 detail	1 detail, 2+ details, full
+7   	285.2 	1   	SACK      	realtime	3.95	0.693	0   	no image	1 detail, 2+ details, full
+8   	325.2 	17  	BADGE     	omit    	3.952	1.462	1   	1 detail	1 detail, 2+ details, full
+9   	365.2 	19  	POLISH    	omit    	3.951	1.43	0   	no image	1 detail, 2+ details, full
+10  	405.2 	4   	PILE      	realtime	3.952	1.222	1   	1 detail	1 detail, 2+ details, full
+11  	445.2 	20  	POLE      	omit    	3.951	1.711	0   	generic 	1 detail, 2+ details, full
+12  	485.2 	6   	MUZZLE    	realtime	3.952	1.111	1   	1 detail	1 detail, 2+ details, full
+13  	525.2 	12  	RULER     	omit    	3.95	0.991	0   	no image	1 detail, 2+ details, full
+14  	565.2 	2   	FOSSIL    	realtime	3.951	1.384	0   	no image	1 detail, 2+ details, full
+15  	605.2 	11  	BELT      	omit    	3.953	1.152	1   	1 detail	1 detail, 2+ details, full
+16  	645.2 	7   	ATLAS     	realtime	3.952	0.912	0   	no image	1 detail, 2+ details, full
+17  	685.2 	5   	LABEL     	realtime	3.954	0.977	0   	no image	1 detail, 2+ details, full
+18  	725.2 	13  	ENGINE    	omit    	3.95	1.033	0   	no image	1 detail, 2+ details, full
+19  	765.2 	15  	PATCH     	omit    	3.951	1.265	1   	1 detail	1 detail, 2+ details, full
+20  	805.2 	10  	BUBBLE    	realtime	3.953	1.114	1   	1 detail	1 detail, 2+ details, full
