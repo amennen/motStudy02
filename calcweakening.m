@@ -31,7 +31,7 @@ nblock = 3;
 
 svec = [8 12:16 18 20:22];
 RT = [8 12:15 18 21 22];
-YC = [16 20];
+YC = [16 20 24];
 iRT = find(ismember(svec,RT));
 iYC = find(ismember(svec,YC));
 
@@ -207,18 +207,20 @@ end
 %end
 
 %% now compare time to decrease with types of feedback
-    firstPos = distPos(iRT);
-    secondPos = distPos(iYC);
-    firstNeg = distNeg(iRT);
-    secondNeg = distNeg(iYC);
-    
-    avgratio = [mean(firstPos)  mean(secondPos); mean(firstNeg) mean(secondNeg)];
-    eavgratio = [std(firstPos)/sqrt(length(firstPos-1)) std(secondPos)/sqrt(length(secondPos-1));std(firstNeg)/sqrt(length(firstPos-1)) std(secondNeg)/sqrt(length(secondPos-1))];
-    thisfig = figure;
-    barwitherr(eavgratio,avgratio)
-    set(gca,'XTickLabel' , ['dS > 0';'dS < 0']);
-    legend('Old 4', 'New 6')
-    ylabel('TR''s to Decrease')
-    title('Evidence Response Time, Separated by \DeltaS')
-    set(findall(gcf,'-property','FontSize'),'FontSize',20)
-    %print(thisfig, sprintf('%sweakeningbygroupbysign.pdf', allplotDir), '-dpdf')
+%     firstPos = distPos(iRT);
+%     secondPos = distPos(iYC);
+%     firstNeg = distNeg(iRT);
+%     secondNeg = distNeg(iYC);
+%     
+%     avgratio = [mean(firstPos)  mean(secondPos); mean(firstNeg) mean(secondNeg)];
+%     eavgratio = [std(firstPos)/sqrt(length(firstPos-1)) std(secondPos)/sqrt(length(secondPos-1));std(firstNeg)/sqrt(length(firstPos-1)) std(secondNeg)/sqrt(length(secondPos-1))];
+%     thisfig = figure;
+%     barwitherr(eavgratio,avgratio)
+%     set(gca,'XTickLabel' , ['dS > 0';'dS < 0']);
+%     legend('Old 4', 'New 6')
+%     ylabel('TR''s to Decrease')
+%     title('Evidence Response Time, Separated by \DeltaS')
+%     set(findall(gcf,'-property','FontSize'),'FontSize',20)
+%     %print(thisfig, sprintf('%sweakeningbygroupbysign.pdf', allplotDir), '-dpdf')
+
+%% and then do time spent in optimal weakening zone-just fb TR's only
