@@ -1,0 +1,11 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	65.3  	1   	SACK      	rt-targ 	1.95	0.879	1   	target  	target  
+2   	107.3 	5   	LABEL     	rt-targ 	1.95	1.079	1   	non-target	non-target
+3   	149.3 	6   	MUZZLE    	rt-targ 	1.95	0.951	1   	target  	target  
+4   	191.3 	4   	PILE      	rt-targ 	1.95	1.111	1   	target  	target  
+5   	233.3 	7   	ATLAS     	rt-targ 	1.951	0.824	1   	non-target	non-target
+6   	275.3 	2   	FOSSIL    	rt-targ 	1.952	0.96	1   	target  	target  
+7   	317.3 	3   	COAL      	rt-targ 	1.95	1.152	1   	target  	target  
+8   	359.3 	9   	MORNING   	rt-targ 	1.953	1.049	1   	non-target	non-target
+9   	401.3 	8   	NOZZLE    	rt-targ 	1.954	0.929	1   	target  	target  
+10  	443.3 	10  	BUBBLE    	rt-targ 	1.951	0.786	1   	non-target	non-target

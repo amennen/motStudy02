@@ -24,7 +24,7 @@ while (GetSecs<timeToWait)
         end
     else % if haven't set a time, just wait until the trigger is pressed
         [keyIsDown,secs,keyCode] = KbCheck(DEVICE);
-        if keyIsDown && any(find(keyCode) == TRIGGER_keycode)
+        if keyIsDown && any(ismember(TRIGGER_keycode,find(keyCode)))
             recorded = true;
             break;
         end
