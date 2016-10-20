@@ -29,9 +29,9 @@ nblock = 3;
 %     svec = svec(1:nold);
 % end
 
-svec = [8 12:16 18 20:22];
+svec = [8 12:16 18 20:22 24 26];
 RT = [8 12:15 18 21 22];
-YC = [16 20 24];
+YC = [16 20 24 26];
 iRT = find(ismember(svec,RT));
 iYC = find(ismember(svec,YC));
 
@@ -93,6 +93,12 @@ for s = 1:nsub
         dsbystim(:,(iblock-1)*nTRs + 1: iblock*nTRs ) = speedchangeinorder;
         meandiffbyblock(iblock) = mean(mean(abs(diff(sepbystim,1,2))));
         FBmeandiffbyblock(iblock) = mean(mean(abs(diff(FBsepbystim,1,2))));
+        
+        % look how separation evidence is changing by TR
+        allDiff = diff(diff(sepinorder(:,5:end),1,2),1,2);
+        secondDiff = reshape(allDiff,1,numel(allDiff));
+        zTR = length(secondDiff);
+        allSecondDiff(s,(iblock-1)*zTR + 1: iblock*zTR) = secondDiff;
     end
     meandiff = mean(meandiffbyblock);
     FBmeandiff = mean(FBmeandiffbyblock);
@@ -187,6 +193,15 @@ for s = 1:nsub
     distNeg(s) = mean(negtime);
     distDec2 = nanmean(distDec1,2);
     
+    %take the average of nTRs in range
+    goodRange = [0.05 0.15];
+    z1 =find(FBsepbystim>=goodRange(1));
+    z2 = find(FBsepbystim<=goodRange(2));
+    nGoodRange(s) = length(intersect(z1,z2))/numel(FBsepbystim);
+    nLow(s) = length(find(FBsepbystim<=-.1))/numel(FBsepbystim);
+    nHigh(s) = length(find(FBsepbystim>=.3))/numel(FBsepbystim);
+    allSepMean(s) = mean(mean(FBsepbystim));
+    vectorSep(s,:) = reshape(FBsepbystim,1,numel(FBsepbystim));
 end
 
 %% now compare decrease of retrieval evidence across both groups
@@ -203,7 +218,7 @@ end
     title('Time to Decrease Evidence by Group')
     set(findall(gcf,'-property','FontSize'),'FontSize',20)
     %ylim([-.2 0.2])
-    %print(thisfig, sprintf('%sweakeningbygroup.pdf', allplotDir), '-dpdf')
+    print(thisfig, sprintf('%sTIMETODEC.pdf', allplotDir), '-dpdf')
 %end
 
 %% now compare time to decrease with types of feedback
@@ -224,3 +239,96 @@ end
 %     %print(thisfig, sprintf('%sweakeningbygroupbysign.pdf', allplotDir), '-dpdf')
 
 %% and then do time spent in optimal weakening zone-just fb TR's only
+firstgroup = nGoodRange(iRT);
+secondgroup = nGoodRange(iYC);
+avgratio = [mean(firstgroup) mean(secondgroup)];
+eavgratio = [std(firstgroup)/sqrt(length(firstgroup)-1) std(secondgroup)/sqrt(length(secondgroup)-1)];
+thisfig = figure;
+barwitherr(eavgratio,avgratio)
+set(gca,'XTickLabel' , ['RT';'YC']);
+xlabel('Subject Group')
+ylabel('% FB Time in Optimal Range')
+title('Time Spent in Optimal Range')
+set(findall(gcf,'-property','FontSize'),'FontSize',20)
+%ylim([-.2 0.2])
+print(thisfig, sprintf('%sTIMEINOPTIMAL.pdf', allplotDir), '-dpdf')
+%% and then do time spent BELOW optimal weakening zone-just fb TR's only
+firstgroup = nLow(iRT);
+secondgroup = nLow(iYC);
+avgratio = [mean(firstgroup) mean(secondgroup)];
+eavgratio = [std(firstgroup)/sqrt(length(firstgroup)-1) std(secondgroup)/sqrt(length(secondgroup)-1)];
+thisfig = figure;
+barwitherr(eavgratio,avgratio)
+set(gca,'XTickLabel' , ['RT';'YC']);
+xlabel('Subject Group')
+ylabel('% FB Time in Low Range')
+title('Time Spent in Low')
+set(findall(gcf,'-property','FontSize'),'FontSize',20)
+%ylim([-.2 0.2])
+%print(thisfig, sprintf('%sTIMELOW.pdf', allplotDir), '-dpdf')
+%% and then do time spent in HIGH zone-just fb TR's only
+firstgroup = nHigh(iRT);
+secondgroup = nHigh(iYC);
+avgratio = [mean(firstgroup) mean(secondgroup)];
+eavgratio = [std(firstgroup)/sqrt(length(firstgroup)-1) std(secondgroup)/sqrt(length(secondgroup)-1)];
+thisfig = figure;
+barwitherr(eavgratio,avgratio)
+set(gca,'XTickLabel' , ['RT';'YC']);
+xlabel('Subject Group')
+ylabel('% FB Time in High Range')
+title('Time Spent in High Range')
+set(findall(gcf,'-property','FontSize'),'FontSize',20)
+%ylim([-.2 0.2])
+%print(thisfig, sprintf('%sTIMEHIGH.pdf', allplotDir), '-dpdf')
+
+%% mean evidence of each group
+firstgroup =allSepMean(iRT);
+secondgroup = allSepMean(iYC);
+avgratio = [mean(firstgroup) mean(secondgroup)];
+eavgratio = [std(firstgroup)/sqrt(length(firstgroup)-1) std(secondgroup)/sqrt(length(secondgroup)-1)];
+thisfig = figure;
+barwitherr(eavgratio,avgratio)
+set(gca,'XTickLabel' , ['RT';'YC']);
+xlabel('Subject Group')
+ylabel('Mean of Classifier Evidence')
+title('Classifier Evidence of Retrieval during FB')
+set(findall(gcf,'-property','FontSize'),'FontSize',20)
+print(thisfig, sprintf('%sMEANEVIDENCE.pdf', allplotDir), '-dpdf')
+
+%% histograms of evidence!
+allRT = vectorSep(iRT,:);
+RTvec = reshape(allRT,1,numel(allRT));
+allYC = vectorSep(iYC,:);
+YCvec = reshape(allYC,1,numel(allYC));
+
+[c1,b1] = hist(RTvec,[-1:.1:1]);
+hold on;
+[c2,b] = hist(YCvec,b1);
+RTnorm = c1/sum(c1);
+YCnorm = c2/sum(c2);
+
+figure;
+bar(b,[RTnorm' YCnorm']);
+ylim([0 .3]);
+xlim([-1 1]);
+legend('RT', 'YC')
+
+%% histograms of second deriv
+secondRT = allSecondDiff(iRT,:);
+secondYC = allSecondDiff(iYC,:);
+RTvec = reshape(secondRT,1,numel(secondRT));
+YCvec = reshape(secondYC,1,numel(secondYC));
+
+[c1,b1] = hist(RTvec,[-1.5:.15:1.5]);
+hold on;
+[c2,b] = hist(YCvec,b1);
+RTnorm = c1/sum(c1);
+YCnorm = c2/sum(c2);
+
+figure;
+bar(b,[RTnorm' YCnorm']);
+%ylim([0 .3]);
+xlim([-1.5 1.5]);
+legend('RT', 'YC')
+
+

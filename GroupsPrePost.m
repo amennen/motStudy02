@@ -78,20 +78,19 @@ for s = 1:NSUB
            rating = cell2mat(trials(:,12));
            sub.hard = rating(find(cond==1));
            sub.easy = rating(find(cond==2));
+           
+            sub.Orderhard = sub.hard(stimOrder.hard);
+            sub.Ordereasy = sub.easy(stimOrder.easy);
+        
+            keep.hard = find(sub.Orderhard>1); %in the order of the stimuli-which indices to keep
+            keep.easy = find(sub.Ordereasy>1);
         end
         
         scanNum = recallScan(i);
         SESSION = recallSession(i);
         [patterns, t ] = RecallFileProcess(subjectNum,runNum,scanNum,SESSION,date,featureSelect); %this will give the category sep for every TR but now we have to pull out the TR's we
         %want and their conditions
-        [~,trials,stimOrder] = GetSessionInfoRT(subjectNum,SESSION,behavioral_dir);
-        
-        sub.Orderhard = sub.hard(stimOrder.hard);
-        sub.Ordereasy = sub.easy(stimOrder.easy);
-        
-        keep.hard = find(sub.Orderhard>1);
-        keep.easy = find(sub.Ordereasy>1);
-        
+        [~,trials,stimOrder] = GetSessionInfoRT(subjectNum,SESSION,behavioral_dir);        
         testTrials = find(any(patterns.regressor.allCond));
         allcond = patterns.regressor.allCond(:,testTrials);
         categSep = patterns.categSep(:,union(testTrials,testTrials+shiftTR)); %all testTR's plus 2 before

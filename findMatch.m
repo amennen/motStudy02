@@ -27,10 +27,10 @@ hardSpeed = MAX_SPEED - lastRun.stim.tGuess(end);
 
 alldiff = abs(allSpeed - hardSpeed);
 [~,ind] = min(alldiff);
-if abs(alldiff(ind(1))) <= 2
+%if abs(alldiff(ind(1))) <= 2 %taking out clause for last 4 YC subjects
     subject2 = svec(ind(1)); %only take the first one if there happens to be multiple that are the same distance
-else
-    subject2 = -1; %in this case finish experiment
-end
+%else
+%    subject2 = -1; %in this case finish experiment
+%end
 end
 

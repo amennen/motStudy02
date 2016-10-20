@@ -7,13 +7,12 @@
 %recogdata.m to look at the recognition memory)
 clear all;
 projectName = 'motStudy02';
-RTgroup =0;
-YCgroup = 1;
-if RTgroup
-    svec = [8 12:15 18 21 22];
-elseif YCgroup
-    svec = [16 20];
-end
+
+svec = [8 12:16 18 20:22 24 26];
+RT = [8 12:15 18 21 22];
+YC = [16 20 24 26];
+iRT = find(ismember(svec,RT));
+iYC = find(ismember(svec,YC));
 
 NSUB = length(svec);
 recallSession = [19 23];
@@ -53,6 +52,23 @@ for s = 1:NSUB
     
     diff_easy(s) = mean(easy_ordered(s,easy_rem{s},2) - easy_ordered(s,easy_rem{s},1));
     diff_hard(s) = mean(hard_ordered(s,hard_rem{s},2) - hard_ordered(s,hard_rem{s},1));
+    
+    [allRem] = findRememberedStim(svec(s));
+    r = dir(fullfile(behavioral_dir, ['_' 'RECOG'  '*.mat']));
+    r = load(fullfile(behavioral_dir,r(end).name));
+    trials = table2cell(r.datastruct.trials);
+    stimID = cell2mat(trials(:,8));
+    goodTrials = find(ismember(stimID,allRem));
+    cond = cell2mat(trials(goodTrials,9));
+    acc = cell2mat(trials(goodTrials,11));
+    rt = cell2mat(trials(goodTrials,13));
+    easy = find(cond==2);
+    hard = find(cond==1);
+    easy_score(s) = mean(acc(easy));
+    hard_score(s) = mean(acc(hard));
+    easy_rt(s) = nanmedian(rt(easy));
+    hard_rt(s) = nanmedian(rt(hard));
+    
 end
 
 % diff_easy = easy_ordered(:,easy_rem{s},2) - easy_ordered(:,easy_rem{s},1);
@@ -80,5 +96,49 @@ print(h, sprintf('%sYCONLY_ratings.pdf', allplotDir), '-dpdf')
 
 
 
-%%
+%% level of detail differences across groups
+firstgroup = [diff_hard(iRT); diff_easy(iRT)];
+secondgroup = [diff_hard(iYC); diff_easy(iYC)];
+avgratio = [nanmean(firstgroup,2) nanmean(secondgroup,2)];
+eavgratio = [nanstd(firstgroup,[],2)/sqrt(length(firstgroup)-1) nanstd(secondgroup,[],2)/sqrt(length(secondgroup)-1)];
+thisfig = figure;
+barwitherr(eavgratio,avgratio)
+set(gca,'XTickLabel' , ['MOT ';'OMIT']);
+legend('Realtime', 'Yoked')
+xlabel('Stimulus Type')
+ylabel('Level of Detail Difference')
+title('Average Post - Pre Detail Difference')
+set(findall(gcf,'-property','FontSize'),'FontSize',20)
+ylim([-.4 .8])
+print(h, sprintf('%salldetailRatings.pdf', allplotDir), '-dpdf')
 
+%% recognition accuracy
+firstgroup = [hard_score(iRT); easy_score(iRT)];
+secondgroup = [hard_score(iYC); easy_score(iYC)];
+avgratio = [nanmean(firstgroup,2) nanmean(secondgroup,2)];
+eavgratio = [nanstd(firstgroup,[],2)/sqrt(length(firstgroup)-1) nanstd(secondgroup,[],2)/sqrt(length(secondgroup)-1)];
+thisfig = figure;
+barwitherr(eavgratio,avgratio)
+set(gca,'XTickLabel' , ['MOT ';'OMIT']);
+legend('Realtime', 'Yoked')
+xlabel('Stimulus Type')
+ylabel('Recognition Rate (%)')
+title('Recognition Accuracy')
+set(findall(gcf,'-property','FontSize'),'FontSize',20)
+ylim([-.4 .8])
+print(h, sprintf('%sallrecogAcc.pdf', allplotDir), '-dpdf')
+%% recognition RT
+firstgroup = [hard_rt(iRT); easy_rt(iRT)];
+secondgroup = [hard_rt(iYC); easy_rt(iYC)];
+avgratio = [nanmean(firstgroup,2) nanmean(secondgroup,2)];
+eavgratio = [nanstd(firstgroup,[],2)/sqrt(length(firstgroup)-1) nanstd(secondgroup,[],2)/sqrt(length(secondgroup)-1)];
+thisfig = figure;
+barwitherr(eavgratio,avgratio)
+set(gca,'XTickLabel' , ['MOT ';'OMIT']);
+legend('Realtime', 'Yoked')
+xlabel('Stimulus Type')
+ylabel('RT (s)')
+title('Recognition RT')
+set(findall(gcf,'-property','FontSize'),'FontSize',20)
+ylim([-.4 .8])
+print(h, sprintf('%sallrecogRT.pdf', allplotDir), '-dpdf')
