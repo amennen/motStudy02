@@ -982,6 +982,11 @@ SESSION 10 ended 12-Oct-2016 17:51:34 for SUBJECT number 24
 SESSION 7 initiated 12-Oct-2016 17:51:40 for SUBJECT number 24
 
 session	trial	pair	onset	dur	cue         	associate   
+<<<<<<< HEAD
+
+
+SESSION 24 ended 13-Oct-2016 18:30:51 for SUBJECT number 24
+=======
 trial	TR	prompt active	speed	ds	flip error	found file	FileTR	CategSep	LastFile
 1	1	0		0.500	  NaN	-0.0072		NaN		1		  NaN		
 1	2	0		0.500	  NaN	-0.0072		NaN		1		  NaN		
@@ -1053,11 +1058,14 @@ SESSION 14 ended 13-Oct-2016 16:48:42 for SUBJECT number 24
 
 
 SESSION 15 ended 13-Oct-2016 16:54:37 for SUBJECT number 24
+>>>>>>> c658c3eea623bc37bc7ff783f0f60aec1c63793c
 
 
 
 
 ******************************************************************************
+<<<<<<< HEAD
+=======
 
 SESSION 16 initiated 13-Oct-2016 16:54:42 for SUBJECT number 24
 
@@ -2094,3 +2102,4 @@ trial	TR	prompt active	speed	ds	flip error	found file	FileTR	CategSep	LastFile
 
 SESSION 23 ended 13-Oct-2016 18:26:19 for SUBJECT number 24
 
+>>>>>>> c658c3eea623bc37bc7ff783f0f60aec1c63793c
