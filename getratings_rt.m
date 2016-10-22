@@ -8,9 +8,9 @@
 clear all;
 projectName = 'motStudy02';
 
-svec = [8 12:16 18 20:22 24 26];
+svec = [8 12:16 18 20:22 24 26 27];
 RT = [8 12:15 18 21 22];
-YC = [16 20 24 26];
+YC = [16 20 24 26 27];
 iRT = find(ismember(svec,RT));
 iYC = find(ismember(svec,YC));
 
