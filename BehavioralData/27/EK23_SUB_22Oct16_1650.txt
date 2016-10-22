@@ -1,0 +1,21 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	43.9  	1   	BOTTLE    	realtime	3.955	0.867	0   	no image	1 detail, 2+ details, full
+2   	83.9  	17  	MATCH     	omit    	3.95	0.731	1   	2+ details	1 detail, 2+ details, full
+3   	123.9 	6   	DEPOT     	realtime	3.95	2.451	1   	2+ details	1 detail, 2+ details, full
+4   	163.8 	11  	IODINE    	omit    	3.95	0.628	1   	2+ details	1 detail, 2+ details, full
+5   	203.8 	18  	SWORD     	omit    	3.95	0.5 	1   	2+ details	1 detail, 2+ details, full
+6   	243.8 	10  	FOAM      	realtime	3.951	0.892	0   	no image	1 detail, 2+ details, full
+7   	283.8 	14  	PENNY     	omit    	3.95	0.437	0   	no image	1 detail, 2+ details, full
+8   	323.8 	3   	POLISH    	realtime	3.95	0.501	0   	no image	1 detail, 2+ details, full
+9   	363.8 	4   	CARD      	realtime	3.95	0.845	1   	1 detail	1 detail, 2+ details, full
+10  	403.8 	20  	PUTTY     	omit    	3.95	1.046	1   	1 detail	1 detail, 2+ details, full
+11  	443.8 	12  	SHELL     	omit    	3.951	0.886	0   	no image	1 detail, 2+ details, full
+12  	483.8 	5   	TART      	realtime	3.95	0.774	1   	1 detail	1 detail, 2+ details, full
+13  	523.8 	9   	MALLET    	realtime	3.95	0.543	1   	2+ details	1 detail, 2+ details, full
+14  	563.9 	13  	SHIELD    	omit    	3.95	0.502	1   	2+ details	1 detail, 2+ details, full
+15  	603.8 	19  	GALLERY   	omit    	3.95	0.863	1   	2+ details	1 detail, 2+ details, full
+16  	643.8 	2   	POLE      	realtime	3.951	0.624	1   	1 detail	1 detail, 2+ details, full
+17  	683.8 	15  	ATLAS     	omit    	3.952	0.864	0   	generic 	1 detail, 2+ details, full
+18  	723.8 	8   	DRILL     	realtime	3.951	0.704	0   	no image	1 detail, 2+ details, full
+19  	763.9 	7   	EASEL     	realtime	3.95	0.888	1   	1 detail	1 detail, 2+ details, full
+20  	803.8 	16  	FOSSIL    	omit    	3.95	0.809	0   	generic 	1 detail, 2+ details, full
