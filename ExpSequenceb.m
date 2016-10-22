@@ -2,11 +2,11 @@
 %%fmri session
 %first these are all the session numbers
 
-SUBJECT = 26; %experimental subject number
+SUBJECT = 27; %experimental subject number
 prev = 0; %if today's date (0) or previous date (1)
 scanNow = 1; %if using triggers (1)
 runNum = 1; %what number subject they are today
-svec = [12 15 18 21 22];
+svec = [12 18 21 22];
 s2 = findMatch(SUBJECT,svec); %enter in s2!!
 SPTB_PATH = ['/Data1/code/SPTBanne'];
 addpath(genpath(SPTB_PATH));
