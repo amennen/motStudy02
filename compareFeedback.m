@@ -46,8 +46,10 @@ for s = 1:nsub
         allMotionTRs = convertTR(d.timing.trig.wait,d.timing.plannedOnsets.motion,d.config.TR); %row,col = mTR,trialnumber
         allMotionTRs = allMotionTRs + 2;%[allMotionTRs; allMotionTRs(end,:)+1; allMotionTRs(end,:) + 2]; %add in the next 2 TR's for HDF
         onlyFbTRs = allMotionTRs(4:end,:);
+        FBTR2 = allMotionTRs(5:end,end);
         TRvector = reshape(allMotionTRs,1,numel(allMotionTRs));
         FBTRVector = reshape(onlyFbTRs,1,numel(onlyFbTRs));
+        FBTRVector2 = reshape(FBTR2,1,numel(FBTR2));
         run = dir([runHeader 'motpatternsdata_' num2str(SESSION) '*']);
         names = {run.name};
         dates = [run.datenum];
@@ -57,20 +59,62 @@ for s = 1:nsub
         sepbytrial = reshape(categsep,nTRs,10);
         allsepchange = diff(sepbytrial,1,1);
         FBsepchange = reshape(allsepchange(4:end,:),1,numel(allsepchange(4:end,:)));
+        allsep = reshape(sepbytrial(5:end,:),1,numel(sepbytrial(5:end,:)));
         allspeedchanges = diff(d.stim.motionSpeed,1,1);
         FBspeedchange = reshape(allspeedchanges(4:end,:),1,numel(allspeedchanges(4:end,:)));
         FBTRs = length(FBspeedchange);
         ds((iblock-1)*FBTRs + 1: iblock*FBTRs ,s) = FBspeedchange;
-        ev((iblock-1)*FBTRs + 1: iblock*FBTRs ,s) = FBsepchange%FBsep;
+        ev((iblock-1)*FBTRs + 1: iblock*FBTRs ,s) = allsep;
     end
     
-figure;
-plot(ds(:,s),ev(:,s), '.')
 end
 
-figure
-for i = 1:s
-%figure;
-hold on
-plot(ds(:,i),ev(:,i), '.')
+%% now separate plots into RT and YC groups
+ds_RT = ds(:,iRT);
+allds_RT = reshape(ds_RT,1,numel(ds_RT));
+ev_RT = ev(:,iRT);
+allev_RT = reshape(ev_RT,1,numel(ev_RT));
+
+ds_YC = ds(:,iYC);
+allds_YC = reshape(ds_YC,1,numel(ds_YC));
+ev_YC = ev(:,iYC);
+allev_YC = reshape(ev_YC,1,numel(ev_YC));
+
+
+figure;
+scatter(allds_RT,allev_RT,'fill','MarkerEdgeColor','b',...
+        'MarkerFaceColor','c',...
+        'LineWidth',2.5);
+[rho,pval] = corrcoef([allds_RT' allev_RT']);
+hold on;
+scatter(allds_YC,allev_YC,'fill','MarkerEdgeColor','k',...
+        'MarkerFaceColor','r',...
+        'LineWidth',2.5);
+    
+[rho,pval] = corrcoef([allds_YC' allev_YC']);
+%% look for differences in signal stability: find peaks and take difference
+optimal = 0.1;
+for s = 1:nsub
+   z = ev(:,s);
+   [pks,locs] = findpeaks(z);
+   overshoot = sum(abs(pks- optimal));
+   [lows,minloc] = findpeaks(-1*z);
+   undershoot = sum(abs(optimal-lows));
+   offshoot(s) = overshoot + undershoot;
 end
+
+% do this as a beeswarm
+firstgroup = offshoot(iRT);
+secondgroup = offshoot(iYC);
+avgratio = [mean(firstgroup) mean(secondgroup)];
+eavgratio = [std(firstgroup)/sqrt(length(firstgroup)-1) std(secondgroup)/sqrt(length(secondgroup)-1)];
+thisfig = figure;
+barwitherr(eavgratio,avgratio)
+set(gca,'XTickLabel' , ['RT';'YC']);
+xlabel('Subject Group')
+ylabel('OffShoot')
+title('Offshoots')
+set(findall(gcf,'-property','FontSize'),'FontSize',20)
+print(thisfig, sprintf('%sMEANEVIDENCE.pdf', allplotDir), '-dpdf')
+
+%% prove that more over and undershooting is because of feedback (relate previous dot speed to evidence max or min)
