@@ -1,0 +1,239 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	12.5  	1   	METAL     	lure    	0.349	NR  	1   	NR      	NR      
+2   	12.9  	2   	BASIN     	lure    	0.601	NR  	1   	NR      	NR      
+3   	13.6  	3   	MAZE      	lure    	0.36	NR  	1   	NR      	NR      
+4   	14    	4   	RATTLE    	lure    	0.657	NR  	1   	NR      	NR      
+5   	14.7  	5   	COLUMN    	lure    	0.499	NR  	1   	NR      	NR      
+6   	15.3  	6   	NAIL      	lure    	0.273	NR  	1   	NR      	NR      
+7   	15.6  	2   	BASIN (repeat 1)	lure    	0.596	NR  	1   	NR      	NR      
+8   	16.2  	3   	MAZE (repeat 1)	lure    	0.601	NR  	1   	NR      	NR      
+9   	16.9  	5   	COLUMN (repeat 1)	lure    	0.573	NR  	1   	NR      	NR      
+10  	17.5  	7   	COACH     	lure    	0.297	NR  	1   	NR      	NR      
+11  	17.8  	6   	NAIL (repeat 1)	lure    	0.632	NR  	1   	NR      	NR      
+12  	18.5  	8   	PITCHFORK 	lure    	0.654	0.595	0   	target  	NR      
+13  	19.2  	9   	PURSE     	lure    	0.358	NR  	1   	NR      	NR      
+14  	19.6  	3   	MAZE (repeat 2)	lure    	0.478	NR  	1   	NR      	NR      
+15  	20.2  	10  	ACRE      	lure    	0.452	NR  	1   	NR      	NR      
+16  	20.7  	8   	PITCHFORK (repeat 1)	lure    	0.519	NR  	1   	NR      	NR      
+17  	21.2  	11  	RULER     	lure    	0.451	NR  	1   	NR      	NR      
+18  	21.7  	4   	RATTLE (repeat 1)	lure    	0.45	NR  	1   	NR      	NR      
+19  	22.2  	3   	MAZE (repeat 3)	lure    	0.452	NR  	1   	NR      	NR      
+20  	22.7  	12  	SHIRT     	lure    	0.497	NR  	1   	NR      	NR      
+21  	23.3  	1   	METAL (repeat 1)	lure    	0.452	NR  	1   	NR      	NR      
+22  	23.8  	3   	MAZE (repeat 4)	lure    	0.38	NR  	1   	NR      	NR      
+23  	24.2  	9   	PURSE (repeat 1)	lure    	0.451	NR  	1   	NR      	NR      
+24  	24.7  	13  	MELON     	fruit   	0.95	0.61	1   	target  	target  
+25  	25.8  	6   	NAIL (repeat 2)	lure    	0.381	NR  	1   	NR      	NR      
+26  	26.2  	11  	RULER (repeat 1)	lure    	0.425	NR  	1   	NR      	NR      
+27  	26.7  	8   	PITCHFORK (repeat 2)	lure    	0.388	NR  	1   	NR      	NR      
+28  	27.1  	9   	PURSE (repeat 2)	lure    	0.596	NR  	1   	NR      	NR      
+29  	27.8  	4   	RATTLE (repeat 2)	lure    	0.259	NR  	1   	NR      	NR      
+30  	28.1  	1   	METAL (repeat 2)	lure    	0.34	NR  	1   	NR      	NR      
+31  	28.5  	5   	COLUMN (repeat 2)	lure    	0.473	NR  	1   	NR      	NR      
+32  	29    	2   	BASIN (repeat 2)	lure    	0.38	NR  	1   	NR      	NR      
+33  	29.5  	14  	PLUG      	lure    	0.617	NR  	1   	NR      	NR      
+34  	30.1  	12  	SHIRT (repeat 1)	lure    	0.504	NR  	1   	NR      	NR      
+35  	30.7  	6   	NAIL (repeat 3)	lure    	0.41	NR  	1   	NR      	NR      
+36  	31.2  	15  	TART      	lure    	0.317	NR  	1   	NR      	NR      
+37  	31.6  	16  	VAULT     	lure    	0.492	NR  	1   	NR      	NR      
+38  	32.1  	2   	BASIN (repeat 3)	lure    	0.513	NR  	1   	NR      	NR      
+39  	32.7  	10  	ACRE (repeat 1)	lure    	0.534	NR  	1   	NR      	NR      
+40  	33.3  	1   	METAL (repeat 3)	lure    	0.286	NR  	1   	NR      	NR      
+41  	33.7  	2   	BASIN (repeat 4)	lure    	0.491	NR  	1   	NR      	NR      
+42  	34.2  	3   	MAZE (repeat 5)	lure    	0.432	NR  	1   	NR      	NR      
+43  	34.7  	1   	METAL (repeat 4)	lure    	0.665	NR  	1   	NR      	NR      
+44  	35.4  	2   	BASIN (repeat 5)	lure    	0.454	NR  	1   	NR      	NR      
+45  	36    	16  	VAULT (repeat 1)	lure    	0.451	NR  	1   	NR      	NR      
+46  	36.5  	3   	MAZE (repeat 6)	lure    	0.263	NR  	1   	NR      	NR      
+47  	36.8  	9   	PURSE (repeat 3)	lure    	0.453	NR  	1   	NR      	NR      
+48  	37.3  	12  	SHIRT (repeat 2)	lure    	0.692	NR  	1   	NR      	NR      
+49  	38.1  	6   	NAIL (repeat 4)	lure    	0.452	NR  	1   	NR      	NR      
+50  	38.6  	3   	MAZE (repeat 7)	lure    	0.587	NR  	1   	NR      	NR      
+51  	39.3  	16  	VAULT (repeat 2)	lure    	0.452	NR  	1   	NR      	NR      
+52  	39.8  	6   	NAIL (repeat 5)	lure    	0.273	NR  	1   	NR      	NR      
+53  	40.1  	12  	SHIRT (repeat 3)	lure    	0.455	NR  	1   	NR      	NR      
+54  	40.7  	11  	RULER (repeat 2)	lure    	0.347	NR  	1   	NR      	NR      
+55  	41.1  	12  	SHIRT (repeat 4)	lure    	0.451	NR  	1   	NR      	NR      
+56  	41.6  	2   	BASIN (repeat 6)	lure    	0.39	NR  	1   	NR      	NR      
+57  	42    	1   	METAL (repeat 5)	lure    	0.452	NR  	1   	NR      	NR      
+58  	42.6  	17  	STRAWBERRY	fruit   	0.951	0.522	1   	target  	target  
+59  	43.6  	10  	ACRE (repeat 2)	lure    	0.435	NR  	1   	NR      	NR      
+60  	44.1  	5   	COLUMN (repeat 3)	lure    	0.29	NR  	1   	NR      	NR      
+61  	44.5  	11  	RULER (repeat 3)	lure    	0.357	NR  	1   	NR      	NR      
+62  	44.9  	7   	COACH (repeat 1)	lure    	0.58	NR  	1   	NR      	NR      
+63  	45.5  	11  	RULER (repeat 4)	lure    	0.657	NR  	1   	NR      	NR      
+64  	46.3  	6   	NAIL (repeat 6)	lure    	0.383	NR  	1   	NR      	NR      
+65  	46.7  	2   	BASIN (repeat 7)	lure    	0.605	NR  	1   	NR      	NR      
+66  	47.4  	18  	FOAM      	lure    	0.447	NR  	1   	NR      	NR      
+67  	48    	14  	PLUG (repeat 1)	lure    	0.666	NR  	1   	NR      	NR      
+68  	48.7  	4   	RATTLE (repeat 3)	lure    	0.474	NR  	1   	NR      	NR      
+69  	49.2  	2   	BASIN (repeat 8)	lure    	0.57	NR  	1   	NR      	NR      
+70  	49.8  	18  	FOAM (repeat 1)	lure    	0.506	NR  	1   	NR      	NR      
+71  	50.4  	4   	RATTLE (repeat 4)	lure    	0.345	NR  	1   	NR      	NR      
+72  	50.8  	7   	COACH (repeat 2)	lure    	0.69	NR  	1   	NR      	NR      
+73  	51.5  	3   	MAZE (repeat 8)	lure    	0.559	NR  	1   	NR      	NR      
+74  	52.2  	16  	VAULT (repeat 3)	lure    	0.452	NR  	1   	NR      	NR      
+75  	52.7  	8   	PITCHFORK (repeat 3)	lure    	0.288	NR  	1   	NR      	NR      
+76  	53    	9   	PURSE (repeat 4)	lure    	0.547	NR  	1   	NR      	NR      
+77  	53.6  	6   	NAIL (repeat 7)	lure    	0.303	NR  	1   	NR      	NR      
+78  	54    	2   	BASIN (repeat 9)	lure    	0.407	NR  	1   	NR      	NR      
+79  	54.5  	5   	COLUMN (repeat 4)	lure    	0.452	NR  	1   	NR      	NR      
+80  	55    	4   	RATTLE (repeat 5)	lure    	0.422	NR  	1   	NR      	NR      
+81  	55.5  	5   	COLUMN (repeat 5)	lure    	0.452	NR  	1   	NR      	NR      
+82  	56.1  	14  	PLUG (repeat 2)	lure    	0.447	NR  	1   	NR      	NR      
+83  	56.6  	7   	COACH (repeat 3)	lure    	0.452	NR  	1   	NR      	NR      
+84  	57.1  	15  	TART (repeat 1)	lure    	0.606	NR  	1   	NR      	NR      
+85  	57.8  	4   	RATTLE (repeat 6)	lure    	0.451	NR  	1   	NR      	NR      
+86  	58.4  	12  	SHIRT (repeat 5)	lure    	0.331	NR  	1   	NR      	NR      
+87  	58.8  	18  	FOAM (repeat 2)	lure    	0.452	NR  	1   	NR      	NR      
+88  	59.3  	12  	SHIRT (repeat 6)	lure    	0.368	NR  	1   	NR      	NR      
+89  	59.8  	6   	NAIL (repeat 8)	lure    	0.452	NR  	1   	NR      	NR      
+90  	60.3  	19  	GRAPEFRUIT	fruit   	0.95	0.548	1   	target  	target  
+91  	61.3  	7   	COACH (repeat 4)	lure    	0.609	NR  	1   	NR      	NR      
+92  	62    	11  	RULER (repeat 5)	lure    	0.52	NR  	1   	NR      	NR      
+93  	62.6  	18  	FOAM (repeat 3)	lure    	0.607	NR  	1   	NR      	NR      
+94  	63.3  	12  	SHIRT (repeat 7)	lure    	0.362	NR  	1   	NR      	NR      
+95  	63.7  	4   	RATTLE (repeat 7)	lure    	0.352	NR  	1   	NR      	NR      
+96  	64.1  	14  	PLUG (repeat 3)	lure    	0.444	NR  	1   	NR      	NR      
+97  	64.7  	12  	SHIRT (repeat 8)	lure    	0.354	NR  	1   	NR      	NR      
+98  	65.1  	3   	MAZE (repeat 9)	lure    	0.518	NR  	1   	NR      	NR      
+99  	65.7  	14  	PLUG (repeat 4)	lure    	0.361	NR  	1   	NR      	NR      
+100 	66.1  	3   	MAZE (repeat 10)	lure    	0.253	NR  	1   	NR      	NR      
+101 	66.4  	6   	NAIL (repeat 9)	lure    	0.448	NR  	1   	NR      	NR      
+102 	67    	9   	PURSE (repeat 5)	lure    	0.602	NR  	1   	NR      	NR      
+103 	67.6  	3   	MAZE (repeat 11)	lure    	0.365	NR  	1   	NR      	NR      
+104 	68.1  	7   	COACH (repeat 5)	lure    	0.63	NR  	1   	NR      	NR      
+105 	68.8  	11  	RULER (repeat 6)	lure    	0.486	NR  	1   	NR      	NR      
+106 	69.3  	15  	TART (repeat 2)	lure    	0.292	NR  	1   	NR      	NR      
+107 	69.7  	1   	METAL (repeat 6)	lure    	0.662	NR  	1   	NR      	NR      
+108 	70.4  	7   	COACH (repeat 6)	lure    	0.529	NR  	1   	NR      	NR      
+109 	71.1  	6   	NAIL (repeat 10)	lure    	0.342	NR  	1   	NR      	NR      
+110 	71.5  	7   	COACH (repeat 7)	lure    	0.682	NR  	1   	NR      	NR      
+111 	72.2  	3   	MAZE (repeat 12)	lure    	0.451	NR  	1   	NR      	NR      
+112 	72.7  	4   	RATTLE (repeat 8)	lure    	0.609	NR  	1   	NR      	NR      
+113 	73.4  	11  	RULER (repeat 7)	lure    	0.451	NR  	1   	NR      	NR      
+114 	73.9  	13  	MELON (repeat 1)	fruit   	0.951	0.7 	1   	target  	target  
+115 	74.9  	6   	NAIL (repeat 11)	lure    	0.542	NR  	1   	NR      	NR      
+116 	75.6  	8   	PITCHFORK (repeat 4)	lure    	0.572	NR  	1   	NR      	NR      
+117 	76.2  	15  	TART (repeat 3)	lure    	0.354	NR  	1   	NR      	NR      
+118 	76.7  	16  	VAULT (repeat 4)	lure    	0.505	NR  	1   	NR      	NR      
+119 	77.3  	7   	COACH (repeat 8)	lure    	0.701	NR  	1   	NR      	NR      
+120 	78.1  	3   	MAZE (repeat 13)	lure    	0.586	NR  	1   	NR      	NR      
+121 	78.7  	10  	ACRE (repeat 3)	lure    	0.596	NR  	1   	NR      	NR      
+122 	79.4  	16  	VAULT (repeat 5)	lure    	0.386	NR  	1   	NR      	NR      
+123 	79.9  	11  	RULER (repeat 8)	lure    	0.487	NR  	1   	NR      	NR      
+124 	80.5  	15  	TART (repeat 4)	lure    	0.625	NR  	1   	NR      	NR      
+125 	81.2  	14  	PLUG (repeat 5)	lure    	0.558	NR  	1   	NR      	NR      
+126 	81.8  	8   	PITCHFORK (repeat 5)	lure    	0.328	NR  	1   	NR      	NR      
+127 	82.2  	10  	ACRE (repeat 4)	lure    	0.564	NR  	1   	NR      	NR      
+128 	82.9  	12  	SHIRT (repeat 9)	lure    	0.565	NR  	1   	NR      	NR      
+129 	83.6  	6   	NAIL (repeat 12)	lure    	0.454	NR  	1   	NR      	NR      
+130 	84.1  	14  	PLUG (repeat 6)	lure    	0.568	NR  	1   	NR      	NR      
+131 	84.8  	5   	COLUMN (repeat 6)	lure    	0.512	NR  	1   	NR      	NR      
+132 	85.4  	2   	BASIN (repeat 10)	lure    	0.452	NR  	1   	NR      	NR      
+133 	85.9  	20  	BERRY     	fruit   	0.951	0.509	1   	target  	target  
+134 	86.9  	1   	METAL (repeat 7)	lure    	0.666	NR  	1   	NR      	NR      
+135 	87.7  	9   	PURSE (repeat 6)	lure    	0.419	NR  	1   	NR      	NR      
+136 	88.2  	2   	BASIN (repeat 11)	lure    	0.49	NR  	1   	NR      	NR      
+137 	88.8  	15  	TART (repeat 5)	lure    	0.698	NR  	1   	NR      	NR      
+138 	89.6  	8   	PITCHFORK (repeat 6)	lure    	0.586	NR  	1   	NR      	NR      
+139 	90.3  	18  	FOAM (repeat 4)	lure    	0.3 	NR  	1   	NR      	NR      
+140 	90.7  	7   	COACH (repeat 9)	lure    	0.632	NR  	1   	NR      	NR      
+141 	91.4  	4   	RATTLE (repeat 9)	lure    	0.62	NR  	1   	NR      	NR      
+142 	92.1  	5   	COLUMN (repeat 7)	lure    	0.485	NR  	1   	NR      	NR      
+143 	92.7  	2   	BASIN (repeat 12)	lure    	0.298	NR  	1   	NR      	NR      
+144 	93.1  	14  	PLUG (repeat 7)	lure    	0.674	NR  	1   	NR      	NR      
+145 	93.9  	11  	RULER (repeat 9)	lure    	0.611	NR  	1   	NR      	NR      
+146 	94.5  	4   	RATTLE (repeat 10)	lure    	0.538	NR  	1   	NR      	NR      
+147 	95.1  	11  	RULER (repeat 10)	lure    	0.464	NR  	1   	NR      	NR      
+148 	95.7  	9   	PURSE (repeat 7)	lure    	0.339	NR  	1   	NR      	NR      
+149 	96.1  	5   	COLUMN (repeat 8)	lure    	0.64	NR  	1   	NR      	NR      
+150 	96.8  	1   	METAL (repeat 8)	lure    	0.686	NR  	1   	NR      	NR      
+151 	97.6  	3   	MAZE (repeat 14)	lure    	0.451	NR  	1   	NR      	NR      
+152 	98.1  	21  	GRAPE     	fruit   	0.95	0.5 	1   	target  	target  
+153 	99.2  	11  	RULER (repeat 11)	lure    	0.577	NR  	1   	NR      	NR      
+154 	99.8  	5   	COLUMN (repeat 9)	lure    	0.429	NR  	1   	NR      	NR      
+155 	100.4 	9   	PURSE (repeat 8)	lure    	0.473	NR  	1   	NR      	NR      
+156 	100.9 	2   	BASIN (repeat 13)	lure    	0.633	NR  	1   	NR      	NR      
+157 	101.7 	8   	PITCHFORK (repeat 7)	lure    	0.396	NR  	1   	NR      	NR      
+158 	102.2 	16  	VAULT (repeat 6)	lure    	0.392	NR  	1   	NR      	NR      
+159 	102.6 	7   	COACH (repeat 10)	lure    	0.376	NR  	1   	NR      	NR      
+160 	103.1 	11  	RULER (repeat 12)	lure    	0.354	NR  	1   	NR      	NR      
+161 	103.6 	14  	PLUG (repeat 8)	lure    	0.495	NR  	1   	NR      	NR      
+162 	104.1 	9   	PURSE (repeat 9)	lure    	0.452	NR  	1   	NR      	NR      
+163 	104.7 	4   	RATTLE (repeat 11)	lure    	0.322	NR  	1   	NR      	NR      
+164 	105.1 	11  	RULER (repeat 13)	lure    	0.308	NR  	1   	NR      	NR      
+165 	105.7 	1   	METAL (repeat 9)	lure    	0.642	NR  	1   	NR      	NR      
+166 	106.5 	14  	PLUG (repeat 9)	lure    	0.515	NR  	1   	NR      	NR      
+167 	107.1 	5   	COLUMN (repeat 10)	lure    	0.57	NR  	1   	NR      	NR      
+168 	107.8 	6   	NAIL (repeat 13)	lure    	0.509	NR  	1   	NR      	NR      
+169 	108.4 	18  	FOAM (repeat 5)	lure    	0.569	NR  	1   	NR      	NR      
+170 	109.1 	16  	VAULT (repeat 7)	lure    	0.278	NR  	1   	NR      	NR      
+171 	109.4 	1   	METAL (repeat 10)	lure    	0.449	NR  	1   	NR      	NR      
+172 	110   	6   	NAIL (repeat 14)	lure    	0.451	NR  	1   	NR      	NR      
+173 	110.5 	14  	PLUG (repeat 10)	lure    	0.291	NR  	1   	NR      	NR      
+174 	110.9 	12  	SHIRT (repeat 10)	lure    	0.452	NR  	1   	NR      	NR      
+175 	111.5 	11  	RULER (repeat 14)	lure    	0.447	NR  	1   	NR      	NR      
+176 	112   	18  	FOAM (repeat 6)	lure    	0.451	NR  	1   	NR      	NR      
+177 	112.6 	14  	PLUG (repeat 11)	lure    	0.275	NR  	1   	NR      	NR      
+178 	113   	3   	MAZE (repeat 15)	lure    	0.451	NR  	1   	NR      	NR      
+179 	113.5 	1   	METAL (repeat 11)	lure    	0.474	NR  	1   	NR      	NR      
+180 	114.1 	16  	VAULT (repeat 8)	lure    	0.451	NR  	1   	NR      	NR      
+181 	114.6 	22  	PEACH     	fruit   	0.95	0.528	1   	target  	target  
+182 	115.7 	18  	FOAM (repeat 7)	lure    	0.537	NR  	1   	NR      	NR      
+183 	116.3 	14  	PLUG (repeat 12)	lure    	0.641	NR  	1   	NR      	NR      
+184 	117.1 	15  	TART (repeat 6)	lure    	0.296	NR  	1   	NR      	NR      
+185 	117.5 	9   	PURSE (repeat 10)	lure    	0.473	NR  	1   	NR      	NR      
+186 	118   	12  	SHIRT (repeat 11)	lure    	0.57	NR  	1   	NR      	NR      
+187 	118.7 	1   	METAL (repeat 12)	lure    	0.587	NR  	1   	NR      	NR      
+188 	119.4 	16  	VAULT (repeat 9)	lure    	0.47	NR  	1   	NR      	NR      
+189 	120   	6   	NAIL (repeat 15)	lure    	0.426	NR  	1   	NR      	NR      
+190 	120.5 	16  	VAULT (repeat 10)	lure    	0.603	NR  	1   	NR      	NR      
+191 	121.2 	9   	PURSE (repeat 11)	lure    	0.677	NR  	1   	NR      	NR      
+192 	122   	14  	PLUG (repeat 13)	lure    	0.269	NR  	1   	NR      	NR      
+193 	122.3 	10  	ACRE (repeat 5)	lure    	0.453	NR  	1   	NR      	NR      
+194 	122.9 	14  	PLUG (repeat 14)	lure    	0.649	NR  	1   	NR      	NR      
+195 	123.6 	2   	BASIN (repeat 14)	lure    	0.424	NR  	1   	NR      	NR      
+196 	124.2 	6   	NAIL (repeat 16)	lure    	0.471	NR  	1   	NR      	NR      
+197 	124.7 	10  	ACRE (repeat 6)	lure    	0.57	NR  	1   	NR      	NR      
+198 	125.4 	2   	BASIN (repeat 15)	lure    	0.278	NR  	1   	NR      	NR      
+199 	125.8 	7   	COACH (repeat 11)	lure    	0.585	NR  	1   	NR      	NR      
+200 	126.5 	14  	PLUG (repeat 15)	lure    	0.451	NR  	1   	NR      	NR      
+201 	127   	20  	BERRY (repeat 1)	fruit   	0.951	0.463	1   	target  	target  
+202 	128.1 	4   	RATTLE (repeat 12)	lure    	0.262	NR  	1   	NR      	NR      
+203 	128.5 	1   	METAL (repeat 13)	lure    	0.295	NR  	1   	NR      	NR      
+204 	128.9 	9   	PURSE (repeat 12)	lure    	0.532	NR  	1   	NR      	NR      
+205 	129.5 	2   	BASIN (repeat 16)	lure    	0.529	NR  	1   	NR      	NR      
+206 	130.1 	1   	METAL (repeat 14)	lure    	0.538	NR  	1   	NR      	NR      
+207 	130.8 	6   	NAIL (repeat 17)	lure    	0.548	NR  	1   	NR      	NR      
+208 	131.5 	15  	TART (repeat 7)	lure    	0.685	NR  	1   	NR      	NR      
+209 	132.3 	14  	PLUG (repeat 16)	lure    	0.574	NR  	1   	NR      	NR      
+210 	132.9 	3   	MAZE (repeat 16)	lure    	0.284	NR  	1   	NR      	NR      
+211 	133.3 	11  	RULER (repeat 15)	lure    	0.268	NR  	1   	NR      	NR      
+212 	133.7 	4   	RATTLE (repeat 13)	lure    	0.422	NR  	1   	NR      	NR      
+213 	134.2 	3   	MAZE (repeat 17)	lure    	0.583	NR  	1   	NR      	NR      
+214 	134.9 	1   	METAL (repeat 15)	lure    	0.308	NR  	1   	NR      	NR      
+215 	135.4 	5   	COLUMN (repeat 11)	lure    	0.41	NR  	1   	NR      	NR      
+216 	135.9 	11  	RULER (repeat 16)	lure    	0.4 	NR  	1   	NR      	NR      
+217 	136.4 	5   	COLUMN (repeat 12)	lure    	0.363	NR  	1   	NR      	NR      
+218 	136.9 	11  	RULER (repeat 17)	lure    	0.271	NR  	1   	NR      	NR      
+219 	137.3 	1   	METAL (repeat 16)	lure    	0.645	NR  	1   	NR      	NR      
+220 	138   	2   	BASIN (repeat 17)	lure    	0.666	NR  	1   	NR      	NR      
+221 	138.8 	5   	COLUMN (repeat 13)	lure    	0.333	NR  	1   	NR      	NR      
+222 	139.2 	16  	VAULT (repeat 11)	lure    	0.438	NR  	1   	NR      	NR      
+223 	139.8 	7   	COACH (repeat 12)	lure    	0.375	NR  	1   	NR      	NR      
+224 	140.3 	9   	PURSE (repeat 13)	lure    	0.678	NR  	1   	NR      	NR      
+225 	141.1 	14  	PLUG (repeat 17)	lure    	0.641	NR  	1   	NR      	NR      
+226 	141.8 	3   	MAZE (repeat 18)	lure    	0.306	NR  	1   	NR      	NR      
+227 	142.2 	16  	VAULT (repeat 12)	lure    	0.268	NR  	1   	NR      	NR      
+228 	142.6 	4   	RATTLE (repeat 14)	lure    	0.257	NR  	1   	NR      	NR      
+229 	143   	14  	PLUG (repeat 18)	lure    	0.361	NR  	1   	NR      	NR      
+230 	143.5 	7   	COACH (repeat 13)	lure    	0.517	NR  	1   	NR      	NR      
+231 	144.1 	10  	ACRE (repeat 7)	lure    	0.329	NR  	1   	NR      	NR      
+232 	144.6 	15  	TART (repeat 8)	lure    	0.443	NR  	1   	NR      	NR      
+233 	145.1 	7   	COACH (repeat 14)	lure    	0.485	0.109	0   	target  	NR      
+234 	145.7 	3   	MAZE (repeat 19)	lure    	0.418	NR  	1   	NR      	NR      
+235 	146.3 	16  	VAULT (repeat 13)	lure    	0.288	NR  	1   	NR      	NR      
+236 	146.7 	7   	COACH (repeat 15)	lure    	0.281	NR  	1   	NR      	NR      
+237 	147.1 	4   	RATTLE (repeat 15)	lure    	0.503	NR  	1   	NR      	NR      
+238 	147.7 	5   	COLUMN (repeat 14)	lure    	0.678	NR  	1   	NR      	NR      

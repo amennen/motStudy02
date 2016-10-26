@@ -1,0 +1,11 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	67.2  	6   	GALLERY   	rt-targ 	1.951	0.868	1   	non-target	non-target
+2   	109.2 	5   	COAL      	rt-targ 	1.951	0.852	1   	non-target	non-target
+3   	151.2 	9   	SCREEN    	rt-targ 	1.95	0.82	1   	target  	target  
+4   	193.3 	3   	FRONTIER  	rt-targ 	1.951	0.66	1   	target  	target  
+5   	235.3 	1   	BUCKET    	rt-targ 	1.954	0.757	1   	target  	target  
+6   	277.3 	7   	PATCH     	rt-targ 	1.95	0.701	1   	target  	target  
+7   	319.3 	10  	MONSOON   	rt-targ 	1.952	0.573	1   	target  	target  
+8   	361.3 	2   	BLIZZARD  	rt-targ 	1.951	0.974	1   	target  	target  
+9   	403.3 	4   	PIANO     	rt-targ 	1.953	0.958	1   	non-target	non-target
+10  	445.3 	8   	LEAD      	rt-targ 	1.95	0.87	1   	non-target	non-target
