@@ -1,6 +1,6 @@
 % check yoking--created to make sure that things are okay
-svec = 8:15;
-s1 = 16; %this is the YC subject
+svec = [18 21 22];
+s1 = 28; %this is the YC subject
 s2 = findMatch(s1,svec);
 
 base_path = [fileparts(which('mot_realtime01.m')) filesep];
