@@ -1,0 +1,20 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	8.7   	34  	LEVEL     	localizer	3.45	2.047	0   	generic 	1 detail
+2   	24.7  	29  	CABLE     	localizer	3.453	1.855	1   	full    	full    
+3   	36.7  	39  	SACK      	localizer	3.454	NR  	0   	NR      	2+ details
+4   	52.7  	44  	FRAME     	localizer	3.45	2.623	1   	full    	full    
+5   	64.7  	42  	POUCH     	localizer	3.453	1.271	1   	generic 	generic 
+6   	76.7  	37  	CAPITOL   	localizer	3.452	NR  	0   	NR      	1 detail
+7   	92.7  	35  	GIFT      	localizer	3.453	1.096	1   	full    	full    
+8   	104.7 	32  	RECORD    	localizer	3.45	1.928	1   	generic 	generic 
+9   	116.7 	43  	GLASS     	localizer	3.45	1.256	1   	full    	full    
+10  	128.7 	30  	POLE      	localizer	3.45	0.96	1   	generic 	generic 
+11  	140.7 	38  	DIAL      	localizer	3.45	0.944	1   	full    	full    
+12  	152.7 	31  	TRACK     	localizer	3.453	1.72	1   	2+ details	2+ details
+13  	164.7 	33  	MORNING   	localizer	3.45	1.168	1   	2+ details	2+ details
+14  	176.7 	41  	MALLET    	localizer	3.45	1.936	1   	2+ details	2+ details
+15  	188.7 	36  	APRON     	localizer	3.451	2.464	1   	1 detail	1 detail
+16  	200.7 	40  	STAR      	localizer	3.451	0.769	1   	generic 	generic 
+17  	212.7 	39  	SACK (repeat 1)	localizer	3.45	2.297	1   	2+ details	2+ details
+18  	224.7 	34  	LEVEL (repeat 1)	localizer	3.45	2.537	1   	1 detail	1 detail
+19  	236.7 	37  	CAPITOL (repeat 1)	localizer	3.45	1.233	1   	full    	full    

@@ -1,0 +1,21 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	44.3  	2   	BLIZZARD  	realtime	3.951	2.517	1   	1 detail	1 detail, 2+ details, full
+2   	84.3  	13  	RIDGE     	omit    	3.951	2.565	1   	1 detail	1 detail, 2+ details, full
+3   	124.3 	16  	SPONGE    	omit    	3.95	0.367	1   	1 detail	1 detail, 2+ details, full
+4   	164.3 	6   	GALLERY   	realtime	3.95	0.91	1   	2+ details	1 detail, 2+ details, full
+5   	204.3 	1   	BUCKET    	realtime	3.951	1.662	1   	2+ details	1 detail, 2+ details, full
+6   	244.3 	14  	TICKET    	omit    	3.95	0.374	1   	1 detail	1 detail, 2+ details, full
+7   	284.3 	7   	PATCH     	realtime	3.951	0.631	1   	2+ details	1 detail, 2+ details, full
+8   	324.3 	18  	BELT      	omit    	3.95	0.983	1   	2+ details	1 detail, 2+ details, full
+9   	364.3 	20  	SHELL     	omit    	3.95	0.503	1   	1 detail	1 detail, 2+ details, full
+10  	404.3 	9   	SCREEN    	realtime	3.952	1.52	1   	2+ details	1 detail, 2+ details, full
+11  	444.3 	15  	CIRCUIT   	omit    	3.95	0.456	1   	1 detail	1 detail, 2+ details, full
+12  	484.3 	3   	FRONTIER  	realtime	3.95	3.76	1   	1 detail	1 detail, 2+ details, full
+13  	524.3 	17  	TRIPOD    	omit    	3.951	1.92	1   	1 detail	1 detail, 2+ details, full
+14  	564.3 	10  	MONSOON   	realtime	3.95	2.593	1   	1 detail	1 detail, 2+ details, full
+15  	604.3 	11  	PLANET    	omit    	3.951	3.529	1   	full    	1 detail, 2+ details, full
+16  	644.3 	4   	PIANO     	realtime	3.951	3.521	1   	1 detail	1 detail, 2+ details, full
+17  	684.3 	19  	CLOAK     	omit    	3.953	NR  	0   	NR      	1 detail, 2+ details, full
+18  	724.3 	5   	COAL      	realtime	3.951	2.394	1   	2+ details	1 detail, 2+ details, full
+19  	764.3 	8   	LEAD      	realtime	3.953	0.994	1   	1 detail	1 detail, 2+ details, full
+20  	804.3 	12  	PORTAL    	omit    	3.952	3.107	0   	generic 	1 detail, 2+ details, full
