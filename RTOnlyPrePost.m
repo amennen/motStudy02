@@ -10,15 +10,23 @@ plotDir = ['/Data1/code/' projectName '/' 'Plots' '/' ]; %should be all
 %plot dir?
 updated =1; %for only looking at the results recorded after making differences (minimum dot speed, increase starting speed, average over 2)
 oldonly = 0;
-if RTgroup
-    svec = [8 12:15 18 21 22];
-    datevec = {'8-10-16', '8-27-16', '8-30-16', '9-7-16', '9-14-16', '9-23-16', '10-6-16', '10-6-16'};
-    runvec = [1 1 1 1 1 1 1 2];
-elseif YCgroup
-    svec = [16 20 24 26 27];
-    datevec = {'9-16-16', '10-4-16', '10-13-16', '10-18-16', '10-22-16'};
-    runvec = [1 1 1 1 1] ;
-end
+svec = [8 12:16 18 20:22 24 26 27 28];
+RT = [8 12:15 18 21 22];
+YC = [16 20 24 26 27 28];
+iRT = find(ismember(svec,RT));
+iYC = find(ismember(svec,YC));
+datevec = {'8-10-16', '8-27-16', '8-30-16', '9-7-16', '9-14-16','9-16-16', '9-23-16','10-4-16', '10-6-16', '10-6-16','10-13-16','10-18-16', '10-22-16', '10-26-16' };
+runvec = ones(1,length(svec));
+runvec(find(svec==22)) = 2; %subject 22 was run 2
+% if RTgroup
+%     svec = [8 12:15 18 21 22];
+%     datevec = {'8-10-16', '8-27-16', '8-30-16', '9-7-16', '9-14-16', '9-23-16', '10-6-16', '10-6-16'};
+%     runvec = [1 1 1 1 1 1 1 2];
+% elseif YCgroup
+%     svec = [16 20 24 26 27 28];
+%     datevec = {'9-16-16', '10-4-16', '10-13-16', '10-18-16', '10-22-16', '10-26-16'};
+%     runvec = [1 1 1 1 1 1] ;
+% end
 NSUB = length(svec);
 
 
@@ -136,19 +144,23 @@ for s = 1:NSUB
     OMITavg(s,:) = mean(PrePostOMIT,1);
     
 end
+%% do separately for pre and post RT and yoked
+RTavg_RT = RTavg(iRT,:);
+OMITavg_RT = OMITavg(iRT,:);
+nRT = length(iRT);
 
 h1 = figure;
 %alldiffmeans = [RTavg;OMITavg];
 %alldiffstd = [std(PrePostRT)/sqrt(size(PrePostRT,1)-1);std(PrePostOMIT)/sqrt(size(PrePostRT,1)-1)];
-allRT = nanmean(RTavg);
-eRT = nanstd(RTavg,[],1)/sqrt(NSUB-1);
-allOMIT = nanmean(OMITavg);
-eOMIT = nanstd(OMITavg,[],1)/sqrt(NSUB-1);
+allRT = nanmean(RTavg_RT);
+eRT = nanstd(RTavg_RT,[],1)/sqrt(nRT-1);
+allOMIT = nanmean(OMITavg_RT);
+eOMIT = nanstd(OMITavg_RT,[],1)/sqrt(nRT-1);
 alldiffmeans = [allRT;allOMIT];
 alldiffstd = [eRT;eOMIT];
 mseb(1:nTRsperTrial,alldiffmeans, alldiffstd)
 legend('Realtime', 'Omit')
-title(sprintf('Post - Pre MOT Classifier Difference, n = %i',NSUB))
+title(sprintf('RT Post - Pre MOT Classifier Difference, n = %i',NSUB))
 set(gca, 'XTick', [1:nTRsperTrial])
 %set(gca,'XTickLabel',['-2'; '-1'; ' 0'; ' 1'; ' 2'; ' 3'; ' 4'; ' 5'; '6'; '7'; '8'; '9'; ']);
 ylabel('Target - Lure Evidence')
@@ -160,20 +172,20 @@ set(findall(gcf,'-property','FontSize'),'FontSize',16)
 xlim([1 nTRsperTrial])
 %xlim([1 8])
 ylim([-.25 .25])
-print(h1, sprintf('%sRTOnlyPrePost.pdf', plotDir), '-dpdf')
+%print(h1, sprintf('%sRTOnlyPrePost.pdf', plotDir), '-dpdf')
 
 h1 = figure;
 %alldiffmeans = [RTavg;OMITavg];
 %alldiffstd = [std(PrePostRT)/sqrt(size(PrePostRT,1)-1);std(PrePostOMIT)/sqrt(size(PrePostRT,1)-1)];
-allRT = nanmean(RTPOSTavg);
-eRT = nanstd(RTPOSTavg,[],1)/sqrt(NSUB-1);
-allOMIT = nanmean(OMITPOSTavg);
-eOMIT = nanstd(OMITPOSTavg,[],1)/sqrt(NSUB-1);
+allRT = nanmean(RTPOSTavg(iRT,:));
+eRT = nanstd(RTPOSTavg(iRT,:),[],1)/sqrt(nRT-1);
+allOMIT = nanmean(OMITPOSTavg(iRT,:));
+eOMIT = nanstd(OMITPOSTavg(iRT,:),[],1)/sqrt(nRT-1);
 alldiffmeans = [allRT;allOMIT];
 alldiffstd = [eRT;eOMIT];
 mseb(1:nTRsperTrial,alldiffmeans, alldiffstd)
 legend('Realtime', 'Omit')
-title(sprintf('Post MOT Classifier Difference, n = %i',NSUB))
+title(sprintf('RT Post MOT Classifier Difference, n = %i',NSUB))
 set(gca, 'XTick', [1:nTRsperTrial])
 %set(gca,'XTickLabel',['-2'; '-1'; ' 0'; ' 1'; ' 2'; ' 3'; ' 4'; ' 5'; '6'; '7'; '8'; '9'; ']);
 ylabel('Target - Lure Evidence')
@@ -186,4 +198,57 @@ xlim([1 nTRsperTrial])
 %xlim([1 8])
 ylim([-.25 .25])
 print(h1, sprintf('%sRTOnlyPost.pdf', plotDir), '-dpdf')
-                                                                              
+%% do separately for pre and post RT and yoked
+RTavg_YC = RTavg(iYC,:);
+OMITavg_YC = OMITavg(iYC,:);
+nYC = length(iYC);
+
+h1 = figure;
+%alldiffmeans = [RTavg;OMITavg];
+%alldiffstd = [std(PrePostRT)/sqrt(size(PrePostRT,1)-1);std(PrePostOMIT)/sqrt(size(PrePostRT,1)-1)];
+allRT = nanmean(RTavg_YC);
+eRT = nanstd(RTavg_YC,[],1)/sqrt(nYC-1);
+allOMIT = nanmean(OMITavg_YC);
+eOMIT = nanstd(OMITavg_YC,[],1)/sqrt(nYC-1);
+alldiffmeans = [allRT;allOMIT];
+alldiffstd = [eRT;eOMIT];
+mseb(1:nTRsperTrial,alldiffmeans, alldiffstd)
+legend('Realtime', 'Omit')
+title(sprintf('YC Post - Pre MOT Classifier Difference, n = %i',NSUB))
+set(gca, 'XTick', [1:nTRsperTrial])
+%set(gca,'XTickLabel',['-2'; '-1'; ' 0'; ' 1'; ' 2'; ' 3'; ' 4'; ' 5'; '6'; '7'; '8'; '9'; ']);
+ylabel('Target - Lure Evidence')
+xlabel('TR (2s)')
+set(findall(gcf,'-property','FontSize'),'FontSize',16)
+%line([3 3], [-1 1], 'Color', 'k', 'LineWidth', 3);
+%line([6 6], [-1 1], 'Color', 'k', 'LineWidth', 3);
+
+xlim([1 nTRsperTrial])
+%xlim([1 8])
+ylim([-.25 .25])
+%print(h1, sprintf('%sRTOnlyPrePost.pdf', plotDir), '-dpdf')
+
+h1 = figure;
+%alldiffmeans = [RTavg;OMITavg];
+%alldiffstd = [std(PrePostRT)/sqrt(size(PrePostRT,1)-1);std(PrePostOMIT)/sqrt(size(PrePostRT,1)-1)];
+allRT = nanmean(RTPOSTavg(iYC,:));
+eRT = nanstd(RTPOSTavg(iYC,:),[],1)/sqrt(nYC-1);
+allOMIT = nanmean(OMITPOSTavg(iYC,:));
+eOMIT = nanstd(OMITPOSTavg(iYC,:),[],1)/sqrt(nYC-1);
+alldiffmeans = [allRT;allOMIT];
+alldiffstd = [eRT;eOMIT];
+mseb(1:nTRsperTrial,alldiffmeans, alldiffstd)
+legend('Realtime', 'Omit')
+title(sprintf('YC Post MOT Classifier Difference, n = %i',NSUB))
+set(gca, 'XTick', [1:nTRsperTrial])
+%set(gca,'XTickLabel',['-2'; '-1'; ' 0'; ' 1'; ' 2'; ' 3'; ' 4'; ' 5'; '6'; '7'; '8'; '9'; ']);
+ylabel('Target - Lure Evidence')
+xlabel('TR (2s)')
+set(findall(gcf,'-property','FontSize'),'FontSize',16)
+%line([3 3], [-1 1], 'Color', 'k', 'LineWidth', 3);
+%line([6 6], [-1 1], 'Color', 'k', 'LineWidth', 3);
+
+xlim([1 nTRsperTrial])
+%xlim([1 8])
+ylim([-.25 .25])
+%print(h1, sprintf('%sRTOnlyPost.pdf', plotDir), '-dpdf')                                                                  
