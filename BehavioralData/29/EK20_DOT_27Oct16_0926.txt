@@ -1,0 +1,11 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	68.4  	8   	HURDLE    	rt-targ 	1.95	1.01	1   	non-target	non-target
+2   	110.4 	2   	PARADE    	rt-targ 	1.95	0.931	1   	non-target	non-target
+3   	152.4 	4   	NAIL      	rt-targ 	1.951	0.915	1   	target  	target  
+4   	194.4 	1   	CARD      	rt-targ 	1.95	1.067	1   	non-target	non-target
+5   	236.4 	6   	SCOUT     	rt-targ 	1.952	1.307	1   	target  	target  
+6   	278.4 	5   	ELBOW     	rt-targ 	1.951	0.812	1   	target  	target  
+7   	320.4 	9   	ORNAMENT  	rt-targ 	1.95	1.163	1   	non-target	non-target
+8   	362.4 	7   	STADIUM   	rt-targ 	1.95	0.972	1   	non-target	non-target
+9   	404.4 	10  	SACK      	rt-targ 	1.95	0.972	1   	non-target	non-target
+10  	446.4 	3   	GLOBE     	rt-targ 	1.954	1.108	1   	non-target	non-target

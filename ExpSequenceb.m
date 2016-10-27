@@ -2,11 +2,11 @@
 %%fmri session
 %first these are all the session numbers
 
-SUBJECT = 28; %experimental subject number
+SUBJECT = 29; %experimental subject number
 prev = 0; %if today's date (0) or previous date (1)
 scanNow = 1; %if using triggers (1)
 runNum = 1; %what number subject they are today
-svec = [12 18 21 22];
+svec = [21 22];
 s2 = findMatch(SUBJECT,svec); %enter in s2!!
 SPTB_PATH = ['/Data1/code/SPTBanne'];
 addpath(genpath(SPTB_PATH));
@@ -114,14 +114,14 @@ blockNum = 2;
 RealTimeMemoryFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{2},blockNum,runNum);
 
 %% MOT RUN 3 DISPLAY
-scanNum = 19;
+scanNum = 21;
 mot_realtime01b(SUBJECT,MOT{3},[],scanNum,scanNow,s2);
 %% MOT RUN 3 FILE PROCESS
-scanNum = 19;
+scanNum = 21;
 featureSelect = 1;
 blockNum = 3;
 RealTimeMemoryFileProcess(SUBJECT,featureSelect,prev,scanNow,scanNum,MOT{3},blockNum,runNum);
 
 %% RECALL 2
-scanNum = 21;
+scanNum = 23;
 mot_realtime01b(SUBJECT,RECALL2,[],scanNum,scanNow,s2);

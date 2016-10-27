@@ -1,0 +1,21 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	8.6   	38  	CORK      	localizer	3.451	1.495	1   	1 detail	1 detail
+2   	20.6  	37  	WAGON     	localizer	3.451	1.152	1   	2+ details	2+ details
+3   	32.6  	43  	CYCLONE   	localizer	3.451	1.52	0   	no image	generic 
+4   	48.6  	44  	CAPITOL   	localizer	3.45	3.024	1   	full    	full    
+5   	60.6  	34  	RUST      	localizer	3.45	2.264	1   	generic 	generic 
+6   	72.6  	31  	PAGE      	localizer	3.452	2.448	1   	full    	full    
+7   	84.6  	40  	SHIRT     	localizer	3.45	1.608	1   	full    	full    
+8   	96.6  	42  	LETTER    	localizer	3.45	1.816	1   	2+ details	2+ details
+9   	108.6 	32  	FOIL      	localizer	3.452	NR  	0   	NR      	generic 
+10  	124.6 	41  	RUNG      	localizer	3.452	NR  	0   	NR      	full    
+11  	140.6 	39  	POUCH     	localizer	3.455	0.873	1   	full    	full    
+12  	152.6 	36  	BRAKE     	localizer	3.45	2.809	1   	1 detail	1 detail
+13  	164.6 	35  	GALLERY   	localizer	3.45	1.329	1   	full    	full    
+14  	176.6 	29  	PHONE     	localizer	3.45	1.425	1   	generic 	generic 
+15  	188.6 	30  	ANCHOR    	localizer	3.45	2.193	1   	full    	full    
+16  	200.6 	33  	PIPE      	localizer	3.45	1.833	1   	generic 	generic 
+17  	212.6 	32  	FOIL (repeat 1)	localizer	3.45	1.649	1   	2+ details	2+ details
+18  	224.6 	41  	RUNG (repeat 1)	localizer	3.451	1.553	0   	generic 	1 detail
+19  	240.6 	43  	CYCLONE (repeat 1)	localizer	3.451	1.337	1   	2+ details	2+ details
+20  	252.6 	41  	RUNG (repeat 2)	localizer	3.451	1.105	1   	1 detail	1 detail
