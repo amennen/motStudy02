@@ -29,9 +29,9 @@ nblock = 3;
 %     svec = svec(1:nold);
 % end
 
-svec = [8 12:16 18 20:22 24 26 27 28];
+svec = [8 12:16 18 20:22 24 26 27 28 29];
 RT = [8 12:15 18 21 22];
-YC = [16 20 24 26 27 28];
+YC = [16 20 24 26 27 28 29];
 iRT = find(ismember(svec,RT));
 iYC = find(ismember(svec,YC));
 

@@ -1,3 +1,4 @@
+% plotBees: plot distrubition for beeswarm functions
 % compare feedback
 
 close all;
@@ -10,13 +11,17 @@ nTRs = 15;
 sepTRs = 17;
 FBTRs = 11;
 nblock = 3;
-
+RT_m = [8 12 13 14 15 18 21];
+YC_m = [16 28 24 20 26 27 29];
 svec = [8 12:16 18 20:22 24 26 27 28 29];
 RT = [8 12:15 18 21 22];
 YC = [16 20 24 26 27 28 29];
 iRT = find(ismember(svec,RT));
 iYC = find(ismember(svec,YC));
-
+iRT_m = find(ismember(svec,RT_m))
+for i = 1:length(YC_m)
+    iYC_m(i) = find(svec==YC_m(i))
+end
 nsub = length(svec);
 sepbystim = zeros(nstim,nTRs*3);
 speedbystim = zeros(nstim,nTRs*3);
@@ -70,95 +75,56 @@ for s = 1:nsub
     end
     
 end
-
-%% now separate plots into RT and YC groups
+%% separate groups
 ds_RT = ds(:,iRT);
 allds_RT = reshape(ds_RT,1,numel(ds_RT));
 ev_RT = ev(:,iRT);
 allev_RT = reshape(ev_RT,1,numel(ev_RT));
+speed_RT = speed(:,iRT);
+allspeed_RT = reshape(speed_RT,1,numel(speed_RT));
 
 ds_YC = ds(:,iYC);
 allds_YC = reshape(ds_YC,1,numel(ds_YC));
 ev_YC = ev(:,iYC);
 allev_YC = reshape(ev_YC,1,numel(ev_YC));
+speed_YC = speed(:,iYC);
+allspeed_YC = reshape(speed_YC,1,numel(speed_YC));
 
+%% plot
 
-figure;
-scatter(allds_RT,allev_RT,'fill','MarkerEdgeColor','b',...
-        'MarkerFaceColor','c',...
-        'LineWidth',2.5);
-[rho,pval] = corrcoef([allds_RT' allev_RT']);
-hold on;
-scatter(allds_YC,allev_YC,'fill','MarkerEdgeColor','k',...
-        'MarkerFaceColor','r',...
-        'LineWidth',2.5);
-    
-[rho,pval] = corrcoef([allds_YC' allev_YC']);
-%% look for differences in signal stability: find peaks and take difference
-optimal = 0.1;
-for s = 1:nsub
-   z = ev(:,s);
-   p = ds(:,s);
-   thisSpeed = speed(:,s);
-   [pks,locs] = findpeaks(z);
-   overshoot = sum(abs(pks- optimal));
-   [lows,minloc] = findpeaks(-1*z);
-   undershoot = sum(abs(optimal-lows));
-   offshoot(s) = overshoot + undershoot;
-   %assume peak is first
-   allLoc = sort([locs' minloc']);
-   avgdec = [];
-   avginc = [];
-   for q = 1:length(allLoc)-1
-       thisLoc = allLoc(q);
-       nextLoc = allLoc(q+1);
-       if ismember(thisLoc,locs) && ismember(nextLoc,minloc) %we're decreasing
-            %decRange = [allLoc(q):allLoc(q+1)];
-            %avgdec = [avgdec mean(p(decRange))];
-            
-            decRange = [allLoc(q) allLoc(q+1)];
-            avgdec = [avgdec diff(thisSpeed(decRange))];
-       elseif ismember(thisLoc,minloc) && ismember(nextLoc,locs)
-            %incRange = [allLoc(q):allLoc(q+1)];
-            %avginc = [avginc mean(p(incRange))];
-            
-            incRange = [allLoc(q) allLoc(q+1)];
-            avginc = [avginc diff(thisSpeed(incRange))];
-       end
-   end
-   dsDecbySub(s) = mean(avgdec);
-   dsIncbySub(s) = mean(avginc);
+cats={'RT' 'YC'}; %category labels
+[~,mHUCp]=ttest2(allev_RT,allev_YC);
+pl={allev_RT', allev_YC'}; %these are all the elements (rows) in each condition (columns)
+ps=[mHUCp]; %so here I'm plotting 
+yl='Retrieval Evidence During MOT'; %y-axis label
+figure;plotSpread(pl,'xNames',cats,'showMM',2,'yLabel',yl); %this plots the beeswarm
+h=gcf;set(h,'PaperOrientation','landscape'); %these two lines grabs some attributes important for plotting significance
+xt = get(gca, 'XTick');yt = get(gca, 'YTick');
+hold on;plotSig(xt,yt,ps,0);hold off; %keep hold on and do plotSig.
+%pn=[picd num2str(vers) '-' num2str(scramm) 'ChangeInPrecision'];%print(pn,'-depsc'); %print fig
+ylim([-1.25 1.25])
+set(findall(gcf,'-property','FontSize'),'FontSize',20)
+line([0 46], [0.15 0.15], 'color', [140 136 141]/255, 'LineWidth', 1.5,'LineStyle', '--');
+line([0 46], [0.1 0.1], 'color', [0 0 0 ]/255, 'LineWidth', 2.5,'LineStyle', '--');
+line([0 46], [0.05 0.05], 'color', [140 136 141]/255, 'LineWidth', 1.5,'LineStyle', '--');
+
+%% do separately for each subject
+
+cats = {'RT1', 'YC1', 'RT2', 'YC2', 'RT3', 'YC3', 'RT4', 'YC4', 'RT5', 'YC5', 'RT6', 'YC6', 'RT7', 'YC7'};
+pl = {ev(:,iRT_m(1)), ev(:,iYC_m(1)), ev(:,iRT_m(2)), ev(:,iYC(2)), ev(:,iRT_m(3)), ev(:,iYC_m(3)), ev(:,iRT_m(4)), ev(:,iYC_m(4)), ev(:,iRT_m(5)), ev(:,iYC_m(5)), ev(:,iRT_m(6)), ev(:,iYC_m(6)), ev(:,iRT_m(7)), ev(:,iYC_m(7))};
+for j = 1:length(iRT_m) %do for each pair
+    [~,mp(j)] = ttest2(ev(:,iRT_m(j)),ev(:,iYC_m(j)));
 end
-
-% do this as a beeswarm
-firstgroup = offshoot(iRT);
-secondgroup = offshoot(iYC);
-avgratio = [mean(firstgroup) mean(secondgroup)];
-eavgratio = [std(firstgroup)/sqrt(length(firstgroup)-1) std(secondgroup)/sqrt(length(secondgroup)-1)];
-thisfig = figure;
-barwitherr(eavgratio,avgratio)
-set(gca,'XTickLabel' , ['RT';'YC']);
-xlabel('Subject Group')
-ylabel('OffShoot')
-title('Offshoots')
+ps = [mp];
+yl='Retrieval Evidence During MOT'; %y-axis label
+figure;plotSpread(pl,'xNames',cats,'showMM',2,'yLabel',yl); %this plots the beeswarm
+h=gcf;set(h,'PaperOrientation','landscape'); %these two lines grabs some attributes important for plotting significance
+xt = get(gca, 'XTick');yt = get(gca, 'YTick');
+hold on;plotSig(xt,yt,ps,0);hold off; %keep hold on and do plotSig.
+%pn=[picd num2str(vers) '-' num2str(scramm) 'ChangeInPrecision'];%print(pn,'-depsc'); %print fig
+ylim([-1.25 1.25])
 set(findall(gcf,'-property','FontSize'),'FontSize',20)
-%print(thisfig, sprintf('%sMEANEVIDENCE.pdf', allplotDir), '-dpdf')
-
-%% prove that more over and undershooting is because of feedback (relate previous dot speed to evidence max or min)
-
-% between one peak and the next min-- ask what the change in speed was
-% between those points?
-firstgroup = [dsDecbySub(iRT); dsIncbySub(iRT)];
-secondgroup = [dsDecbySub(iYC); dsIncbySub(iYC)];
-avgratio = [nanmean(firstgroup,2) nanmean(secondgroup,2)];
-eavgratio = [nanstd(firstgroup,[],2)/sqrt(length(firstgroup)-1) nanstd(secondgroup,[],2)/sqrt(length(secondgroup)-1)];
-thisfig = figure;
-barwitherr(eavgratio,avgratio)
-set(gca,'XTickLabel' , ['EvDec';'EvInc']);
-legend('Realtime', 'Yoked')
-xlabel('Average ds Leading to Min/Max')
-ylabel('Avg Change of Dot Speed')
-title('Speed Changes Preceeding Min/Max')
-set(findall(gcf,'-property','FontSize'),'FontSize',20)
-%ylim([-.4 .8])
-%print(h, sprintf('%sallrecogRT.pdf', allplotDir), '-dpdf')
+%plot bands
+line([0 46], [0.15 0.15], 'color', [140 136 141]/255, 'LineWidth', 1.5,'LineStyle', '--');
+line([0 46], [0.1 0.1], 'color', [0 0 0 ]/255, 'LineWidth', 2.5,'LineStyle', '--');
+line([0 46], [0.05 0.05], 'color', [140 136 141]/255, 'LineWidth', 1.5,'LineStyle', '--');
