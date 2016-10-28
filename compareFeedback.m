@@ -11,9 +11,9 @@ sepTRs = 17;
 FBTRs = 11;
 nblock = 3;
 
-svec = [8 12:16 18 20:22 24 26 27];
+svec = [8 12:16 18 20:22 24 26 27 28 29];
 RT = [8 12:15 18 21 22];
-YC = [16 20 24 26 27];
+YC = [16 20 24 26 27 28 29];
 iRT = find(ismember(svec,RT));
 iYC = find(ismember(svec,YC));
 
@@ -61,10 +61,12 @@ for s = 1:nsub
         FBsepchange = reshape(allsepchange(4:end,:),1,numel(allsepchange(4:end,:)));
         allsep = reshape(sepbytrial(5:end,:),1,numel(sepbytrial(5:end,:)));
         allspeedchanges = diff(d.stim.motionSpeed,1,1);
+        FBspeed = reshape(allSpeed(5:end,:),1,numel(allSpeed(5:end,:)));
         FBspeedchange = reshape(allspeedchanges(4:end,:),1,numel(allspeedchanges(4:end,:)));
         FBTRs = length(FBspeedchange);
         ds((iblock-1)*FBTRs + 1: iblock*FBTRs ,s) = FBspeedchange;
         ev((iblock-1)*FBTRs + 1: iblock*FBTRs ,s) = allsep;
+        speed((iblock-1)*FBTRs + 1: iblock*FBTRs ,s) = FBspeed;
     end
     
 end
@@ -96,11 +98,36 @@ scatter(allds_YC,allev_YC,'fill','MarkerEdgeColor','k',...
 optimal = 0.1;
 for s = 1:nsub
    z = ev(:,s);
+   p = ds(:,s);
+   thisSpeed = speed(:,s);
    [pks,locs] = findpeaks(z);
    overshoot = sum(abs(pks- optimal));
    [lows,minloc] = findpeaks(-1*z);
    undershoot = sum(abs(optimal-lows));
    offshoot(s) = overshoot + undershoot;
+   %assume peak is first
+   allLoc = sort([locs' minloc']);
+   avgdec = [];
+   avginc = [];
+   for q = 1:length(allLoc)-1
+       thisLoc = allLoc(q);
+       nextLoc = allLoc(q+1);
+       if ismember(thisLoc,locs) && ismember(nextLoc,minloc) %we're decreasing
+            %decRange = [allLoc(q):allLoc(q+1)];
+            %avgdec = [avgdec mean(p(decRange))];
+            
+            decRange = [allLoc(q) allLoc(q+1)];
+            avgdec = [avgdec diff(thisSpeed(decRange))];
+       elseif ismember(thisLoc,minloc) && ismember(nextLoc,locs)
+            %incRange = [allLoc(q):allLoc(q+1)];
+            %avginc = [avginc mean(p(incRange))];
+            
+            incRange = [allLoc(q) allLoc(q+1)];
+            avginc = [avginc diff(thisSpeed(incRange))];
+       end
+   end
+   dsDecbySub(s) = mean(avgdec);
+   dsIncbySub(s) = mean(avginc);
 end
 
 % do this as a beeswarm
@@ -115,6 +142,23 @@ xlabel('Subject Group')
 ylabel('OffShoot')
 title('Offshoots')
 set(findall(gcf,'-property','FontSize'),'FontSize',20)
-print(thisfig, sprintf('%sMEANEVIDENCE.pdf', allplotDir), '-dpdf')
+%print(thisfig, sprintf('%sMEANEVIDENCE.pdf', allplotDir), '-dpdf')
 
 %% prove that more over and undershooting is because of feedback (relate previous dot speed to evidence max or min)
+
+% between one peak and the next min-- ask what the change in speed was
+% between those points?
+firstgroup = [dsDecbySub(iRT); dsIncbySub(iRT)];
+secondgroup = [dsDecbySub(iYC); dsIncbySub(iYC)];
+avgratio = [nanmean(firstgroup,2) nanmean(secondgroup,2)];
+eavgratio = [nanstd(firstgroup,[],2)/sqrt(length(firstgroup)-1) nanstd(secondgroup,[],2)/sqrt(length(secondgroup)-1)];
+thisfig = figure;
+barwitherr(eavgratio,avgratio)
+set(gca,'XTickLabel' , ['EvDec';'EvInc']);
+legend('Realtime', 'Yoked')
+xlabel('Average ds Leading to Min/Max')
+ylabel('Avg Change of Dot Speed')
+title('Speed Changes Preceeding Min/Max')
+set(findall(gcf,'-property','FontSize'),'FontSize',20)
+%ylim([-.4 .8])
+%print(h, sprintf('%sallrecogRT.pdf', allplotDir), '-dpdf')
