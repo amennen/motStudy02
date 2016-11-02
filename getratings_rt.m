@@ -7,10 +7,10 @@
 %recogdata.m to look at the recognition memory)
 clear all;
 projectName = 'motStudy02';
-
-svec = [8 12:16 18 20:22 24 26 27 28];
-RT = [8 12:15 18 21 22];
-YC = [16 20 24 26 27 28];
+% don't put in 22 until have subject
+svec = [8 12 14 15 16 18 20:21 24 26 27 28 29];
+RT = [8 12 14 15 15 18 21 ];
+YC = [16 20 26 27 28 29];
 iRT = find(ismember(svec,RT));
 iYC = find(ismember(svec,YC));
 
@@ -110,7 +110,7 @@ ylabel('Level of Detail Difference')
 title('Average Post - Pre Detail Difference')
 set(findall(gcf,'-property','FontSize'),'FontSize',20)
 ylim([-.4 .8])
-print(h, sprintf('%salldetailRatings.pdf', allplotDir), '-dpdf')
+print(thisfig, sprintf('%salldetailRatings.pdf', allplotDir), '-dpdf')
 
 %% recognition accuracy
 firstgroup = [hard_score(iRT); easy_score(iRT)];
@@ -122,15 +122,15 @@ barwitherr(eavgratio,avgratio)
 set(gca,'XTickLabel' , ['MOT ';'OMIT']);
 legend('Realtime', 'Yoked')
 xlabel('Stimulus Type')
-ylabel('Recognition Rate (%)')
+ylabel('Recognition Rate')
 title('Recognition Accuracy')
 set(findall(gcf,'-property','FontSize'),'FontSize',20)
-ylim([-.4 .8])
-print(h, sprintf('%sallrecogAcc.pdf', allplotDir), '-dpdf')
+ylim([0 1])
+print(thisfig, sprintf('%sallrecogAcc.pdf', allplotDir), '-dpdf')
 %% recognition RT
 firstgroup = [hard_rt(iRT); easy_rt(iRT)];
 secondgroup = [hard_rt(iYC); easy_rt(iYC)];
-avgratio = [nanmean(firstgroup,2) nanmean(secondgroup,2)];
+avgratio = [nanmedian(firstgroup,2) nanmedian(secondgroup,2)];
 eavgratio = [nanstd(firstgroup,[],2)/sqrt(length(firstgroup)-1) nanstd(secondgroup,[],2)/sqrt(length(secondgroup)-1)];
 thisfig = figure;
 barwitherr(eavgratio,avgratio)
@@ -140,5 +140,5 @@ xlabel('Stimulus Type')
 ylabel('RT (s)')
 title('Recognition RT')
 set(findall(gcf,'-property','FontSize'),'FontSize',20)
-ylim([-.4 .8])
-print(h, sprintf('%sallrecogRT.pdf', allplotDir), '-dpdf')
+ylim([0 1])
+print(thisfig, sprintf('%sallrecogRT.pdf', allplotDir), '-dpdf')

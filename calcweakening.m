@@ -29,9 +29,9 @@ nblock = 3;
 %     svec = svec(1:nold);
 % end
 
-svec = [8 12:16 18 20:22 24 26 27 28 29];
-RT = [8 12:15 18 21 22];
-YC = [16 20 24 26 27 28 29];
+svec = [8 12 14 15 16 18 20:22 26 27 28 29];
+RT = [8 12 14 15 18 21 ]%take out 22 to make even by group];
+YC = [16 20 26 27 28 29];
 iRT = find(ismember(svec,RT));
 iYC = find(ismember(svec,YC));
 
@@ -206,6 +206,23 @@ end
 
 %% now compare decrease of retrieval evidence across both groups
 %if (~updated && ~oldonly)
+    cats = {'RT', 'YC'};
+    pl = {distDec2(iRT), distDec2(iYC)};
+    clear mp;
+    [~,mp] = ttest2(distDec2(iRT),distDec2(iYC));
+    ps = [mp];
+    yl='nTRs to Decrease Evidence'; %y-axis label
+    h = figure;plotSpread(pl,'xNames',cats,'showMM',2,'yLabel',yl); %this plots the beeswarm
+    h=gcf;set(h,'PaperOrientation','landscape'); %these two lines grabs some attributes important for plotting significance
+    xt = get(gca, 'XTick');yt = get(gca, 'YTick');
+    hold on;plotSig([1 2],yt,ps,0);hold off; %keep hold on and do plotSig.
+    %pn=[picd num2str(vers) '-' num2str(scramm) 'ChangeInPrecision'];%print(pn,'-depsc'); %print fig
+    %ylim([-1.25 1.25])
+    set(findall(gcf,'-property','FontSize'),'FontSize',16)
+    title('Time to Decrease Evidence by Group');
+    print(h, sprintf('%sbeesTIMETODEC.pdf', allplotDir), '-dpdf')
+    
+    
     firstgroup = distDec2(iRT);
     secondgroup = distDec2(iYC);
     avgratio = [mean(firstgroup) mean(secondgroup)];
@@ -239,6 +256,23 @@ end
 %     %print(thisfig, sprintf('%sweakeningbygroupbysign.pdf', allplotDir), '-dpdf')
 
 %% and then do time spent in optimal weakening zone-just fb TR's only
+cats = {'RT', 'YC'};
+pl = {nGoodRange(iRT), nGoodRange(iYC)};
+clear mp;
+[~,mp] = ttest2(nGoodRange(iRT),nGoodRange(iYC));
+ps = [mp];
+yl='Ratio in Good Range'; %y-axis label
+h = figure;plotSpread(pl,'xNames',cats,'showMM',2,'yLabel',yl); %this plots the beeswarm
+h=gcf;set(h,'PaperOrientation','landscape'); %these two lines grabs some attributes important for plotting significance
+xt = get(gca, 'XTick');yt = get(gca, 'YTick');
+hold on;plotSig([1 2],yt,ps,0);hold off; %keep hold on and do plotSig.
+%pn=[picd num2str(vers) '-' num2str(scramm) 'ChangeInPrecision'];%print(pn,'-depsc'); %print fig
+%ylim([-1.25 1.25])
+set(findall(gcf,'-property','FontSize'),'FontSize',16)
+title('Ratio Spent in Optimal Range');
+print(h, sprintf('%sbeesTIMEINOPTIMAL.pdf', allplotDir), '-dpdf')
+
+
 firstgroup = nGoodRange(iRT);
 secondgroup = nGoodRange(iYC);
 avgratio = [mean(firstgroup) mean(secondgroup)];
@@ -253,6 +287,23 @@ set(findall(gcf,'-property','FontSize'),'FontSize',20)
 %ylim([-.2 0.2])
 print(thisfig, sprintf('%sTIMEINOPTIMAL.pdf', allplotDir), '-dpdf')
 %% and then do time spent BELOW optimal weakening zone-just fb TR's only
+cats = {'RT', 'YC'};
+pl = {nLow(iRT), nLow(iYC)};
+clear mp;
+[~,mp] = ttest2(nLow(iRT),nLow(iYC));
+ps = [mp];
+yl='Ratio in Low Range'; %y-axis label
+h = figure;plotSpread(pl,'xNames',cats,'showMM',2,'yLabel',yl); %this plots the beeswarm
+h=gcf;set(h,'PaperOrientation','landscape'); %these two lines grabs some attributes important for plotting significance
+xt = get(gca, 'XTick');yt = get(gca, 'YTick');
+hold on;plotSig([1 2],yt,ps,0);hold off; %keep hold on and do plotSig.
+%pn=[picd num2str(vers) '-' num2str(scramm) 'ChangeInPrecision'];%print(pn,'-depsc'); %print fig
+%ylim([-1.25 1.25])
+set(findall(gcf,'-property','FontSize'),'FontSize',16)
+title('Ratio Spent in Low Range');
+print(h, sprintf('%sbeesTIMELOW.pdf', allplotDir), '-dpdf')
+
+
 firstgroup = nLow(iRT);
 secondgroup = nLow(iYC);
 avgratio = [mean(firstgroup) mean(secondgroup)];
@@ -267,6 +318,24 @@ set(findall(gcf,'-property','FontSize'),'FontSize',20)
 %ylim([-.2 0.2])
 %print(thisfig, sprintf('%sTIMELOW.pdf', allplotDir), '-dpdf')
 %% and then do time spent in HIGH zone-just fb TR's only
+cats = {'RT', 'YC'};
+pl = {nHigh(iRT), nHigh(iYC)};
+clear mp;
+[~,mp] = ttest2(nHigh(iRT),nHigh(iYC));
+ps = [mp];
+yl='Ratio in High Range'; %y-axis label
+h = figure;plotSpread(pl,'xNames',cats,'showMM',2,'yLabel',yl); %this plots the beeswarm
+h=gcf;set(h,'PaperOrientation','landscape'); %these two lines grabs some attributes important for plotting significance
+xt = get(gca, 'XTick');yt = get(gca, 'YTick');
+hold on;plotSig([1 2],yt,ps,0);hold off; %keep hold on and do plotSig.
+%pn=[picd num2str(vers) '-' num2str(scramm) 'ChangeInPrecision'];%print(pn,'-depsc'); %print fig
+%ylim([-1.25 1.25])
+set(findall(gcf,'-property','FontSize'),'FontSize',16)
+title('Ratio Spent in High Range');
+print(h, sprintf('%sbeesTIMEHIGH.pdf', allplotDir), '-dpdf')
+
+
+
 firstgroup = nHigh(iRT);
 secondgroup = nHigh(iYC);
 avgratio = [mean(firstgroup) mean(secondgroup)];
@@ -314,6 +383,26 @@ xlim([-1 1]);
 legend('RT', 'YC')
 
 %% histograms of second deriv
+cats = {'RT', 'YC'};
+SDRT = abs(reshape(allSecondDiff(iRT,:),numel(allSecondDiff(iRT,:)),1));
+SDYC = abs(reshape(allSecondDiff(iYC,:),numel(allSecondDiff(iYC,:)),1));
+pl = {SDRT, SDYC};
+clear mp;
+[~,mp] = ttest2(SDRT,SDYC);
+ps = [mp];
+yl='Second Derivative'; %y-axis label
+h = figure;plotSpread(pl,'xNames',cats,'showMM',2,'yLabel',yl); %this plots the beeswarm
+h=gcf;set(h,'PaperOrientation','landscape'); %these two lines grabs some attributes important for plotting significance
+xt = get(gca, 'XTick');yt = get(gca, 'YTick');
+hold on;plotSig([1 2],yt,ps,0);hold off; %keep hold on and do plotSig.
+%pn=[picd num2str(vers) '-' num2str(scramm) 'ChangeInPrecision'];%print(pn,'-depsc'); %print fig
+%ylim([-1.25 1.25])
+set(findall(gcf,'-property','FontSize'),'FontSize',16)
+title('Second Derivative by Group');
+print(h, sprintf('%sbeesSECONDD.pdf', allplotDir), '-dpdf')
+
+
+
 secondRT = allSecondDiff(iRT,:);
 secondYC = allSecondDiff(iYC,:);
 RTvec = reshape(secondRT,1,numel(secondRT));

@@ -10,12 +10,14 @@ plotDir = ['/Data1/code/' projectName '/' 'Plots' '/' ]; %should be all
 %plot dir?
 updated =1; %for only looking at the results recorded after making differences (minimum dot speed, increase starting speed, average over 2)
 oldonly = 0;
-svec = [8 12:16 18 20:22 24 26 27 28];
-RT = [8 12:15 18 21 22];
-YC = [16 20 24 26 27 28];
+svec = [8 12 14 15 16 18 20:22 26 27 28 29];
+RT = [8 12 14 15 18 21 22]; %took subject 13 out and then matching 24 8/30 and 10/13
+YC = [16 20 26 27 28 29];
 iRT = find(ismember(svec,RT));
 iYC = find(ismember(svec,YC));
-datevec = {'8-10-16', '8-27-16', '8-30-16', '9-7-16', '9-14-16','9-16-16', '9-23-16','10-4-16', '10-6-16', '10-6-16','10-13-16','10-18-16', '10-22-16', '10-26-16' };
+%datevec = {'8-10-16', '8-27-16', '8-30-16', '9-7-16', '9-14-16','9-16-16', '9-23-16','10-4-16', '10-6-16', '10-6-16','10-13-16','10-18-16', '10-22-16', '10-26-16' , '10-28-2016'};
+datevec = {'8-10-16', '8-27-16', '9-7-16', '9-14-16','9-16-16', '9-23-16','10-4-16', '10-6-16', '10-6-16','10-18-16', '10-22-16', '10-26-16' , '10-27-2016'};
+
 runvec = ones(1,length(svec));
 runvec(find(svec==22)) = 2; %subject 22 was run 2
 % if RTgroup
@@ -48,6 +50,8 @@ for s = 1:NSUB
         recallScan = [17 27];
     elseif subjectNum == 18
         recallScan = [19 27];
+    elseif subjectNum == 29
+        recallScan = [13 23];
     end
     recallSession = [19 23];
     %date = '7-12-16';

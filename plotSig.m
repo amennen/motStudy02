@@ -2,7 +2,7 @@ function [] = plotSig(xt,yt,ps,inter)
 ht=1.05;ht2=1.1;ht3=1.15;
 big=10;small=7;
 sigs=[0.01 0.05 0.1];
-dx = xt(2) - xt(1);
+dx = 1; %xt(2) - xt(1);
 if ~inter %no interactions
     for pc=1:length(ps)
         if ps(pc)<sigs(1)
