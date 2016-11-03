@@ -83,15 +83,15 @@ for s = 1:nsub
         
         %look get avg time when above .1
         highPts = find(allsep > 0.1);
-        avgRange = 5; %number of TR's
+        avgRange = 8; %number of TR's
         keepHigh =  highPts(highPts < length(allsep) - avgRange);
         for j = 1:length(keepHigh)
-            timecourse_high(end+1,:) = allsep(keepHigh(j):keepHigh(j)+5);
+            timecourse_high(end+1,:) = allsep(keepHigh(j):keepHigh(j)+avgRange);
         end
-        lowPts = find(allsep < -.1);
+        lowPts = find(allsep < 0);
         keepLow = lowPts(lowPts <length(allsep) - avgRange);
         for j = 1:length(keepLow)
-            timecourse_low(end+1,:) = allsep(keepLow(j):keepLow(j)+5);
+            timecourse_low(end+1,:) = allsep(keepLow(j):keepLow(j)+avgRange);
         end
     end
     avg_high(s,:) = mean(timecourse_high);
@@ -267,7 +267,7 @@ h = figure;
 mseb(1:avgRange+1,timeHigh, eHigh);
 title(sprintf('High Timecourse'))
 set(gca, 'XTick', [1:avgRange+1])
-%set(gca,'XTickLabel',['-2'; '-1'; ' 0'; ' 1'; ' 2'; ' 3'; ' 4'; ' 5'; '6'; '7'; '8'; '9'; ']);
+set(gca,'XTickLabel',['0'; '1'; '2'; '3'; '4'; '5'; '6'; '7'; '8']);
 ylabel('Retrieval - Control Evidence')
 xlabel('Time Points')
 set(findall(gcf,'-property','FontSize'),'FontSize',16)
@@ -281,9 +281,11 @@ h = figure;
 mseb(1:avgRange+1,timelow, elow);
 title(sprintf('Low Timecourse'))
 set(gca, 'XTick', [1:avgRange+1])
+set(gca,'XTickLabel',['0'; '1'; '2'; '3'; '4'; '5'; '6'; '7'; '8']);
+
 %set(gca,'XTickLabel',['-2'; '-1'; ' 0'; ' 1'; ' 2'; ' 3'; ' 4'; ' 5'; '6'; '7'; '8'; '9'; ']);
 ylabel('Retrieval - Control Evidence')
 xlabel('Time Points')
 set(findall(gcf,'-property','FontSize'),'FontSize',16)
 legend('Real-time', 'Yoked')
-print(h, sprintf('%sLowTimecourse.pdf', allplotDir), '-dpdf') 
+print(h, sprintf('%sLowTimecourse_l0.pdf', allplotDir), '-dpdf') 
