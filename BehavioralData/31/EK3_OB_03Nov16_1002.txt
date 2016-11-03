@@ -1,0 +1,10 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	9.7   	25  	POWDER    	stair   	3.456	2.223	1   	generic 	generic 
+2   	26.9  	23  	HOOD      	stair   	3.452	1.37	1   	full    	full    
+3   	40.6  	26  	FLOOD     	stair   	3.456	1.041	1   	generic 	generic 
+4   	55.5  	27  	RAVINE    	stair   	3.451	NR  	0   	NR      	2+ details
+5   	71.5  	21  	PENDULUM  	stair   	3.454	1.791	1   	2+ details	2+ details
+6   	83.5  	22  	PUDDLE    	stair   	3.455	1.293	1   	1 detail	1 detail
+7   	95.5  	28  	CURB      	stair   	3.451	0.995	1   	full    	full    
+8   	107.5 	24  	ASHES     	stair   	3.453	1.474	1   	full    	full    
+9   	119.5 	27  	RAVINE (repeat 1)	stair   	3.455	1.048	1   	full    	full    

@@ -1,0 +1,49 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	34.2  	26  	FLOOD     	target  	1.952	0.724	0   	target  	non-target
+2   	76.2  	25  	POWDER    	target  	1.951	NR  	0   	NR      	non-target
+3   	118.2 	23  	HOOD      	target  	1.951	0.489	0   	non-target	target  
+4   	160.2 	21  	PENDULUM  	target  	1.955	1.007	1   	non-target	non-target
+5   	202.2 	23  	HOOD (repeat 1)	target  	1.954	0.491	1   	target  	target  
+6   	284.4 	25  	POWDER (repeat 1)	target  	1.95	0.849	0   	non-target	target  
+7   	326.4 	28  	CURB      	target  	1.951	0.49	1   	target  	target  
+8   	368.4 	25  	POWDER (repeat 2)	target  	1.954	0.477	1   	target  	target  
+9   	410.4 	22  	PUDDLE    	target  	1.956	0.517	1   	target  	target  
+10  	452.4 	23  	HOOD (repeat 2)	target  	1.956	0.737	1   	non-target	non-target
+11  	504.6 	21  	PENDULUM (repeat 1)	target  	1.955	0.404	1   	target  	target  
+12  	546.6 	24  	ASHES     	target  	1.951	0.69	1   	non-target	non-target
+13  	588.6 	26  	FLOOD (repeat 1)	target  	1.953	0.591	1   	non-target	non-target
+14  	630.6 	25  	POWDER (repeat 3)	target  	1.955	0.631	1   	non-target	non-target
+15  	672.6 	22  	PUDDLE (repeat 1)	target  	1.955	0.602	1   	non-target	non-target
+16  	768.3 	27  	RAVINE    	target  	1.956	0.626	0   	non-target	target  
+17  	810.3 	26  	FLOOD (repeat 2)	target  	1.955	0.714	1   	target  	target  
+18  	852.3 	28  	CURB (repeat 1)	target  	1.955	0.645	1   	non-target	non-target
+19  	894.3 	27  	RAVINE (repeat 1)	target  	1.955	0.627	1   	non-target	non-target
+20  	936.3 	21  	PENDULUM (repeat 2)	target  	1.955	0.825	1   	non-target	non-target
+21  	980.4 	26  	FLOOD (repeat 3)	target  	1.956	0.77	1   	target  	target  
+22  	1022.4	26  	FLOOD (repeat 4)	target  	1.955	0.575	1   	target  	target  
+23  	1064.4	21  	PENDULUM (repeat 3)	target  	1.955	0.725	0   	target  	non-target
+24  	1106.4	27  	RAVINE (repeat 2)	target  	1.951	0.539	1   	target  	target  
+25  	1148.3	21  	PENDULUM (repeat 4)	target  	1.954	0.699	1   	non-target	non-target
+26  	1191.8	24  	ASHES (repeat 1)	target  	1.952	0.619	1   	non-target	non-target
+27  	1233.8	22  	PUDDLE (repeat 2)	target  	1.954	0.665	1   	non-target	non-target
+28  	1275.8	24  	ASHES (repeat 2)	target  	1.955	0.654	1   	non-target	non-target
+29  	1317.8	23  	HOOD (repeat 3)	target  	1.953	0.623	1   	non-target	non-target
+30  	1359.8	27  	RAVINE (repeat 3)	target  	1.955	0.748	1   	target  	target  
+31  	1417  	24  	ASHES (repeat 3)	target  	1.951	1.09	0   	non-target	target  
+32  	1459  	28  	CURB (repeat 2)	target  	1.952	0.762	1   	non-target	non-target
+33  	1501.1	24  	ASHES (repeat 4)	target  	1.954	0.749	1   	non-target	non-target
+34  	1543.1	23  	HOOD (repeat 4)	target  	1.955	0.653	1   	target  	target  
+35  	1585.1	28  	CURB (repeat 3)	target  	1.953	0.753	1   	non-target	non-target
+36  	1786.4	25  	POWDER (repeat 4)	target  	1.953	0.896	0   	non-target	target  
+37  	1828.4	22  	PUDDLE (repeat 3)	target  	1.956	0.64	1   	target  	target  
+38  	1870.4	27  	RAVINE (repeat 4)	target  	1.953	0.515	1   	target  	target  
+39  	1912.4	23  	HOOD (repeat 5)	target  	1.956	0.697	1   	target  	target  
+40  	1954.4	27  	RAVINE (repeat 5)	target  	1.955	0.47	1   	target  	target  
+41  	2083.8	21  	PENDULUM (repeat 5)	target  	1.956	0.607	1   	target  	target  
+42  	2125.8	25  	POWDER (repeat 5)	target  	1.952	0.746	1   	target  	target  
+43  	2167.8	22  	PUDDLE (repeat 4)	target  	1.956	0.712	1   	target  	target  
+44  	2209.8	24  	ASHES (repeat 5)	target  	1.955	0.525	1   	target  	target  
+45  	2251.8	28  	CURB (repeat 4)	target  	1.955	0.702	1   	target  	target  
+46  	2295.3	22  	PUDDLE (repeat 5)	target  	1.956	0.675	1   	non-target	non-target
+47  	2337.3	28  	CURB (repeat 5)	target  	1.956	0.817	1   	non-target	non-target
+48  	2379.3	26  	FLOOD (repeat 5)	target  	1.953	0.758	1   	target  	target  
