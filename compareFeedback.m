@@ -10,12 +10,14 @@ nTRs = 15;
 sepTRs = 17;
 FBTRs = 11;
 nblock = 3;
-
-svec = [8 12 14 15 16 18 20:21 26 27 28 29];
-RT = [8 12 14 15 18 21];
-YC = [16 20 26 27 28 29];
-RT_m = [8 12 14 15 18 21];
-YC_m = [16 28 20 26 27 29];
+highB = 0.3;
+lowB = 0;
+avgRange = 6; % divided by 2 is Number of TR's
+svec = [8 12 14 15 16 18 20:22 26 27 28 29 30];
+RT = [8 12 14 15 18 21 22];
+YC = [16 20 26 27 28 29 30];
+RT_m = [8 12 14 15 18 21 22];
+YC_m = [16 28 20 26 27 29 30];
 iRT = find(ismember(svec,RT));
 iYC = find(ismember(svec,YC));
 iRT_m = find(ismember(svec,RT_m));
@@ -88,16 +90,15 @@ for s = 1:nsub
         
         %look get avg time when above .1
         %first try only dot tracking conditions
-        avgRange = 10;
         for i = 1:nstim
             tcourse = sepbytrial(:,i);
             x1 = 1:length(tcourse);
             x2 = 1:.5:length(tcourse);
             y2 = interp1q(x1',tcourse,x2');
             for j = 3:length(y2) - avgRange
-                if y2(j-1) < 0.1 && y2(j) > 0.1 %then this is a POSITIVE CROSSING POINT
+                if y2(j-1) < highB && y2(j) > highB %then this is a POSITIVE CROSSING POINT
                     timecourse_high(end+1,:) = y2(j-2:j+avgRange);
-                elseif y2(j-1) > 0 && y2(j) < 0 %% then this is a NEGATIVE crossing point
+                elseif y2(j-1) > lowB && y2(j) < lowB %% then this is a NEGATIVE crossing point
                     timecourse_low(end+1,:) = y2(j-2:j+avgRange);
                 end
             end

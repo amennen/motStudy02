@@ -8,9 +8,9 @@
 clear all;
 projectName = 'motStudy02';
 % don't put in 22 until have subject
-svec = [8 12 14 15 16 18 20:21 24 26 27 28 29];
-RT = [8 12 14 15 15 18 21 ];
-YC = [16 20 26 27 28 29];
+svec = [8 12 14 15 16 18 20:21 22 24 26 27 28 29 30];
+RT = [8 12 14 15 15 18 21 22];
+YC = [16 20 26 27 28 29 30];
 iRT = find(ismember(svec,RT));
 iYC = find(ismember(svec,YC));
 
