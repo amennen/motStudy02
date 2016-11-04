@@ -33,6 +33,9 @@ for s = 1:nsub
     timecourse_low = [];
     
     subjectNum = svec(s);
+    
+    remStim = findRememberedStim(subjectNum);
+    
     for iblock = 1:nblock
         blockNum = iblock;
         SESSION = 19 + blockNum;
@@ -50,6 +53,8 @@ for s = 1:nsub
         end
         matlabOpenFile = [behavioral_dir '/' names{newest}];
         d = load(matlabOpenFile);
+        goodTrials = find(ismember(d.stim.id,remStim));
+        
         nTotalTR = 120; %120 fb TR's per block
         allSmoothedFb((iblock-1)*nTotalTR + 1: iblock*nTotalTR ,s)  =  d.rtData.smoothRTDecodingFunction(~isnan(d.rtData.smoothRTDecodingFunction));
         
@@ -82,17 +87,32 @@ for s = 1:nsub
         speed((iblock-1)*FBTRs + 1: iblock*FBTRs ,s) = FBspeed;
         
         %look get avg time when above .1
-        highPts = find(allsep > 0.1);
-        avgRange = 8; %number of TR's
-        keepHigh =  highPts(highPts < length(allsep) - avgRange);
-        for j = 1:length(keepHigh)
-            timecourse_high(end+1,:) = allsep(keepHigh(j):keepHigh(j)+avgRange);
+        %first try only dot tracking conditions
+        avgRange = 10;
+        for i = 1:nstim
+            tcourse = sepbytrial(:,i);
+            x1 = 1:length(tcourse);
+            x2 = 1:.5:length(tcourse);
+            y2 = interp1q(x1',tcourse,x2');
+            for j = 3:length(y2) - avgRange
+                if y2(j-1) < 0.1 && y2(j) > 0.1 %then this is a POSITIVE CROSSING POINT
+                    timecourse_high(end+1,:) = y2(j-2:j+avgRange);
+                elseif y2(j-1) > 0 && y2(j) < 0 %% then this is a NEGATIVE crossing point
+                    timecourse_low(end+1,:) = y2(j-2:j+avgRange);
+                end
+            end
         end
-        lowPts = find(allsep < 0);
-        keepLow = lowPts(lowPts <length(allsep) - avgRange);
-        for j = 1:length(keepLow)
-            timecourse_low(end+1,:) = allsep(keepLow(j):keepLow(j)+avgRange);
-        end
+%         highPts = find(allsep > 0.1);
+%         avgRange = 8; %number of TR's
+%         keepHigh =  highPts(highPts < length(allsep) - avgRange);
+%         for j = 1:length(keepHigh)
+%             timecourse_high(end+1,:) = allsep(keepHigh(j):keepHigh(j)+avgRange);
+%         end
+%         lowPts = find(allsep < 0);
+%         keepLow = lowPts(lowPts <length(allsep) - avgRange);
+%         for j = 1:length(keepLow)
+%             timecourse_low(end+1,:) = allsep(keepLow(j):keepLow(j)+avgRange);
+%         end
     end
     avg_high(s,:) = mean(timecourse_high);
     avg_low(s,:) = mean(timecourse_low);
@@ -264,28 +284,29 @@ print(h, sprintf('%sbeescorrelationRTYC.pdf', allplotDir), '-dpdf')
 timeHigh = [ mean(avg_high(iRT,:)); mean(avg_high(iYC,:))];
 eHigh = [nanstd(avg_high(iRT,:),[],1)/sqrt(length(iRT)-1) ;nanstd(avg_high(iYC,:),[],1)/sqrt(length(iYC)-1)];
 h = figure;
-mseb(1:avgRange+1,timeHigh, eHigh);
+npts = size(avg_high,2);
+mseb(1:npts,timeHigh, eHigh);
 title(sprintf('High Timecourse'))
-set(gca, 'XTick', [1:avgRange+1])
-set(gca,'XTickLabel',['0'; '1'; '2'; '3'; '4'; '5'; '6'; '7'; '8']);
+set(gca, 'XTick', [1:npts])
+%set(gca,'XTickLabel',['-2';'-1'; ' 0'; ' 1'; ' 2'; ' 3'; ' 4'; ' 5'; ' 6'; ' 7'; ' 8']);
 ylabel('Retrieval - Control Evidence')
 xlabel('Time Points')
 set(findall(gcf,'-property','FontSize'),'FontSize',16)
 legend('Real-time', 'Yoked')
-print(h, sprintf('%sHighTimecourse.pdf', allplotDir), '-dpdf') 
+%print(h, sprintf('%sHighTimecourse.pdf', allplotDir), '-dpdf') 
 
 %% do the same for low points
 timelow = [ mean(avg_low(iRT,:)); mean(avg_low(iYC,:))];
 elow = [nanstd(avg_low(iRT,:),[],1)/sqrt(length(iRT)-1) ;nanstd(avg_low(iYC,:),[],1)/sqrt(length(iYC)-1)];
 h = figure;
-mseb(1:avgRange+1,timelow, elow);
+mseb(1:npts,timelow, elow);
 title(sprintf('Low Timecourse'))
-set(gca, 'XTick', [1:avgRange+1])
-set(gca,'XTickLabel',['0'; '1'; '2'; '3'; '4'; '5'; '6'; '7'; '8']);
+set(gca, 'XTick', [1:npts])
+%set(gca,'XTickLabel',['0'; '1'; '2'; '3'; '4'; '5'; '6'; '7'; '8']);
+%set(gca,'XTickLabel',['-2';'-1'; ' 0'; ' 1'; ' 2'; ' 3'; ' 4'; ' 5'; ' 6'; ' 7'; ' 8']);
 
-%set(gca,'XTickLabel',['-2'; '-1'; ' 0'; ' 1'; ' 2'; ' 3'; ' 4'; ' 5'; '6'; '7'; '8'; '9'; ']);
 ylabel('Retrieval - Control Evidence')
 xlabel('Time Points')
 set(findall(gcf,'-property','FontSize'),'FontSize',16)
 legend('Real-time', 'Yoked')
-print(h, sprintf('%sLowTimecourse_l0.pdf', allplotDir), '-dpdf') 
+%print(h, sprintf('%sLowTimecourse_n.1.pdf', allplotDir), '-dpdf') 
