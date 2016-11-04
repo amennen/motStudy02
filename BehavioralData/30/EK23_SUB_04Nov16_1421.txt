@@ -1,0 +1,21 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	43.8  	3   	AXLE      	realtime	3.951	0.751	0   	no image	1 detail, 2+ details, full
+2   	83.8  	12  	SPOKE     	omit    	3.95	0.439	1   	1 detail	1 detail, 2+ details, full
+3   	123.8 	17  	FERRY     	omit    	3.95	0.551	0   	no image	1 detail, 2+ details, full
+4   	163.8 	2   	ELBOW     	realtime	3.951	0.663	0   	no image	1 detail, 2+ details, full
+5   	203.8 	19  	TRACK     	omit    	3.95	0.576	1   	1 detail	1 detail, 2+ details, full
+6   	243.8 	8   	RADIO     	realtime	3.95	0.489	1   	1 detail	1 detail, 2+ details, full
+7   	283.8 	5   	BRASS     	realtime	3.951	0.737	1   	1 detail	1 detail, 2+ details, full
+8   	323.8 	14  	RACK      	omit    	3.95	0.497	1   	1 detail	1 detail, 2+ details, full
+9   	363.8 	20  	METAL     	omit    	3.951	0.441	0   	no image	1 detail, 2+ details, full
+10  	403.8 	6   	CARD      	realtime	3.953	0.65	0   	no image	1 detail, 2+ details, full
+11  	443.8 	7   	TIMBER    	realtime	3.95	1.826	0   	no image	1 detail, 2+ details, full
+12  	483.8 	11  	NOVEL     	omit    	3.951	0.578	1   	1 detail	1 detail, 2+ details, full
+13  	523.8 	9   	GIFT      	realtime	3.95	0.37	0   	no image	1 detail, 2+ details, full
+14  	563.8 	13  	PORTAL    	omit    	3.951	0.674	1   	1 detail	1 detail, 2+ details, full
+15  	603.8 	16  	LIGHT     	omit    	3.95	0.579	0   	generic 	1 detail, 2+ details, full
+16  	643.8 	4   	FOIL      	realtime	3.951	1.292	1   	1 detail	1 detail, 2+ details, full
+17  	683.8 	10  	PASTEL    	realtime	3.95	0.548	0   	generic 	1 detail, 2+ details, full
+18  	723.8 	15  	SCREEN    	omit    	3.951	1.652	0   	no image	1 detail, 2+ details, full
+19  	763.8 	18  	NAIL      	omit    	3.951	0.396	1   	1 detail	1 detail, 2+ details, full
+20  	803.8 	1   	POLISH    	realtime	3.951	0.452	0   	no image	1 detail, 2+ details, full
