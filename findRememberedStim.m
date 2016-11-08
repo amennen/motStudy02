@@ -1,6 +1,7 @@
 function [allRemID,easyRemID,hardRemID] = findRememberedStim(subjectNum)
 projectName = 'motStudy02';
-behavioral_dir = ['/Data1/code/' projectName '/' 'code' '/BehavioralData/' num2str(subjectNum) '/'];
+base_path = [fileparts(which('mot_realtime01.m')) filesep];
+behavioral_dir = [base_path 'BehavioralData/' num2str(subjectNum) '/'];
 SESSION = 19;
 r = dir(fullfile(behavioral_dir, ['EK' num2str(SESSION) '_' 'SUB'  '*.mat']));
 r = load(fullfile(behavioral_dir,r(end).name));
