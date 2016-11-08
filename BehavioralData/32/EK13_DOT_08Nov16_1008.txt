@@ -1,0 +1,5 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	35.9  	45  	MAGAZINE  	lure_easy	1.951	1.575	1   	non-target	non-target
+2   	78    	21  	BELL      	targ_hard	1.95	1.119	1   	non-target	non-target
+3   	120   	46  	ANCHOR    	lure_hard	1.95	0.831	1   	non-target	non-target
+4   	162   	22  	ISLAND    	targ_easy	1.95	0.927	1   	non-target	non-target
