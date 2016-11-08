@@ -1,0 +1,11 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	66.7  	6   	MATCH     	rt-targ 	1.95	1.13	1   	non-target	non-target
+2   	108.7 	7   	CARBON    	rt-targ 	1.95	0.818	1   	non-target	non-target
+3   	150.7 	1   	RAKE      	rt-targ 	1.951	1.098	1   	target  	target  
+4   	192.7 	8   	DEPOT     	rt-targ 	1.95	1.683	1   	non-target	non-target
+5   	234.7 	9   	PANEL     	rt-targ 	1.951	0.979	1   	non-target	non-target
+6   	276.7 	4   	PATCH     	rt-targ 	1.95	0.86	1   	non-target	non-target
+7   	318.7 	10  	COACH     	rt-targ 	1.953	0.868	1   	target  	target  
+8   	360.7 	2   	DISC      	rt-targ 	1.951	0.932	1   	non-target	non-target
+9   	402.7 	5   	ATLAS     	rt-targ 	1.95	1.228	1   	non-target	non-target
+10  	444.7 	3   	MIRROR    	rt-targ 	1.95	0.909	1   	non-target	non-target

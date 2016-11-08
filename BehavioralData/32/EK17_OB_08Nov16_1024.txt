@@ -1,0 +1,17 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	8.6   	29  	TARGET    	localizer	3.451	1.239	1   	2+ details	2+ details
+2   	20.6  	32  	NOZZLE    	localizer	3.45	2.095	1   	generic 	generic 
+3   	32.6  	35  	QUILL     	localizer	3.451	0.752	1   	2+ details	2+ details
+4   	44.6  	40  	SPARK     	localizer	3.451	1.648	1   	generic 	generic 
+5   	56.6  	30  	MERCURY   	localizer	3.451	3.312	1   	1 detail	1 detail
+6   	68.6  	43  	STAKE     	localizer	3.45	1   	1   	generic 	generic 
+7   	80.6  	36  	PILE      	localizer	3.45	1.64	1   	generic 	generic 
+8   	92.6  	31  	NOVEL     	localizer	3.45	0.816	1   	full    	full    
+9   	104.6 	42  	POLISH    	localizer	3.45	1.336	1   	generic 	generic 
+10  	116.6 	41  	BRUSH     	localizer	3.45	0.928	1   	1 detail	1 detail
+11  	128.6 	34  	PUTTY     	localizer	3.451	0.728	1   	2+ details	2+ details
+12  	140.6 	38  	SHELL     	localizer	3.451	1.849	1   	generic 	generic 
+13  	152.6 	39  	CAPITOL   	localizer	3.451	1.793	1   	generic 	generic 
+14  	164.6 	37  	IODINE    	localizer	3.45	1.569	1   	2+ details	2+ details
+15  	176.6 	33  	BUCKLE    	localizer	3.45	1.313	1   	1 detail	1 detail
+16  	188.6 	44  	BADGE     	localizer	3.45	2.041	1   	2+ details	2+ details

@@ -1,0 +1,21 @@
+trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
+1   	44.9  	13  	NICKEL    	omit    	3.951	2.786	0   	no image	1 detail, 2+ details, full
+2   	84.9  	7   	CARBON    	realtime	3.95	1.811	1   	2+ details	1 detail, 2+ details, full
+3   	124.9 	12  	FRONTIER  	omit    	3.951	1.356	1   	2+ details	1 detail, 2+ details, full
+4   	164.9 	9   	PANEL     	realtime	3.951	2.707	1   	1 detail	1 detail, 2+ details, full
+5   	204.9 	2   	DISC      	realtime	3.95	3.075	1   	full    	1 detail, 2+ details, full
+6   	244.9 	16  	ARCTIC    	omit    	3.952	2.3 	1   	1 detail	1 detail, 2+ details, full
+7   	285   	11  	CARAVAN   	omit    	3.953	NR  	0   	NR      	1 detail, 2+ details, full
+8   	324.9 	1   	RAKE      	realtime	3.951	1.764	1   	2+ details	1 detail, 2+ details, full
+9   	364.9 	19  	HOSE      	omit    	3.95	3.549	1   	1 detail	1 detail, 2+ details, full
+10  	404.9 	4   	PATCH     	realtime	3.95	2.173	1   	1 detail	1 detail, 2+ details, full
+11  	445   	18  	CHISEL    	omit    	3.952	NR  	0   	NR      	1 detail, 2+ details, full
+12  	484.9 	10  	COACH     	realtime	3.95	0.725	0   	generic 	1 detail, 2+ details, full
+13  	524.9 	14  	RACK      	omit    	3.95	3.629	1   	1 detail	1 detail, 2+ details, full
+14  	564.9 	6   	MATCH     	realtime	3.95	2.126	0   	no image	1 detail, 2+ details, full
+15  	604.9 	15  	FRAME     	omit    	3.95	1.654	0   	generic 	1 detail, 2+ details, full
+16  	644.9 	8   	DEPOT     	realtime	3.951	2.582	0   	generic 	1 detail, 2+ details, full
+17  	684.9 	3   	MIRROR    	realtime	3.95	1.351	1   	1 detail	1 detail, 2+ details, full
+18  	724.9 	20  	CHAIN     	omit    	3.951	2.495	1   	1 detail	1 detail, 2+ details, full
+19  	764.9 	5   	ATLAS     	realtime	3.95	1.423	0   	no image	1 detail, 2+ details, full
+20  	804.9 	17  	MAZE      	omit    	3.951	3.656	1   	1 detail	1 detail, 2+ details, full
