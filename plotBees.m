@@ -11,17 +11,26 @@ nTRs = 15;
 sepTRs = 17;
 FBTRs = 11;
 nblock = 3;
-RT_m = [8 12  14 15 18 21];
-YC_m = [16 28 20 26 27 29];
-svec = [8 12 14 15 16 18 20:22 26 27 28 29];
-RT = [8 12 14 15 18 21 22];
-YC = [16 20 26 27 28 29];
+svec = [8 12 14 15 16 18 20 22 26 27 28 30 31 32];
+
+RT = [8 12 14 15 18  22 31];
+YC = [16 20 26 27 28 30 32];
 iRT = find(ismember(svec,RT));
 iYC = find(ismember(svec,YC));
+
+RT_m = [8 12 14 15 18  22 31];
+YC_m = [16 28 20 26 27  30 32];
 iRT_m = find(ismember(svec,RT_m));
-for i = 1:length(YC_m)
-    iYC_m(i) = find(svec==YC_m(i));
-end
+% for i = 1:length(YC_m)
+%     iYC_m(i) = find(svec==YC_m(i));
+% end
+% for i = 1:length(svec)
+%     n_rem(i) = length(findRememberedStim(svec(i)));
+%     remembered{i} = findRememberedStim(svec(i));
+% end
+% for i = 1:length(iYC_m)
+%     overlapping{i} = intersect(remembered{iRT_m(i)},remembered{iYC_m(i)});
+% end
 nsub = length(svec);
 sepbystim = zeros(nstim,nTRs*3);
 speedbystim = zeros(nstim,nTRs*3);
@@ -32,6 +41,7 @@ allspeed_RT = [];
 allds_YC = [];
 allev_YC = [];
 allspeed_YC = [];
+goodTrials =0;
 for s = 1:nsub
     subjectNum = svec(s);
 
@@ -57,7 +67,7 @@ for s = 1:nsub
         matlabOpenFile = [behavioral_dir '/' names{newest}];
         d = load(matlabOpenFile);
         
-        goodTrials = find(ismember(d.stim.id,remStim));
+        %goodTrials = find(ismember(d.stim.id,remStim));
         
         allSpeed = d.stim.motionSpeed; %matrix of TR's
         speedVector = reshape(allSpeed,1,numel(allSpeed));
@@ -144,6 +154,18 @@ line([0 46], [0.15 0.15], 'color', [140 136 141]/255, 'LineWidth', 1.5,'LineStyl
 line([0 46], [0.1 0.1], 'color', [0 0 0 ]/255, 'LineWidth', 2.5,'LineStyle', '--');
 line([0 46], [0.05 0.05], 'color', [140 136 141]/255, 'LineWidth', 1.5,'LineStyle', '--');
 print(thisfig, sprintf('%sbeesbygroup.pdf', allplotDir), '-dpdf')
+
+
+
+%violin plots
+thisfig = figure;
+distributionPlot(pl, 'showMM', 2, 'xNames', cats, 'ylabel', yl, 'colormap', copper)
+xlim([.5 2.5])
+ylim([-1.25 1.25])
+title('Distribution of Evidence During MOT')
+xlabel('Subject Group')
+set(findall(gcf,'-property','FontSize'),'FontSize',20)
+print(thisfig, sprintf('%sviolinsbygroup.pdf', allplotDir), '-dpdf')
 
 %% do separately for each subject
 

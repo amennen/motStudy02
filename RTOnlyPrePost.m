@@ -10,16 +10,22 @@ plotDir = ['/Data1/code/' projectName '/' 'Plots' '/' ]; %should be all
 %plot dir?
 updated =1; %for only looking at the results recorded after making differences (minimum dot speed, increase starting speed, average over 2)
 oldonly = 0;
-svec = [8 12 14 15 16 18 20:22 26 27 28 29];
-RT = [8 12 14 15 18 21 22]; %took subject 13 out and then matching 24 8/30 and 10/13
-YC = [16 20 26 27 28 29];
+svec = [8 12 14 15 16 18 20 22 26 27 28 30 31 32];
+onlyRem = 0;
+RT = [8 12 14 15 18 22 31];
+YC = [16 20 26 27 28 30 32];
 iRT = find(ismember(svec,RT));
 iYC = find(ismember(svec,YC));
+
+RT_m = [8 12 14 15 18 22 31];
+YC_m = [16 28 20 26 27 30 32];
+iRT_m = find(ismember(svec,RT_m));
 %datevec = {'8-10-16', '8-27-16', '8-30-16', '9-7-16', '9-14-16','9-16-16', '9-23-16','10-4-16', '10-6-16', '10-6-16','10-13-16','10-18-16', '10-22-16', '10-26-16' , '10-28-2016'};
-datevec = {'8-10-16', '8-27-16', '9-7-16', '9-14-16','9-16-16', '9-23-16','10-4-16', '10-6-16', '10-6-16','10-18-16', '10-22-16', '10-26-16' , '10-27-2016'};
+datevec = {'8-10-16', '8-27-16', '9-7-16', '9-14-16','9-16-16', '9-23-16','10-4-16',  '10-6-16','10-18-16', '10-22-16', '10-26-16' ,  '11-4-16', '11-4-16', '11-8-16'};
 
 runvec = ones(1,length(svec));
 runvec(find(svec==22)) = 2; %subject 22 was run 2
+runvec(find(svec==30)) = 2;
 % if RTgroup
 %     svec = [8 12:15 18 21 22];
 %     datevec = {'8-10-16', '8-27-16', '8-30-16', '9-7-16', '9-14-16', '9-23-16', '10-6-16', '10-6-16'};
@@ -164,19 +170,21 @@ alldiffmeans = [allRT;allOMIT];
 alldiffstd = [eRT;eOMIT];
 mseb(1:nTRsperTrial,alldiffmeans, alldiffstd)
 legend('Realtime', 'Omit')
-title(sprintf('RT Post - Pre MOT Classifier Difference, n = %i',NSUB))
+title(sprintf('RT Post - Pre MOT Classifier Difference'))
 set(gca, 'XTick', [1:nTRsperTrial])
 %set(gca,'XTickLabel',['-2'; '-1'; ' 0'; ' 1'; ' 2'; ' 3'; ' 4'; ' 5'; '6'; '7'; '8'; '9'; ']);
 ylabel('Target - Lure Evidence')
 xlabel('TR (2s)')
+xlim([1 8])
+ylim([-.2 .2])
 set(findall(gcf,'-property','FontSize'),'FontSize',16)
 %line([3 3], [-1 1], 'Color', 'k', 'LineWidth', 3);
 %line([6 6], [-1 1], 'Color', 'k', 'LineWidth', 3);
 
-xlim([1 nTRsperTrial])
+%xlim([1 nTRsperTrial])
 %xlim([1 8])
-ylim([-.25 .25])
-%print(h1, sprintf('%sRTOnlyPrePost.pdf', plotDir), '-dpdf')
+%ylim([-.25 .25])
+print(h1, sprintf('%sRTOnlyPrePost.pdf', plotDir), '-dpdf')
 
 h1 = figure;
 %alldiffmeans = [RTavg;OMITavg];
@@ -189,7 +197,7 @@ alldiffmeans = [allRT;allOMIT];
 alldiffstd = [eRT;eOMIT];
 mseb(1:nTRsperTrial,alldiffmeans, alldiffstd)
 legend('Realtime', 'Omit')
-title(sprintf('RT Post MOT Classifier Difference, n = %i',NSUB))
+title(sprintf('RT Post MOT Classifier Difference'))
 set(gca, 'XTick', [1:nTRsperTrial])
 %set(gca,'XTickLabel',['-2'; '-1'; ' 0'; ' 1'; ' 2'; ' 3'; ' 4'; ' 5'; '6'; '7'; '8'; '9'; ']);
 ylabel('Target - Lure Evidence')
@@ -218,19 +226,21 @@ alldiffmeans = [allRT;allOMIT];
 alldiffstd = [eRT;eOMIT];
 mseb(1:nTRsperTrial,alldiffmeans, alldiffstd)
 legend('Realtime', 'Omit')
-title(sprintf('YC Post - Pre MOT Classifier Difference, n = %i',NSUB))
+title(sprintf('YC Post - Pre MOT Classifier Difference'))
 set(gca, 'XTick', [1:nTRsperTrial])
 %set(gca,'XTickLabel',['-2'; '-1'; ' 0'; ' 1'; ' 2'; ' 3'; ' 4'; ' 5'; '6'; '7'; '8'; '9'; ']);
+xlim([1 8])
+ylim([-.2 .2])
 ylabel('Target - Lure Evidence')
 xlabel('TR (2s)')
 set(findall(gcf,'-property','FontSize'),'FontSize',16)
 %line([3 3], [-1 1], 'Color', 'k', 'LineWidth', 3);
 %line([6 6], [-1 1], 'Color', 'k', 'LineWidth', 3);
 
-xlim([1 nTRsperTrial])
+%xlim([1 nTRsperTrial])
 %xlim([1 8])
-ylim([-.25 .25])
-%print(h1, sprintf('%sRTOnlyPrePost.pdf', plotDir), '-dpdf')
+%ylim([-.25 .25])
+print(h1, sprintf('%sYCOnlyPrePost.pdf', plotDir), '-dpdf')
 
 h1 = figure;
 %alldiffmeans = [RTavg;OMITavg];

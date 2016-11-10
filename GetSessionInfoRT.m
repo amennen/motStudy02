@@ -37,7 +37,9 @@ else
 end
 NCOND = 4;
 nTRs = config.nTRs.perBlock + 5; %includes 5 seconds at the end
-
+if SESSION == 18 && subjNum == 16
+    nTRs = nTRs + 10;
+end
 % get hard dot speed
 fileSpeed = dir(fullfile(behav_dir, ['mot_realtime01_' num2str(subjNum) '_' num2str(MOT_PREP)  '*.mat']));
 if ~isempty(fileSpeed)
@@ -64,8 +66,16 @@ trials.lure = [LH LE];
 
 % now we have to match these to TRs to get the actual regressors
 if ismember(SESSION,MOT)
-    iTR.start = convertTR(timing.trig.wait,timing.plannedOnsets.motion(1,:),config.TR);
-    trialDur = timing.plannedOnsets.probe(1) - timing.plannedOnsets.motion(1,1); % +4; %this was because I wanted to shift forward by 2 and see afterwards 2 TRs but
+    iTR.start = convertTR(timing.trig.wait,timing.plannedOnsets.motion(1,:),config.TR); %coming from the waiting point so already 10 are taken out
+    if SESSION  == 18 && subjNum == 16
+        iTR.start = iTR.start + 10;
+    end
+    if SESSION == 18
+    iTR.start = iTR.start - 2;% go 2 TR's behind if plotting AFTERWARDS
+    %(put back in later)--IF WANT TO GO 2 IN FRONT (if not comment out and
+    %change +8 back to + 2
+    end
+    trialDur = timing.plannedOnsets.probe(1) - timing.plannedOnsets.motion(1,1) +8; %this was because I wanted to shift forward by 2 and see afterwards 2 TRs but
     % take out now
 else
     iTR.start = convertTR(timing.trig.wait,timing.plannedOnsets.prompt,config.TR);
@@ -73,7 +83,7 @@ else
     trialDur = timing.plannedOnsets.math(1) - timing.plannedOnsets.prompt(1) + 4; %for entire recall period = 15 TR's total, then go two past
 end
 trialDurTR = (trialDur/config.TR) - 1; %20s/2 = 10 - 1 = 9 TRs
-if SESSION == 18 && N_TRS_LOC > 0 %shift over a little bit more
+if SESSION == 18 && N_TRS_LOC > 0 && N_TRS_LOC < 15 %shift over a little bit more
     trialDurTR = N_TRS_LOC - 1;
 end
 
@@ -103,7 +113,7 @@ end
 
 targets = sum(VARIATIONS_MAT(1:2,:));
 lures = sum(VARIATIONS_MAT(3:4,:));
-patterns.regressor.allCond = VARIATIONS_MAT(:,11:end);
+patterns.regressor.allCond = VARIATIONS_MAT(:,11:end); %changed 11/9 because don't need this
 REGRESSORS = [targets;lures];
 patterns.regressor.twoCond = REGRESSORS(:,11:end); %get rid of first 10 TRs
 

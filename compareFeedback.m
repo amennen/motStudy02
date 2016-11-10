@@ -11,18 +11,27 @@ sepTRs = 17;
 FBTRs = 11;
 nblock = 3;
 highB = 0.15;
-lowB = 0;
-avgRange = 10; % divided by 2 is Number of TR's
-svec = [8 12 14 15 16 18 20:22 26 27 28 29 30 31 32];
-RT = [8 12 14 15 18 21 22 31];
-YC = [16 20 26 27 28 29 30 32];
-RT_m = [8 12 14 15 18 21 22 31];
-YC_m = [16 28 20 26 27 29 30 32];
+lowB = -.15;
+avgRange = 12; % divided by 2 is Number of TR's
+svec = [8 12 14 15 16 18 20 22 26 27 28 30 31 32];
+onlyRem = 0;
+RT = [8 12 14 15 18  22 31];
+YC = [16 20 26 27 28 30 32];
 iRT = find(ismember(svec,RT));
 iYC = find(ismember(svec,YC));
+
+RT_m = [8 12 14 15 18 22 31];
+YC_m = [16 28 20 26 27 30 32];
 iRT_m = find(ismember(svec,RT_m));
 for i = 1:length(YC_m)
     iYC_m(i) = find(svec==YC_m(i));
+end
+for i = 1:length(svec)
+    n_rem(i) = length(findRememberedStim(svec(i)));
+    remembered{i} = findRememberedStim(svec(i));
+end
+for i = 1:length(iYC_m)
+    overlapping{i} = intersect(remembered{iRT_m(i)},remembered{iYC_m(i)});
 end
 
 nsub = length(svec);
@@ -35,9 +44,12 @@ for s = 1:nsub
     timecourse_low = [];
     
     subjectNum = svec(s);
-    
     remStim = findRememberedStim(subjectNum);
-    
+    if find(RT_m == svec(s)) %then it's in the RT group
+        matched = find(RT_m == svec(s));
+    elseif find(YC_m == svec(s)) % then in YC group
+        matched = find(YC_m == svec(s));
+    end
     for iblock = 1:nblock
         blockNum = iblock;
         SESSION = 19 + blockNum;
@@ -55,13 +67,18 @@ for s = 1:nsub
         end
         matlabOpenFile = [behavioral_dir '/' names{newest}];
         d = load(matlabOpenFile);
-        goodTrials = find(ismember(d.stim.id,remStim));
+        goodStim = overlapping{matched};
+        goodTrials = find(ismember(d.stim.id,goodStim));
+        %goodTrials = find(ismember(d.stim.id,remStim));
         
         nTotalTR = 120; %120 fb TR's per block
         allSmoothedFb((iblock-1)*nTotalTR + 1: iblock*nTotalTR ,s)  =  d.rtData.smoothRTDecodingFunction(~isnan(d.rtData.smoothRTDecodingFunction));
         
        
         allSpeed = d.stim.motionSpeed; %matrix of TR's
+        if onlyRem
+            allSpeed = allSpeed(:,goodTrials);
+        end
         speedVector = reshape(allSpeed,1,numel(allSpeed));
         allMotionTRs = convertTR(d.timing.trig.wait,d.timing.plannedOnsets.motion,d.config.TR); %row,col = mTR,trialnumber
         allMotionTRs = allMotionTRs + 2;%[allMotionTRs; allMotionTRs(end,:)+1; allMotionTRs(end,:) + 2]; %add in the next 2 TR's for HDF
@@ -77,10 +94,16 @@ for s = 1:nsub
         run = load(fullfile(runHeader,run(end).name));
         categsep = run.patterns.categsep(TRvector - 10); %minus 10 because we take out those 10
         sepbytrial = reshape(categsep,nTRs,10);
+        if onlyRem
+            sepbytrial = sepbytrial(:,goodTrials);
+        end
         allsepchange = diff(sepbytrial,1,1);
         FBsepchange = reshape(allsepchange(4:end,:),1,numel(allsepchange(4:end,:)));
         allsep = reshape(sepbytrial(5:end,:),1,numel(sepbytrial(5:end,:)));
         allspeedchanges = diff(d.stim.motionSpeed,1,1);
+        if onlyRem
+            allspeedchanges = allspeedchanges(:,goodTrials);
+        end
         FBspeed = reshape(allSpeed(5:end,:),1,numel(allSpeed(5:end,:)));
         FBspeedchange = reshape(allspeedchanges(4:end,:),1,numel(allspeedchanges(4:end,:)));
         FBTRs = length(FBspeedchange);
@@ -90,7 +113,7 @@ for s = 1:nsub
         
         %look get avg time when above .1
         %first try only dot tracking conditions
-        for i = 1:nstim
+        for i = 1:length(goodTrials)
             tcourse = sepbytrial(:,i);
             x1 = 1:length(tcourse);
             x2 = 1:.5:length(tcourse);
@@ -115,8 +138,8 @@ for s = 1:nsub
 %             timecourse_low(end+1,:) = allsep(keepLow(j):keepLow(j)+avgRange);
 %         end
     end
-    avg_high(s,:) = mean(timecourse_high);
-    avg_low(s,:) = mean(timecourse_low);
+    avg_high(s,:) = nanmean(timecourse_high);
+    avg_low(s,:) = nanmean(timecourse_low);
 end
 
 %% now separate plots into RT and YC groups
@@ -154,7 +177,8 @@ for s = 1:nsub
    undershoot = sum(abs(optimal-lows));
    offshoot(s) = overshoot + undershoot;
    %assume peak is first
-   allLoc = sort([locs' minloc']);
+   locVec = [locs' minloc'];
+   [allLoc, indS] = sort([locs' minloc']);
    avgdec = [];
    avginc = [];
    for q = 1:length(allLoc)-1
@@ -185,12 +209,12 @@ avgratio = [mean(firstgroup) mean(secondgroup)];
 eavgratio = [std(firstgroup)/sqrt(length(firstgroup)-1) std(secondgroup)/sqrt(length(secondgroup)-1)];
 thisfig = figure;
 barwitherr(eavgratio,avgratio)
-set(gca,'XTickLabel' , ['RT';'YC']);
+%set(gca,'XTickLabel' , ['RT';'YC']);
 xlabel('Subject Group')
 ylabel('OffShoot')
 title('Offshoots')
 set(findall(gcf,'-property','FontSize'),'FontSize',20)
-%print(thisfig, sprintf('%sMEANEVIDENCE.pdf', allplotDir), '-dpdf')
+%print(thisfig, sprintf('%sOVERSHOOT.pdf', allplotDir), '-dpdf')
 
 %% prove that more over and undershooting is because of feedback (relate previous dot speed to evidence max or min)
 
@@ -209,7 +233,7 @@ ylabel('Avg Change of Dot Speed')
 title('Speed Changes Preceeding Min/Max')
 set(findall(gcf,'-property','FontSize'),'FontSize',20)
 %ylim([-.4 .8])
-%print(h, sprintf('%sallrecogRT.pdf', allplotDir), '-dpdf')
+print(thisfig, sprintf('%sSPEEDCHANGEUPDATED.pdf', allplotDir), '-dpdf')
 
 %% now look at correlations between smoothed evidence in feedback
 clear rho
@@ -282,32 +306,37 @@ print(h, sprintf('%sbeescorrelationRTYC.pdf', allplotDir), '-dpdf')
 
 % between one peak and the next min-- ask what the change in speed was
 % between those points?
-timeHigh = [ mean(avg_high(iRT,:)); mean(avg_high(iYC,:))];
+timeHigh = [ nanmean(avg_high(iRT,:)); nanmean(avg_high(iYC,:))];
 eHigh = [nanstd(avg_high(iRT,:),[],1)/sqrt(length(iRT)-1) ;nanstd(avg_high(iYC,:),[],1)/sqrt(length(iYC)-1)];
 h = figure;
 npts = size(avg_high,2);
 mseb(1:npts,timeHigh, eHigh);
 title(sprintf('High Timecourse'))
+xlim([1 npts])
+
 set(gca, 'XTick', [1:npts])
-%set(gca,'XTickLabel',['-2';'-1'; ' 0'; ' 1'; ' 2'; ' 3'; ' 4'; ' 5'; ' 6'; ' 7'; ' 8']);
+set(gca,'XTickLabel',['-2';'-1'; ' 0'; ' 1'; ' 2'; ' 3'; ' 4'; ' 5'; ' 6'; ' 7'; ' 8'; ' 9'; '10'; '11'; '12']);
 ylabel('Retrieval - Control Evidence')
 xlabel('Time Points')
 set(findall(gcf,'-property','FontSize'),'FontSize',16)
 legend('Real-time', 'Yoked')
-%print(h, sprintf('%sHighTimecourse.pdf', allplotDir), '-dpdf') 
+print(h, sprintf('%sHighTimecourseUPDATED.pdf', allplotDir), '-dpdf') 
 
 %% do the same for low points
 timelow = [ mean(avg_low(iRT,:)); mean(avg_low(iYC,:))];
 elow = [nanstd(avg_low(iRT,:),[],1)/sqrt(length(iRT)-1) ;nanstd(avg_low(iYC,:),[],1)/sqrt(length(iYC)-1)];
+npts = size(avg_low,2);
+
 h = figure;
 mseb(1:npts,timelow, elow);
+xlim([1 npts])
 title(sprintf('Low Timecourse'))
 set(gca, 'XTick', [1:npts])
 %set(gca,'XTickLabel',['0'; '1'; '2'; '3'; '4'; '5'; '6'; '7'; '8']);
-%set(gca,'XTickLabel',['-2';'-1'; ' 0'; ' 1'; ' 2'; ' 3'; ' 4'; ' 5'; ' 6'; ' 7'; ' 8']);
+set(gca,'XTickLabel',['-2';'-1'; ' 0'; ' 1'; ' 2'; ' 3'; ' 4'; ' 5'; ' 6'; ' 7'; ' 8'; ' 9'; '10'; '11'; '12']);
 
 ylabel('Retrieval - Control Evidence')
 xlabel('Time Points')
 set(findall(gcf,'-property','FontSize'),'FontSize',16)
 legend('Real-time', 'Yoked')
-%print(h, sprintf('%sLowTimecourse_n.1.pdf', allplotDir), '-dpdf') 
+print(h, sprintf('%sLowTimecourseUDPATEDp25.pdf', allplotDir), '-dpdf') 

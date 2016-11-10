@@ -29,9 +29,9 @@ nblock = 3;
 %     svec = svec(1:nold);
 % end
 
-svec = [8 12 14 15 16 18 20:22 26 27 28 29];
-RT = [8 12 14 15 18 21 ]%take out 22 to make even by group];
-YC = [16 20 26 27 28 29];
+svec = [8 12 14 15 16 18 20  22 26 27 28 30 31 32];
+RT = [8 12 14 15 18 22  31]%take out 22 to make even by group];
+YC = [16 20 26 27 28 30  32];
 iRT = find(ismember(svec,RT));
 iYC = find(ismember(svec,YC));
 
@@ -95,7 +95,7 @@ for s = 1:nsub
         FBmeandiffbyblock(iblock) = mean(mean(abs(diff(FBsepbystim,1,2))));
         
         % look how separation evidence is changing by TR
-        allDiff = diff(diff(sepinorder(:,5:end),1,2),1,2);
+        allDiff = diff(diff(sepinorder(:,5:end),1,2),1,2)/4;
         secondDiff = reshape(allDiff,1,numel(allDiff));
         zTR = length(secondDiff);
         allSecondDiff(s,(iblock-1)*zTR + 1: iblock*zTR) = secondDiff;
@@ -195,13 +195,14 @@ for s = 1:nsub
     
     %take the average of nTRs in range
     goodRange = [0.05 0.15];
-    z1 =find(FBsepbystim>=goodRange(1));
-    z2 = find(FBsepbystim<=goodRange(2));
-    nGoodRange(s) = length(intersect(z1,z2))/numel(FBsepbystim);
-    nLow(s) = length(find(FBsepbystim<=-.1))/numel(FBsepbystim);
-    nHigh(s) = length(find(FBsepbystim>=.3))/numel(FBsepbystim);
-    allSepMean(s) = mean(mean(FBsepbystim));
-    vectorSep(s,:) = reshape(FBsepbystim,1,numel(FBsepbystim));
+    %remove feedback and just look at all datapoints
+    z1 =find(sepbystim>=goodRange(1));
+    z2 = find(sepbystim<=goodRange(2));
+    nGoodRange(s) = length(intersect(z1,z2))/numel(sepbystim);
+    nLow(s) = length(find(sepbystim<=-.1))/numel(sepbystim);
+    nHigh(s) = length(find(sepbystim>=.3))/numel(sepbystim);
+    allSepMean(s) = mean(mean(sepbystim));
+    vectorSep(s,:) = reshape(sepbystim,1,numel(sepbystim));
 end
 
 %% now compare decrease of retrieval evidence across both groups
@@ -401,6 +402,14 @@ set(findall(gcf,'-property','FontSize'),'FontSize',16)
 title('Second Derivative by Group');
 print(h, sprintf('%sbeesSECONDD.pdf', allplotDir), '-dpdf')
 
+thisfig = figure;
+distributionPlot(pl, 'showMM', 2, 'xNames', cats, 'ylabel', yl, 'colormap', copper)
+xlim([.5 2.5])
+ylim([-.05 .4])
+title('Second Difference of Evidence During MOT')
+xlabel('Subject Group')
+set(findall(gcf,'-property','FontSize'),'FontSize',20)
+print(thisfig, sprintf('%sviolinsSECONDD.pdf', allplotDir), '-dpdf')
 
 
 secondRT = allSecondDiff(iRT,:);

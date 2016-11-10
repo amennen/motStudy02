@@ -10,11 +10,11 @@ projectName = 'motStudy02';
 base_path = [fileparts(which('mot_realtime01.m')) filesep];
 
 % don't put in 22 until have subject
-svec = [8 12 14 15 16 18 20:21 22 24 26 27 28 29 30];
-RT = [8 12 14 15 15 18 21 22];
-YC = [16 20 26 27 28 29 30];
-RT_m = [8 12 14 15 18 21 22];
-YC_m = [16 28 20 26 27 29 30];
+svec = [8 12 14 15 16 18 20 22 26 27 28 29 30 31 32];
+RT = [8 12 14 15 18 22 31];
+YC = [16 20 26 27 28 30 32];
+RT_m = [8 12 14 15 18 22 31];
+YC_m = [16 28 20 26 27 30 32];
 iRT = find(ismember(svec,RT));
 iYC = find(ismember(svec,YC));
 
@@ -22,7 +22,7 @@ NSUB = length(svec);
 recallSession = [19 23];
 nstim = 10;
 allplotDir = ['/Data1/code/' projectName '/' 'Plots' '/' ];
-onlyRem = 1;
+onlyRem = 0;
 easy_rem = {};
 hard_rem = {};
 
@@ -45,20 +45,21 @@ for s = 1:NSUB
         r = load(fullfile(behavioral_dir,r(end).name)); 
         trials = table2cell(r.datastruct.trials);
         stimID = cell2mat(trials(:,8));
-        
-        if find(RT_m == svec(s)) %then it's in the RT group
-            matched = find(RT_m == svec(s));
-        elseif find(YC_m == svec(s)) % then in YC group
-            matched = find(YC_m == svec(s));
-        end
-        goodStim = overlapping{matched};
-        goodTrials = find(ismember(stimID,goodStim));
-        cond = cell2mat(trials(goodTrials,9));
-        rating = cell2mat(trials(goodTrials,12));
+%         
+%         if find(RT_m == svec(s)) %then it's in the RT group
+%             matched = find(RT_m == svec(s));
+%         elseif find(YC_m == svec(s)) % then in YC group
+%             matched = find(YC_m == svec(s));
+%         end
+%         goodStim = overlapping{matched};
+%         goodTrials = find(ismember(stimID,goodStim));
+        cond = cell2mat(trials(:,9));
+        rating = cell2mat(trials(:,12));
         easy = find(cond==2);
         hard = find(cond==1);
         rating_easy = rating(easy);
         rating_hard = rating(hard);
+        %stimID = stimID(goodTrials,:);
         [~, horder] = sort(stimID(find(cond==1)));
         [~, eorder] = sort(stimID(find(cond==2)));
         easy_ordered(i,:) = rating_easy(eorder);
@@ -76,22 +77,22 @@ for s = 1:NSUB
      
     end
     
-    diff_easy(s) = mean(easy_ordered(2,:) - easy_ordered(1,:));
-    diff_hard(s) = mean(hard_ordered(2,:) - hard_ordered(1,:));
+    diff_easy(s) = nanmean(easy_ordered(2,:) - easy_ordered(1,:));
+    diff_hard(s) = nanmean(hard_ordered(2,:) - hard_ordered(1,:));
     clear easy_ordered hard_ordered
     %[allRem] = findRememberedStim(svec(s));
     r = dir(fullfile(behavioral_dir, ['_' 'RECOG'  '*.mat']));
     r = load(fullfile(behavioral_dir,r(end).name));
     trials = table2cell(r.datastruct.trials);
     stimID = cell2mat(trials(:,8));
-    goodTrials = find(ismember(stimID,goodStim));
-    cond = cell2mat(trials(goodTrials,9));
-    acc = cell2mat(trials(goodTrials,11));
-    rt = cell2mat(trials(goodTrials,13));
+    %goodTrials = find(ismember(stimID,goodStim));
+    cond = cell2mat(trials(:,9));
+    acc = cell2mat(trials(:,11));
+    rt = cell2mat(trials(:,13));
     easy = find(cond==2);
     hard = find(cond==1);
-    easy_score(s) = mean(acc(easy));
-    hard_score(s) = mean(acc(hard));
+    easy_score(s) = nanmean(acc(easy));
+    hard_score(s) = nanmean(acc(hard));
     easy_rt(s) = nanmedian(rt(easy));
     hard_rt(s) = nanmedian(rt(hard));
     
@@ -136,7 +137,28 @@ ylabel('Level of Detail Difference')
 title('Average Post - Pre Detail Difference')
 set(findall(gcf,'-property','FontSize'),'FontSize',20)
 ylim([-.4 .8])
-%print(thisfig, sprintf('%salldetailRatings.pdf', allplotDir), '-dpdf')
+print(thisfig, sprintf('%salldetailRatings.pdf', allplotDir), '-dpdf')
+
+
+
+cats = {'RT-MOT', 'YC-MOT', 'RT-OMIT', 'YC-OMIT'};
+pl = {diff_hard(iRT), diff_hard(iYC), diff_easy(iRT), diff_easy(iYC)};
+%clear mp;
+%[~,mp] = ttest2(distDec2(iRT),distDec2(iYC));
+%ps = [mp];
+yl='Change in Imagery Detail'; %y-axis label
+h = figure;plotSpread(pl,'xNames',cats,'showMM',2,'yLabel',yl); %this plots the beeswarm
+h=gcf;set(h,'PaperOrientation','landscape'); %these two lines grabs some attributes important for plotting significance
+%xt = get(gca, 'XTick');yt = get(gca, 'YTick');
+%hold on;plotSig([1 2],yt,ps,0);hold off; %keep hold on and do plotSig.
+%pn=[picd num2str(vers) '-' num2str(scramm) 'ChangeInPrecision'];%print(pn,'-depsc'); %print fig
+%ylim([-1.25 1.25])
+set(findall(gcf,'-property','FontSize'),'FontSize',16)
+title('Post - Pre MOT Change in Detail');
+print(h, sprintf('%sbeesdetails.pdf', allplotDir), '-dpdf')
+
+
+
 
 %% recognition accuracy
 firstgroup = [hard_score(iRT); easy_score(iRT)];

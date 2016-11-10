@@ -60,9 +60,10 @@ if ~prev %if getting data today
     subjectName = [datestr(now,5) datestr(now,7) datestr(now,11) num2str(runNum) '_' projectName];
     dicom_dir = ['/Data1/subjects/' datestr(now,10) datestr(now,5) datestr(now,7) '.' subjectName '.' subjectName '/'];
 else
-    allDates = {'6-27-2016','3-26-2016', '3-29-2016', '4-1-2016', '4-27-2016', '4-29-2016', '5-05-2016'};
-    subjectName = [datestr(allDates{subjectNum},5) datestr(allDates{subjectNum},7) datestr(allDates{subjectNum},11) num2str(runNum) '_' projectName];
-    dicom_dir = ['/Data1/subjects/' datestr(allDates{subjectNum},10) datestr(allDates{subjectNum},5) datestr(allDates{subjectNum},7) '.' subjectName '.' subjectName '/'];
+    allDates = {'9-16-16'};
+    %allDates = {'7-1-2016' '3-26-2016', '3-29-2016', '4-1-2016', '4-27-2016', '4-29-2016', '5-05-2016'};
+    subjectName = [datestr(allDates{1},5) datestr(allDates{1},7) datestr(allDates{1},11) num2str(runNum) '_' projectName];
+    dicom_dir = ['/Data1/subjects/' datestr(allDates{1},10) datestr(allDates{1},5) datestr(allDates{1},7) '.' subjectName '.' subjectName '/'];
 end
 %check that dicom_dir exists
 assert(logical(exist(dicom_dir,'dir')));
