@@ -71,7 +71,8 @@ if ismember(SESSION,MOT)
         iTR.start = iTR.start + 10;
     end
     if SESSION == 18
-    iTR.start = iTR.start - 2;% go 2 TR's behind if plotting AFTERWARDS
+    %iTR.start = iTR.start - 2;% go 2 TR's behind if plotting AFTERWARDS
+    
     %(put back in later)--IF WANT TO GO 2 IN FRONT (if not comment out and
     %change +8 back to + 2
     end
@@ -79,13 +80,14 @@ if ismember(SESSION,MOT)
     % take out now
 else
     iTR.start = convertTR(timing.trig.wait,timing.plannedOnsets.prompt,config.TR);
-    %trialDur = timing.plannedOnsets.vis(1) - timing.plannedOnsets.prompt(1) +4; %added 4 to go 2 TR's ahead 
-    trialDur = timing.plannedOnsets.math(1) - timing.plannedOnsets.prompt(1) + 4; %for entire recall period = 15 TR's total, then go two past
+    trialDur = timing.plannedOnsets.vis(1) - timing.plannedOnsets.prompt(1); %added 4 to go 2 TR's ahead 
+    %trialDur = timing.plannedOnsets.math(1) - timing.plannedOnsets.prompt(1) + 4; %for entire recall period = 15 TR's total, then go two past
 end
 trialDurTR = (trialDur/config.TR) - 1; %20s/2 = 10 - 1 = 9 TRs
-if SESSION == 18 && N_TRS_LOC > 0 && N_TRS_LOC < 15 %shift over a little bit more
-    trialDurTR = N_TRS_LOC - 1;
-end
+%if SESSION == 18 && N_TRS_LOC > 0 && N_TRS_LOC < 15 %shift over a little bit more
+   % trialDurTR = N_TRS_LOC - 1; %if you want to not plot and just make
+   % cross val--took out for recall because we want shorter
+%end
 
 iTR.TH = iTR.start(TH);
 iTR.TE = iTR.start(TE);

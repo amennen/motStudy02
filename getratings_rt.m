@@ -5,12 +5,12 @@
 
 %look at the recognition memory at the end and listen to wav files! (use
 %recogdata.m to look at the recognition memory)
-clear all;
+%clear all;
 projectName = 'motStudy02';
 base_path = [fileparts(which('mot_realtime01.m')) filesep];
 
 % don't put in 22 until have subject
-svec = [8 12 14 15 16 18 20 22 26 27 28 29 30 31 32];
+svec = [8 12 14 15 16 18 20 22 26 27 28 30 31 32];
 RT = [8 12 14 15 18 22 31];
 YC = [16 20 26 27 28 30 32];
 RT_m = [8 12 14 15 18 22 31];
@@ -141,8 +141,8 @@ print(thisfig, sprintf('%salldetailRatings.pdf', allplotDir), '-dpdf')
 
 
 
-cats = {'RT-MOT', 'YC-MOT', 'RT-OMIT', 'YC-OMIT'};
-pl = {diff_hard(iRT), diff_hard(iYC), diff_easy(iRT), diff_easy(iYC)};
+cats = {'RT-OM', 'RT-MOT', 'YC-OMIT', 'YC-MOT'};
+pl = {diff_easy(iRT), diff_hard(iRT), diff_easy(iYC), diff_hard(iYC)};
 %clear mp;
 %[~,mp] = ttest2(distDec2(iRT),distDec2(iYC));
 %ps = [mp];
@@ -157,9 +157,18 @@ set(findall(gcf,'-property','FontSize'),'FontSize',16)
 title('Post - Pre MOT Change in Detail');
 print(h, sprintf('%sbeesdetails.pdf', allplotDir), '-dpdf')
 
-
-
-
+t = figure;
+plot(OMavgcorr(iRT),diff_easy(iRT), '.r', 'MarkerSize', 12)
+hold on;
+plot(OMavgcorr(iYC),diff_easy(iYC), '+r', 'MarkerSize', 12)
+plot(RTavgcorr(iRT),diff_hard(iRT), '.k', 'MarkerSize', 12)
+plot(RTavgcorr(iYC),diff_hard(iYC), '+k', 'MarkerSize', 12)
+xlabel('Post vs. Pre Correlation')
+ylabel('Post-Pre Detail Rating')
+title('Detail Ratings vs. corr(Representation)')
+legend('RT-omit', 'YC-omit', 'RT-MOT', 'YC-MOT')
+set(findall(gcf,'-property','FontSize'),'FontSize',16)
+print(t, sprintf('%sRATINGSvsCORRREP.pdf', allplotDir), '-dpdf')
 %% recognition accuracy
 firstgroup = [hard_score(iRT); easy_score(iRT)];
 secondgroup = [hard_score(iYC); easy_score(iYC)];

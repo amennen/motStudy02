@@ -545,7 +545,7 @@ if opt.showMM
     switch opt.xyOri
         case 'normal'
             if any(opt.showMM==[1,2])
-                mh = plot(ah,opt.xValues,m,'+r','Color','r','MarkerSize',12);
+                mh = plot(ah,opt.xValues,m,'+r','Color','r', 'LineWidth', 4)%,'MarkerSize',12);
             end
             if any(opt.showMM==[1,3])
                 mdh = plot(ah,opt.xValues,md,'sg','MarkerSize',12);

@@ -1,3 +1,4 @@
+
 % plotBees: plot distrubition for beeswarm functions
 % compare feedback
 
@@ -159,11 +160,12 @@ print(thisfig, sprintf('%sbeesbygroup.pdf', allplotDir), '-dpdf')
 
 %violin plots
 thisfig = figure;
+cats={'Real-time' 'Yoked-control'}; %category labels
 distributionPlot(pl, 'showMM', 2, 'xNames', cats, 'ylabel', yl, 'colormap', copper)
 xlim([.5 2.5])
 ylim([-1.25 1.25])
 title('Distribution of Evidence During MOT')
-xlabel('Subject Group')
+xlabel('Subject group')
 set(findall(gcf,'-property','FontSize'),'FontSize',20)
 print(thisfig, sprintf('%sviolinsbygroup.pdf', allplotDir), '-dpdf')
 

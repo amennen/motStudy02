@@ -107,9 +107,26 @@ for s = 1:nsub
         FBspeed = reshape(allSpeed(5:end,:),1,numel(allSpeed(5:end,:)));
         FBspeedchange = reshape(allspeedchanges(4:end,:),1,numel(allspeedchanges(4:end,:)));
         FBTRs = length(FBspeedchange);
+        secondDspeed = diff(allspeedchanges,1,1);
+        d2speed = reshape(secondDspeed(3:end,:),1,numel(secondDspeed(3:end,:)));
+        
+        num2avg = 3;
+        for i = 1:11 - num2avg +1 % only fb TR's
+            dsavg(i) = mean(FBspeedchange(i:i+num2avg-1));
+            deavg(i) = mean(FBsepchange(i:i+num2avg-1));
+        end
+        dsavg_inst = FBspeedchange(1:i);    
+            
         ds((iblock-1)*FBTRs + 1: iblock*FBTRs ,s) = FBspeedchange;
         ev((iblock-1)*FBTRs + 1: iblock*FBTRs ,s) = allsep;
         speed((iblock-1)*FBTRs + 1: iblock*FBTRs ,s) = FBspeed;
+        dev((iblock-1)*FBTRs + 1: iblock*FBTRs ,s) = FBsepchange;
+        alld2speed((iblock-1)*(FBTRs) + 1: iblock*(FBTRs) ,s) = d2speed;
+        
+        AVGTRs = size(dsavg,2);
+        avgds((iblock-1)*AVGTRs + 1: iblock*AVGTRs ,s) = dsavg;
+        avgde((iblock-1)*AVGTRs + 1: iblock*AVGTRs ,s) = deavg;
+        instds((iblock-1)*AVGTRs + 1: iblock*AVGTRs ,s) = dsavg_inst;
         
         %look get avg time when above .1
         %first try only dot tracking conditions
@@ -126,6 +143,7 @@ for s = 1:nsub
                 end
             end
         end
+        
 %         highPts = find(allsep > 0.1);
 %         avgRange = 8; %number of TR's
 %         keepHigh =  highPts(highPts < length(allsep) - avgRange);
@@ -340,3 +358,42 @@ xlabel('Time Points')
 set(findall(gcf,'-property','FontSize'),'FontSize',16)
 legend('Real-time', 'Yoked')
 print(h, sprintf('%sLowTimecourseUDPATEDp25.pdf', allplotDir), '-dpdf') 
+%% look if there's a difference in cause between inc in speed and dec
+ds_RT = alld2speed(:,iRT); %also have avgds, instds,
+allds_RT = reshape(ds_RT,1,numel(ds_RT));
+z = find(ds_RT>0);
+p = find(ds_RT<0);
+ds_inc = allds_RT(z);
+
+dev_RT = dev(:,iRT); %also avgde, dev
+alldev_RT = reshape(dev_RT,1,numel(dev_RT));
+%de_inc = allev_RT(z);
+
+ds_YC = alld2speed(:,iYC);
+allds_YC = reshape(ds_YC,1,numel(ds_YC));
+dev_YC = dev(:,iYC);
+allev_YC = reshape(dev_YC,1,numel(dev_YC));
+
+%for i =1:nsub
+figure;
+scatter(allds_RT,alldev_RT,'fill','MarkerEdgeColor','b',...
+        'MarkerFaceColor','c',...
+        'LineWidth',2.5);
+
+figure;
+scatter(allds_YC,allev_YC,'fill','MarkerEdgeColor','b',...
+        'MarkerFaceColor','c',...
+        'LineWidth',2.5);    
+
+% figure;
+% scatter(allds_RT(z),allev_RT(z),'fill','MarkerEdgeColor','b',...
+%         'MarkerFaceColor','c',...
+%         'LineWidth',2.5);
+%     
+% figure;
+% scatter(allds_RT(p),allev_RT(p),'fill','MarkerEdgeColor','b',...
+%         'MarkerFaceColor','c',...
+%         'LineWidth',2.5);
+[rhoP,pvalP] = corrcoef([allds_RT(z)' allev_RT(z)']);
+[rhoN,pvalN] = corrcoef([allds_RT(p)' allev_RT(p)']);
+%end

@@ -38,7 +38,7 @@ runvec(find(svec==30)) = 2;
 NSUB = length(svec);
 
 
-nTRsperTrial = 19;
+nTRsperTrial = 4 %19; %changed 12/6
 if length(runvec)~=length(svec)
     error('Enter in the runs AND date numbers!!')
 end
@@ -72,11 +72,13 @@ for s = 1:NSUB
     locPatterns_dir = fullfile(save_dir, 'Localizer/');
     behavioral_dir = ['/Data1/code/' projectName '/' 'code' '/BehavioralData/' num2str(subjectNum) '/'];
     addpath(genpath(code_dir));
-    scanDate = '7-12-2016';
+    %scanDate = '7-12-2016';
     subjectName = [datestr(scanDate,5) datestr(scanDate,7) datestr(scanDate,11) num2str(runNum) '_' projectName];
     dicom_dir = ['/Data1/subjects/' datestr(scanDate,10) datestr(scanDate,5) datestr(scanDate,7) '.' subjectName '.' subjectName '/'];
     
     % get recall data from subject
+    clear RTorderedPat 
+    clear OMITorderedPat
     for i = 1:2
         
         % only take the stimuli that they remember
@@ -113,12 +115,18 @@ for s = 1:NSUB
         
         
         testTrials = find(any(patterns.regressor.allCond));
+        
+        trialPat = patterns.raw_sm_filt_z(testTrials,:);
+        trialPat = reshape(trialPat', 4, size(trialPat,2),size(trialPat,1)/4);
+        
+        RTorderedPat(:,:,:,i) = trialPat(:,:,stimOrder.hard);
+        OMITorderedPat(:,:,:,i) = trialPat(:,:,stimOrder.easy);
         allcond = patterns.regressor.allCond(:,testTrials);
         categSep = patterns.categSep(:,union(testTrials,testTrials+shiftTR)); %all testTR's plus 2 before
         %shape by trial
         %ind = union(testTrials,testTrials+shiftTR);
         %z = reshape(ind,8,20);
-        z = reshape(categSep,nTRsperTrial,20); %for 20 trials --make sure this works here!
+        z = reshape(categSep,length(categSep)/20,20); %for 20 trials --make sure this works here!
         byTrial = z';
         RTtrials = byTrial(trials.hard,:);
         %now do in that specific order
@@ -130,6 +138,22 @@ for s = 1:NSUB
         OMITevidence(:,:,i) = OMITtrials;
         
     end
+    nTrials = 10;
+    for n = 1:nTrials
+       RT1 = RTorderedPat(:,:,n,1);
+       RT1 = RT1';
+       RT2 = RTorderedPat(:,:,n,2);
+       RT2 = RT2';
+       [r,p] = corr(RT1,RT2);
+       RTcorr(n) = mean(diag(r));
+       OM1 = OMITorderedPat(:,:,n,1);
+       OM1 = OM1';
+       OM2 = OMITorderedPat(:,:,n,2);
+       OM2 = OM2';
+       OMcorr(n) = mean(diag(corr(OM1,OM2)));
+    end
+    RTavgcorr(s) = mean(RTcorr);
+    OMavgcorr(s) = mean(OMcorr);
     
     % now find post - pre difference
     if onlyRem 
@@ -265,4 +289,21 @@ set(findall(gcf,'-property','FontSize'),'FontSize',16)
 xlim([1 nTRsperTrial])
 %xlim([1 8])
 ylim([-.25 .25])
-%print(h1, sprintf('%sRTOnlyPost.pdf', plotDir), '-dpdf')                                                                  
+%print(h1, sprintf('%sRTOnlyPost.pdf', plotDir), '-dpdf')    
+
+%% %% try to say it's because of feedback
+cats = {'OM RT','MOT RT', 'Omit YC', 'RT YC'};
+pl = {OMavgcorr(iRT)', RTavgcorr(iRT)', OMavgcorr(iYC)', RTavgcorr(iYC)'}
+clear mp;
+%[~,mp(1)] = ttest2(dsDecbySub(iRT)',dsDecbySub(iYC)');[~,mp(2)] = ttest2(dsIncbySub(iRT)',dsIncbySub(iYC)');
+%ps = [mp];
+yl='Avg Correlation Pre vs. Post Representation'; %y-axis label
+h = figure;plotSpread(pl,'xNames',cats,'showMM',2,'yLabel',yl); %this plots the beeswarm
+h=gcf;set(h,'PaperOrientation','landscape'); %these two lines grabs some attributes important for plotting significance
+xt = get(gca, 'XTick');yt = get(gca, 'YTick');
+%hold on;plotSig([1 3],yt,ps,0);hold off; %keep hold on and do plotSig.
+%pn=[picd num2str(vers) '-' num2str(scramm) 'ChangeInPrecision'];%print(pn,'-depsc'); %print fig
+%ylim([-1.25 1.25])
+set(findall(gcf,'-property','FontSize'),'FontSize',16)
+title('Representational Changes');
+%print(h, sprintf('%sdsbeforemax.pdf', allplotDir), '-dpdf')

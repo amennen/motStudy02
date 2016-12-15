@@ -403,10 +403,12 @@ title('Second Derivative by Group');
 print(h, sprintf('%sbeesSECONDD.pdf', allplotDir), '-dpdf')
 
 thisfig = figure;
+cats = {'Real-time', 'Yoked-control'};
+
 distributionPlot(pl, 'showMM', 2, 'xNames', cats, 'ylabel', yl, 'colormap', copper)
 xlim([.5 2.5])
 ylim([-.05 .4])
-title('Second Difference of Evidence During MOT')
+title('Second Derivative of Evidence During MOT')
 xlabel('Subject Group')
 set(findall(gcf,'-property','FontSize'),'FontSize',20)
 print(thisfig, sprintf('%sviolinsSECONDD.pdf', allplotDir), '-dpdf')
