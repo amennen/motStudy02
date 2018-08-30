@@ -1,2 +1,0 @@
-trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
-1   	65.7  	5   	CORK      	rt-targ 	1.951	1.239	1   	non-target	non-target

@@ -1,9 +1,0 @@
-trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
-1   	34.3  	22  	CYCLONE   	target  	1.951	NR  	0   	NR      	non-target
-2   	109   	26  	ELBOW     	target  	1.954	1.123	1   	target  	target  
-3   	161.1 	23  	HANDLE    	target  	1.955	1.305	0   	non-target	target  
-4   	221.7 	25  	HOSE      	target  	1.955	1.079	1   	non-target	non-target
-5   	263.7 	27  	ESSAY     	target  	1.955	1.013	1   	non-target	non-target
-6   	305.7 	21  	BARREL    	target  	1.955	0.544	1   	target  	target  
-7   	347.6 	28  	JEEP      	target  	1.952	0.823	1   	non-target	non-target
-8   	389.6 	24  	FOAM      	target  	1.955	0.703	1   	target  	target  

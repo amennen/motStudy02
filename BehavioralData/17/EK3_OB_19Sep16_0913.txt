@@ -1,9 +1,0 @@
-trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
-1   	9.9   	22  	BROOM     	stair   	3.456	2.372	1   	2+ details	2+ details
-2   	29.6  	26  	LENS      	stair   	3.456	1.489	1   	full    	full    
-3   	44.4  	24  	BOLT      	stair   	3.455	1.677	1   	full    	full    
-4   	59.1  	21  	QUILL     	stair   	3.453	1.022	1   	2+ details	2+ details
-5   	71.1  	23  	FRAME     	stair   	3.451	0.788	1   	generic 	generic 
-6   	83.1  	28  	RACK      	stair   	3.455	0.986	1   	generic 	generic 
-7   	95.1  	25  	DEPOT     	stair   	3.453	0.921	1   	generic 	generic 
-8   	107.1 	27  	CARAVAN   	stair   	3.455	1.15	1   	1 detail	1 detail

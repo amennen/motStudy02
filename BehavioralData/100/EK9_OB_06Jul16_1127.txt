@@ -1,2 +1,0 @@
-trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
-1   	8.1   	5   	MOON      	realtime	3.453	1.488	0   	1 detail	full    

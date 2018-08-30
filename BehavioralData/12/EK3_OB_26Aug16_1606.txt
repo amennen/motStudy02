@@ -1,9 +1,0 @@
-trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
-1   	9.9   	26  	PIPE      	stair   	3.456	1.921	1   	2+ details	2+ details
-2   	26.6  	27  	JEEP      	stair   	3.454	1.337	1   	generic 	generic 
-3   	39.7  	24  	RUST      	stair   	3.452	1.396	1   	generic 	generic 
-4   	54.3  	28  	HURDLE    	stair   	3.455	1.525	1   	2+ details	2+ details
-5   	66.3  	23  	BUBBLE    	stair   	3.454	1.611	1   	2+ details	2+ details
-6   	78.3  	25  	PENNY     	stair   	3.455	1.162	1   	generic 	generic 
-7   	90.3  	22  	PELLET    	stair   	3.454	2.496	1   	1 detail	1 detail
-8   	102.3 	21  	NOVEL     	stair   	3.451	1.046	1   	1 detail	1 detail

@@ -1,5 +1,0 @@
-trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
-1   	35.7  	24  	RACKET    	targ_easy	1.956	NR  	0   	NR      	target  
-2   	77.7  	45  	CURB      	lure_hard	1.95	1.145	0   	target  	non-target
-3   	119.7 	27  	FERRY     	targ_hard	1.95	1.546	1   	non-target	non-target
-4   	161.7 	46  	SOCKET    	lure_easy	1.95	0.986	0   	non-target	target  

@@ -1,9 +1,0 @@
-trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
-1   	34.3  	26  	STAPLE    	target  	1.952	NR  	0   	NR      	target  
-2   	99.2  	25  	PLANK     	target  	1.95	1.323	1   	non-target	non-target
-3   	151.6 	21  	HOSE      	target  	1.952	1.561	1   	target  	target  
-4   	204.3 	23  	SCOUT     	target  	1.952	1.177	1   	target  	target  
-5   	246.3 	24  	DOME      	target  	1.954	0.933	1   	non-target	non-target
-6   	288.3 	27  	JAIL      	target  	1.952	0.914	1   	target  	target  
-7   	330.3 	22  	PHONE     	target  	1.952	1.336	0   	non-target	target  
-8   	372.3 	28  	MATCH     	target  	1.955	0.966	1   	target  	target  

@@ -1,9 +1,0 @@
-trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
-1   	9.9   	23  	MORNING   	stair   	3.455	1.917	1   	full    	full    
-2   	23.5  	26  	LEAD      	stair   	3.455	1.496	1   	1 detail	1 detail
-3   	36.9  	28  	PERMIT    	stair   	3.455	1.272	1   	1 detail	1 detail
-4   	49.5  	24  	PUPPET    	stair   	3.455	1.227	1   	2+ details	2+ details
-5   	61.5  	25  	SANDPAPER 	stair   	3.451	1.073	1   	2+ details	2+ details
-6   	73.5  	21  	BANNER    	stair   	3.452	1.127	1   	2+ details	2+ details
-7   	85.5  	27  	SPARK     	stair   	3.453	1.27	1   	full    	full    
-8   	97.5  	22  	HAMMER    	stair   	3.454	1.005	1   	full    	full    

@@ -1,5 +1,0 @@
-trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
-1   	35.8  	45  	HANDLE    	lure_hard	1.95	1.05	0   	non-target	target  
-2   	77.8  	46  	COAL      	lure_easy	1.95	0.918	1   	target  	target  
-3   	119.8 	21  	PIN       	targ_hard	1.95	1.29	1   	non-target	non-target
-4   	161.8 	22  	BELL      	targ_easy	1.95	1.291	1   	non-target	non-target

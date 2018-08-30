@@ -1,9 +1,0 @@
-trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
-1   	34.3  	23  	CARBON    	target  	1.951	NR  	0   	NR      	non-target
-2   	92.5  	28  	CLUB      	target  	1.953	0.746	0   	target  	non-target
-3   	147.1 	27  	PUDDLE    	target  	1.955	0.924	1   	non-target	non-target
-4   	199.9 	21  	CARAVAN   	target  	1.955	1.354	1   	non-target	non-target
-5   	241.9 	22  	PORTAL    	target  	1.951	0.641	1   	target  	target  
-6   	283.9 	26  	MIRROR    	target  	1.955	0.991	1   	non-target	non-target
-7   	325.9 	24  	POLISH    	target  	1.952	0.939	1   	non-target	non-target
-8   	367.9 	25  	VAULT     	target  	1.95	0.651	1   	target  	target  

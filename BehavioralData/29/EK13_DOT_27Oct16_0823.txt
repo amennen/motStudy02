@@ -1,5 +1,0 @@
-trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
-1   	35.8  	21  	PIN       	targ_hard	1.951	0.856	0   	non-target	target  
-2   	77.8  	22  	CENT      	targ_easy	1.95	0.944	1   	non-target	non-target
-3   	119.8 	45  	SPONGE    	lure_hard	1.95	1.201	1   	non-target	non-target
-4   	161.8 	46  	EARTHQUAKE	lure_easy	1.951	0.809	1   	target  	target  

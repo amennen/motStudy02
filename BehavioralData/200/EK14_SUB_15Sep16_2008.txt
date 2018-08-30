@@ -1,4 +1,0 @@
-trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
-1   	12.5  	21  	HAMMER    	5       	3.952	NR  	0   	NR      	1 detail, 2+ details, full
-2   	52.5  	22  	RAINBOW   	5       	3.953	1.288	0   	generic 	1 detail, 2+ details, full
-3   	92.5  	23  	PUZZLE    	5       	3.952	0.505	1   	full    	1 detail, 2+ details, full

@@ -1,9 +1,0 @@
-trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
-1   	34.3  	25  	CARAVAN   	target  	1.951	NR  	0   	NR      	non-target
-2   	112.3 	23  	RADIO     	target  	1.951	NR  	0   	NR      	non-target
-3   	171.2 	27  	LETTER    	target  	1.955	1.066	1   	target  	target  
-4   	225.7 	22  	MUZZLE    	target  	1.951	1.164	1   	target  	target  
-5   	267.7 	21  	DIAL      	target  	1.951	NR  	0   	NR      	non-target
-6   	309.7 	26  	WIRE      	target  	1.955	1.078	1   	target  	target  
-7   	351.7 	28  	ISSUE     	target  	1.951	1.044	1   	target  	target  
-8   	393.7 	24  	MERCURY   	target  	1.951	1.338	1   	non-target	non-target

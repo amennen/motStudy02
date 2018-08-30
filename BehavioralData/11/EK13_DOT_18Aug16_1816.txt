@@ -1,5 +1,0 @@
-trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
-1   	35.6  	45  	RECORD    	lure_hard	1.951	1.137	0   	non-target	target  
-2   	77.6  	46  	PHONE     	lure_easy	1.951	1.049	1   	target  	target  
-3   	119.6 	25  	BATON     	targ_easy	1.95	1.209	1   	non-target	non-target
-4   	161.6 	27  	CHISEL    	targ_hard	1.95	0.93	1   	non-target	non-target

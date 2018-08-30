@@ -1,5 +1,0 @@
-trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
-1   	35.6  	45  	MAGNET    	lure_hard	1.95	0.805	0   	target  	non-target
-2   	77.6  	28  	SACK      	targ_easy	1.95	1.221	1   	non-target	non-target
-3   	119.6 	23  	STADIUM   	targ_hard	1.951	1.102	1   	non-target	non-target
-4   	161.6 	46  	PUMP      	lure_easy	1.95	1.245	1   	non-target	non-target

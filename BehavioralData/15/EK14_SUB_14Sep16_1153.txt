@@ -1,4 +1,0 @@
-trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
-1   	13.2  	24  	CONE      	5       	3.954	NR  	0   	NR      	1 detail, 2+ details, full
-2   	53.2  	26  	BANNER    	5       	3.952	NR  	0   	NR      	1 detail, 2+ details, full
-3   	93.2  	27  	SHELL     	5       	3.952	NR  	0   	NR      	1 detail, 2+ details, full

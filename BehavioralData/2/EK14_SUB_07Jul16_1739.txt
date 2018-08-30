@@ -1,4 +1,0 @@
-trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
-1   	13.2  	27  	ROPE      	5       	3.953	NR  	0   	NR      	1 detail, 2+ details, full
-2   	53.2  	24  	BROOM     	5       	3.95	1.587	0   	no image	1 detail, 2+ details, full
-3   	93.2  	23  	LIGHT     	5       	3.95	1.832	0   	generic 	1 detail, 2+ details, full

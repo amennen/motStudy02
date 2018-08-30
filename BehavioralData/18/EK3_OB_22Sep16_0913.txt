@@ -1,9 +1,0 @@
-trial	ons(s)	stim_id	stim      	cond    	dur 	rt  	acc 	resp    	cresp   
-1   	8.1   	24  	RACKET    	stair   	3.453	1.948	1   	2+ details	2+ details
-2   	23.5  	27  	FERRY     	stair   	3.455	2.018	1   	generic 	generic 
-3   	37.2  	26  	ASHES     	stair   	3.451	2.055	1   	generic 	generic 
-4   	50.8  	25  	TRIPOD    	stair   	3.453	1.542	1   	1 detail	1 detail
-5   	62.8  	23  	SAWDUST   	stair   	3.453	1.299	1   	1 detail	1 detail
-6   	74.8  	21  	RAVINE    	stair   	3.455	1.298	1   	1 detail	1 detail
-7   	86.8  	22  	SPARK     	stair   	3.454	1.472	1   	2+ details	2+ details
-8   	98.8  	28  	PORTAL    	stair   	3.455	1.35	1   	2+ details	2+ details
